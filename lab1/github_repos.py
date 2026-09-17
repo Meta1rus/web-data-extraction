@@ -1,15 +1,3 @@
-"""
-Лабораторная 1, задание 1.
-Получить список репозиториев пользователя GitHub через REST API и сохранить ответ в JSON.
-
-Документация: https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user
-Эндпоинт:     GET https://api.github.com/users/{username}/repos
-
-Запуск:  python3 github_repos.py [username]
-Без аргумента используется пользователь octocat (демо-аккаунт GitHub).
-Если задать переменную окружения GITHUB_TOKEN, запрос будет авторизованным
-(лимит 5000 запросов/час вместо 60 для анонимных).
-"""
 import json
 import os
 import sys
@@ -21,11 +9,11 @@ API_URL = "https://api.github.com/users/{username}/repos"
 
 def get_user_repos(username: str, token: str | None = None) -> list[dict]:
     session = requests.Session()
-    session.trust_env = False  # Игнорировать системные настройки прокси, если локальный прокси выключен
+    session.trust_env = False
 
     headers = {
-        "Accept": "application/vnd.github+json",   # рекомендуемый формат ответа
-        "X-GitHub-Api-Version": "2022-11-28",      # версия API из документации
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
     }
     if token:
         headers["Authorization"] = f"Bearer {token}"
@@ -33,7 +21,6 @@ def get_user_repos(username: str, token: str | None = None) -> list[dict]:
     repos: list[dict] = []
     page = 1
     while True:
-        # API отдаёт максимум 100 репозиториев за страницу, поэтому идём по страницам
         resp = session.get(
             API_URL.format(username=username),
             headers=headers,
