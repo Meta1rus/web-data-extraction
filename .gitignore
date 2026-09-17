@@ -1,0 +1,17 @@
+# Файлы заданий
+lab_1.txt
+lab2.md
+
+# Системные файлы macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python кэш и окружение
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
