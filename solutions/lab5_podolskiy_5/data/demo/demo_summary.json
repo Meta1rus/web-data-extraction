@@ -1,0 +1,68 @@
+{
+  "start_url": "https://scrapeme.live/shop/",
+  "fast_mode_local_mock": false,
+  "jobdir": {
+    "run1": {
+      "секунд": 38.32,
+      "close_reason": "closespider_itemcount",
+      "записей": 32,
+      "запросов": 36,
+      "stats_file": "stats_03_jobdir_run1.json"
+    },
+    "jobstate_files": [
+      {
+        "файл": "jobstate/requests.queue/active.json",
+        "байт": 27
+      },
+      {
+        "файл": "jobstate/requests.queue/scrapeme.live-f865497a6f0073e2c23e0e559fe35b7b/-10",
+        "байт": 7832
+      },
+      {
+        "файл": "jobstate/requests.queue/scrapeme.live-f865497a6f0073e2c23e0e559fe35b7b/0",
+        "байт": 311
+      },
+      {
+        "файл": "jobstate/requests.seen",
+        "байт": 1122
+      },
+      {
+        "файл": "jobstate/spider.state",
+        "байт": 5
+      }
+    ],
+    "fingerprints_in_requests_seen": 51,
+    "run2": {
+      "секунд": 30.97,
+      "close_reason": "finished",
+      "записей": 32,
+      "запросов": 35,
+      "dupefilter/filtered": 17,
+      "stats_file": "stats_04_jobdir_run2.json"
+    },
+    "unique_sku_total": 64,
+    "sku_repeated_in_run2": 0
+  },
+  "httpcache": [
+    {
+      "прогон": "cache_run1",
+      "секунд (wall)": 46.69,
+      "elapsed_time_seconds": 46.1,
+      "записей": 48,
+      "httpcache/store": 52,
+      "httpcache/hit": 0,
+      "httpcache/miss": 52,
+      "stats_file": "stats_05_cache_run1.json"
+    },
+    {
+      "прогон": "cache_run2",
+      "секунд (wall)": 0.43,
+      "elapsed_time_seconds": 0.09,
+      "записей": 48,
+      "httpcache/store": 0,
+      "httpcache/hit": 52,
+      "httpcache/miss": 0,
+      "stats_file": "stats_06_cache_run2.json"
+    }
+  ]
+}

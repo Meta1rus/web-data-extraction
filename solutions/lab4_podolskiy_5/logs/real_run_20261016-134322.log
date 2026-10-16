@@ -1,0 +1,480 @@
+Старт: 2026-10-16 13:43:22 | лог: logs/real_run_20261016-134322.log
+Python 3.13.7
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /simple/pip/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /simple/pip/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /simple/pip/
+Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip[22m
+|                                                                                |   0% of 185.8 MiB
+|■■■■■■■■                                                                        |  10% of 185.8 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 185.8 MiB
+Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to ~/Library/Caches/ms-playwright/chromium-1248
+Downloading FFmpeg (playwright ffmpeg v1013)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-mac-arm64.zip[22m
+|                                                                                |   1% of 1.4 MiB
+|■■■■■■■■                                                                        |  10% of 1.4 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  61% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.4 MiB
+FFmpeg (playwright ffmpeg v1013) downloaded to ~/Library/Caches/ms-playwright/ffmpeg-1013
+Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-headless-shell-mac-arm64.zip[22m
+|                                                                                |   0% of 99 MiB
+|■■■■■■■■                                                                        |  10% of 99 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 99 MiB
+Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to ~/Library/Caches/ms-playwright/chromium_headless_shell-1248
+
+=== 13:51:17 diagnose: python diagnose.py ===
+| Проверка | Результат |
+|---|---|
+| Ответ сервера (requests, без входа) | HTTP 200, 11064 байт, карточек 10, «Goodreads» 0 |
+| Ответ сервера (requests, после входа) | 11928 байт, карточек 10, «Goodreads» 10, Logout=True |
+| Целевой текст в исходном HTML | найден в <span class="text" itemprop="text">; <script>: 0, JSON-LD: False, __NEXT_DATA__: False, var data: False |
+| Форма /login | post /login, поля ['csrf_token', 'username', 'password', 'submit'], csrf_token 52 симв., cookie ['session'] |
+| POST без csrf_token / с csrf_token | [200] вход=False / [302, 200] вход=True |
+| Network → Fetch/XHR (вход + пагинация) | всего ответов 17, по типам {'document': 5, 'stylesheet': 12}, XHR/fetch: 0 |
+| /api/quotes?page=1 без входа (раздел /scroll) | {'status': 200, 'content_type': 'application/json', 'keys': ['has_next', 'page', 'quotes', 'tag', 'top_ten_tags'], 'quotes': 10, 'author_keys': ['goodreads_link', 'name', 'slug'], 'goodreads_link_present': True} |
+| Сайт с отключённым JS | {'login_ok': True, 'quote_cards': 10, 'goodreads_links': 10, 'next_link': True} |
+| robots.txt | HTTP 404 |
+| Вывод | Браузер технически не обязателен: страницы рендерятся сервером, XHR на целевых страницах нет, без JS вход и пагинация работают. Барьер — авторизация (форма с CSRF + cookie сессии); её воспроизводит requests.Session. Браузерная реализация выполнена как требование ЛР и как база сравнения. |
+
+Сохранено: metrics/diagnostics.json
+--- diagnose: код 0, 25 с
+
+=== 13:51:42 browser: python collect.py --trace ===
+[run 20261016-135142] BASE_URL=https://quotes.toscrape.com | robots.txt: HTTP 404 | пауза 1.0 c | блокировка ресурсов: True
+[auth] вход выполнен как st*****, CSRF gkVp************************************************, storage_state → auth_state.json
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    0.37 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.38 c
+[browser] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.32 c
+[browser] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.29 c
+[browser] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    1.91 c
+[browser] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.59 c
+[browser] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.82 c
+[browser] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.55 c
+[browser] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.43 c
+[browser] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.54 c
+[trace] artifacts/trace.zip (лента после входа)
+[browser] тегов для обхода: 137
+[browser] # 11 tag:abilities              стр.1  элементов=1  прирост=1  всего=1     0.33 c
+[browser] # 12 tag:activism               стр.1  элементов=1  прирост=1  всего=2     0.26 c
+[browser] # 13 tag:adulthood              стр.1  элементов=1  прирост=1  всего=3     0.67 c
+[browser] # 14 tag:adventure              стр.1  элементов=1  прирост=1  всего=4     0.23 c
+[browser] # 15 tag:age                    стр.1  элементов=1  прирост=1  всего=5     0.24 c
+[browser] # 16 tag:alcohol                стр.1  элементов=1  прирост=1  всего=6     0.31 c
+[browser] # 17 tag:aliteracy              стр.1  элементов=1  прирост=1  всего=7     0.78 c
+[browser] # 18 tag:apathy                 стр.1  элементов=1  прирост=1  всего=8     0.36 c
+[browser] # 19 tag:attributed             стр.1  элементов=1  прирост=1  всего=9     0.24 c
+[browser] # 20 tag:attributed-no-source   стр.1  элементов=3  прирост=3  всего=12    0.71 c
+[browser] # 21 tag:authors                стр.1  элементов=1  прирост=1  всего=13    0.38 c
+[browser] # 22 tag:be-yourself            стр.1  элементов=1  прирост=1  всего=14    0.23 c
+[browser] # 23 tag:beatles                стр.1  элементов=1  прирост=1  всего=15    0.44 c
+[browser] # 24 tag:better-life-empathy    стр.1  элементов=1  прирост=1  всего=16    0.31 c
+[browser] # 25 tag:bilbo                  стр.1  элементов=1  прирост=1  всего=17    0.73 c
+[browser] # 26 tag:books                  стр.1  элементов=10 прирост=10 всего=27    0.40 c
+[browser] # 27 tag:books                  стр.2  элементов=1  прирост=1  всего=28    0.29 c
+[browser] # 28 tag:change                 стр.1  элементов=1  прирост=1  всего=29    0.69 c
+[browser] # 29 tag:children               стр.1  элементов=2  прирост=2  всего=31    0.52 c
+[browser] # 30 tag:chocolate              стр.1  элементов=1  прирост=1  всего=32    0.38 c
+[browser] # 31 tag:choices                стр.1  элементов=1  прирост=1  всего=33    1.07 c
+[browser] # 32 tag:christianity           стр.1  элементов=1  прирост=1  всего=34    0.47 c
+[browser] # 33 tag:classic                стр.1  элементов=2  прирост=2  всего=36    0.69 c
+[browser] # 34 tag:comedy                 стр.1  элементов=1  прирост=1  всего=37    0.26 c
+[browser] # 35 tag:connection             стр.1  элементов=1  прирост=1  всего=38    2.16 c
+[browser] # 36 tag:contentment            стр.1  элементов=1  прирост=1  всего=39    0.63 c
+[browser] # 37 tag:courage                стр.1  элементов=2  прирост=2  всего=41    0.34 c
+[browser] # 38 tag:death                  стр.1  элементов=3  прирост=3  всего=44    0.54 c
+[browser] # 39 tag:deep-thoughts          стр.1  элементов=1  прирост=1  всего=45    0.37 c
+[browser] # 40 tag:difficult              стр.1  элементов=1  прирост=1  всего=46    0.82 c
+[browser] # 41 tag:dreamers               стр.1  элементов=1  прирост=1  всего=47    0.50 c
+[browser] # 42 tag:dreaming               стр.1  элементов=1  прирост=1  всего=48    0.40 c
+[browser] # 43 tag:dreams                 стр.1  элементов=1  прирост=1  всего=49    0.36 c
+[browser] # 44 tag:drug                   стр.1  элементов=1  прирост=1  всего=50    0.76 c
+[browser] # 45 tag:dumbledore             стр.1  элементов=2  прирост=2  всего=52    0.74 c
+[browser] # 46 tag:edison                 стр.1  элементов=1  прирост=1  всего=53    0.25 c
+[browser] # 47 tag:education              стр.1  элементов=1  прирост=1  всего=54    0.23 c
+[browser] # 48 tag:elizabeth-bennet       стр.1  элементов=1  прирост=1  всего=55    0.27 c
+[browser] # 49 tag:failure                стр.1  элементов=1  прирост=1  всего=56    0.29 c
+[browser] # 50 tag:fairy-tales            стр.1  элементов=1  прирост=1  всего=57    0.33 c
+[browser] # 51 tag:fairytales             стр.1  элементов=1  прирост=1  всего=58    0.27 c
+[browser] # 52 tag:faith                  стр.1  элементов=1  прирост=1  всего=59    0.36 c
+[browser] # 53 tag:fantasy                стр.1  элементов=1  прирост=1  всего=60    0.27 c
+[browser] # 54 tag:fate                   стр.1  элементов=1  прирост=1  всего=61    0.72 c
+[browser] # 55 tag:fear                   стр.1  элементов=1  прирост=1  всего=62    0.31 c
+[browser] # 56 tag:food                   стр.1  элементов=1  прирост=1  всего=63    0.24 c
+[browser] # 57 tag:friends                стр.1  элементов=4  прирост=4  всего=67    0.37 c
+[browser] # 58 tag:friendship             стр.1  элементов=5  прирост=5  всего=72    0.83 c
+[browser] # 59 tag:girls                  стр.1  элементов=1  прирост=1  всего=73    0.34 c
+[browser] # 60 tag:god                    стр.1  элементов=1  прирост=1  всего=74    0.28 c
+[browser] # 61 tag:good                   стр.1  элементов=1  прирост=1  всего=75    0.25 c
+[browser] # 62 tag:growing-up             стр.1  элементов=1  прирост=1  всего=76    0.27 c
+[browser] # 63 tag:grown-ups              стр.1  элементов=1  прирост=1  всего=77    0.74 c
+[browser] # 64 tag:happiness              стр.1  элементов=1  прирост=1  всего=78    0.27 c
+[browser] # 65 tag:hate                   стр.1  элементов=1  прирост=1  всего=79    0.36 c
+[browser] # 66 tag:heartbreak             стр.1  элементов=1  прирост=1  всего=80    0.36 c
+[browser] # 67 tag:hope                   стр.1  элементов=2  прирост=2  всего=82    0.25 c
+[browser] # 68 tag:humor                  стр.1  элементов=10 прирост=10 всего=92    0.38 c
+[browser] # 69 tag:humor                  стр.2  элементов=2  прирост=2  всего=94    0.82 c
+[browser] # 70 tag:imagination            стр.1  элементов=1  прирост=1  всего=95    0.62 c
+[browser] # 71 tag:indifference           стр.1  элементов=1  прирост=1  всего=96    0.38 c
+[browser] # 72 tag:insanity               стр.1  элементов=1  прирост=1  всего=97    0.65 c
+[browser] # 73 tag:inspiration            стр.1  элементов=1  прирост=1  всего=98    0.37 c
+[browser] # 74 tag:inspirational          стр.1  элементов=10 прирост=10 всего=108   0.35 c
+[browser] # 75 tag:inspirational          стр.2  элементов=3  прирост=3  всего=111   1.08 c
+[browser] # 76 tag:integrity              стр.1  элементов=1  прирост=1  всего=112   0.27 c
+[browser] # 77 tag:jane-austen            стр.1  элементов=1  прирост=1  всего=113   1.00 c
+[browser] # 78 tag:journey                стр.1  элементов=1  прирост=1  всего=114   0.31 c
+[browser] # 79 tag:knowledge              стр.1  элементов=1  прирост=1  всего=115   0.70 c
+[browser] # 80 tag:lack-of-friendship     стр.1  элементов=1  прирост=1  всего=116   0.43 c
+[browser] # 81 tag:lack-of-love           стр.1  элементов=1  прирост=1  всего=117   0.41 c
+[browser] # 82 tag:learning               стр.1  элементов=2  прирост=2  всего=119   0.97 c
+[browser] # 83 tag:library                стр.1  элементов=2  прирост=2  всего=121   0.49 c
+[browser] # 84 tag:lies                   стр.1  элементов=1  прирост=1  всего=122   0.25 c
+[browser] # 85 tag:life                   стр.1  элементов=10 прирост=10 всего=132   0.90 c
+[browser] # 86 tag:life                   стр.2  элементов=3  прирост=3  всего=135   0.41 c
+[browser] # 87 tag:literature             стр.1  элементов=1  прирост=1  всего=136   0.30 c
+[browser] # 88 tag:live                   стр.1  элементов=1  прирост=1  всего=137   1.05 c
+[browser] # 89 tag:live-death-love        стр.1  элементов=1  прирост=1  всего=138   0.58 c
+[browser] # 90 tag:lost                   стр.1  элементов=1  прирост=1  всего=139   0.74 c
+[browser] # 91 tag:love                   стр.1  элементов=10 прирост=10 всего=149   0.67 c
+[browser] # 92 tag:love                   стр.2  элементов=4  прирост=4  всего=153   1.27 c
+[browser] # 93 tag:lying                  стр.1  элементов=1  прирост=1  всего=154   0.75 c
+[browser] # 94 tag:marriage               стр.1  элементов=1  прирост=1  всего=155   0.84 c
+[browser] # 95 tag:mind                   стр.1  элементов=1  прирост=1  всего=156   0.96 c
+[browser] # 96 tag:miracle                стр.1  элементов=1  прирост=1  всего=157   0.58 c
+[browser] # 97 tag:miracles               стр.1  элементов=1  прирост=1  всего=158   0.38 c
+[browser] # 98 tag:misattributed-eleanor-roosevelt стр.1  элементов=1  прирост=1  всего=159   0.33 c
+[browser] # 99 tag:misattributed-john-lennon стр.1  элементов=1  прирост=1  всего=160   0.83 c
+[browser] #100 tag:misattributed-mark-twain стр.1  элементов=1  прирост=1  всего=161   0.27 c
+[browser] #101 tag:misattributed-to-c-s-lewis стр.1  элементов=1  прирост=1  всего=162   0.24 c
+[browser] #102 tag:misattributed-to-einstein стр.1  элементов=1  прирост=1  всего=163   0.67 c
+[browser] #103 tag:misattributed-to-mother-teresa стр.1  элементов=1  прирост=1  всего=164   0.45 c
+[browser] #104 tag:mistakes               стр.1  элементов=1  прирост=1  всего=165   0.68 c
+[browser] #105 tag:music                  стр.1  элементов=2  прирост=2  всего=167   0.75 c
+[browser] #106 tag:navigation             стр.1  элементов=1  прирост=1  всего=168   0.25 c
+[browser] #107 tag:novelist-quotes        стр.1  элементов=1  прирост=1  всего=169   0.30 c
+[browser] #108 tag:obvious                стр.1  элементов=1  прирост=1  всего=170   0.68 c
+[browser] #109 tag:open-mind              стр.1  элементов=1  прирост=1  всего=171   0.27 c
+[browser] #110 tag:opposite               стр.1  элементов=1  прирост=1  всего=172   0.47 c
+[browser] #111 tag:paraphrased            стр.1  элементов=2  прирост=2  всего=174   0.74 c
+[browser] #112 tag:peace                  стр.1  элементов=1  прирост=1  всего=175   0.72 c
+[browser] #113 tag:philosophy             стр.1  элементов=2  прирост=2  всего=177   0.41 c
+[browser] #114 tag:planning               стр.1  элементов=1  прирост=1  всего=178   0.36 c
+[browser] #115 tag:plans                  стр.1  элементов=1  прирост=1  всего=179   0.39 c
+[browser] #116 tag:poetry                 стр.1  элементов=1  прирост=1  всего=180   0.73 c
+[browser] #117 tag:quest                  стр.1  элементов=1  прирост=1  всего=181   0.70 c
+[browser] #118 tag:read                   стр.1  элементов=1  прирост=1  всего=182   0.25 c
+[browser] #119 tag:readers                стр.1  элементов=1  прирост=1  всего=183   0.79 c
+[browser] #120 tag:reading                стр.1  элементов=7  прирост=7  всего=190   0.40 c
+[browser] #121 tag:reading-books          стр.1  элементов=1  прирост=1  всего=191   0.77 c
+[browser] #122 tag:regrets                стр.1  элементов=1  прирост=1  всего=192   0.25 c
+[browser] #123 tag:religion               стр.1  элементов=2  прирост=2  всего=194   0.33 c
+[browser] #124 tag:romance                стр.1  элементов=1  прирост=1  всего=195   0.30 c
+[browser] #125 tag:romantic               стр.1  элементов=1  прирост=1  всего=196   0.44 c
+[browser] #126 tag:self-indulgence        стр.1  элементов=1  прирост=1  всего=197   0.29 c
+[browser] #127 tag:seuss                  стр.1  элементов=1  прирост=1  всего=198   0.59 c
+[browser] #128 tag:simile                 стр.1  элементов=3  прирост=3  всего=201   0.77 c
+[browser] #129 tag:simplicity             стр.1  элементов=1  прирост=1  всего=202   0.35 c
+[browser] #130 tag:sinister               стр.1  элементов=1  прирост=1  всего=203   0.82 c
+[browser] #131 tag:sisters                стр.1  элементов=1  прирост=1  всего=204   0.80 c
+[browser] #132 tag:success                стр.1  элементов=1  прирост=1  всего=205   0.69 c
+[browser] #133 tag:sun                    стр.1  элементов=1  прирост=1  всего=206   0.27 c
+[browser] #134 tag:tea                    стр.1  элементов=1  прирост=1  всего=207   0.67 c
+[browser] #135 tag:the-hunger-games       стр.1  элементов=1  прирост=1  всего=208   0.56 c
+[browser] #136 tag:thinking               стр.1  элементов=2  прирост=2  всего=210   0.41 c
+[browser] #137 tag:thought                стр.1  элементов=1  прирост=1  всего=211   0.34 c
+[browser] #138 tag:travel                 стр.1  элементов=1  прирост=1  всего=212   0.73 c
+[browser] #139 tag:troubles               стр.1  элементов=1  прирост=1  всего=213   0.99 c
+[browser] #140 tag:truth                  стр.1  элементов=4  прирост=4  всего=217   0.42 c
+[browser] #141 tag:understand             стр.1  элементов=1  прирост=1  всего=218   0.29 c
+[browser] #142 tag:understanding          стр.1  элементов=1  прирост=1  всего=219   0.52 c
+[browser] #143 tag:unhappy-marriage       стр.1  элементов=1  прирост=1  всего=220   0.42 c
+[browser] #144 tag:value                  стр.1  элементов=1  прирост=1  всего=221   0.96 c
+[browser] #145 tag:wander                 стр.1  элементов=1  прирост=1  всего=222   0.72 c
+[browser] #146 tag:wisdom                 стр.1  элементов=1  прирост=1  всего=223   0.26 c
+[browser] #147 tag:women                  стр.1  элементов=1  прирост=1  всего=224   0.33 c
+[browser] #148 tag:world                  стр.1  элементов=1  прирост=1  всего=225   0.37 c
+[browser] #149 tag:write                  стр.1  элементов=1  прирост=1  всего=226   0.28 c
+[browser] #150 tag:writers                стр.1  элементов=1  прирост=1  всего=227   0.75 c
+[browser] #151 tag:writing                стр.1  элементов=3  прирост=3  всего=230   0.38 c
+[browser] #152 tag:yourself               стр.1  элементов=2  прирост=2  всего=232   0.73 c
+smoke-check data_browser.csv: OK (ключевые поля заполнены, порог пустых 5%)
+
+Записей (цитата × тег): 232 | уникальных цитат в ленте: 100 | циклов: 152 | сбоев: 0
+Дубликатов по ключу: 0 | доли пустых: {'text': 0.0, 'author': 0.0, 'author_url': 0.0, 'goodreads_url': 0.0, 'tag': 0.0}
+Время прогона: 233.8 c | запросов: 155 (заблокировано 308) | трафик: 0.189 МБ | пик памяти: 715.9 МБ | код возврата: 0
+--- browser: код 0, 271 с
+
+=== 13:56:13 authcheck: python collect.py --auth-check ===
+[auth] сессия восстановлена из auth_state.json — повторный вход не нужен
+[auth-check] режим: reused_storage_state, сессия активна: True, 12.404 c, запросов: 1
+--- authcheck: код 0, 12 с
+
+=== 13:56:25 light: python light.py ===
+[run 20261016-135626] BASE_URL=https://quotes.toscrape.com | robots.txt: HTTP 404 | пауза 1.0 c
+[auth] вход выполнен как st*****, CSRF NTQy************************************************, cookies → auth_state_light.json
+[light] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    0.29 c
+[light] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.37 c
+[light] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.37 c
+[light] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.31 c
+[light] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    0.38 c
+[light] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.34 c
+[light] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.32 c
+[light] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.32 c
+[light] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.39 c
+[light] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.36 c
+[light] тегов для обхода: 137
+[light] # 11 tag:abilities              стр.1  элементов=1  прирост=1  всего=1     0.21 c
+[light] # 12 tag:activism               стр.1  элементов=1  прирост=1  всего=2     0.20 c
+[light] # 13 tag:adulthood              стр.1  элементов=1  прирост=1  всего=3     0.29 c
+[light] # 14 tag:adventure              стр.1  элементов=1  прирост=1  всего=4     0.25 c
+[light] # 15 tag:age                    стр.1  элементов=1  прирост=1  всего=5     0.22 c
+[light] # 16 tag:alcohol                стр.1  элементов=1  прирост=1  всего=6     0.21 c
+[light] # 17 tag:aliteracy              стр.1  элементов=1  прирост=1  всего=7     0.30 c
+[light] # 18 tag:apathy                 стр.1  элементов=1  прирост=1  всего=8     0.33 c
+[light] # 19 tag:attributed             стр.1  элементов=1  прирост=1  всего=9     0.24 c
+[light] # 20 tag:attributed-no-source   стр.1  элементов=3  прирост=3  всего=12    0.23 c
+[light] # 21 tag:authors                стр.1  элементов=1  прирост=1  всего=13    0.30 c
+[light] # 22 tag:be-yourself            стр.1  элементов=1  прирост=1  всего=14    0.26 c
+[light] # 23 tag:beatles                стр.1  элементов=1  прирост=1  всего=15    0.23 c
+[light] # 24 tag:better-life-empathy    стр.1  элементов=1  прирост=1  всего=16    0.22 c
+[light] # 25 tag:bilbo                  стр.1  элементов=1  прирост=1  всего=17    0.24 c
+[light] # 26 tag:books                  стр.1  элементов=10 прирост=10 всего=27    0.31 c
+[light] # 27 tag:books                  стр.2  элементов=1  прирост=1  всего=28    0.22 c
+[light] # 28 tag:change                 стр.1  элементов=1  прирост=1  всего=29    0.25 c
+[light] # 29 tag:children               стр.1  элементов=2  прирост=2  всего=31    0.25 c
+[light] # 30 tag:chocolate              стр.1  элементов=1  прирост=1  всего=32    0.21 c
+[light] # 31 tag:choices                стр.1  элементов=1  прирост=1  всего=33    0.33 c
+[light] # 32 tag:christianity           стр.1  элементов=1  прирост=1  всего=34    0.24 c
+[light] # 33 tag:classic                стр.1  элементов=2  прирост=2  всего=36    0.22 c
+[light] # 34 tag:comedy                 стр.1  элементов=1  прирост=1  всего=37    0.29 c
+[light] # 35 tag:connection             стр.1  элементов=1  прирост=1  всего=38    0.25 c
+[light] # 36 tag:contentment            стр.1  элементов=1  прирост=1  всего=39    0.22 c
+[light] # 37 tag:courage                стр.1  элементов=2  прирост=2  всего=41    0.28 c
+[light] # 38 tag:death                  стр.1  элементов=3  прирост=3  всего=44    0.24 c
+[light] # 39 tag:deep-thoughts          стр.1  элементов=1  прирост=1  всего=45    0.28 c
+[light] # 40 tag:difficult              стр.1  элементов=1  прирост=1  всего=46    0.20 c
+[light] # 41 tag:dreamers               стр.1  элементов=1  прирост=1  всего=47    0.21 c
+[light] # 42 tag:dreaming               стр.1  элементов=1  прирост=1  всего=48    0.25 c
+[light] # 43 tag:dreams                 стр.1  элементов=1  прирост=1  всего=49    0.51 c
+[light] # 44 tag:drug                   стр.1  элементов=1  прирост=1  всего=50    0.34 c
+[light] # 45 tag:dumbledore             стр.1  элементов=2  прирост=2  всего=52    0.40 c
+[light] # 46 tag:edison                 стр.1  элементов=1  прирост=1  всего=53    0.27 c
+[light] # 47 tag:education              стр.1  элементов=1  прирост=1  всего=54    0.35 c
+[light] # 48 tag:elizabeth-bennet       стр.1  элементов=1  прирост=1  всего=55    0.19 c
+[light] # 49 tag:failure                стр.1  элементов=1  прирост=1  всего=56    0.36 c
+[light] # 50 tag:fairy-tales            стр.1  элементов=1  прирост=1  всего=57    0.33 c
+[light] # 51 tag:fairytales             стр.1  элементов=1  прирост=1  всего=58    0.23 c
+[light] # 52 tag:faith                  стр.1  элементов=1  прирост=1  всего=59    0.45 c
+[light] # 53 tag:fantasy                стр.1  элементов=1  прирост=1  всего=60    0.62 c
+[light] # 54 tag:fate                   стр.1  элементов=1  прирост=1  всего=61    0.42 c
+[light] # 55 tag:fear                   стр.1  элементов=1  прирост=1  всего=62    0.27 c
+[light] # 56 tag:food                   стр.1  элементов=1  прирост=1  всего=63    0.20 c
+[light] # 57 tag:friends                стр.1  элементов=4  прирост=4  всего=67    0.23 c
+[light] # 58 tag:friendship             стр.1  элементов=5  прирост=5  всего=72    0.42 c
+[light] # 59 tag:girls                  стр.1  элементов=1  прирост=1  всего=73    0.23 c
+[light] # 60 tag:god                    стр.1  элементов=1  прирост=1  всего=74    0.50 c
+[light] # 61 tag:good                   стр.1  элементов=1  прирост=1  всего=75    0.22 c
+[light] # 62 tag:growing-up             стр.1  элементов=1  прирост=1  всего=76    0.23 c
+[light] # 63 tag:grown-ups              стр.1  элементов=1  прирост=1  всего=77    0.31 c
+[light] # 64 tag:happiness              стр.1  элементов=1  прирост=1  всего=78    0.21 c
+[light] # 65 tag:hate                   стр.1  элементов=1  прирост=1  всего=79    0.25 c
+[light] # 66 tag:heartbreak             стр.1  элементов=1  прирост=1  всего=80    0.23 c
+[light] # 67 tag:hope                   стр.1  элементов=2  прирост=2  всего=82    0.20 c
+[light] # 68 tag:humor                  стр.1  элементов=10 прирост=10 всего=92    0.30 c
+[light] # 69 tag:humor                  стр.2  элементов=2  прирост=2  всего=94    0.28 c
+[light] # 70 tag:imagination            стр.1  элементов=1  прирост=1  всего=95    0.25 c
+[light] # 71 tag:indifference           стр.1  элементов=1  прирост=1  всего=96    0.26 c
+[light] # 72 tag:insanity               стр.1  элементов=1  прирост=1  всего=97    0.19 c
+[light] # 73 tag:inspiration            стр.1  элементов=1  прирост=1  всего=98    0.21 c
+[light] # 74 tag:inspirational          стр.1  элементов=10 прирост=10 всего=108   0.72 c
+[light] # 75 tag:inspirational          стр.2  элементов=3  прирост=3  всего=111   0.27 c
+[light] # 76 tag:integrity              стр.1  элементов=1  прирост=1  всего=112   0.24 c
+[light] # 77 tag:jane-austen            стр.1  элементов=1  прирост=1  всего=113   0.31 c
+[light] # 78 tag:journey                стр.1  элементов=1  прирост=1  всего=114   0.42 c
+[light] # 79 tag:knowledge              стр.1  элементов=1  прирост=1  всего=115   0.27 c
+[light] # 80 tag:lack-of-friendship     стр.1  элементов=1  прирост=1  всего=116   0.21 c
+[light] # 81 tag:lack-of-love           стр.1  элементов=1  прирост=1  всего=117   0.22 c
+[light] # 82 tag:learning               стр.1  элементов=2  прирост=2  всего=119   0.34 c
+[light] # 83 tag:library                стр.1  элементов=2  прирост=2  всего=121   0.22 c
+[light] # 84 tag:lies                   стр.1  элементов=1  прирост=1  всего=122   0.20 c
+[light] # 85 tag:life                   стр.1  элементов=10 прирост=10 всего=132   0.31 c
+[light] # 86 tag:life                   стр.2  элементов=3  прирост=3  всего=135   0.21 c
+[light] # 87 tag:literature             стр.1  элементов=1  прирост=1  всего=136   0.22 c
+[light] # 88 tag:live                   стр.1  элементов=1  прирост=1  всего=137   0.22 c
+[light] # 89 tag:live-death-love        стр.1  элементов=1  прирост=1  всего=138   0.20 c
+[light] # 90 tag:lost                   стр.1  элементов=1  прирост=1  всего=139   0.22 c
+[light] # 91 tag:love                   стр.1  элементов=10 прирост=10 всего=149   0.34 c
+[light] # 92 tag:love                   стр.2  элементов=4  прирост=4  всего=153   0.25 c
+[light] # 93 tag:lying                  стр.1  элементов=1  прирост=1  всего=154   0.21 c
+[light] # 94 tag:marriage               стр.1  элементов=1  прирост=1  всего=155   0.22 c
+[light] # 95 tag:mind                   стр.1  элементов=1  прирост=1  всего=156   0.20 c
+[light] # 96 tag:miracle                стр.1  элементов=1  прирост=1  всего=157   0.22 c
+[light] # 97 tag:miracles               стр.1  элементов=1  прирост=1  всего=158   0.29 c
+[light] # 98 tag:misattributed-eleanor-roosevelt стр.1  элементов=1  прирост=1  всего=159   0.29 c
+[light] # 99 tag:misattributed-john-lennon стр.1  элементов=1  прирост=1  всего=160   0.22 c
+[light] #100 tag:misattributed-mark-twain стр.1  элементов=1  прирост=1  всего=161   0.22 c
+[light] #101 tag:misattributed-to-c-s-lewis стр.1  элементов=1  прирост=1  всего=162   0.24 c
+[light] #102 tag:misattributed-to-einstein стр.1  элементов=1  прирост=1  всего=163   0.30 c
+[light] #103 tag:misattributed-to-mother-teresa стр.1  элементов=1  прирост=1  всего=164   0.29 c
+[light] #104 tag:mistakes               стр.1  элементов=1  прирост=1  всего=165   0.23 c
+[light] #105 tag:music                  стр.1  элементов=2  прирост=2  всего=167   0.28 c
+[light] #106 tag:navigation             стр.1  элементов=1  прирост=1  всего=168   0.29 c
+[light] #107 tag:novelist-quotes        стр.1  элементов=1  прирост=1  всего=169   0.21 c
+[light] #108 tag:obvious                стр.1  элементов=1  прирост=1  всего=170   0.31 c
+[light] #109 tag:open-mind              стр.1  элементов=1  прирост=1  всего=171   0.23 c
+[light] #110 tag:opposite               стр.1  элементов=1  прирост=1  всего=172   0.35 c
+[light] #111 tag:paraphrased            стр.1  элементов=2  прирост=2  всего=174   0.25 c
+[light] #112 tag:peace                  стр.1  элементов=1  прирост=1  всего=175   0.41 c
+[light] #113 tag:philosophy             стр.1  элементов=2  прирост=2  всего=177   0.32 c
+[light] #114 tag:planning               стр.1  элементов=1  прирост=1  всего=178   0.21 c
+[light] #115 tag:plans                  стр.1  элементов=1  прирост=1  всего=179   0.26 c
+[light] #116 tag:poetry                 стр.1  элементов=1  прирост=1  всего=180   0.26 c
+[light] #117 tag:quest                  стр.1  элементов=1  прирост=1  всего=181   0.23 c
+[light] #118 tag:read                   стр.1  элементов=1  прирост=1  всего=182   0.20 c
+[light] #119 tag:readers                стр.1  элементов=1  прирост=1  всего=183   0.24 c
+[light] #120 tag:reading                стр.1  элементов=7  прирост=7  всего=190   0.35 c
+[light] #121 tag:reading-books          стр.1  элементов=1  прирост=1  всего=191   0.35 c
+[light] #122 tag:regrets                стр.1  элементов=1  прирост=1  всего=192   0.23 c
+[light] #123 tag:religion               стр.1  элементов=2  прирост=2  всего=194   0.27 c
+[light] #124 tag:romance                стр.1  элементов=1  прирост=1  всего=195   0.22 c
+[light] #125 tag:romantic               стр.1  элементов=1  прирост=1  всего=196   0.20 c
+[light] #126 tag:self-indulgence        стр.1  элементов=1  прирост=1  всего=197   0.30 c
+[light] #127 tag:seuss                  стр.1  элементов=1  прирост=1  всего=198   0.23 c
+[light] #128 tag:simile                 стр.1  элементов=3  прирост=3  всего=201   0.28 c
+[light] #129 tag:simplicity             стр.1  элементов=1  прирост=1  всего=202   0.20 c
+[light] #130 tag:sinister               стр.1  элементов=1  прирост=1  всего=203   0.21 c
+[light] #131 tag:sisters                стр.1  элементов=1  прирост=1  всего=204   0.29 c
+[light] #132 tag:success                стр.1  элементов=1  прирост=1  всего=205   0.21 c
+[light] #133 tag:sun                    стр.1  элементов=1  прирост=1  всего=206   0.21 c
+[light] #134 tag:tea                    стр.1  элементов=1  прирост=1  всего=207   0.28 c
+[light] #135 tag:the-hunger-games       стр.1  элементов=1  прирост=1  всего=208   0.30 c
+[light] #136 tag:thinking               стр.1  элементов=2  прирост=2  всего=210   0.23 c
+[light] #137 tag:thought                стр.1  элементов=1  прирост=1  всего=211   0.35 c
+[light] #138 tag:travel                 стр.1  элементов=1  прирост=1  всего=212   0.21 c
+[light] #139 tag:troubles               стр.1  элементов=1  прирост=1  всего=213   0.20 c
+[light] #140 tag:truth                  стр.1  элементов=4  прирост=4  всего=217   0.33 c
+[light] #141 tag:understand             стр.1  элементов=1  прирост=1  всего=218   0.23 c
+[light] #142 tag:understanding          стр.1  элементов=1  прирост=1  всего=219   0.23 c
+[light] #143 tag:unhappy-marriage       стр.1  элементов=1  прирост=1  всего=220   0.21 c
+[light] #144 tag:value                  стр.1  элементов=1  прирост=1  всего=221   0.21 c
+[light] #145 tag:wander                 стр.1  элементов=1  прирост=1  всего=222   0.22 c
+[light] #146 tag:wisdom                 стр.1  элементов=1  прирост=1  всего=223   0.23 c
+[light] #147 tag:women                  стр.1  элементов=1  прирост=1  всего=224   0.22 c
+[light] #148 tag:world                  стр.1  элементов=1  прирост=1  всего=225   0.25 c
+[light] #149 tag:write                  стр.1  элементов=1  прирост=1  всего=226   0.24 c
+[light] #150 tag:writers                стр.1  элементов=1  прирост=1  всего=227   0.23 c
+[light] #151 tag:writing                стр.1  элементов=3  прирост=3  всего=230   0.24 c
+[light] #152 tag:yourself               стр.1  элементов=2  прирост=2  всего=232   0.24 c
+smoke-check data_light.csv: OK (ключевые поля заполнены, порог пустых 5%)
+
+Записей (цитата × тег): 232 | уникальных цитат в ленте: 100 | циклов: 152 | сбоев: 0
+Время прогона: 195.0 c | запросов: 155 | трафик: 0.774 МБ | пик памяти: 49.8 МБ | код возврата: 0
+--- light: код 0, 196 с
+
+=== 13:59:41 compare: python compare.py ===
+[pairs] браузер=232 light=232 общих=232 только браузер=0 только light=0 расхождения полей={} → СОВПАДАЮТ
+[feed] браузер=100 light=100 общих=100 только браузер=0 только light=0 расхождения полей={} → СОВПАДАЮТ
+[consistency_browser] тегов в ленте=137 обойдено=137; ожидалось пар по ленте=232 найдено на страницах тегов=232 (для обойдённых тегов не найдено: 0, лишних: 0); цитат без тегов: 3
+[consistency_light] тегов в ленте=137 обойдено=137; ожидалось пар по ленте=232 найдено на страницах тегов=232 (для обойдённых тегов не найдено: 0, лишних: 0); цитат без тегов: 3
+Итог сверки: наборы совпадают
+--- compare: код 0, 0 с
+
+=== 13:59:41 bench: python bench.py --reps 3 ===
+[A] повтор 1 full : 10 стр., 4.258 c, запросов 53, заблокировано 0, 107.2 КБ
+[A] повтор 1 block: 10 стр., 3.38 c, запросов 10, заблокировано 20, 23.2 КБ
+[A] повтор 2 block: 10 стр., 4.085 c, запросов 10, заблокировано 20, 23.3 КБ
+[A] повтор 2 full : 10 стр., 4.691 c, запросов 55, заблокировано 0, 107.8 КБ
+[A] повтор 3 full : 10 стр., 4.23 c, запросов 53, заблокировано 0, 107.2 КБ
+[A] повтор 3 block: 10 стр., 4.541 c, запросов 10, заблокировано 20, 23.3 КБ
+
+A. Блокировка ресурсов (медианы):
+        seconds  requests  blocked     kb
+mode                                    
+block    4.085      10.0     20.0   23.3
+full     4.258      53.0      0.0  107.2
+   экономия времени 4.1 %, трафика 78.3 %
+B. Извлечение: eval_on_selector_all 108.8 мс против поэлементно 889.9 мс (×8.2), записи совпадают: True
+C. Авторизация: {'fresh': {'median_s': 1.511, 'median_requests': 3, 'all_ok': True}, 'restore': {'median_s': 1.038, 'median_requests': 1, 'all_ok': True}}
+Сохранено: metrics/bench_*.csv, metrics/bench.json
+--- bench: код 0, 110 с
+
+=== 14:01:31 faults: python faults.py ===
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    0.87 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.44 c
+  [artifacts] сохранено: timeout__page_3__20261016-140137.png, timeout__page_3__20261016-140137.html
+  [artifacts] сохранено: timeout__page_3__20261016-140140.png, timeout__page_3__20261016-140140.html
+[browser] тегов для обхода: 0
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    2.18 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.28 c
+[browser] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.47 c
+[browser] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.28 c
+[browser] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    0.35 c
+[browser] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.32 c
+[browser] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.27 c
+[browser] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.33 c
+[browser] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.38 c
+[browser] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.28 c
+[browser] тегов для обхода: 3
+  [artifacts] сохранено: http500__tag_abilities_page_1__20261016-140151.png, http500__tag_abilities_page_1__20261016-140151.html
+  [artifacts] сохранено: http500__tag_abilities_page_1__20261016-140151.png, http500__tag_abilities_page_1__20261016-140151.html
+[browser] # 12 tag:activism               стр.1  элементов=1  прирост=1  всего=1     0.26 c
+[browser] # 13 tag:adulthood              стр.1  элементов=1  прирост=1  всего=2     0.29 c
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    2.49 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    1.00 c
+[browser] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.46 c
+[browser] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.64 c
+[browser] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    0.66 c
+[browser] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.39 c
+[browser] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.68 c
+[browser] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.42 c
+[browser] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.63 c
+[browser] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.77 c
+[browser] тегов для обхода: 3
+[auth] сессия не активна — повторный вход (однократно)
+[auth] вход выполнен как st*****, CSRF vaAk************************************************, storage_state → auth_state.json
+  [artifacts] сохранено: http500__tag_abilities_page_1__20261016-140216.png, http500__tag_abilities_page_1__20261016-140216.html
+[trace] инцидент зафиксирован: http_500 https://quotes.toscrape.com/tag/abilities/page/1/
+PASS empty: раздел остановлен с ошибкой ожидания, страницы 1–2 сохранены
+PASS http500: тег пропущен после повтора, следующие теги собраны
+PASS expired: ровно один повторный вход, затем AuthLost
+Сохранено: metrics/faults.json, metrics/faults_log.csv, artifacts/trace_faults.zip
+--- faults: код 0, 45 с
+
+=== 14:02:16 parallel: python parallel.py --workers 3 --max-tags 30 ===
+Тегов: 30 | K=1: 41.0 c, 47 записей, ошибок 0 | K=3: 19.37 c, 47 записей, ошибок 0 | ускорение ×2.12 | наборы совпадают: True | с data_browser.csv: True
+--- parallel: код 0, 61 с
+
+=== 14:03:17 summarize: python summarize.py ===
+smoke-check data_browser.csv: OK (ключевые поля заполнены, порог пустых 5%)
+smoke-check data_light.csv: OK (ключевые поля заполнены, порог пустых 5%)
+Сохранено: ~/web-data-extraction/solutions/lab4_podolskiy_5/metrics/summary.md
+--- summarize: код 0, 2 с
+
+=== 14:03:19 notebook: исполнение lab4.ipynb ===
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+lab4.ipynb исполнен, ошибок в ячейках: 0
+
+Готово: 2026-10-16 14:03:35
+Данные: data_browser.csv, data_light.csv, collection_log.csv | метрики: metrics/ | сводка для отчёта: metrics/summary.md
+storage_state: повторный запуск прошёл без входа — OK
+Все шаги завершились с кодом 0. Дальше: nocode/INSTRUCTIONS.md (n8n) и маркеры ⟪ЗАПОЛНИТЬ⟫ в report.md.

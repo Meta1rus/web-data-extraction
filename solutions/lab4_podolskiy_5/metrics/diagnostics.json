@@ -1,0 +1,189 @@
+{
+  "base_url": "https://quotes.toscrape.com",
+  "generated_at": "2026-10-16T08:51:19+00:00",
+  "user_agent": "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)",
+  "robots_txt_status": 404,
+  "robots_allows_targets": {
+    "/login": true,
+    "/page/1/": true,
+    "/tag/love/page/1/": true
+  },
+  "anon_page1": {
+    "status": 200,
+    "seconds": 0.731,
+    "bytes": 11064,
+    "quote_cards": 10,
+    "goodreads_links": 0,
+    "login_link": true,
+    "logout_link": false,
+    "script_tags": 0,
+    "json_ld": false,
+    "next_data": false,
+    "var_data_json": false,
+    "first_quote_found_in": "<span class=\"text\" itemprop=\"text\">",
+    "first_quote_sample": "“The world as we have created it is a process of our thinkin"
+  },
+  "login_form": {
+    "status": 200,
+    "bytes": 1880,
+    "action": "/login",
+    "method": "post",
+    "inputs": [
+      {
+        "name": "csrf_token",
+        "type": "hidden",
+        "id": null
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "id": "username"
+      },
+      {
+        "name": "password",
+        "type": "password",
+        "id": "password"
+      },
+      {
+        "name": null,
+        "type": "submit",
+        "id": null
+      }
+    ],
+    "labels": [
+      {
+        "text": "Username",
+        "for": "username"
+      },
+      {
+        "text": "Password",
+        "for": "username"
+      }
+    ],
+    "csrf_token_len": 52,
+    "csrf_token_masked": "bfad************************************************",
+    "set_cookie_names": [
+      "session"
+    ]
+  },
+  "post_without_csrf": {
+    "status_chain": [
+      200
+    ],
+    "final_path": "/login",
+    "logged_in": false
+  },
+  "post_with_csrf": {
+    "status_chain": [
+      302,
+      200
+    ],
+    "final_path": "/",
+    "logged_in": true
+  },
+  "auth_page1": {
+    "status": 200,
+    "bytes": 11928,
+    "quote_cards": 10,
+    "goodreads_links": 10,
+    "login_link": false,
+    "logout_link": true,
+    "script_tags": 0,
+    "json_ld": false,
+    "next_data": false,
+    "var_data_json": false,
+    "first_quote_found_in": "<span class=\"text\" itemprop=\"text\">",
+    "first_quote_sample": "“The world as we have created it is a process of our thinkin"
+  },
+  "api_quotes_anon": {
+    "status": 200,
+    "content_type": "application/json",
+    "keys": [
+      "has_next",
+      "page",
+      "quotes",
+      "tag",
+      "top_ten_tags"
+    ],
+    "quotes": 10,
+    "author_keys": [
+      "goodreads_link",
+      "name",
+      "slug"
+    ],
+    "goodreads_link_present": true
+  },
+  "network": {
+    "logged_in": true,
+    "login_locators": {
+      "csrf_fields": 1,
+      "csrf_token_masked": "QTme************************************************",
+      "username_locator": "get_by_label(\"Username\")",
+      "password_locator": "input[type=\"password\"] (фолбэк: метка не указывает на поле пароля)",
+      "login_post_status": 302
+    },
+    "by_type": {
+      "document": 5,
+      "stylesheet": 12
+    },
+    "xhr_fetch": [],
+    "documents": [
+      {
+        "method": "GET",
+        "type": "document",
+        "status": 200,
+        "path": "/login",
+        "host": "quotes.toscrape.com"
+      },
+      {
+        "method": "POST",
+        "type": "document",
+        "status": 302,
+        "path": "/login",
+        "host": "quotes.toscrape.com"
+      },
+      {
+        "method": "GET",
+        "type": "document",
+        "status": 200,
+        "path": "/",
+        "host": "quotes.toscrape.com"
+      },
+      {
+        "method": "GET",
+        "type": "document",
+        "status": 200,
+        "path": "/page/1/",
+        "host": "quotes.toscrape.com"
+      },
+      {
+        "method": "GET",
+        "type": "document",
+        "status": 200,
+        "path": "/page/2/",
+        "host": "quotes.toscrape.com"
+      }
+    ],
+    "other_hosts": [
+      "fonts.googleapis.com"
+    ],
+    "total": 17
+  },
+  "js_disabled": {
+    "login_ok": true,
+    "quote_cards": 10,
+    "goodreads_links": 10,
+    "next_link": true
+  },
+  "conclusion": {
+    "data_in_server_html": true,
+    "visible_only_after_login": [
+      "goodreads_url"
+    ],
+    "xhr_on_target_pages": 0,
+    "works_without_js": true,
+    "csrf_required": true,
+    "browser_required": false,
+    "text": "Браузер технически не обязателен: страницы рендерятся сервером, XHR на целевых страницах нет, без JS вход и пагинация работают. Барьер — авторизация (форма с CSRF + cookie сессии); её воспроизводит requests.Session. Браузерная реализация выполнена как требование ЛР и как база сравнения."
+  }
+}

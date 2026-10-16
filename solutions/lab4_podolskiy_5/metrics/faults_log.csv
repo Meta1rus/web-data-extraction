@@ -1,0 +1,27 @@
+run_id,approach,stage,section,iteration,page_no,url,n_elements,new_records,total_records,duration_s,requests,bytes,status,note,ts
+20261016-140132,faults:empty,feed,feed,1,1,https://quotes.toscrape.com/page/1/,10,10,10,0.872,1,2254,ok,,2026-10-16T09:01:34+00:00
+20261016-140132,faults:empty,feed,feed,2,2,https://quotes.toscrape.com/page/2/,10,10,20,0.437,1,3200,ok,,2026-10-16T09:01:35+00:00
+20261016-140132,faults:empty,feed,feed,3,3,https://quotes.toscrape.com/page/3/,0,0,20,4.627,,,timeout,Page.wait_for_selector: Timeout 2000ms exceeded.,2026-10-16T09:01:40+00:00
+20261016-140140,faults:http500,feed,feed,1,1,https://quotes.toscrape.com/page/1/,10,10,10,2.178,1,2264,ok,,2026-10-16T09:01:43+00:00
+20261016-140140,faults:http500,feed,feed,2,2,https://quotes.toscrape.com/page/2/,10,10,20,0.284,1,3200,ok,,2026-10-16T09:01:44+00:00
+20261016-140140,faults:http500,feed,feed,3,3,https://quotes.toscrape.com/page/3/,10,10,30,0.469,1,2239,ok,,2026-10-16T09:01:45+00:00
+20261016-140140,faults:http500,feed,feed,4,4,https://quotes.toscrape.com/page/4/,10,10,40,0.278,1,2137,ok,,2026-10-16T09:01:45+00:00
+20261016-140140,faults:http500,feed,feed,5,5,https://quotes.toscrape.com/page/5/,10,10,50,0.353,1,2076,ok,,2026-10-16T09:01:46+00:00
+20261016-140140,faults:http500,feed,feed,6,6,https://quotes.toscrape.com/page/6/,10,10,60,0.316,1,2249,ok,,2026-10-16T09:01:47+00:00
+20261016-140140,faults:http500,feed,feed,7,7,https://quotes.toscrape.com/page/7/,10,10,70,0.272,1,2571,ok,,2026-10-16T09:01:48+00:00
+20261016-140140,faults:http500,feed,feed,8,8,https://quotes.toscrape.com/page/8/,10,10,80,0.326,1,2452,ok,,2026-10-16T09:01:49+00:00
+20261016-140140,faults:http500,feed,feed,9,9,https://quotes.toscrape.com/page/9/,10,10,90,0.383,1,2422,ok,,2026-10-16T09:01:50+00:00
+20261016-140140,faults:http500,feed,feed,10,10,https://quotes.toscrape.com/page/10/,10,10,100,0.285,1,2168,ok,,2026-10-16T09:01:50+00:00
+20261016-140140,faults:http500,tag,abilities,11,1,https://quotes.toscrape.com/tag/abilities/page/1/,0,0,0,0.605,,,http_500,,2026-10-16T09:01:52+00:00
+20261016-140140,faults:http500,tag,activism,12,1,https://quotes.toscrape.com/tag/activism/page/1/,1,1,1,0.256,1,1178,ok,,2026-10-16T09:01:52+00:00
+20261016-140140,faults:http500,tag,adulthood,13,1,https://quotes.toscrape.com/tag/adulthood/page/1/,1,1,2,0.294,1,1037,ok,,2026-10-16T09:01:53+00:00
+20261016-140153,faults:expired,feed,feed,1,1,https://quotes.toscrape.com/page/1/,10,10,10,2.487,1,2254,ok,,2026-10-16T09:01:57+00:00
+20261016-140153,faults:expired,feed,feed,2,2,https://quotes.toscrape.com/page/2/,10,10,20,1.003,1,3220,ok,,2026-10-16T09:01:58+00:00
+20261016-140153,faults:expired,feed,feed,3,3,https://quotes.toscrape.com/page/3/,10,10,30,0.465,1,2246,ok,,2026-10-16T09:01:59+00:00
+20261016-140153,faults:expired,feed,feed,4,4,https://quotes.toscrape.com/page/4/,10,10,40,0.636,1,2143,ok,,2026-10-16T09:02:01+00:00
+20261016-140153,faults:expired,feed,feed,5,5,https://quotes.toscrape.com/page/5/,10,10,50,0.663,1,2084,ok,,2026-10-16T09:02:02+00:00
+20261016-140153,faults:expired,feed,feed,6,6,https://quotes.toscrape.com/page/6/,10,10,60,0.394,1,2258,ok,,2026-10-16T09:02:03+00:00
+20261016-140153,faults:expired,feed,feed,7,7,https://quotes.toscrape.com/page/7/,10,10,70,0.676,1,2571,ok,,2026-10-16T09:02:04+00:00
+20261016-140153,faults:expired,feed,feed,8,8,https://quotes.toscrape.com/page/8/,10,10,80,0.422,1,2452,ok,,2026-10-16T09:02:05+00:00
+20261016-140153,faults:expired,feed,feed,9,9,https://quotes.toscrape.com/page/9/,10,10,90,0.627,1,2436,ok,,2026-10-16T09:02:06+00:00
+20261016-140153,faults:expired,feed,feed,10,10,https://quotes.toscrape.com/page/10/,10,10,100,0.773,1,2168,ok,,2026-10-16T09:02:07+00:00

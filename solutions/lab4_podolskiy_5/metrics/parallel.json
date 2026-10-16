@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-10-16T09:03:17+00:00",
+  "tags": 30,
+  "pause_s": 1.0,
+  "sequential": {
+    "workers": 1,
+    "seconds": 41.0,
+    "records": 47,
+    "pages": 31,
+    "errors": []
+  },
+  "parallel": {
+    "workers": 3,
+    "seconds": 19.37,
+    "records": 47,
+    "pages": 31,
+    "errors": []
+  },
+  "speedup_x": 2.12,
+  "same_records_seq_vs_par": true,
+  "same_as_data_browser": true
+}

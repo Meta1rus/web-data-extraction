@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-10-16T08:59:41+00:00",
+  "pairs": {
+    "key": "record_key",
+    "browser_records": 232,
+    "light_records": 232,
+    "common_keys": 232,
+    "only_browser": [],
+    "only_light": [],
+    "only_browser_count": 0,
+    "only_light_count": 0,
+    "field_mismatches": {},
+    "identical": true
+  },
+  "feed": {
+    "key": "quote_id",
+    "browser_records": 100,
+    "light_records": 100,
+    "common_keys": 100,
+    "only_browser": [],
+    "only_light": [],
+    "only_browser_count": 0,
+    "only_light_count": 0,
+    "field_mismatches": {},
+    "identical": true
+  },
+  "consistency_browser": {
+    "tags_in_feed": 137,
+    "tags_crawled": 137,
+    "tags_not_crawled": [],
+    "expected_pairs_for_crawled_tags": 232,
+    "missing_for_crawled_tags": 0,
+    "expected_pairs_from_feed": 232,
+    "pairs_from_tag_pages": 232,
+    "missing_on_tag_pages": 0,
+    "unexpected_on_tag_pages": 0,
+    "examples_missing": [],
+    "examples_unexpected": [],
+    "feed_quotes": 100,
+    "feed_quotes_without_tags": 3,
+    "unique_quotes_in_pairs": 97
+  },
+  "consistency_light": {
+    "tags_in_feed": 137,
+    "tags_crawled": 137,
+    "tags_not_crawled": [],
+    "expected_pairs_for_crawled_tags": 232,
+    "missing_for_crawled_tags": 0,
+    "expected_pairs_from_feed": 232,
+    "pairs_from_tag_pages": 232,
+    "missing_on_tag_pages": 0,
+    "unexpected_on_tag_pages": 0,
+    "examples_missing": [],
+    "examples_unexpected": [],
+    "feed_quotes": 100,
+    "feed_quotes_without_tags": 3,
+    "unique_quotes_in_pairs": 97
+  },
+  "nocode": null
+}

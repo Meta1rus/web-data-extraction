@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-10-16T09:02:16+00:00",
+  "results": [
+    {
+      "case": "empty",
+      "exception": null,
+      "feed_quotes": 20,
+      "pairs": 0,
+      "failures": 2,
+      "reauths": 0,
+      "stop_reasons": {
+        "feed": "error:timeout"
+      },
+      "cycles": 3,
+      "target_tag": null,
+      "new_artifacts": [
+        "timeout__page_3__20261016-140137.html",
+        "timeout__page_3__20261016-140137.png",
+        "timeout__page_3__20261016-140140.html",
+        "timeout__page_3__20261016-140140.png"
+      ]
+    },
+    {
+      "case": "http500",
+      "exception": null,
+      "feed_quotes": 100,
+      "pairs": 2,
+      "failures": 2,
+      "reauths": 0,
+      "stop_reasons": {
+        "feed": "no_next",
+        "abilities": "error:http_500",
+        "activism": "no_next",
+        "adulthood": "no_next"
+      },
+      "cycles": 13,
+      "target_tag": "abilities",
+      "new_artifacts": [
+        "http500__tag_abilities_page_1__20261016-140151.html",
+        "http500__tag_abilities_page_1__20261016-140151.png"
+      ]
+    },
+    {
+      "case": "expired",
+      "exception": "AuthLost: повторный вход не восстановил сессию (https://quotes.toscrape.com/tag/abilities/page/1/)",
+      "feed_quotes": 100,
+      "pairs": 0,
+      "failures": 0,
+      "reauths": 1,
+      "stop_reasons": {
+        "feed": "no_next"
+      },
+      "cycles": 11,
+      "target_tag": "abilities",
+      "new_artifacts": []
+    }
+  ],
+  "checks": [
+    {
+      "check": "empty: раздел остановлен с ошибкой ожидания, страницы 1–2 сохранены",
+      "passed": true
+    },
+    {
+      "check": "http500: тег пропущен после повтора, следующие теги собраны",
+      "passed": true
+    },
+    {
+      "check": "expired: ровно один повторный вход, затем AuthLost",
+      "passed": true
+    }
+  ]
+}

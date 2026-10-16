@@ -1,0 +1,15 @@
+{
+  "base_url": "https://quotes.toscrape.com",
+  "saved_at": "2026-10-16T08:56:27+00:00",
+  "note": "учебные креды quotes.toscrape.com",
+  "cookies": [
+    {
+      "name": "session",
+      "value": "eyJjc3JmX3Rva2VuIjoiTlRReXFLQllQakV1dmxHZnpkT0RpTHRiSmdac1JXbkh4Q3dWY0lwVVhNbWVGcmhTQW9rYSIsInVzZXJuYW1lIjoic3R1ZGVudCJ9.atHmuw.994S9TmMwB0ce1H29fOwmvzuvwQ",
+      "domain": "quotes.toscrape.com",
+      "path": "/",
+      "secure": false,
+      "expires": null
+    }
+  ]
+}

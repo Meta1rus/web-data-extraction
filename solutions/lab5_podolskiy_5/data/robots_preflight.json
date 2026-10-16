@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-10-16T09:03:37+00:00",
+  "python": "3.13.7",
+  "user_agent": "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)",
+  "robots_url": "https://www.scrapingcourse.com/robots.txt",
+  "robots_status": 200,
+  "robots_text": "User-agent: *\nDisallow: /ecommerce/*",
+  "probes": [
+    {
+      "url": "https://www.scrapingcourse.com/ecommerce/",
+      "urllib_robotparser": true,
+      "protego_scrapy": false,
+      "итог": false
+    },
+    {
+      "url": "https://www.scrapingcourse.com/ecommerce/page/2/",
+      "urllib_robotparser": true,
+      "protego_scrapy": false,
+      "итог": false
+    },
+    {
+      "url": "https://www.scrapingcourse.com/ecommerce/product/abominable-hoodie/",
+      "urllib_robotparser": true,
+      "protego_scrapy": false,
+      "итог": false
+    }
+  ],
+  "verdict": "обход ЗАПРЕЩЁН robots.txt — сбор не запускаем (ROBOTSTXT_OBEY=True)",
+  "exit_code": 3
+}

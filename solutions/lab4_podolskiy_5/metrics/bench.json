@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-10-16T08:59:41+00:00",
+  "base_url": "https://quotes.toscrape.com",
+  "reps": 3,
+  "pages": 10,
+  "block": {
+    "block": {
+      "seconds": 4.085,
+      "requests": 10.0,
+      "blocked": 20.0,
+      "kb": 23.3
+    },
+    "full": {
+      "seconds": 4.258,
+      "requests": 53.0,
+      "blocked": 0.0,
+      "kb": 107.2
+    },
+    "time_saving_pct": 4.1,
+    "traffic_saving_pct": 78.3
+  },
+  "extract": {
+    "bulk_ms_total": 108.8,
+    "per_element_ms_total": 889.9,
+    "speedup_x": 8.2,
+    "all_pages_same_records": true
+  },
+  "auth": {
+    "fresh": {
+      "median_s": 1.511,
+      "median_requests": 3,
+      "all_ok": true
+    },
+    "restore": {
+      "median_s": 1.038,
+      "median_requests": 1,
+      "all_ok": true
+    }
+  }
+}

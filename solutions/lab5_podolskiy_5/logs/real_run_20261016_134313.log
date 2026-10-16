@@ -1,0 +1,534 @@
+== Лабораторная 5: старт 2026-10-16 13:43:13, источник: https://scrapeme.live/shop/
+  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /packages/35/64/8507dcab59f2d4920152020dc348879fd8eed1dd17f152cf65d9fddd3ff2/scrapy-2.19.0-py3-none-any.whl.metadata
+  WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /packages/35/64/8507dcab59f2d4920152020dc348879fd8eed1dd17f152cf65d9fddd3ff2/scrapy-2.19.0-py3-none-any.whl.metadata
+  WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /packages/35/64/8507dcab59f2d4920152020dc348879fd8eed1dd17f152cf65d9fddd3ff2/scrapy-2.19.0-py3-none-any.whl.metadata
+Python 3.13.7 | Scrapy 2.19.0
+robots.txt: https://scrapeme.live/robots.txt → HTTP 200
+---
+User-agent: *
+Disallow: /wp-content/uploads/wc-logs/
+Disallow: /wp-content/uploads/woocommerce_transient_files/
+Disallow: /wp-content/uploads/woocommerce_uploads/
+Disallow: /*?add-to-cart=
+Disallow: /*?*add-to-cart=
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+Sitemap: https://scrapeme.live/wp-sitemap.xml
+---
+  https://scrapeme.live/shop/
+    urllib.robotparser=True  Protego(Scrapy)=True  → можно
+  https://scrapeme.live/shop/page/2/
+    urllib.robotparser=True  Protego(Scrapy)=True  → можно
+  https://scrapeme.live/shop/sample-product/
+    urllib.robotparser=True  Protego(Scrapy)=True  → можно
+Вердикт: обход разрешён
+2026-10-16 13:44:43 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: ecommerce_crawler)
+2026-10-16 13:44:43 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.6.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.4.0',
+ 'Python': '3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 '
+           '(clang-1600.0.26.6)]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'macOS-26.6.2-arm64-arm-64bit-Mach-O'}
+2026-10-16 13:44:43 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-10-16 13:44:46 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-10-16 13:44:46 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 10.0,
+ 'AUTOTHROTTLE_START_DELAY': 1.0,
+ 'BOT_NAME': 'ecommerce_crawler',
+ 'CLOSESPIDER_ERRORCOUNT': 20,
+ 'CLOSESPIDER_ITEMCOUNT': 400,
+ 'CLOSESPIDER_PAGECOUNT': 700,
+ 'CLOSESPIDER_TIMEOUT': 1800,
+ 'CONCURRENT_REQUESTS': 8,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
+ 'COOKIES_ENABLED': False,
+ 'DEPTH_LIMIT': 60,
+ 'DEPTH_STATS_VERBOSE': True,
+ 'DOWNLOAD_DELAY': 0.5,
+ 'DOWNLOAD_MAXSIZE': 5242880,
+ 'DOWNLOAD_TIMEOUT': 20,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'HTTPCACHE_DIR': '~/Desktop/рабочий стол/Вуз/учеба/Инструменты '
+                  'автоматизирвоанного сбора данных в сети '
+                  'Интернет/solutions/lab5_podolskiy_5/.scrapy/httpcache',
+ 'HTTPCACHE_ENABLED': 'True',
+ 'HTTPCACHE_EXPIRATION_SECS': 86400,
+ 'HTTPCACHE_IGNORE_HTTP_CODES': [403, 429, 500, 502, 503, 504],
+ 'LOGSTATS_INTERVAL': 30.0,
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'ecommerce_crawler.spiders',
+ 'RETRY_HTTP_CODES': [408, 429, 500, 502, 503, 504, 522, 524],
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['ecommerce_crawler.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'USER_AGENT': 'PSU-edu-crawler/1.0 '
+               '(+https://github.com/Meta1rus/web-data-extraction; student '
+               'lab)'}
+2026-10-16 13:44:46 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats',
+ 'scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware']
+2026-10-16 13:44:46 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-10-16 13:44:46 [scrapy.middleware] INFO: Enabled item pipelines:
+['ecommerce_crawler.pipelines.ValidationPipeline',
+ 'ecommerce_crawler.pipelines.CleanPipeline',
+ 'ecommerce_crawler.pipelines.DedupPipeline',
+ 'ecommerce_crawler.pipelines.SQLitePipeline']
+2026-10-16 13:44:46 [scrapy.core.engine] INFO: Spider opened
+2026-10-16 13:44:46 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-10-16 13:44:46 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 63315 (job 59518-916b74cd95d54427acb93aae6fe0349e)
+2026-10-16 13:45:16 [scrapy.extensions.logstats] INFO: Crawled 13 pages (at 26 pages/min), scraped 11 items (at 22 items/min)
+2026-10-16 13:45:24 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-10-16 13:45:24 [ecommerce] INFO: Статистика прогона сохранена: ~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab5_podolskiy_5/data/stats_01_selectors_check.json
+2026-10-16 13:45:24 [scrapy.extensions.feedexport] INFO: Stored jsonlines feed (16 items) in: data/demo/items_selectors_check.jsonl
+2026-10-16 13:45:24 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'db/batches': 1,
+ 'db/rows_total_in_table': 16,
+ 'db/rows_written': 16,
+ 'downloader/request_bytes': 5745,
+ 'downloader/request_count': 18,
+ 'downloader/request_method_count/GET': 18,
+ 'downloader/response_bytes': 257521,
+ 'downloader/response_count': 18,
+ 'downloader/response_status_count/200': 18,
+ 'elapsed_time_seconds': 37.97197470796527,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 10, 16, 8, 45, 24, 112189, tzinfo=datetime.timezone.utc),
+ 'httpcache/firsthand': 18,
+ 'httpcache/miss': 18,
+ 'httpcache/store': 18,
+ 'httpcompression/response_bytes': 1108989,
+ 'httpcompression/response_count': 18,
+ 'item_scraped_count': 16,
+ 'items_per_minute': 25.945945945945944,
+ 'log_count/INFO': 5,
+ 'memusage/max': 88178688,
+ 'memusage/startup': 88178688,
+ 'pages/list': 1,
+ 'pages/stopped_by_max_pages': 1,
+ 'quality/items_seen': 16,
+ 'request_depth_count/0': 1,
+ 'request_depth_count/1': 16,
+ 'request_depth_max': 1,
+ 'response_received_count': 18,
+ 'responses_per_minute': 29.18918918918919,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 17,
+ 'scheduler/dequeued/memory': 17,
+ 'scheduler/enqueued': 17,
+ 'scheduler/enqueued/memory': 17,
+ 'start_time': datetime.datetime(2026, 10, 16, 8, 44, 46, 140423, tzinfo=datetime.timezone.utc)}
+2026-10-16 13:45:24 [scrapy.core.engine] INFO: Spider closed (finished)
+Проверка селекторов: 16 карточек с первой страницы
+  sku          заполнено 16/16
+  name         заполнено 16/16
+  price        заполнено 16/16
+  categories   заполнено 16/16
+  description  заполнено 16/16
+  image_url    заполнено 16/16
+2026-10-16 13:45:25 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: ecommerce_crawler)
+2026-10-16 13:45:25 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.6.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.4.0',
+ 'Python': '3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 '
+           '(clang-1600.0.26.6)]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'macOS-26.6.2-arm64-arm-64bit-Mach-O'}
+2026-10-16 13:45:25 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-10-16 13:45:25 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-10-16 13:45:25 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 10.0,
+ 'AUTOTHROTTLE_START_DELAY': 1.0,
+ 'BOT_NAME': 'ecommerce_crawler',
+ 'CLOSESPIDER_ERRORCOUNT': 20,
+ 'CLOSESPIDER_ITEMCOUNT': 400,
+ 'CLOSESPIDER_PAGECOUNT': 700,
+ 'CLOSESPIDER_TIMEOUT': 1800,
+ 'CONCURRENT_REQUESTS': 8,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
+ 'COOKIES_ENABLED': False,
+ 'DEPTH_LIMIT': 60,
+ 'DEPTH_STATS_VERBOSE': True,
+ 'DOWNLOAD_DELAY': 0.5,
+ 'DOWNLOAD_MAXSIZE': 5242880,
+ 'DOWNLOAD_TIMEOUT': 20,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'HTTPCACHE_DIR': '~/Desktop/рабочий стол/Вуз/учеба/Инструменты '
+                  'автоматизирвоанного сбора данных в сети '
+                  'Интернет/solutions/lab5_podolskiy_5/.scrapy/httpcache',
+ 'HTTPCACHE_EXPIRATION_SECS': 86400,
+ 'HTTPCACHE_IGNORE_HTTP_CODES': [403, 429, 500, 502, 503, 504],
+ 'LOGSTATS_INTERVAL': 30.0,
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'ecommerce_crawler.spiders',
+ 'RETRY_HTTP_CODES': [408, 429, 500, 502, 503, 504, 522, 524],
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['ecommerce_crawler.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'USER_AGENT': 'PSU-edu-crawler/1.0 '
+               '(+https://github.com/Meta1rus/web-data-extraction; student '
+               'lab)'}
+2026-10-16 13:45:25 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-10-16 13:45:25 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-10-16 13:45:25 [scrapy.middleware] INFO: Enabled item pipelines:
+['ecommerce_crawler.pipelines.ValidationPipeline',
+ 'ecommerce_crawler.pipelines.CleanPipeline',
+ 'ecommerce_crawler.pipelines.DedupPipeline',
+ 'ecommerce_crawler.pipelines.SQLitePipeline']
+2026-10-16 13:45:25 [scrapy.core.engine] INFO: Spider opened
+2026-10-16 13:45:25 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-10-16 13:45:25 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 63332 (job 59569-c8217ca025784e3581afb5af32734bfa)
+2026-10-16 13:45:55 [scrapy.extensions.logstats] INFO: Crawled 14 pages (at 28 pages/min), scraped 12 items (at 24 items/min)
+2026-10-16 13:46:25 [scrapy.extensions.logstats] INFO: Crawled 34 pages (at 40 pages/min), scraped 31 items (at 38 items/min)
+2026-10-16 13:46:55 [scrapy.extensions.logstats] INFO: Crawled 60 pages (at 52 pages/min), scraped 55 items (at 48 items/min)
+2026-10-16 13:47:25 [scrapy.extensions.logstats] INFO: Crawled 71 pages (at 22 pages/min), scraped 65 items (at 20 items/min)
+2026-10-16 13:47:55 [scrapy.extensions.logstats] INFO: Crawled 87 pages (at 32 pages/min), scraped 80 items (at 30 items/min)
+2026-10-16 13:48:25 [scrapy.extensions.logstats] INFO: Crawled 104 pages (at 34 pages/min), scraped 96 items (at 32 items/min)
+2026-10-16 13:48:55 [scrapy.extensions.logstats] INFO: Crawled 118 pages (at 28 pages/min), scraped 110 items (at 28 items/min)
+2026-10-16 13:49:25 [scrapy.extensions.logstats] INFO: Crawled 141 pages (at 46 pages/min), scraped 131 items (at 42 items/min)
+2026-10-16 13:49:55 [scrapy.extensions.logstats] INFO: Crawled 167 pages (at 52 pages/min), scraped 156 items (at 50 items/min)
+2026-10-16 13:50:25 [scrapy.extensions.logstats] INFO: Crawled 186 pages (at 38 pages/min), scraped 174 items (at 36 items/min)
+2026-10-16 13:50:55 [scrapy.extensions.logstats] INFO: Crawled 209 pages (at 46 pages/min), scraped 195 items (at 42 items/min)
+2026-10-16 13:51:25 [scrapy.extensions.logstats] INFO: Crawled 232 pages (at 46 pages/min), scraped 217 items (at 44 items/min)
+2026-10-16 13:51:55 [scrapy.extensions.logstats] INFO: Crawled 257 pages (at 50 pages/min), scraped 240 items (at 46 items/min)
+2026-10-16 13:52:25 [scrapy.extensions.logstats] INFO: Crawled 281 pages (at 48 pages/min), scraped 263 items (at 46 items/min)
+2026-10-16 13:52:55 [scrapy.extensions.logstats] INFO: Crawled 306 pages (at 50 pages/min), scraped 287 items (at 48 items/min)
+2026-10-16 13:53:25 [scrapy.extensions.logstats] INFO: Crawled 336 pages (at 60 pages/min), scraped 315 items (at 56 items/min)
+2026-10-16 13:53:55 [scrapy.extensions.logstats] INFO: Crawled 367 pages (at 62 pages/min), scraped 344 items (at 58 items/min)
+2026-10-16 13:54:25 [scrapy.extensions.logstats] INFO: Crawled 398 pages (at 62 pages/min), scraped 373 items (at 58 items/min)
+2026-10-16 13:54:47 [scrapy.core.engine] INFO: Closing spider (closespider_itemcount)
+2026-10-16 13:54:48 [ecommerce] INFO: Статистика прогона сохранена: ~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab5_podolskiy_5/data/stats_02_main.json
+2026-10-16 13:54:48 [scrapy.extensions.feedexport] INFO: Stored jsonlines feed (400 items) in: ~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab5_podolskiy_5/data/items.jsonl
+2026-10-16 13:54:48 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'db/batches': 8,
+ 'db/rows_total_in_table': 400,
+ 'db/rows_written': 400,
+ 'downloader/exception_count': 1,
+ 'downloader/exception_type_count/scrapy.exceptions.DownloadFailedError': 1,
+ 'downloader/request_bytes': 141380,
+ 'downloader/request_count': 428,
+ 'downloader/request_method_count/GET': 428,
+ 'downloader/response_bytes': 6449590,
+ 'downloader/response_count': 427,
+ 'downloader/response_status_count/200': 427,
+ 'elapsed_time_seconds': 562.7375795420376,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'closespider_itemcount',
+ 'finish_time': datetime.datetime(2026, 10, 16, 8, 54, 48, 9751, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 27820761,
+ 'httpcompression/response_count': 427,
+ 'item_scraped_count': 400,
+ 'items_per_minute': 42.704626334519574,
+ 'log_count/INFO': 22,
+ 'memusage/max': 115572736,
+ 'memusage/startup': 86900736,
+ 'pages/list': 26,
+ 'quality/items_seen': 400,
+ 'request_depth_count/0': 1,
+ 'request_depth_count/1': 17,
+ 'request_depth_count/10': 17,
+ 'request_depth_count/11': 17,
+ 'request_depth_count/12': 17,
+ 'request_depth_count/13': 17,
+ 'request_depth_count/14': 17,
+ 'request_depth_count/15': 17,
+ 'request_depth_count/16': 17,
+ 'request_depth_count/17': 17,
+ 'request_depth_count/18': 17,
+ 'request_depth_count/19': 17,
+ 'request_depth_count/2': 17,
+ 'request_depth_count/20': 17,
+ 'request_depth_count/21': 17,
+ 'request_depth_count/22': 17,
+ 'request_depth_count/23': 17,
+ 'request_depth_count/24': 17,
+ 'request_depth_count/25': 17,
+ 'request_depth_count/26': 17,
+ 'request_depth_count/3': 17,
+ 'request_depth_count/4': 17,
+ 'request_depth_count/5': 17,
+ 'request_depth_count/6': 17,
+ 'request_depth_count/7': 17,
+ 'request_depth_count/8': 17,
+ 'request_depth_count/9': 17,
+ 'request_depth_max': 26,
+ 'response_received_count': 427,
+ 'responses_per_minute': 45.587188612099645,
+ 'retry/count': 1,
+ 'retry/reason_count/scrapy.exceptions.DownloadFailedError': 1,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 427,
+ 'scheduler/dequeued/memory': 427,
+ 'scheduler/enqueued': 444,
+ 'scheduler/enqueued/memory': 444,
+ 'start_time': datetime.datetime(2026, 10, 16, 8, 45, 25, 275237, tzinfo=datetime.timezone.utc)}
+2026-10-16 13:54:48 [scrapy.core.engine] INFO: Spider closed (closespider_itemcount)
+== Итоговый прогон: 564 с (по часам оболочки)
+### JOBDIR: прерывание и возобновление
+
+| Прогон | Причина остановки | Записей | Запросов | dupefilter/filtered | Время, с |
+|---|---|---|---|---|---|
+| 1 (CLOSESPIDER_ITEMCOUNT=30) | closespider_itemcount | 32 | 36 | — | 38.32 |
+| 2 (возобновление из jobstate/) | finished | 32 | 35 | 17 | 30.97 |
+
+Отпечатков в jobstate/requests.seen после прогона 1: 51. Уникальных SKU за два прогона: 64, повторно собранных во втором: 0.
+
+Содержимое jobstate/ после прогона 1:
+
+| Файл | Байт |
+|---|---|
+| jobstate/requests.queue/active.json | 27 |
+| jobstate/requests.queue/scrapeme.live-f865497a6f0073e2c23e0e559fe35b7b/-10 | 7832 |
+| jobstate/requests.queue/scrapeme.live-f865497a6f0073e2c23e0e559fe35b7b/0 | 311 |
+| jobstate/requests.seen | 1122 |
+| jobstate/spider.state | 5 |
+
+### HTTPCACHE: два прогона подряд
+
+| Прогон | Время, с | Записей | httpcache/store | httpcache/hit | httpcache/miss |
+|---|---|---|---|---|---|
+| cache_run1 | 46.69 | 48 | 52 | 0 | 52 |
+| cache_run2 | 0.43 | 48 | 0 | 52 | 0 |
+2026-10-16 13:56:45 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: ecommerce_crawler)
+2026-10-16 13:56:45 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.6.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.4.0',
+ 'Python': '3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 '
+           '(clang-1600.0.26.6)]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'macOS-26.6.2-arm64-arm-64bit-Mach-O'}
+2026-10-16 13:56:45 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-10-16 13:56:45 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-10-16 13:56:45 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 10.0,
+ 'AUTOTHROTTLE_START_DELAY': 1.0,
+ 'BOT_NAME': 'ecommerce_crawler',
+ 'CLOSESPIDER_ERRORCOUNT': 20,
+ 'CLOSESPIDER_ITEMCOUNT': 400,
+ 'CLOSESPIDER_PAGECOUNT': 700,
+ 'CLOSESPIDER_TIMEOUT': 1800,
+ 'CONCURRENT_REQUESTS': 8,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
+ 'COOKIES_ENABLED': False,
+ 'DEPTH_LIMIT': 60,
+ 'DEPTH_STATS_VERBOSE': True,
+ 'DOWNLOAD_DELAY': 0.5,
+ 'DOWNLOAD_MAXSIZE': 5242880,
+ 'DOWNLOAD_TIMEOUT': 20,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'HTTPCACHE_DIR': '~/Desktop/рабочий стол/Вуз/учеба/Инструменты '
+                  'автоматизирвоанного сбора данных в сети '
+                  'Интернет/solutions/lab5_podolskiy_5/.scrapy/httpcache',
+ 'HTTPCACHE_EXPIRATION_SECS': 86400,
+ 'HTTPCACHE_IGNORE_HTTP_CODES': [403, 429, 500, 502, 503, 504],
+ 'LOGSTATS_INTERVAL': 30.0,
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'ecommerce_crawler.spiders',
+ 'RETRY_HTTP_CODES': [408, 429, 500, 502, 503, 504, 522, 524],
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['ecommerce_crawler.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'USER_AGENT': 'PSU-edu-crawler/1.0 '
+               '(+https://github.com/Meta1rus/web-data-extraction; student '
+               'lab)'}
+2026-10-16 13:56:45 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-10-16 13:56:45 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-10-16 13:56:45 [scrapy.middleware] INFO: Enabled item pipelines:
+['ecommerce_crawler.pipelines.ValidationPipeline',
+ 'ecommerce_crawler.pipelines.CleanPipeline',
+ 'ecommerce_crawler.pipelines.DedupPipeline',
+ 'ecommerce_crawler.pipelines.SQLitePipeline']
+2026-10-16 13:56:45 [scrapy.core.engine] INFO: Spider opened
+2026-10-16 13:56:45 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-10-16 13:56:45 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 63526 (job 60553-690fd7fdac98403caf45fd8ce19a1fa1)
+2026-10-16 13:57:15 [scrapy.extensions.logstats] INFO: Crawled 30 pages (at 60 pages/min), scraped 27 items (at 54 items/min)
+2026-10-16 13:57:19 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-10-16 13:57:19 [ecommerce] INFO: Статистика прогона сохранена: ~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab5_podolskiy_5/data/stats_07_subset_n8n.json
+2026-10-16 13:57:19 [scrapy.extensions.feedexport] INFO: Stored jsonlines feed (32 items) in: data/demo/items_subset_n8n.jsonl
+2026-10-16 13:57:19 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'db/batches': 1,
+ 'db/rows_total_in_table': 32,
+ 'db/rows_written': 32,
+ 'downloader/request_bytes': 11353,
+ 'downloader/request_count': 35,
+ 'downloader/request_method_count/GET': 35,
+ 'downloader/response_bytes': 514622,
+ 'downloader/response_count': 35,
+ 'downloader/response_status_count/200': 35,
+ 'elapsed_time_seconds': 34.09463412500918,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 10, 16, 8, 57, 19, 270023, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 2217509,
+ 'httpcompression/response_count': 35,
+ 'item_scraped_count': 32,
+ 'items_per_minute': 56.470588235294116,
+ 'log_count/INFO': 5,
+ 'memusage/max': 86867968,
+ 'memusage/startup': 86867968,
+ 'pages/list': 2,
+ 'pages/stopped_by_max_pages': 1,
+ 'quality/items_seen': 32,
+ 'request_depth_count/0': 1,
+ 'request_depth_count/1': 17,
+ 'request_depth_count/2': 16,
+ 'request_depth_max': 2,
+ 'response_received_count': 35,
+ 'responses_per_minute': 61.76470588235294,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 34,
+ 'scheduler/dequeued/memory': 34,
+ 'scheduler/enqueued': 34,
+ 'scheduler/enqueued/memory': 34,
+ 'start_time': datetime.datetime(2026, 10, 16, 8, 56, 45, 175574, tzinfo=datetime.timezone.utc)}
+2026-10-16 13:57:19 [scrapy.core.engine] INFO: Spider closed (finished)
+Текущий прогон: stats_02_main.json
+  записей: 400 (предыдущего прогона для сравнения нет)
+  пустых «name»: 0.0% (порог 5%) — ок
+  пустых «price_raw»: 0.0% (порог 5%) — ок
+  пустых «sku»: 0.0% (порог 5%) — ок
+  пустых «categories»: 0.0% (порог 5%) — ок
+  пустых «description»: 0.0% (порог 5%) — ок
+  пустых «image_url»: 0.0% (порог 5%) — ок
+  БД: пустых «name» 0/400 = 0.0%
+  БД: пустых «price» 0/400 = 0.0%
+  БД: пустых «sku» 0/400 = 0.0%
+  БД: пустых «categories» 0/400 = 0.0%
+  БД: пустых «description» 0/400 = 0.0%
+  БД: пустых «image_url» 0/400 = 0.0%
+ИТОГ: норма
+Self-test: синтетический прогон (−30 % записей, 8 % пустых описаний)
+  записей: было 400, стало 280 → изменение -30.0% (порог −20%) — ПРЕДУПРЕЖДЕНИЕ
+  пустых «name»: 0.0% (порог 5%) — ок
+  пустых «price_raw»: 0.0% (порог 5%) — ок
+  пустых «sku»: 0.0% (порог 5%) — ок
+  пустых «categories»: 0.0% (порог 5%) — ок
+  пустых «description»: 8.2% (порог 5%) — ПРЕДУПРЕЖДЕНИЕ
+  пустых «image_url»: 0.0% (порог 5%) — ок
+Self-test: ПРОЙДЕН — тревога сработала
+[NbConvertApp] Converting notebook quality/quality_report.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] Writing 144130 bytes to quality/quality_report.ipynb
+| Метрика | Scrapy (подмножество, 2 стр.) | Scrapy (итоговый прогон) | n8n (2 стр.) |
+|---|---|---|---|
+| Время разработки, мин | ⟪ЗАПОЛНИТЬ⟫ | — | ⟪ЗАПОЛНИТЬ⟫ |
+| Записей собрано | 32 | 400 | ⟪ЗАПОЛНИТЬ⟫ |
+| Время прогона, с | 34.1 | 562.7 | ⟪ЗАПОЛНИТЬ⟫ |
+| Записей в минуту | 56.3 | 42.6 | ⟪ЗАПОЛНИТЬ⟫ |
+| Число сетевых запросов | 35 | 428 | ⟪ЗАПОЛНИТЬ⟫ |
+| Трафик, МБ | 0.491 | 6.151 | ⟪ЗАПОЛНИТЬ⟫ |
+| Дедупликация запросов | dupefilter (отпечатки запросов) + DedupPipeline по SKU |  | Remove Duplicates по URL и по SKU (в пределах одного выполнения) |
+| Возобновление после сбоя | JOBDIR: очередь и отпечатки на диске |  | нет: выполнение начинается заново (можно повторить с узла вручную) |
+| Расписание и оповещения | внешний cron/Scrapyd; оповещения — свой код |  | Schedule Trigger + ветка ошибки из коробки |
+| Версионирование логики | git: код, настройки, тесты |  | экспорт workflow.json в git; diff JSON малочитаем |
+| Оценка усилий на поддержку (1–5) | ⟪ЗАПОЛНИТЬ⟫ |  | ⟪ЗАПОЛНИТЬ⟫ |
+
+Нет n8n_metrics.json: скопируйте n8n_metrics.example.json и впишите измерения n8n.
+== Готово 2026-10-16 13:57:46. Журнал: logs/real_run_20261016_134313.log
+== Дальше вручную: n8n по nocode/INSTRUCTIONS.md, затем заполнить ⟪ЗАПОЛНИТЬ⟫ в report.md

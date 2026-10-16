@@ -1,0 +1,7 @@
+rep,mode,ok,seconds,requests
+1,restore,True,0.691,1
+1,fresh,True,1.511,3
+2,fresh,True,1.328,3
+2,restore,True,1.038,1
+3,restore,True,1.187,1
+3,fresh,True,2.315,3
