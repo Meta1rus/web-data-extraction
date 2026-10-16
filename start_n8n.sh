@@ -16,8 +16,12 @@ if [ "$NODE_MAJOR" -lt 24 ]; then
   exit 1
 fi
 
-# Каталоги, куда workflow пишут CSV, журналы ошибок и оповещения
-mkdir -p "$HOME/.n8n-files/lab6" "$HOME/.n8n-files/podolskiy"
+# Каталоги, куда workflow пишут CSV, журналы ошибок и оповещения (по папке на работу)
+mkdir -p "$HOME/.n8n-files/lab3" "$HOME/.n8n-files/lab4" "$HOME/.n8n-files/lab5" "$HOME/.n8n-files/lab6" "$HOME/.n8n-files/podolskiy"
+# Лаба 3 берёт папку результата из переменной окружения
+export LAB3_NOCODE_DIR="$HOME/.n8n-files/lab3"
+# Часовой пояс расписаний (Пермь)
+export GENERIC_TIMEZONE="Asia/Yekaterinburg"
 
 # Узлы чтения/записи файлов работают только внутри этого каталога (n8n >= 1.9x)
 export N8N_RESTRICT_FILE_ACCESS_TO="$HOME/.n8n-files"

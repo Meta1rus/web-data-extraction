@@ -1,5 +1,8 @@
 # No-code часть (n8n): вход с CSRF и пагинация после авторизации
 
+> **Как запускать на этом Mac:** n8n запускается одной командой из корня папки курса — `./start_n8n.sh` (в ней уже заданы все переменные окружения). Результаты workflow пишутся в `~/.n8n-files/lab4/`, оттуда их нужно скопировать в `nocode/` этой лабы. Общая пошаговая инструкция — `ИНСТРУКЦИЯ.md` в корне.
+
+
 **Сценарий (упрощённый, тот же источник):** `GET /login` → извлечь hidden `csrf_token` (узел HTML) →
 `POST /login` (form-urlencoded) с cookie сессии → проверить редирект 3xx → склеить cookie →
 лента `/page/N/` с той же cookie через встроенную пагинацию HTTP Request → разбор карточек →
@@ -51,14 +54,14 @@ n8n 2.43.6 (Node.js 24) и выполнен `n8n execute`: вход 302 → 10 �
    export N8N_RESTRICT_FILE_ACCESS_TO="$PWD/nocode"
    npx n8n            # первый запуск скачивает n8n (несколько минут); UI: http://localhost:5678
    ```
-   `outputPath` в узле Config — `nocode/nocode_result.csv`, путь считается от папки, из которой запущен n8n.
+   `outputPath` в узле Config — `{{ $env.HOME }}/.n8n-files/lab4/nocode_result.csv` (при запуске через `./start_n8n.sh`).
    Если запускаете из другой папки — укажите в Config абсолютный путь внутри разрешённой папки.
 3. Импорт: *Workflows → Create → ⋯ → Import from File…* → `nocode/workflow.json`
    (или в терминале: `npx n8n import:workflow --input=nocode/workflow.json`).
 4. Запуск: открыть workflow → **Execute workflow** (срабатывает «Ручной запуск»).
    Без UI (для повторных замеров): `npx n8n execute --id=Lab4Podolskiy5Wf`.
    Для регулярного сбора — переключатель **Active** (сработает «Расписание: ежедневно 07:10»).
-5. Проверить файл: `wc -l nocode/nocode_result.csv` (ожидается 100 строк данных + заголовок, если на сайте 10 страниц ленты).
+5. Скопировать и проверить файл: `cp ~/.n8n-files/lab4/nocode_result.csv nocode/ && wc -l nocode/nocode_result.csv` (ожидается 100 строк данных + заголовок, если на сайте 10 страниц ленты).
 
 ## Что снять и куда записать
 

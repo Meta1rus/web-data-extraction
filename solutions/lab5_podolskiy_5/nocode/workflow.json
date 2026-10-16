@@ -434,7 +434,7 @@
     {
       "parameters": {
         "operation": "write",
-        "fileName": "={{ $env.HOME }}/.n8n-files/n8n_errors.log",
+        "fileName": "={{ $env.HOME }}/.n8n-files/lab5/n8n_errors.log",
         "dataPropertyName": "data",
         "options": {
           "append": true
@@ -516,7 +516,7 @@
     {
       "parameters": {
         "operation": "write",
-        "fileName": "={{ $env.HOME }}/.n8n-files/nocode_result.csv",
+        "fileName": "={{ $env.HOME }}/.n8n-files/lab5/nocode_result.csv",
         "dataPropertyName": "data",
         "options": {}
       },

@@ -1,5 +1,8 @@
 # n8n: импорт, запуск, скриншоты
 
+> **Как запускать на этом Mac:** n8n запускается одной командой из корня папки курса — `./start_n8n.sh` (в ней уже заданы все переменные окружения). Результаты workflow пишутся в `~/.n8n-files/podolskiy/`, оттуда их нужно скопировать в `nocode/` этой лабы. Общая пошаговая инструкция — `ИНСТРУКЦИЯ.md` в корне.
+
+
 Workflow `nocode/workflow.json` оркестрирует пайплайн: расписание → запуск `src/run_pipeline.py` → разбор
 `RUN_SUMMARY` → оповещение при жёлтом/красном статусе → Stop and Error при красном; ветка Error Trigger.
 Сравнение «код / no-code» — `nocode/notes.md`.
@@ -27,8 +30,8 @@ Node.js 20.19–24 используйте ветку 1.x: `npx n8n@1`. В n8n 2.
 
 1. **Workflows → Import from File** → `nocode/workflow.json`
    (или из терминала: `npx n8n import:workflow --input=nocode/workflow.json`).
-2. Узел **Параметры запуска**: замените `YOUR_USER` в `project_dir` и `alerts_dir` на имя пользователя
-   (`echo $HOME` покажет путь). `python` оставьте `.venv/bin/python`, `args` и `env_prefix` — пустыми.
+2. Узел **Параметры запуска**: `project_dir` и `alerts_dir` уже указывают на папку проекта на этом Mac и на
+   `~/.n8n-files/podolskiy`. `python` оставьте `.venv/bin/python`, `args` и `env_prefix` — пустыми.
 3. **Settings (⋯ → Settings) → Error workflow** → выберите этот же workflow (ветка «При сбое workflow»).
    Ветка Error Trigger срабатывает для запусков по расписанию (не для ручных). Часовой пояс workflow уже задан: UTC.
 4. Telegram (необязательно): создайте бота у @BotFather, добавьте учётные данные Telegram API в узел
