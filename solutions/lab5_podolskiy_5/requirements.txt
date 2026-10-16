@@ -1,0 +1,9 @@
+# Python >= 3.10 (проверено на 3.11 и 3.13)
+scrapy>=2.13          # краулер; >= 2.13 — асинхронный start(), пайплайны без аргумента spider
+protego>=0.3          # парсер robots.txt (RFC 9309), его же использует Scrapy
+itemadapter>=0.8
+pandas>=2.0           # отчёт о качестве
+matplotlib>=3.7       # графики в quality_report.ipynb
+nbconvert>=7.0        # исполнение блокнота из run_real.sh
+ipykernel>=6.0
+nbclient>=0.8

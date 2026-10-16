@@ -1,0 +1,17 @@
+{
+  "rows": 3720,
+  "repeats": 7,
+  "csv_to_parquet_size_ratio": 6.4,
+  "probe_keys": {
+    "label_color": "encode/httpx#302",
+    "commit_sha": "aio-libs/aiohttp@v3.14.4"
+  },
+  "csv_digits_only_batch": {
+    "строк в партии": 36,
+    "было": "033166",
+    "стало после CSV": "33166",
+    "тип": "int64",
+    "с dtype=str": "'033166'"
+  },
+  "pandas": "2.3.3"
+}

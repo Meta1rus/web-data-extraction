@@ -1,0 +1,69 @@
+# n8n: устойчивость на подмножестве (лабораторная 7)
+
+Два файла: `workflow.json` — основной сбор (2 страницы каталога, ≥ 30 записей), `workflow_error_handler.json` —
+обработчик ошибок с узлом **Error Trigger**. Проверено в n8n 2.43.6 через CLI на локальной имитации магазина:
+первый запуск — 30 записей в CSV; повторный — 2 запроса (только каталог), карточки не запрашивались
+(инкрементальность); при заглушке-капче на 2-й странице — остановка узлом Stop and Error с понятным сообщением.
+
+**Только разрешённый robots.txt источник.** n8n robots.txt не читает. Перед запуском:
+`python -m src.collect --robots-only --start-url <URL>` — код 0. Сейчас scrapingcourse.com/ecommerce закрыт
+(`Disallow: /ecommerce/*`), поэтому `base_url` — согласованный источник (например, `https://scrapeme.live/shop/`).
+
+## 1. Запуск n8n
+
+```bash
+mkdir -p ~/.n8n-files
+export N8N_RESTRICT_FILE_ACCESS_TO="$HOME/.n8n-files"   # n8n ≥ 1.9x: файлы только в этой папке
+export N8N_BLOCK_ENV_ACCESS_IN_NODE=false              # путь к файлам строится из $env.HOME
+npx n8n                                                # http://localhost:5678, Node.js ≥ 24 для n8n 2.x
+```
+
+## 2. Импорт и связка с обработчиком ошибок
+
+1. Импортируйте `workflow_error_handler.json` (Workflows → Import from File). Сохраните.
+2. Импортируйте `workflow.json`. В узле **«Параметры»** задайте `base_url`; `pages = 2`, `min_cards = 30`.
+3. В основном workflow: **⋯ → Settings → Error workflow** → выберите «Лаб. 7: обработчик ошибок (Error Trigger)».
+   (В файле стоит id `lab7ErrorHandler1`; при импорте через интерфейс n8n может присвоить новый id — тогда
+   выбор вручную обязателен.)
+4. Узел «Уведомление в Telegram» в обработчике отключён: включите после создания учётных данных бота,
+   иначе уведомление пишется в файл `~/.n8n-files/lab7_n8n_incidents.log`.
+
+## 3. Механизмы устойчивости в схеме
+
+| Требование | Узел | Настройка |
+|---|---|---|
+| Расписание | «Расписание: ежедневно 05:00» (Schedule Trigger) | cron `0 5 * * *`, часовой пояс Asia/Yekaterinburg |
+| Контроль скорости | «Страница каталога» (HTTP Request, batching 1 запрос / 2 с); «Батчи по 4» (Loop Over Items); «Карточка товара» (2 параллельно, пауза 1 с внутри батча); «Пауза 2 с между батчами» (Wait) | ≈ 1–2 запр/с в среднем |
+| Повторы | HTTP-узлы: Retry On Fail | Max Tries 4, Wait Between Tries 5000 мс (максимум интерфейса) |
+| Ветка ошибки / уведомление | выходы ошибок HTTP-узлов; «Каталог недоступен», «Подозрительно мало данных» (Stop and Error) → **Error Workflow**: Error Trigger → текст → файл инцидентов / Telegram | |
+| Проверка результата | «Проверка содержимого» (маркеры заглушки, размер) → «Карточек достаточно и нет заглушки?» (IF: карточек ≥ `min_cards` И страниц-заглушек = 0); «Есть новые записи?» (IF) | |
+| Инкрементальность | «Только новые и изменённые» (Remove Duplicates → Remove Items Processed in Previous Executions, ключ «URL\|цена в каталоге») | история в БД n8n между запусками |
+| Сжатие | заголовок `Accept-Encoding: gzip` в HTTP-узлах | |
+
+## 4. Важно про Error Trigger
+
+Обработчик ошибок n8n **не вызывается при ручном запуске** (в исходниках n8n: `!isManualMode`), только при
+запусках по расписанию/триггеру активированного workflow. Чтобы снять скриншот срабатывания:
+
+1. В «Параметрах» временно поставьте `base_url = http://127.0.0.1:9/ecommerce/` (закрытый порт).
+2. В «Расписании» временно поставьте cron `*/2 * * * *`, **активируйте** workflow (переключатель Active).
+3. Через 2–3 минуты: Executions — выполнение с ошибкой; обработчик — успешное выполнение;
+   в `~/.n8n-files/lab7_n8n_incidents.log` — строка инцидента.
+4. Деактивируйте workflow, верните `base_url` и cron `0 5 * * *`.
+
+## 5. Скриншоты (в `nocode/`)
+
+| Файл | Что на нём |
+|---|---|
+| `screenshot_workflow.png` | основная схема целиком |
+| `screenshot_error_workflow.png` | схема обработчика (Error Trigger → …) и выбранный Error workflow в Settings |
+| `screenshot_retry_settings.png` | настройки HTTP-узла: Retry On Fail 4 × 5000 мс, On Error → Continue (using error output), batching |
+| `screenshot_run_ok.png` | успешный первый запуск: число элементов на связях (≥ 30 записей) |
+| `screenshot_run_incremental.png` | повторный запуск: «Только новые и изменённые» пропускает 0 карточек |
+| `screenshot_error_trigger.png` | выполнение обработчика ошибок (см. п. 4) |
+| `screenshot_if_check.png` | (по желанию) срабатывание проверки результата — Stop and Error с текстом |
+
+## 6. Замеры для `nocode_notes.md`
+
+Executions → длительность первого и повторного запуска; число запросов = 2 (каталог) + число карточек;
+число записей — строки `~/.n8n-files/lab7_nocode_result.csv`.

@@ -1,0 +1,62 @@
+{
+  "clean_version": "clean/1.0",
+  "raw": {
+    "всего строк": 4148,
+    "нечитаемых": 0,
+    "синтетических": 272,
+    "_entity=repo": 13,
+    "_entity=issue": 3852,
+    "_entity=repo_page": 26,
+    "_entity=release": 257,
+    "различных ключей": {
+      "events": 3830,
+      "repositories": 12
+    }
+  },
+  "clean": {
+    "events": 3720,
+    "repositories": 12
+  },
+  "rejects": 140,
+  "rejects_by_stage": {
+    "6. бизнес-правила": 99,
+    "4. пропуски": 30,
+    "7. контракт": 11
+  },
+  "rejects_synthetic": 140,
+  "completeness_optional": {
+    "repos_api": {
+      "description": 100.0,
+      "homepage": 91.7,
+      "language": 100.0,
+      "license_spdx": 100.0,
+      "watchers": 100.0,
+      "pushed_at_t": 100.0
+    },
+    "repos_html": {
+      "releases_count": 0.0,
+      "latest_release_tag_raw": 0.0,
+      "used_by": 0.0,
+      "contributors": 0.0,
+      "primary_language_pct": 0.0,
+      "stars_html": 46.2
+    },
+    "events": {
+      "labels_t": 59.8,
+      "label_color": 59.8,
+      "comments_t": 93.8,
+      "author_association": 93.8,
+      "gh_updated_at": 93.8,
+      "commit_sha": 6.2
+    }
+  },
+  "events_by_type": {
+    "pull_request": 2514,
+    "issue": 1086,
+    "release": 120
+  },
+  "events_by_source": {
+    "github_api": 3600,
+    "github_html": 120
+  }
+}

@@ -1,0 +1,556 @@
+{
+  "name": "ЛР3 вариант 5 — CoinGecko /coins/markets → CSV",
+  "nodes": [
+    {
+      "id": "5e52ef6e-9745-51df-bb69-643028f3f1f0",
+      "name": "Расписание: ежедневно 09:07",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "7 9 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "522f92f1-337d-54c3-ad02-f5a4920c644d",
+      "name": "Запуск вручную",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "5d02f695-25eb-5d23-9475-350dcd2011ee",
+      "name": "Параметры: страницы и размер",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        100
+      ],
+      "notes": "max_pages = длина списка page_list; per_page — размер страницы CoinGecko (1–250)",
+      "notesInFlow": true,
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90ad5994-d45d-5da1-b7cc-1a9f9a566172",
+              "name": "page_list",
+              "value": "={{ [1, 2, 3] }}",
+              "type": "array"
+            },
+            {
+              "id": "4749a3bd-4320-5d79-b4c6-d96b13130e57",
+              "name": "per_page",
+              "value": "100",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "e96ae293-ca15-528d-bc31-ddcb379bfc8b",
+      "name": "Страницы → items",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        440,
+        100
+      ],
+      "parameters": {
+        "fieldToSplitOut": "page_list",
+        "include": "selectedOtherFields",
+        "fieldsToInclude": "per_page",
+        "options": {
+          "destinationFieldName": "page"
+        }
+      }
+    },
+    {
+      "id": "0886a138-ce2f-5736-b139-447ecd51cdf1",
+      "name": "Цикл по страницам",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        660,
+        100
+      ],
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      }
+    },
+    {
+      "id": "44e82cef-efab-5696-a5ad-c2fe409cb968",
+      "name": "CoinGecko /coins/markets",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        200
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput",
+      "notes": "Одна страница за запуск узла: page и per_page из цикла. Повторы: 3 попытки через 5 с. После всех попыток ошибка уходит во второй выход.",
+      "notesInFlow": true,
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.coingecko.com/api/v3/coins/markets",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "vs_currency",
+              "value": "usd"
+            },
+            {
+              "name": "order",
+              "value": "market_cap_desc"
+            },
+            {
+              "name": "per_page",
+              "value": "={{ $json.per_page }}"
+            },
+            {
+              "name": "page",
+              "value": "={{ $json.page }}"
+            },
+            {
+              "name": "price_change_percentage",
+              "value": "24h"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 30000
+        }
+      }
+    },
+    {
+      "id": "a19ec673-b886-53e3-b7ee-231386dfe1d7",
+      "name": "Пауза 6,5 с (лимит API)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1140,
+        200
+      ],
+      "webhookId": "6941c2fb-39a2-5639-a52a-4b417fa5dab1",
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": 6.5,
+        "unit": "seconds"
+      }
+    },
+    {
+      "id": "a47fccf5-f5a2-5635-82b2-a5b3c4b23bad",
+      "name": "Развернуть массив монет",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        900,
+        -100
+      ],
+      "parameters": {
+        "fieldToSplitOut": "body",
+        "include": "noOtherFields",
+        "options": {}
+      }
+    },
+    {
+      "id": "cb37aa76-7ef9-558c-a178-922c197d556e",
+      "name": "Поля: имена, типы, расчёт",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1140,
+        -100
+      ],
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0b87ecc4-d82f-558a-a435-5b677ee50a14",
+              "name": "snapshot_date",
+              "value": "={{ $now.toUTC().toISODate() }}",
+              "type": "string"
+            },
+            {
+              "id": "933de67a-82a0-5659-b364-43744eb44c58",
+              "name": "rank",
+              "value": "={{ $json.market_cap_rank }}",
+              "type": "number"
+            },
+            {
+              "id": "4185cd1a-a1f4-5ce9-a392-876a236974c7",
+              "name": "coin_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "87658ab7-6f17-5829-9570-3d10cad80359",
+              "name": "symbol",
+              "value": "={{ ($json.symbol || '').toUpperCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "37651d9e-59cd-5aeb-b90e-2f252cf62ac1",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "0b374805-f64d-5240-80a4-abf07cbc553a",
+              "name": "price_usd",
+              "value": "={{ $json.current_price }}",
+              "type": "number"
+            },
+            {
+              "id": "cd250b79-195b-54f4-9b1c-f6e54d992e2e",
+              "name": "market_cap_bn_usd",
+              "value": "={{ $json.market_cap != null ? Math.round($json.market_cap / 1e6) / 1000 : null }}",
+              "type": "number"
+            },
+            {
+              "id": "d50863aa-bd6f-543b-bfde-fe3fd26cb592",
+              "name": "volume_24h_mn_usd",
+              "value": "={{ $json.total_volume != null ? Math.round($json.total_volume / 1e4) / 100 : null }}",
+              "type": "number"
+            },
+            {
+              "id": "4a46abbf-7caf-590c-809e-da7d51690352",
+              "name": "change_24h_pct",
+              "value": "={{ $json.price_change_percentage_24h }}",
+              "type": "number"
+            },
+            {
+              "id": "e2fe6bd3-66c0-508e-b5c1-e5f145b2b7ce",
+              "name": "range_24h_pct",
+              "value": "={{ $json.current_price > 0 && $json.high_24h != null && $json.low_24h != null ? Math.round(($json.high_24h - $json.low_24h) / $json.current_price * 10000) / 100 : null }}",
+              "type": "number"
+            },
+            {
+              "id": "6a6b66c3-8d3d-5e93-ab18-fa0725ae2151",
+              "name": "last_updated_utc",
+              "value": "={{ DateTime.fromISO($json.last_updated, { zone: 'utc' }).toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "fa353809-eba9-53f3-9cdd-66784f8da08a",
+              "name": "source",
+              "value": "CoinGecko API — Powered by CoinGecko",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "6b33657f-5588-5328-937b-0efa4ecafbf6",
+      "name": "Убрать дубли по coin_id",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        -100
+      ],
+      "parameters": {
+        "operation": "removeDuplicateInputItems",
+        "compare": "selectedFields",
+        "fieldsToCompare": "coin_id",
+        "options": {}
+      }
+    },
+    {
+      "id": "a80d7a05-1d8d-5803-a931-5c168a2c6355",
+      "name": "Преобразовать в CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1620,
+        -100
+      ],
+      "parameters": {
+        "operation": "csv",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "nocode_result.csv",
+          "headerRow": true
+        }
+      }
+    },
+    {
+      "id": "5c03db07-08e8-5dd2-95b2-3753f866e57e",
+      "name": "Записать nocode_result.csv",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        -100
+      ],
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $env.LAB3_NOCODE_DIR }}/nocode_result.csv",
+        "dataPropertyName": "data",
+        "options": {}
+      }
+    },
+    {
+      "id": "5ba9ee99-19c3-594f-9da1-f376e7c7e7ea",
+      "name": "Ошибка: что случилось",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1140,
+        400
+      ],
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ed4b6c05-7f5d-515d-8932-d3db81879ff2",
+              "name": "failed_at_utc",
+              "value": "={{ $now.toUTC().toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "bf5d96af-f956-5a3e-a0bf-4cc1143916ac",
+              "name": "page",
+              "value": "={{ $('Цикл по страницам').item.json.page }}",
+              "type": "number"
+            },
+            {
+              "id": "18dc9fa1-6a24-5170-8517-218ff14d9cf5",
+              "name": "error_message",
+              "value": "={{ $json.error?.message ?? JSON.stringify($json.error ?? $json) }}",
+              "type": "string"
+            },
+            {
+              "id": "af377ca9-fd9b-5142-9be2-28d831abaa50",
+              "name": "http_code",
+              "value": "={{ $json.error?.httpCode ?? $json.error?.status ?? '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "d6416a70-40b6-54e1-8cfc-ba52640c47e4",
+      "name": "Остановить с ошибкой",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        400
+      ],
+      "parameters": {
+        "errorType": "errorMessage",
+        "errorMessage": "=CoinGecko: страница {{ $json.page }} не получена после 3 попыток (HTTP {{ $json.http_code }}): {{ $json.error_message }}"
+      }
+    }
+  ],
+  "connections": {
+    "Расписание: ежедневно 09:07": {
+      "main": [
+        [
+          {
+            "node": "Параметры: страницы и размер",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запуск вручную": {
+      "main": [
+        [
+          {
+            "node": "Параметры: страницы и размер",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Параметры: страницы и размер": {
+      "main": [
+        [
+          {
+            "node": "Страницы → items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Страницы → items": {
+      "main": [
+        [
+          {
+            "node": "Цикл по страницам",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Цикл по страницам": {
+      "main": [
+        [
+          {
+            "node": "Развернуть массив монет",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CoinGecko /coins/markets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CoinGecko /coins/markets": {
+      "main": [
+        [
+          {
+            "node": "Пауза 6,5 с (лимит API)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ошибка: что случилось",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пауза 6,5 с (лимит API)": {
+      "main": [
+        [
+          {
+            "node": "Цикл по страницам",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Развернуть массив монет": {
+      "main": [
+        [
+          {
+            "node": "Поля: имена, типы, расчёт",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Поля: имена, типы, расчёт": {
+      "main": [
+        [
+          {
+            "node": "Убрать дубли по coin_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Убрать дубли по coin_id": {
+      "main": [
+        [
+          {
+            "node": "Преобразовать в CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Преобразовать в CSV": {
+      "main": [
+        [
+          {
+            "node": "Записать nocode_result.csv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ошибка: что случилось": {
+      "main": [
+        [
+          {
+            "node": "Остановить с ошибкой",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Yekaterinburg",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

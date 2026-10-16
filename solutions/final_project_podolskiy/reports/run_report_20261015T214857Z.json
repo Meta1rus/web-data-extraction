@@ -1,0 +1,331 @@
+{
+  "run_id": "20261015T214857Z",
+  "started_at": "2026-10-15T21:48:57Z",
+  "records": {
+    "resumed_from": null,
+    "html_pages_ok": 1,
+    "html_pages_failed": 0,
+    "html_cards": 20,
+    "html_pages_resumed": 0,
+    "html_pages_skipped_robots": 0,
+    "html_blocked": 0,
+    "api_mode": "rest",
+    "api_selected": 20,
+    "api_skipped_watermark": 0,
+    "api_resumed_skip": 0,
+    "api_200": 3,
+    "api_304": 17,
+    "api_404": 0,
+    "api_failed": 0,
+    "api_skipped_breaker": 0,
+    "api_stopped_quota": false,
+    "api_source_unavailable": false,
+    "api_search_requests": 0,
+    "api_reasons": {
+      "new": 0,
+      "html_newer": 1,
+      "stale": 19,
+      "forced": 0,
+      "skipped_watermark": 0
+    },
+    "clean_repos": 592,
+    "clean_listings": 600,
+    "rejects": 0,
+    "analysis_repos": 592,
+    "zero_changes_streak": 0
+  },
+  "environment": {
+    "html_base": "https://github.com",
+    "api_base": "https://api.github.com",
+    "api_mode": "rest",
+    "token": "gith…xD (длина 93)",
+    "python": "3.10.12",
+    "topics": [
+      "web-scraping"
+    ],
+    "parser_version": "gh-topics-1.0.0",
+    "scope": "web-scraping|1|stars|html"
+  },
+  "robots": {
+    "robots_url": "https://github.com/robots.txt",
+    "status": 200,
+    "available": true,
+    "group": "*",
+    "crawl_delay": null,
+    "request_rate": null,
+    "sitemaps": [],
+    "checks": [
+      {
+        "url": "https://github.com/topics/web-scraping?l=python&page=2",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy/stargazers",
+        "rfc9309": false,
+        "rule": "disallow: /*/*/stargazers",
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy?tab=readme-ov-file",
+        "rfc9309": false,
+        "rule": "disallow: /*?tab=*",
+        "urllib_robotparser": true
+      }
+    ],
+    "saved_copy": "raw/robots/github.com_20261015.txt"
+  },
+  "html_topics": {
+    "web-scraping": {
+      "pages": 1,
+      "cards": 20,
+      "strategy": "article-cards",
+      "total": 11620
+    }
+  },
+  "cleaning_protocol": [
+    {
+      "шаг": "1. чтение raw: карточки тем",
+      "до": 1820,
+      "после": 1820,
+      "затронуто": 0,
+      "примечание": "прогонов: 4"
+    },
+    {
+      "шаг": "1. чтение raw: ответы API",
+      "до": 989,
+      "после": 989,
+      "затронуто": 0,
+      "примечание": "прогонов: 8"
+    },
+    {
+      "шаг": "2–5. нормализация текста, ключ, типы (карточки)",
+      "до": 1820,
+      "после": 1820,
+      "затронуто": 0,
+      "примечание": "описаний с исправленными пробелами/символами: 79"
+    },
+    {
+      "шаг": "2–5. нормализация текста, ключ, типы (API)",
+      "до": 989,
+      "после": 989,
+      "затронуто": 0,
+      "примечание": ""
+    },
+    {
+      "шаг": "6. дедупликация карточек по (topic, repo_key)",
+      "до": 1820,
+      "после": 600,
+      "затронуто": 1220,
+      "примечание": "повторные наблюдения тех же карточек в разных прогонах; оставлена самая свежая"
+    },
+    {
+      "шаг": "6. дедупликация API по repo_key и repo_id",
+      "до": 989,
+      "после": 592,
+      "затронуто": 397,
+      "примечание": "переименований/синонимов ключа: 0"
+    },
+    {
+      "шаг": "7. контракт: карточки тем",
+      "до": 600,
+      "после": 600,
+      "затронуто": 0,
+      "примечание": "в rejects: 0"
+    },
+    {
+      "шаг": "7. контракт: репозитории API",
+      "до": 592,
+      "после": 592,
+      "затронуто": 0,
+      "примечание": "в rejects: 0"
+    },
+    {
+      "шаг": "8. вычисляемые поля",
+      "до": 592,
+      "после": 592,
+      "затронуто": 0,
+      "примечание": "age_days, days_since_push, stars_per_year, size_mb, size_band, activity_band, is_python"
+    }
+  ],
+  "storage": {
+    "repos": {
+      "inserted": 0,
+      "updated": 3,
+      "unchanged": 589,
+      "db_rejected": 0
+    },
+    "listings": {
+      "inserted": 0,
+      "updated": 4,
+      "unchanged": 596,
+      "db_rejected": 0
+    },
+    "snapshots": 20,
+    "db_rejected": 0
+  },
+  "quality": {
+    "verdict": "green",
+    "metrics": [
+      {
+        "metric": "required_completeness_pct",
+        "title": "полнота обязательных полей, %",
+        "value": 100.0,
+        "green": 99.5,
+        "yellow": 98,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "reject_share_pct",
+        "title": "доля отбракованных записей, %",
+        "value": 0.0,
+        "green": 2,
+        "yellow": 5,
+        "direction": "lower",
+        "status": "green"
+      },
+      {
+        "metric": "key_uniqueness_pct",
+        "title": "уникальность бизнес-ключа, %",
+        "value": 100.0,
+        "green": 100,
+        "yellow": 99.9,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "join_coverage_pct",
+        "title": "покрытие связи HTML -> API (обогащено), %",
+        "value": 100.0,
+        "green": 95,
+        "yellow": 80,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "stars_consistency_pct",
+        "title": "согласованность звёзд HTML и API, %",
+        "value": 100.0,
+        "green": 90,
+        "yellow": 75,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "api_freshness_p95_hours",
+        "title": "возраст данных API (p95), ч",
+        "value": 0.34,
+        "green": 48,
+        "yellow": 168,
+        "direction": "lower",
+        "status": "green"
+      },
+      {
+        "metric": "volume_vs_prev_pct",
+        "title": "объём чистого слоя к прошлому прогону, %",
+        "value": 100.0,
+        "green": 90,
+        "yellow": 70,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "python_share_pct",
+        "title": "доля репозиториев на Python, %",
+        "value": 100.0,
+        "green": 85,
+        "yellow": 70,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "clean_repos_count",
+        "title": "число обогащённых репозиториев для анализа",
+        "value": 592.0,
+        "green": 500,
+        "yellow": 300,
+        "direction": "higher",
+        "status": "green"
+      }
+    ],
+    "info": {
+      "pushed_before_created_pct": 0.0,
+      "archived_pct": 7.94,
+      "forks_in_sample_pct": 0.51,
+      "stars_html_approx_pct": 0.0
+    },
+    "reject_reasons": {}
+  },
+  "mart_built": true,
+  "mart": {
+    "repo_topic": 600,
+    "topic_summary": 6,
+    "size_band_topic": 24,
+    "activity_band_topic": 24,
+    "stars_by_day_topic": 6
+  },
+  "finished_at": "2026-10-15T21:49:11Z",
+  "duration_s": 13.99,
+  "status": "finished",
+  "requests": {
+    "total": 22,
+    "by_status": {
+      "200": 5,
+      "304": 17
+    },
+    "by_host": {
+      "github.com": 2,
+      "api.github.com": 20
+    },
+    "by_source": {
+      "robots": 1,
+      "github_topics_html": 1,
+      "github_api_repos": 20
+    },
+    "error_rate_pct": 0.0,
+    "rate_limited_pct": 0.0,
+    "retries": 0,
+    "not_modified_304": 17,
+    "conditional_sent": 21,
+    "network_errors": 0,
+    "latency_ms": {
+      "median": 475.1,
+      "p95": 682.2,
+      "max": 1022.3
+    },
+    "traffic": {
+      "body_bytes": 678648,
+      "wire_bytes": 1411,
+      "wire_known_responses": 1,
+      "gzip_saving_pct": 91.6
+    },
+    "api_quota": {
+      "limit": 5000,
+      "remaining_first": "3558",
+      "remaining_last": "3555",
+      "remaining_last_pct": 71.1,
+      "used_delta_by_status": {
+        "304": 0,
+        "200": 3
+      },
+      "responses_304": 17
+    },
+    "cache_hits": 0,
+    "skipped_by_breaker": 0,
+    "breaker_activations": 0,
+    "robots_blocked": 0
+  },
+  "incidents": [],
+  "alerts": [],
+  "verdict": "green",
+  "exit_code": 0,
+  "report_path": "reports/run_report_20261015T214857Z.json"
+}

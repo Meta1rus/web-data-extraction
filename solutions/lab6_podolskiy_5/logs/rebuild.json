@@ -1,0 +1,60 @@
+{
+  "raw_checks": [
+    {
+      "file": "github_api.jsonl",
+      "checked": true,
+      "appends": 12,
+      "size_fixed": 3793026,
+      "size_now": 3793026
+    },
+    {
+      "file": "github_html.jsonl",
+      "checked": true,
+      "appends": 13,
+      "size_fixed": 196908,
+      "size_now": 196908
+    },
+    {
+      "file": "synthetic_dirty.jsonl",
+      "checked": true,
+      "appends": 2,
+      "size_fixed": 297290,
+      "size_now": 297290
+    }
+  ],
+  "seconds": 0.99,
+  "clean": {
+    "events": 3720,
+    "repositories": 12
+  },
+  "rejects": 140,
+  "fingerprint_before": {
+    "events": {
+      "rows": 3720,
+      "sha256": "b332a42c69575fc7"
+    },
+    "repositories": {
+      "rows": 12,
+      "sha256": "fcbea1d821908836"
+    },
+    "rejects": {
+      "rows": 140,
+      "sha256": "6b9408b96290871b"
+    }
+  },
+  "fingerprint_after": {
+    "events": {
+      "rows": 3720,
+      "sha256": "b332a42c69575fc7"
+    },
+    "repositories": {
+      "rows": 12,
+      "sha256": "fcbea1d821908836"
+    },
+    "rejects": {
+      "rows": 140,
+      "sha256": "6b9408b96290871b"
+    }
+  },
+  "identical": true
+}

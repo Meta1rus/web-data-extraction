@@ -1,0 +1,20 @@
+{
+  "load_id": "pipeline-2026-10-15T21:12:54.486Z",
+  "load_ts": "2026-10-15T21:12:54.486Z",
+  "repositories": {
+    "in": 12,
+    "inserted": 12,
+    "updated": 0,
+    "unchanged": 0,
+    "rows_after": 12
+  },
+  "events": {
+    "in": 3720,
+    "inserted": 3720,
+    "updated": 0,
+    "unchanged": 0,
+    "rows_after": 3720
+  },
+  "history_versions_added": 3732,
+  "rejects_added": 140
+}

@@ -1,0 +1,21 @@
+# Postgres для no-code части: docker compose -f nocode/docker-compose.yml up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lab6-postgres
+    environment:
+      POSTGRES_USER: lab6
+      POSTGRES_PASSWORD: ${LAB6_PG_PASSWORD:-lab6_local_only}
+      POSTGRES_DB: lab6
+    ports:
+      - "127.0.0.1:5432:5432"          # только локально
+    volumes:
+      - ./pg_init.sql:/docker-entrypoint-initdb.d/01_init.sql:ro
+      - lab6_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lab6 -d lab6"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  lab6_pg:

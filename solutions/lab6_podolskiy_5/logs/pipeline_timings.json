@@ -1,0 +1,12 @@
+{
+  "raw_verify": 0.0,
+  "clean": 0.96,
+  "rebuild": 1.1,
+  "formats": 1.49,
+  "probes": 0.01,
+  "load": 0.33,
+  "load_demo": 3.2,
+  "quality": 0.03,
+  "mart": 0.28,
+  "duckdb": 0.13
+}

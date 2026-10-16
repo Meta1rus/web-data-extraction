@@ -1,0 +1,54 @@
+{
+  "run_id": "20261015T210737Z",
+  "repos": [
+    "scrapy/scrapy",
+    "scrapy/parsel",
+    "psf/requests",
+    "encode/httpx",
+    "aio-libs/aiohttp",
+    "microsoft/playwright-python",
+    "SeleniumHQ/selenium",
+    "n8n-io/n8n",
+    "pandas-dev/pandas",
+    "pydantic/pydantic",
+    "apache/arrow",
+    "duckdb/duckdb"
+  ],
+  "started_at": "2026-10-15T21:07:37.651+00:00",
+  "args": {
+    "repos": "config/repos.txt",
+    "max_issue_pages": 3,
+    "per_page": 100,
+    "release_pages": 1,
+    "since": "auto",
+    "api_pause": 1.0,
+    "html_pause": 3.0,
+    "no_api": false,
+    "no_html": true,
+    "no_token": false,
+    "save_html": true
+  },
+  "api_plan": {
+    "rate_remaining_before": 4999,
+    "planned_requests": 48,
+    "issue_pages_per_repo": 3
+  },
+  "api": {
+    "requests": 49,
+    "bytes": 21522477,
+    "status": {
+      "200": 49
+    },
+    "retries": 0,
+    "seconds": 50.190011190002224,
+    "rate_after": {
+      "X-RateLimit-Limit": "5000",
+      "X-RateLimit-Remaining": "4951",
+      "X-RateLimit-Reset": "1792101633",
+      "X-RateLimit-Used": "49",
+      "X-RateLimit-Resource": "core"
+    }
+  },
+  "finished_at": "2026-10-15T21:09:16.277+00:00",
+  "duration_s": 98.6
+}

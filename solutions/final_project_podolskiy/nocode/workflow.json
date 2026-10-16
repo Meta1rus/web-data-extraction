@@ -1,0 +1,660 @@
+{
+  "name": "final_project_podolskiy — оркестрация пайплайна GitHub (B)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Оркестрация пайплайна (конфигурация B)\n1. В узле **Параметры запуска** замените `YOUR_USER` на имя пользователя macOS.\n2. n8n ≥ 2.0: узел Execute Command отключён по умолчанию — запускайте n8n с `NODES_EXCLUDE=\"[]\"`.\n3. Запись файлов: `N8N_RESTRICT_FILE_ACCESS_TO=$HOME/.n8n-files`.\n4. Settings → Error workflow → этот же workflow (ветка Error Trigger).\n5. Telegram-узел выключен: включите после добавления учётных данных бота.\nПодробно: nocode/INSTRUCTIONS.md",
+        "height": 300,
+        "width": 420
+      },
+      "id": "8e9efdf8-ad67-56af-be8a-72378d43181a",
+      "name": "Заметка: настройка",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "17 3 * * *"
+            }
+          ]
+        }
+      },
+      "id": "622e4a75-9728-515e-8f82-58f123525cc3",
+      "name": "Расписание 03:17 UTC",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -460,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7f7dc9dc-c12b-569e-95af-a261816b155c",
+      "name": "Ручной запуск (демо)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b0058784-46a9-5d10-a474-e88bfc54651d",
+              "name": "project_dir",
+              "value": "/Users/YOUR_USER/final_project_podolskiy",
+              "type": "string"
+            },
+            {
+              "id": "f17e870d-e44e-5a82-99c8-f9a4cc6d162e",
+              "name": "python",
+              "value": ".venv/bin/python",
+              "type": "string"
+            },
+            {
+              "id": "b336857f-f7c7-5bde-b91f-5f851bff380d",
+              "name": "args",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "ad017088-7b6e-5baa-9e0c-9c1b7199fe23",
+              "name": "env_prefix",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "44ab5c14-a4fa-539a-abc4-4eb499e80f68",
+              "name": "alerts_dir",
+              "value": "/Users/YOUR_USER/.n8n-files/podolskiy",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "dd821a43-517f-53d3-95b1-a472864d1a75",
+      "name": "Параметры запуска",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -200,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "executeOnce": true,
+        "command": "=cd \"{{ $json.project_dir }}\" && {{ $json.env_prefix }} {{ $json.python }} src/run_pipeline.py --quiet {{ $json.args }}; echo \"PIPELINE_EXIT_CODE=$?\""
+      },
+      "id": "85533a11-ee90-5938-bab9-32df63ec057a",
+      "name": "Запуск пайплайна",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        40,
+        100
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput",
+      "notes": "Повторы узла — только на случай сбоя запуска оболочки. Сетевые повторы, лимиты и предохранитель реализованы внутри пайплайна: повторный полный прогон по ошибке лишь удвоил бы нагрузку на GitHub.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Разбор вывода пайплайна: последняя строка RUN_SUMMARY {...} и код возврата PIPELINE_EXIT_CODE=N\nconst out = [];\nfor (const item of $input.all()) {\n  const stdout = String(item.json.stdout || '');\n  const lines = stdout.split('\\n');\n  const sumLine = [...lines].reverse().find(l => l.startsWith('RUN_SUMMARY '));\n  const codeLine = lines.find(l => l.startsWith('PIPELINE_EXIT_CODE='));\n  const exitCode = codeLine ? parseInt(codeLine.split('=')[1], 10) : -1;\n  let summary = {};\n  try {\n    summary = sumLine ? JSON.parse(sumLine.slice('RUN_SUMMARY '.length)) : {};\n  } catch (e) {\n    summary = { parse_error: String(e) };\n  }\n  // нет строки RUN_SUMMARY = пайплайн не дошёл до конца: считаем прогон красным\n  const verdict = summary.verdict || 'red';\n  out.push({ json: {\n    ...summary,\n    verdict,\n    exit_code: exitCode,\n    alerts: summary.alerts || (sumLine ? [] : ['нет строки RUN_SUMMARY: см. stderr']),\n    stderr_tail: String(item.json.stderr || '').slice(-1500),\n    checked_at: new Date().toISOString(),\n  }});\n}\nreturn out;"
+      },
+      "id": "59cf4538-bcc3-5d56-95ef-95eac8ca605c",
+      "name": "Разбор RUN_SUMMARY",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        300,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "aad71b86-c432-5185-8243-ea73213a1e00",
+              "leftValue": "={{ $json.verdict }}",
+              "rightValue": "green",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "49d730df-2993-512d-adf7-375c5ef6b96a",
+              "leftValue": "={{ $json.exit_code }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "ae8f6e89-eb0a-5c02-8461-14f0e06b7734",
+      "name": "Нужно оповещение?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        540,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "includeOtherFields": true,
+        "include": "all",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5bb74090-560f-5686-9b7a-ce51f5463360",
+              "name": "message",
+              "type": "string",
+              "value": "={{ '[' + String($json.verdict).toUpperCase() + '] Пайплайн GitHub, прогон ' + $json.run_id + ', код возврата ' + $json.exit_code + '\\n' + ($json.alerts || []).join('\\n') + '\\nОтчёт: ' + $json.report_path }}"
+            },
+            {
+              "id": "16928d55-a3f3-5651-9c2f-65e4fbb67674",
+              "name": "alert_file",
+              "type": "string",
+              "value": "={{ $('Параметры запуска').first().json.alerts_dir + '/alert_' + $now.toFormat('yyyyLLdd_HHmmss') + '.json' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2a0c14cc-39c3-5620-90d9-37afa6079ca8",
+      "name": "Текст оповещения",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        780,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_CHAT_ID",
+        "text": "={{ $json.message }}",
+        "additionalFields": {}
+      },
+      "id": "e5383b56-2cd9-55e0-a6b3-d43635241745",
+      "name": "Telegram (включить при наличии бота)",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1020,
+        -260
+      ],
+      "disabled": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "mode": "each",
+        "options": {
+          "fileName": "={{ 'alert_' + $json.run_id + '.json' }}",
+          "format": true
+        }
+      },
+      "id": "fb18338f-e6c5-5789-9143-da9df4c7c002",
+      "name": "Оповещение → JSON",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Текст оповещения').item.json.alert_file }}",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "13e78b13-97a1-5171-99a9-408774e1b9a4",
+      "name": "Записать оповещение",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        -60
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 1000
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "624d6f9a-9998-504e-a4b7-c307c996a9ca",
+              "leftValue": "={{ $('Текст оповещения').item.json.verdict }}",
+              "rightValue": "red",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "d29f8a2e-3405-53a6-b424-fd14e8c791c7",
+      "name": "Красный статус?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "={{ 'Пайплайн: красный статус, код ' + $('Текст оповещения').item.json.exit_code + '. ' + $('Текст оповещения').item.json.message }}"
+      },
+      "id": "8e12b762-2a82-55ed-aac8-687b8e816acc",
+      "name": "Пометить выполнение как сбой",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        -140
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1ccca21f-b7f9-5a7b-bea0-7d16593cccbf",
+      "name": "Жёлтый: только запись",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        40
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d8fa77d6-ba12-5c1b-8af4-fe987d15209c",
+      "name": "Прогон здоров",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        780,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "includeOtherFields": true,
+        "include": "all",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a77a0fd8-41ed-5f2a-8ff0-5d7d938231f2",
+              "name": "verdict",
+              "value": "red",
+              "type": "string"
+            },
+            {
+              "id": "dd7548c5-9133-59ec-8929-0db9bdfeaf9a",
+              "name": "exit_code",
+              "value": -1,
+              "type": "number"
+            },
+            {
+              "id": "15a3f338-d313-50c2-9f4e-ee426e8358ef",
+              "name": "run_id",
+              "value": "={{ $now.toFormat('yyyyLLdd\\'T\\'HHmmss') }}",
+              "type": "string"
+            },
+            {
+              "id": "72c90eba-d950-50b1-a2cb-097febf756af",
+              "name": "alerts",
+              "type": "array",
+              "value": "={{ ['Execute Command не выполнился: ' + ($json.error && $json.error.message ? $json.error.message : JSON.stringify($json)).slice(0, 500)] }}"
+            },
+            {
+              "id": "5326a43d-09ec-5c63-8b16-a7aa468dfceb",
+              "name": "report_path",
+              "value": "—",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ac24be4a-82c4-5bd9-89d1-debe6f891f1d",
+      "name": "Сбой запуска команды",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bdd45204-da75-5b9f-871d-8782817418c0",
+      "name": "При сбое workflow",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ec7657e4-9e17-5ee2-b6c4-3fda3547cfa9",
+              "name": "message",
+              "type": "string",
+              "value": "={{ 'Сбой workflow ' + $json.workflow.name + ': ' + ($json.execution.error ? $json.execution.error.message : 'неизвестно') + ' (узел ' + ($json.execution.lastNodeExecuted || '?') + ')' }}"
+            },
+            {
+              "id": "077d48ae-c011-52aa-b744-42896ef01a7f",
+              "name": "execution_url",
+              "value": "={{ $json.execution.url }}",
+              "type": "string"
+            },
+            {
+              "id": "16daeb77-bcf5-5ea2-987e-da317b2ee0c0",
+              "name": "alert_file",
+              "type": "string",
+              "value": "={{ '/Users/YOUR_USER/.n8n-files/podolskiy/workflow_error_' + $now.toFormat('yyyyLLdd_HHmmss') + '.json' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d742d2cd-4de1-52a9-9914-3c5602f65968",
+      "name": "Сообщение о сбое workflow",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -200,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "mode": "each",
+        "options": {
+          "fileName": "workflow_error.json",
+          "format": true
+        }
+      },
+      "id": "96a3ce9f-247d-5cdc-9559-0309bb668907",
+      "name": "Сбой → JSON",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        40,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Сообщение о сбое workflow').item.json.alert_file }}",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "a2e9b73f-f7da-5c15-8cc2-33ef990296f0",
+      "name": "Записать сбой workflow",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        300,
+        520
+      ]
+    }
+  ],
+  "connections": {
+    "Расписание 03:17 UTC": {
+      "main": [
+        [
+          {
+            "node": "Параметры запуска",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ручной запуск (демо)": {
+      "main": [
+        [
+          {
+            "node": "Параметры запуска",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Параметры запуска": {
+      "main": [
+        [
+          {
+            "node": "Запуск пайплайна",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запуск пайплайна": {
+      "main": [
+        [
+          {
+            "node": "Разбор RUN_SUMMARY",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Сбой запуска команды",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбор RUN_SUMMARY": {
+      "main": [
+        [
+          {
+            "node": "Нужно оповещение?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нужно оповещение?": {
+      "main": [
+        [
+          {
+            "node": "Текст оповещения",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Прогон здоров",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сбой запуска команды": {
+      "main": [
+        [
+          {
+            "node": "Текст оповещения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Текст оповещения": {
+      "main": [
+        [
+          {
+            "node": "Оповещение → JSON",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram (включить при наличии бота)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Оповещение → JSON": {
+      "main": [
+        [
+          {
+            "node": "Записать оповещение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записать оповещение": {
+      "main": [
+        [
+          {
+            "node": "Красный статус?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Красный статус?": {
+      "main": [
+        [
+          {
+            "node": "Пометить выполнение как сбой",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Жёлтый: только запись",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "При сбое workflow": {
+      "main": [
+        [
+          {
+            "node": "Сообщение о сбое workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сообщение о сбое workflow": {
+      "main": [
+        [
+          {
+            "node": "Сбой → JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сбой → JSON": {
+      "main": [
+        [
+          {
+            "node": "Записать сбой workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "UTC",
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

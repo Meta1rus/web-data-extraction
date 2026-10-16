@@ -1,0 +1,787 @@
+{
+  "name": "ЛР-4 вариант 5: quotes.toscrape.com — вход с CSRF и пагинация",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5623eca9-662c-598b-9223-a1ee685bc597",
+      "name": "Ручной запуск",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 10
+            }
+          ]
+        }
+      },
+      "id": "ec508de8-c356-5b93-a09f-26e4c53f01d8",
+      "name": "Расписание: ежедневно 07:10",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d5ecc65e-0f3b-54b6-8d88-9cdc55e63959",
+              "name": "baseUrl",
+              "value": "https://quotes.toscrape.com",
+              "type": "string"
+            },
+            {
+              "id": "0f601c80-71f1-5488-8675-708c621213a9",
+              "name": "username",
+              "value": "student",
+              "type": "string"
+            },
+            {
+              "id": "e04cfdbe-d520-5e73-8ae5-5c7bb6da1e68",
+              "name": "password",
+              "value": "student",
+              "type": "string"
+            },
+            {
+              "id": "e3a1dc05-c4d5-5ee9-b743-6e28fc79f886",
+              "name": "userAgent",
+              "value": "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)",
+              "type": "string"
+            },
+            {
+              "id": "3f893da1-95ee-5463-b72b-5e8604c9d947",
+              "name": "outputPath",
+              "value": "nocode/nocode_result.csv",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7530254b-9700-5923-baa4-40cbe952f178",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        100
+      ],
+      "notes": "Учебные креды: quotes.toscrape.com принимает любой логин/пароль. outputPath — относительно папки, из которой запущен n8n (она должна входить в N8N_RESTRICT_FILE_ACCESS_TO)."
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.baseUrl }}/login",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $json.userAgent }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "40c0cbdb-2eb1-5fa5-a87c-5250a06f02a4",
+      "name": "GET /login",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput",
+      "notes": "Форма входа + cookie сессии (Set-Cookie), к которой привязан CSRF-токен"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "sourceData": "json",
+        "dataPropertyName": "data",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "csrf_token",
+              "cssSelector": "form input[name=\"csrf_token\"]",
+              "returnValue": "attribute",
+              "attribute": "value"
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true,
+          "cleanUpText": false
+        }
+      },
+      "id": "df915ddb-18d0-50fa-b103-fde6d9f43813",
+      "name": "HTML: csrf_token",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.baseUrl }}/login",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $('Config').first().json.userAgent }}"
+            },
+            {
+              "name": "Cookie",
+              "value": "={{ [].concat($('GET /login').first().json.headers['set-cookie'] || []).map(c => String(c).split(';')[0]).join('; ') }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "csrf_token",
+              "value": "={{ $json.csrf_token }}"
+            },
+            {
+              "name": "username",
+              "value": "={{ $('Config').first().json.username }}"
+            },
+            {
+              "name": "password",
+              "value": "={{ $('Config').first().json.password }}"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {
+              "followRedirects": false
+            }
+          },
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "c17f1e56-4a71-5fb7-a70e-dd1fb740d69a",
+      "name": "POST /login",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput",
+      "notes": "Редирект НЕ выполняем: из ответа 302 берём новую cookie сессии"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8e4e4238-7353-5f2e-a050-d0960a36b1f5",
+              "leftValue": "={{ $json.statusCode >= 300 && $json.statusCode < 400 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b36d6af6-f08e-5c3a-bd5d-edb8115fd476",
+      "name": "Вход выполнен?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        0
+      ],
+      "notes": "Успешный вход = редирект 3xx; при ошибке CSRF/полей сервер снова отдаёт форму (200)"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Склеиваем cookie: из GET /login и (новую) из ответа POST /login\nconst jar = {};\nconst add = (sc) => [].concat(sc || []).forEach(c => {\n  const kv = String(c).split(';')[0];\n  const i = kv.indexOf('=');\n  if (i > 0) jar[kv.slice(0, i).trim()] = kv.slice(i + 1).trim();\n});\nadd($('GET /login').first().json.headers['set-cookie']);\nadd($input.first().json.headers['set-cookie']);\nconst cookie = Object.entries(jar).map(([k, v]) => `${k}=${v}`).join('; ');\nif (!cookie) throw new Error('Сервер не выдал cookie сессии');\nreturn [{ json: { cookie, loginStatus: $input.first().json.statusCode } }];\n"
+      },
+      "id": "43c049e1-7412-502c-a322-0e8c41d2ef56",
+      "name": "Cookie сессии",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Config').first().json.baseUrl }}/page/1/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $('Config').first().json.userAgent }}"
+            },
+            {
+              "name": "Cookie",
+              "value": "={{ $json.cookie }}"
+            }
+          ]
+        },
+        "options": {
+          "pagination": {
+            "pagination": {
+              "paginationMode": "responseContainsNextURL",
+              "nextURL": "={{ $('Config').first().json.baseUrl + ($response.body.match(/<li class=\"next\">[\\s\\S]*?href=\"([^\"]+)\"/) || [])[1] }}",
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !/<li class=\"next\">/.test($response.body) }}",
+              "limitPagesFetched": true,
+              "maxRequests": 15,
+              "requestInterval": 1000
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "e1cd9d36-7d65-5f00-bfb4-f36cdfef3b50",
+      "name": "GET /page/N (пагинация после входа)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        -100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput",
+      "notes": "Пагинация по ссылке Next; предохранители: maxRequests=15, пауза 1000 мс между страницами"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "sourceData": "json",
+        "dataPropertyName": "data",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "quotes",
+              "cssSelector": "[itemtype*=\"schema.org/CreativeWork\"]",
+              "returnValue": "html",
+              "returnArray": true
+            },
+            {
+              "key": "loggedIn",
+              "cssSelector": "a[href=\"/logout\"]",
+              "returnValue": "text"
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true,
+          "cleanUpText": false
+        }
+      },
+      "id": "1e407255-a975-500c-a8fa-b42c8bcb4050",
+      "name": "HTML: карточки цитат",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "quotes",
+        "include": "selectedOtherFields",
+        "fieldsToInclude": "loggedIn",
+        "options": {}
+      },
+      "id": "171532f4-75cf-5fff-bffa-263ae33b4726",
+      "name": "Split Out: по цитате",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "sourceData": "json",
+        "dataPropertyName": "quotes",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "text",
+              "cssSelector": "[itemprop=\"text\"]",
+              "returnValue": "text"
+            },
+            {
+              "key": "author",
+              "cssSelector": "[itemprop=\"author\"]",
+              "returnValue": "text"
+            },
+            {
+              "key": "author_href",
+              "cssSelector": "a[href*=\"/author/\"]:not([href*=\"goodreads\"])",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "goodreads_href",
+              "cssSelector": "a[href*=\"goodreads.com\"]",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "keywords",
+              "cssSelector": "meta[itemprop=\"keywords\"]",
+              "returnValue": "attribute",
+              "attribute": "content"
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true,
+          "cleanUpText": false
+        }
+      },
+      "id": "3de1e7c3-b7d7-5785-8199-36776468b233",
+      "name": "HTML: поля цитаты",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2200,
+        -100
+      ],
+      "notes": "cleanUpText выключен намеренно: узел (v1.2) получает текст через html-to-text с переносом строк по 80 символов, а cleanUpText удаляет переносы без пробела и склеивает слова. Пробелы нормализует узел «Нормализация»."
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const base = $('Config').first().json.baseUrl;\nconst clean = s => String(s || '').normalize('NFKC').replace(/\\s+/g, ' ').trim();\nconst abs = h => !h ? '' : (/^https?:/i.test(h) ? h : base + (h.startsWith('/') ? '' : '/') + h);\nconst tags = String($json.keywords || '').split(',').map(t => t.trim()).filter(Boolean);\nreturn { json: {\n  text: clean($json.text).replace(/^[\\u201c\"]+|[\\u201d\"]+$/g, '').trim(),\n  author: clean($json.author),\n  author_url: abs($json.author_href),\n  goodreads_url: abs($json.goodreads_href),\n  tags_all: tags.join(','),\n  n_tags: tags.length,\n  auth_ok: Boolean($('Split Out: по цитате').item.json.loggedIn),\n  collected_at: new Date().toISOString(),\n}};\n"
+      },
+      "id": "98f24983-1b40-5629-8351-8274f4da432f",
+      "name": "Нормализация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicateInputItems",
+        "compare": "selectedFields",
+        "fieldsToCompare": "text,author",
+        "options": {}
+      },
+      "id": "b3be26f1-f8a0-567e-a3ce-cb8f3ee113ea",
+      "name": "Удалить дубликаты",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Проверка полноты: ≥ 20 строк и ≤ 5 % пустых ключевых полей, вход активен\nconst items = $input.all();\nconst n = items.length;\nconst share = f => n ? items.filter(i => !i.json[f]).length / n : 1;\nconst bad = ['text', 'author', 'author_url', 'goodreads_url', 'auth_ok']\n  .map(f => [f, share(f)]).filter(([, v]) => v > 0.05);\nif (n < 20) throw new Error(`Smoke-check: строк ${n} < 20`);\nif (bad.length) throw new Error('Smoke-check: доля пустых > 5 %: ' +\n  bad.map(([f, v]) => `${f}=${(v * 100).toFixed(1)}%`).join(', '));\nreturn items;\n"
+      },
+      "id": "c1f63ab2-31cb-55a2-8051-39c6a706b51d",
+      "name": "Smoke-check",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2860,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "csv",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "nocode_result.csv"
+        }
+      },
+      "id": "04b86581-a8b0-53f5-b751-7587fc9ab817",
+      "name": "CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        3080,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $('Config').first().json.outputPath }}",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "cae61dc7-6776-532d-97ba-b2126c4a7b49",
+      "name": "Записать nocode_result.csv",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        3300,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "errorType": "errorMessage",
+        "errorMessage": "={{ 'Вход не выполнен: POST /login вернул ' + $json.statusCode + ' (ожидался 3xx). Проверьте csrf_token и cookie.' }}"
+      },
+      "id": "d87e06e1-1172-5c4c-801e-1424d0079537",
+      "name": "Вход не выполнен",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b3be7cd8-43b2-5018-b8d6-d30f8a86a068",
+              "name": "failedNode",
+              "value": "={{ $prevNode.name }}",
+              "type": "string"
+            },
+            {
+              "id": "8a043aec-fa06-5096-805d-fac9f63be656",
+              "name": "message",
+              "value": "={{ $json.error?.message || $json.error || $json.message || 'unknown error' }}",
+              "type": "string"
+            },
+            {
+              "id": "c96e8c49-99a5-50d2-b953-f068463c654f",
+              "name": "at",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8682cb3b-9f70-5f7d-8f43-0553754b4c90",
+      "name": "Детали сбоя",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1320,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "errorType": "errorMessage",
+        "errorMessage": "={{ 'Сбой узла ' + $json.failedNode + ': ' + $json.message }}"
+      },
+      "id": "22c4109b-0ed6-5f7d-bc5d-56d1b4ddbde7",
+      "name": "Остановить: сбой запроса",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        320
+      ]
+    }
+  ],
+  "connections": {
+    "Ручной запуск": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Расписание: ежедневно 07:10": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "GET /login",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET /login": {
+      "main": [
+        [
+          {
+            "node": "HTML: csrf_token",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Детали сбоя",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML: csrf_token": {
+      "main": [
+        [
+          {
+            "node": "POST /login",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST /login": {
+      "main": [
+        [
+          {
+            "node": "Вход выполнен?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Детали сбоя",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вход выполнен?": {
+      "main": [
+        [
+          {
+            "node": "Cookie сессии",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Вход не выполнен",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cookie сессии": {
+      "main": [
+        [
+          {
+            "node": "GET /page/N (пагинация после входа)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET /page/N (пагинация после входа)": {
+      "main": [
+        [
+          {
+            "node": "HTML: карточки цитат",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Детали сбоя",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML: карточки цитат": {
+      "main": [
+        [
+          {
+            "node": "Split Out: по цитате",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out: по цитате": {
+      "main": [
+        [
+          {
+            "node": "HTML: поля цитаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML: поля цитаты": {
+      "main": [
+        [
+          {
+            "node": "Нормализация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нормализация": {
+      "main": [
+        [
+          {
+            "node": "Удалить дубликаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удалить дубликаты": {
+      "main": [
+        [
+          {
+            "node": "Smoke-check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smoke-check": {
+      "main": [
+        [
+          {
+            "node": "CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CSV": {
+      "main": [
+        [
+          {
+            "node": "Записать nocode_result.csv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Детали сбоя": {
+      "main": [
+        [
+          {
+            "node": "Остановить: сбой запроса",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "timezone": "Asia/Yekaterinburg"
+  },
+  "versionId": "75b137e4-3ba3-5605-b5a2-b710b3045636",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "Lab4Podolskiy5Wf",
+  "tags": []
+}

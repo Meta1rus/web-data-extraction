@@ -1,0 +1,95 @@
+{
+  "run_id": "20261015T214857Z",
+  "verdict": "green",
+  "metrics": [
+    {
+      "metric": "required_completeness_pct",
+      "title": "полнота обязательных полей, %",
+      "value": 100.0,
+      "green": 99.5,
+      "yellow": 98,
+      "direction": "higher",
+      "status": "green"
+    },
+    {
+      "metric": "reject_share_pct",
+      "title": "доля отбракованных записей, %",
+      "value": 0.0,
+      "green": 2,
+      "yellow": 5,
+      "direction": "lower",
+      "status": "green"
+    },
+    {
+      "metric": "key_uniqueness_pct",
+      "title": "уникальность бизнес-ключа, %",
+      "value": 100.0,
+      "green": 100,
+      "yellow": 99.9,
+      "direction": "higher",
+      "status": "green"
+    },
+    {
+      "metric": "join_coverage_pct",
+      "title": "покрытие связи HTML -> API (обогащено), %",
+      "value": 100.0,
+      "green": 95,
+      "yellow": 80,
+      "direction": "higher",
+      "status": "green"
+    },
+    {
+      "metric": "stars_consistency_pct",
+      "title": "согласованность звёзд HTML и API, %",
+      "value": 100.0,
+      "green": 90,
+      "yellow": 75,
+      "direction": "higher",
+      "status": "green"
+    },
+    {
+      "metric": "api_freshness_p95_hours",
+      "title": "возраст данных API (p95), ч",
+      "value": 0.34,
+      "green": 48,
+      "yellow": 168,
+      "direction": "lower",
+      "status": "green"
+    },
+    {
+      "metric": "volume_vs_prev_pct",
+      "title": "объём чистого слоя к прошлому прогону, %",
+      "value": 100.0,
+      "green": 90,
+      "yellow": 70,
+      "direction": "higher",
+      "status": "green"
+    },
+    {
+      "metric": "python_share_pct",
+      "title": "доля репозиториев на Python, %",
+      "value": 100.0,
+      "green": 85,
+      "yellow": 70,
+      "direction": "higher",
+      "status": "green"
+    },
+    {
+      "metric": "clean_repos_count",
+      "title": "число обогащённых репозиториев для анализа",
+      "value": 592.0,
+      "green": 500,
+      "yellow": 300,
+      "direction": "higher",
+      "status": "green"
+    }
+  ],
+  "info": {
+    "pushed_before_created_pct": 0.0,
+    "archived_pct": 7.94,
+    "forks_in_sample_pct": 0.51,
+    "stars_html_approx_pct": 0.0
+  },
+  "reject_reasons": {},
+  "unenriched_keys_sample": []
+}

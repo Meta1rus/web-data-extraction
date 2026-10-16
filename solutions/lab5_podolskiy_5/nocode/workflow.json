@@ -1,0 +1,786 @@
+{
+  "name": "Лаб. 5 (вариант 5): каталог → карточки → CSV",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 5 * * *"
+            }
+          ]
+        }
+      },
+      "id": "82bb00a5-1001-5809-bea2-088252c64616",
+      "name": "Расписание: ежедневно 05:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "notes": "Аналог cron. Для проверки используйте «Ручной запуск»."
+    },
+    {
+      "parameters": {},
+      "id": "6e220f93-c137-5270-921f-815809a1dfdb",
+      "name": "Ручной запуск",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "84c7a54b-1a32-5eb8-9b1f-f92e8fd4e18c",
+              "name": "base_url",
+              "value": "https://www.scrapingcourse.com/ecommerce/",
+              "type": "string"
+            },
+            {
+              "id": "a0455fde-0b90-52bd-a751-32ecd6f860cd",
+              "name": "pages",
+              "value": 2,
+              "type": "number"
+            },
+            {
+              "id": "0cb15daa-1f45-5515-adf8-83a8d009693e",
+              "name": "user_agent",
+              "value": "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c353d3d4-c401-5d66-b42a-84ad4f3924bb",
+      "name": "Параметры",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        100
+      ],
+      "notes": "base_url меняется здесь (например, на согласованный источник). 2 страницы × 16 = 32 карточки (≥ 30)."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Пагинация циклом по номерам страниц: /ecommerce/, /ecommerce/page/2/, ...\nconst p = $input.first().json;\nconst base = p.base_url.endsWith('/') ? p.base_url : p.base_url + '/';\nconst pages = Math.max(1, Math.min(Number(p.pages) || 1, 50));   // предохранитель: не более 50 страниц\nconst out = [];\nfor (let n = 1; n <= pages; n++) {\n  out.push({ json: { page_no: n, page_url: n === 1 ? base : `${base}page/${n}/`, user_agent: p.user_agent } });\n}\nreturn out;"
+      },
+      "id": "f8cb507a-d5a1-593f-a7e5-6d8da9fbdfa3",
+      "name": "Номера страниц",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.page_url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $json.user_agent }}"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 1500
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "html"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "7056d832-e632-57c4-ae15-e798f91b205b",
+      "name": "Страница каталога",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        100
+      ],
+      "onError": "continueErrorOutput",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "notes": "По одной странице раз в 1,5 с (batching) — аналог DOWNLOAD_DELAY. Retry On Fail: 3 попытки через 3 с."
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "html",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "links",
+              "cssSelector": "ul.products li.product a.woocommerce-LoopProduct-link",
+              "returnValue": "attribute",
+              "attribute": "href",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "id": "1d69599e-7037-54ee-8e75-d93a7e55d520",
+      "name": "Ссылки на карточки",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "links",
+        "options": {}
+      },
+      "id": "66ebce3e-b0ba-54c2-8bc6-d8aa8c34ea81",
+      "name": "По одной ссылке",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicateInputItems",
+        "compare": "selectedFields",
+        "fieldsToCompare": "links",
+        "options": {}
+      },
+      "id": "6ac56126-c967-5b28-81cd-a33e9c1c41c6",
+      "name": "Убрать повторы URL",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        0
+      ],
+      "notes": "Аналог dupefilter: один URL запрашивается один раз."
+    },
+    {
+      "parameters": {
+        "batchSize": 4,
+        "options": {}
+      },
+      "id": "f0ec9740-fee6-5005-975f-f03ab3439fb9",
+      "name": "Батчи по 4 карточки",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1540,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.links }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $('Параметры').first().json.user_agent }}"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 2,
+              "batchInterval": 1000
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "html"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "cc4a7596-df8f-5ae8-9775-7f310a10015f",
+      "name": "Карточка товара",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        100
+      ],
+      "onError": "continueErrorOutput",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "notes": "Не более 2 запросов одновременно (как CONCURRENT_REQUESTS_PER_DOMAIN=2)."
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "html",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "url",
+              "cssSelector": "link[rel=canonical]",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "name",
+              "cssSelector": "h1.product_title",
+              "returnValue": "text"
+            },
+            {
+              "key": "price_all",
+              "cssSelector": "div.summary p.price .woocommerce-Price-amount",
+              "returnValue": "text",
+              "returnArray": true
+            },
+            {
+              "key": "price_ins",
+              "cssSelector": "div.summary p.price ins .woocommerce-Price-amount",
+              "returnValue": "text",
+              "returnArray": true
+            },
+            {
+              "key": "price_del",
+              "cssSelector": "div.summary p.price del .woocommerce-Price-amount",
+              "returnValue": "text",
+              "returnArray": true
+            },
+            {
+              "key": "sku",
+              "cssSelector": "div.product_meta span.sku",
+              "returnValue": "text"
+            },
+            {
+              "key": "categories",
+              "cssSelector": "div.product_meta span.posted_in a",
+              "returnValue": "text",
+              "returnArray": true
+            },
+            {
+              "key": "description",
+              "cssSelector": "#tab-description",
+              "returnValue": "text"
+            },
+            {
+              "key": "image_url",
+              "cssSelector": "div.woocommerce-product-gallery__image a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "id": "8e626f0e-a93b-561b-a914-2b6fa90943a4",
+      "name": "Поля карточки",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1980,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": 1,
+        "unit": "seconds"
+      },
+      "id": "62041082-6eb6-57c0-bb2b-0f695bf2b177",
+      "name": "Пауза 1 с",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2200,
+        100
+      ],
+      "notes": "Пауза между батчами — аналог DOWNLOAD_DELAY."
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dd8013cf-d356-5920-b2db-2965cc523870",
+              "name": "error_message",
+              "value": "={{ $json.error && $json.error.message ? $json.error.message : JSON.stringify($json.error) }}",
+              "type": "string"
+            },
+            {
+              "id": "ceb21073-13c4-5559-9a8e-2ae9afcb8f68",
+              "name": "failed_url",
+              "value": "={{ $('Батчи по 4 карточки').item.json.links }}",
+              "type": "string"
+            },
+            {
+              "id": "444f31cd-e96a-57be-b71f-d465979313d4",
+              "name": "stage",
+              "value": "карточка",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "533adea2-9dae-5807-9a9e-de9ce5c4854f",
+      "name": "Ошибка карточки",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3051b958-59a4-5a05-9616-c55186c5b7a0",
+              "name": "error_message",
+              "value": "={{ $json.error && $json.error.message ? $json.error.message : JSON.stringify($json.error) }}",
+              "type": "string"
+            },
+            {
+              "id": "b8d7e301-95d9-5da0-beb7-af01807971dd",
+              "name": "failed_url",
+              "value": "={{ $('Номера страниц').item.json.page_url }}",
+              "type": "string"
+            },
+            {
+              "id": "cf73d6f3-3167-5eff-8c4b-f69f697055b5",
+              "name": "stage",
+              "value": "каталог",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f6f365dd-f0dc-5626-be0b-29ce8a4d32c7",
+      "name": "Ошибка страницы каталога",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ветка ошибки: строка журнала + текст для мессенджера\nreturn $input.all().map(item => {\n  const j = item.json;\n  const line = `${new Date().toISOString()}\\t${j.stage}\\t${j.failed_url}\\t${j.error_message}\\n`;\n  return { json: { line, text: `⚠️ Лаб. 5: ошибка (${j.stage}) ${j.failed_url}: ${j.error_message}` } };\n});"
+      },
+      "id": "f8054a4d-0b01-5327-b756-c9391c758d2e",
+      "name": "Текст уведомления",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "line",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "n8n_errors.log"
+        }
+      },
+      "id": "24523ef2-f9b5-5ccb-9ee7-b0a68fe9eeac",
+      "name": "Журнал ошибок в файл",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2420,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $env.HOME }}/.n8n-files/n8n_errors.log",
+        "dataPropertyName": "data",
+        "options": {
+          "append": true
+        }
+      },
+      "id": "9a3cf67d-8f62-5cf2-8393-e4b16ece0aca",
+      "name": "Дописать n8n_errors.log",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {}
+      },
+      "id": "eb127f3e-778e-53ff-9c40-b6f22b720631",
+      "name": "Уведомление в Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2420,
+        600
+      ],
+      "disabled": true,
+      "notes": "Отключён: включите после создания учётных данных Telegram (бот-токен в Credentials n8n)."
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicateInputItems",
+        "compare": "selectedFields",
+        "fieldsToCompare": "sku",
+        "options": {}
+      },
+      "id": "e16c45ab-f7e2-5d6c-b89c-a75b803f771d",
+      "name": "Убрать дубли SKU",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        -220
+      ],
+      "notes": "Дедупликация по бизнес-ключу (артикул), как DedupPipeline."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Аналог звеньев 100 (валидация) и 200 (очистка/типизация) Scrapy-пайплайна\nconst money = (s) => {\n  const m = String(s || '').replace(/,/g, '').match(/\\d+(?:\\.\\d+)?/);\n  return m ? Number(m[0]) : null;\n};\nconst clean = (s) => String(s || '').replace(/\\s+/g, ' ').trim();\nconst dropped = { error: 0, no_sku: 0, no_name: 0, bad_price: 0 };\nconst out = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  if (j.error_message) { dropped.error++; continue; }\n  const sku = clean(j.sku).toUpperCase();\n  if (!sku || sku === 'N/A') { dropped.no_sku++; continue; }\n  const name = clean(j.name);\n  if (!name) { dropped.no_name++; continue; }\n  const current = (j.price_ins && j.price_ins.length) ? j.price_ins : (j.price_all || []);\n  const amounts = current.map(money).filter(v => v !== null && v > 0);\n  if (!amounts.length) { dropped.bad_price++; continue; }\n  const regular = (j.price_del || []).map(money).filter(v => v !== null);\n  const sym = current.join(' ');\n  out.push({ json: {\n    sku,\n    name,\n    price: Math.min(...amounts).toFixed(2),            // деньги строкой с 2 знаками — без ошибок float\n    price_max: amounts.length > 1 ? Math.max(...amounts).toFixed(2) : '',\n    regular_price: regular.length ? regular[0].toFixed(2) : '',\n    currency: sym.includes('£') ? 'GBP' : (sym.includes('€') ? 'EUR' : 'USD'),\n    categories: (j.categories || []).map(clean).filter(Boolean).join('; '),\n    description: clean(j.description).replace(/^description\\s*/i, ''),\n    image_url: /placeholder/i.test(j.image_url || '') ? '' : (j.image_url || ''),\n    product_url: j.url || '',\n    scraped_at: new Date().toISOString(),\n  } });\n}\nconsole.log('Отброшено записей:', JSON.stringify(dropped), '| прошло:', out.length);\nreturn out;"
+      },
+      "id": "bbd110f0-c059-518d-a9ea-a4956a4cb7f1",
+      "name": "Проверка и типизация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "csv",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "nocode_result.csv"
+        }
+      },
+      "id": "1cb76412-ef0f-586e-ba38-a27d71185caf",
+      "name": "В CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2200,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $env.HOME }}/.n8n-files/nocode_result.csv",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "50f0a350-3f10-587d-ad7d-c797c276c5d8",
+      "name": "Записать nocode_result.csv",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        -220
+      ]
+    }
+  ],
+  "connections": {
+    "Расписание: ежедневно 05:00": {
+      "main": [
+        [
+          {
+            "node": "Параметры",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ручной запуск": {
+      "main": [
+        [
+          {
+            "node": "Параметры",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Параметры": {
+      "main": [
+        [
+          {
+            "node": "Номера страниц",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Номера страниц": {
+      "main": [
+        [
+          {
+            "node": "Страница каталога",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Страница каталога": {
+      "main": [
+        [
+          {
+            "node": "Ссылки на карточки",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ошибка страницы каталога",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ссылки на карточки": {
+      "main": [
+        [
+          {
+            "node": "По одной ссылке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "По одной ссылке": {
+      "main": [
+        [
+          {
+            "node": "Убрать повторы URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Убрать повторы URL": {
+      "main": [
+        [
+          {
+            "node": "Батчи по 4 карточки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Батчи по 4 карточки": {
+      "main": [
+        [
+          {
+            "node": "Убрать дубли SKU",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Карточка товара",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Карточка товара": {
+      "main": [
+        [
+          {
+            "node": "Поля карточки",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ошибка карточки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Поля карточки": {
+      "main": [
+        [
+          {
+            "node": "Пауза 1 с",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ошибка карточки": {
+      "main": [
+        [
+          {
+            "node": "Пауза 1 с",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Текст уведомления",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ошибка страницы каталога": {
+      "main": [
+        [
+          {
+            "node": "Текст уведомления",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пауза 1 с": {
+      "main": [
+        [
+          {
+            "node": "Батчи по 4 карточки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Текст уведомления": {
+      "main": [
+        [
+          {
+            "node": "Журнал ошибок в файл",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Уведомление в Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Журнал ошибок в файл": {
+      "main": [
+        [
+          {
+            "node": "Дописать n8n_errors.log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Убрать дубли SKU": {
+      "main": [
+        [
+          {
+            "node": "Проверка и типизация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Проверка и типизация": {
+      "main": [
+        [
+          {
+            "node": "В CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "В CSV": {
+      "main": [
+        [
+          {
+            "node": "Записать nocode_result.csv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Yekaterinburg",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

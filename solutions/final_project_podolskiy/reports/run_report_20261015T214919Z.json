@@ -1,0 +1,354 @@
+{
+  "run_id": "20261015T214919Z",
+  "started_at": "2026-10-15T21:49:19Z",
+  "records": {
+    "resumed_from": null,
+    "html_pages_ok": 1,
+    "html_pages_failed": 0,
+    "html_cards": 20,
+    "html_pages_resumed": 0,
+    "html_pages_skipped_robots": 0,
+    "html_blocked": 0,
+    "api_mode": "rest",
+    "api_selected": 20,
+    "api_skipped_watermark": 0,
+    "api_resumed_skip": 0,
+    "api_200": 0,
+    "api_304": 0,
+    "api_404": 0,
+    "api_failed": 1,
+    "api_skipped_breaker": 19,
+    "api_stopped_quota": false,
+    "api_source_unavailable": true,
+    "api_search_requests": 0,
+    "api_reasons": {
+      "new": 0,
+      "html_newer": 0,
+      "stale": 20,
+      "forced": 0,
+      "skipped_watermark": 0
+    },
+    "clean_repos": 592,
+    "clean_listings": 600,
+    "rejects": 0,
+    "analysis_repos": 592,
+    "html_cards_prev": 20,
+    "html_cards_drop_pct": 0.0,
+    "zero_changes_streak": 1
+  },
+  "environment": {
+    "html_base": "https://github.com",
+    "api_base": "https://api.github.invalid",
+    "api_mode": "rest",
+    "token": "gith…xD (длина 93)",
+    "python": "3.10.12",
+    "topics": [
+      "web-scraping"
+    ],
+    "parser_version": "gh-topics-1.0.0",
+    "scope": "web-scraping|1|stars|html"
+  },
+  "robots": {
+    "robots_url": "https://github.com/robots.txt",
+    "status": 200,
+    "available": true,
+    "group": "*",
+    "crawl_delay": null,
+    "request_rate": null,
+    "sitemaps": [],
+    "checks": [
+      {
+        "url": "https://github.com/topics/web-scraping?l=python&page=2",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy/stargazers",
+        "rfc9309": false,
+        "rule": "disallow: /*/*/stargazers",
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy?tab=readme-ov-file",
+        "rfc9309": false,
+        "rule": "disallow: /*?tab=*",
+        "urllib_robotparser": true
+      }
+    ],
+    "saved_copy": "raw/robots/github.com_20261015.txt"
+  },
+  "html_topics": {
+    "web-scraping": {
+      "pages": 1,
+      "cards": 20,
+      "strategy": "article-cards",
+      "total": 11620
+    }
+  },
+  "cleaning_protocol": [
+    {
+      "шаг": "1. чтение raw: карточки тем",
+      "до": 1840,
+      "после": 1840,
+      "затронуто": 0,
+      "примечание": "прогонов: 5"
+    },
+    {
+      "шаг": "1. чтение raw: ответы API",
+      "до": 989,
+      "после": 989,
+      "затронуто": 0,
+      "примечание": "прогонов: 8"
+    },
+    {
+      "шаг": "2–5. нормализация текста, ключ, типы (карточки)",
+      "до": 1840,
+      "после": 1840,
+      "затронуто": 0,
+      "примечание": "описаний с исправленными пробелами/символами: 80"
+    },
+    {
+      "шаг": "2–5. нормализация текста, ключ, типы (API)",
+      "до": 989,
+      "после": 989,
+      "затронуто": 0,
+      "примечание": ""
+    },
+    {
+      "шаг": "6. дедупликация карточек по (topic, repo_key)",
+      "до": 1840,
+      "после": 600,
+      "затронуто": 1240,
+      "примечание": "повторные наблюдения тех же карточек в разных прогонах; оставлена самая свежая"
+    },
+    {
+      "шаг": "6. дедупликация API по repo_key и repo_id",
+      "до": 989,
+      "после": 592,
+      "затронуто": 397,
+      "примечание": "переименований/синонимов ключа: 0"
+    },
+    {
+      "шаг": "7. контракт: карточки тем",
+      "до": 600,
+      "после": 600,
+      "затронуто": 0,
+      "примечание": "в rejects: 0"
+    },
+    {
+      "шаг": "7. контракт: репозитории API",
+      "до": 592,
+      "после": 592,
+      "затронуто": 0,
+      "примечание": "в rejects: 0"
+    },
+    {
+      "шаг": "8. вычисляемые поля",
+      "до": 592,
+      "после": 592,
+      "затронуто": 0,
+      "примечание": "age_days, days_since_push, stars_per_year, size_mb, size_band, activity_band, is_python"
+    }
+  ],
+  "storage": {
+    "repos": {
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 592,
+      "db_rejected": 0
+    },
+    "listings": {
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 600,
+      "db_rejected": 0
+    },
+    "db_rejected": 0
+  },
+  "quality": {
+    "verdict": "green",
+    "metrics": [
+      {
+        "metric": "required_completeness_pct",
+        "title": "полнота обязательных полей, %",
+        "value": 100.0,
+        "green": 99.5,
+        "yellow": 98,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "reject_share_pct",
+        "title": "доля отбракованных записей, %",
+        "value": 0.0,
+        "green": 2,
+        "yellow": 5,
+        "direction": "lower",
+        "status": "green"
+      },
+      {
+        "metric": "key_uniqueness_pct",
+        "title": "уникальность бизнес-ключа, %",
+        "value": 100.0,
+        "green": 100,
+        "yellow": 99.9,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "join_coverage_pct",
+        "title": "покрытие связи HTML -> API (обогащено), %",
+        "value": 100.0,
+        "green": 95,
+        "yellow": 80,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "stars_consistency_pct",
+        "title": "согласованность звёзд HTML и API, %",
+        "value": 100.0,
+        "green": 90,
+        "yellow": 75,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "api_freshness_p95_hours",
+        "title": "возраст данных API (p95), ч",
+        "value": 0.34,
+        "green": 48,
+        "yellow": 168,
+        "direction": "lower",
+        "status": "green"
+      },
+      {
+        "metric": "volume_vs_prev_pct",
+        "title": "объём чистого слоя к прошлому прогону, %",
+        "value": 100.0,
+        "green": 90,
+        "yellow": 70,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "python_share_pct",
+        "title": "доля репозиториев на Python, %",
+        "value": 100.0,
+        "green": 85,
+        "yellow": 70,
+        "direction": "higher",
+        "status": "green"
+      },
+      {
+        "metric": "clean_repos_count",
+        "title": "число обогащённых репозиториев для анализа",
+        "value": 592.0,
+        "green": 500,
+        "yellow": 300,
+        "direction": "higher",
+        "status": "green"
+      }
+    ],
+    "info": {
+      "pushed_before_created_pct": 0.0,
+      "archived_pct": 7.94,
+      "forks_in_sample_pct": 0.51,
+      "stars_html_approx_pct": 0.0
+    },
+    "reject_reasons": {}
+  },
+  "mart_built": true,
+  "mart": {
+    "repo_topic": 600,
+    "topic_summary": 6,
+    "size_band_topic": 24,
+    "activity_band_topic": 24,
+    "stars_by_day_topic": 6
+  },
+  "finished_at": "2026-10-15T21:49:25Z",
+  "duration_s": 5.99,
+  "status": "finished",
+  "requests": {
+    "total": 7,
+    "by_status": {
+      "200": 2,
+      "network_error": 5
+    },
+    "by_host": {
+      "github.com": 2,
+      "api.github.invalid": 5
+    },
+    "by_source": {
+      "robots": 1,
+      "github_topics_html": 1,
+      "github_api_repos": 5
+    },
+    "error_rate_pct": 71.43,
+    "rate_limited_pct": 0.0,
+    "retries": 3,
+    "not_modified_304": 0,
+    "conditional_sent": 1,
+    "network_errors": 5,
+    "latency_ms": {
+      "median": 10.4,
+      "p95": 810.0,
+      "max": 962.6
+    },
+    "traffic": {
+      "body_bytes": 659290,
+      "wire_bytes": 1411,
+      "wire_known_responses": 1,
+      "gzip_saving_pct": 91.6
+    },
+    "api_quota": null,
+    "cache_hits": 0,
+    "skipped_by_breaker": 1,
+    "breaker_activations": 1,
+    "robots_blocked": 0
+  },
+  "incidents": [
+    {
+      "run_id": "20261015T214919Z",
+      "n": 1,
+      "kind": "source_unavailable",
+      "message": "GitHub API недоступен: предохранитель разомкнут, пропущено 19 запросов; в анализ идут ранее собранные метрики",
+      "ts": "2026-10-15T21:49:25Z",
+      "source": "github_api_repos",
+      "path": "logs/incidents/20261015T214919Z_01_source_unavailable.json"
+    }
+  ],
+  "alerts": [
+    {
+      "level": "red",
+      "code": "error_rate_pct",
+      "value": 71.43,
+      "threshold": 10,
+      "message": "доля ошибок HTTP 71.43% (порог 10%)"
+    },
+    {
+      "level": "yellow",
+      "code": "breaker_activations",
+      "value": 1,
+      "threshold": 1,
+      "message": "предохранитель размыкался 1 раз(а) (порог 1)"
+    },
+    {
+      "level": "red",
+      "code": "incident:source_unavailable",
+      "value": "github_api_repos",
+      "threshold": "-",
+      "message": "GitHub API недоступен: предохранитель разомкнут, пропущено 19 запросов; в анализ идут ранее собранные метрики"
+    }
+  ],
+  "verdict": "red",
+  "exit_code": 3,
+  "report_path": "reports/run_report_20261015T214919Z.json"
+}

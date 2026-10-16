@@ -1,0 +1,83 @@
+Запуск 20261015T210737Z: репозиториев 12
+API: https://api.github.com | токен: gith…xD
+Лимит API: 4999 из 5000 запросов в час
+  scrapy/scrapy: репозиторий + 300 issues/PR (3 стр.)
+  scrapy/parsel: репозиторий + 300 issues/PR (3 стр.)
+  psf/requests: репозиторий + 300 issues/PR (3 стр.)
+  encode/httpx: репозиторий + 300 issues/PR (3 стр.)
+  aio-libs/aiohttp: репозиторий + 300 issues/PR (3 стр.)
+  microsoft/playwright-python: репозиторий + 300 issues/PR (3 стр.)
+  SeleniumHQ/selenium: репозиторий + 300 issues/PR (3 стр.)
+  n8n-io/n8n: репозиторий + 300 issues/PR (3 стр.)
+  pandas-dev/pandas: репозиторий + 300 issues/PR (3 стр.)
+  pydantic/pydantic: репозиторий + 300 issues/PR (3 стр.)
+  apache/arrow: репозиторий + 300 issues/PR (3 стр.)
+  duckdb/duckdb: репозиторий + 300 issues/PR (3 стр.)
+Готово за 98.6 с; сводка: logs/collect_20261015T210737Z.json
+Запуск 20261015T210922Z: репозиториев 12
+robots.txt: статус 200, группа «User-agent: *», правил 186, crawl-delay None; пауза между страницами 3.0 с
+  scrapy/scrapy: страница репозитория + 10 релизов
+  scrapy/parsel: страница репозитория + 10 релизов
+  psf/requests: страница репозитория + 10 релизов
+  encode/httpx: страница репозитория + 10 релизов
+  aio-libs/aiohttp: страница репозитория + 10 релизов
+  microsoft/playwright-python: страница репозитория + 10 релизов
+  SeleniumHQ/selenium: страница репозитория + 10 релизов
+  n8n-io/n8n: страница репозитория + 10 релизов
+  pandas-dev/pandas: страница репозитория + 10 релизов
+  pydantic/pydantic: страница репозитория + 10 релизов
+  apache/arrow: страница репозитория + 10 релизов
+  duckdb/duckdb: страница репозитория + 10 релизов
+Готово за 94.2 с; сводка: logs/collect_20261015T210922Z.json
+
+=== 1. Проверка неизменности raw ===
+  github_api.jsonl: OK
+  github_html.jsonl: OK
+  synthetic_dirty.jsonl: OK
+
+=== 2. Очистка raw → clean (6 шагов + контракт) ===
+                   шаг                  сущность  строк до  строк после  в rejects
+         0. чтение raw                 repos_api        13           13          0
+         0. чтение raw                repos_html        26           26          0
+         0. чтение raw                    events      4109         4109          0
+1. нормализация текста                 repos_api        13           13          0
+1. нормализация текста                repos_html        26           26          0
+1. нормализация текста                    events      4109         4109          0
+        2. бизнес-ключ                 repos_api        13           13          0
+        2. бизнес-ключ                repos_html        26           26          0
+        2. бизнес-ключ                    events      4109         4109          0
+          3. типизация                 repos_api        13           13          0
+          3. типизация                repos_html        26           26          0
+          3. типизация                    events      4109         4109          0
+           4. пропуски                 repos_api        13           12          1
+           4. пропуски                repos_html        26           26          0
+           4. пропуски                    events      4109         4080         29
+          5. дубликаты                 repos_api        12           12          0
+          5. дубликаты                repos_html        26           12          0
+          5. дубликаты                    events      4080         3830          0
+          5. дубликаты repositories (API ⨝ HTML)        24           12          0
+     6. бизнес-правила              repositories        12           12          0
+     6. бизнес-правила                    events      3830         3731         99
+  7. контракт pydantic              repositories        12           12          0
+  7. контракт pydantic                    events      3731         3720         11
+  clean: событий 3720, репозиториев 12, rejects 140
+
+=== 3. Пересборка clean из raw без сети (проверка детерминированности) ===
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/sessions/rcw-012ewfrivctrzzfvfwmihxbt/mnt/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab6_podolskiy_5/src/pipeline.py", line 149, in <module>
+    raise SystemExit(main())
+  File "/sessions/rcw-012ewfrivctrzzfvfwmihxbt/mnt/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab6_podolskiy_5/src/pipeline.py", line 78, in main
+    rb = rebuild.rebuild(verify=True)
+  File "/sessions/rcw-012ewfrivctrzzfvfwmihxbt/mnt/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab6_podolskiy_5/src/rebuild.py", line 71, in rebuild
+    p.unlink(missing_ok=True)
+  File "/usr/lib/python3.10/pathlib.py", line 1206, in unlink
+    self._accessor.unlink(self)
+PermissionError: [Errno 1] Operation not permitted: '/sessions/rcw-012ewfrivctrzzfvfwmihxbt/mnt/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab6_podolskiy_5/clean/dataset.parquet'
+
+real	0m1.493s
+user	0m1.631s
+sys	0m0.050s

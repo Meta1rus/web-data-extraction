@@ -1,0 +1,10 @@
+# Лабораторная работа 3 — сбор данных через REST API (Python >= 3.10)
+requests>=2.31
+pandas>=2.1
+numpy>=1.26
+matplotlib>=3.8
+python-dotenv>=1.0
+# исполнение блокнота: Run All в Jupyter/VS Code или ./run_real.sh
+ipykernel>=6.29
+nbconvert>=7.16
+nbclient>=0.10

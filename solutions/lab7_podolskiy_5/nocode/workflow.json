@@ -1,0 +1,790 @@
+{
+  "id": "lab7ResilientWf01",
+  "name": "Лаб. 7 (вариант 5): устойчивый сбор каталога",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 5 * * *"
+            }
+          ]
+        }
+      },
+      "id": "1d0ada5a-2541-5e45-8e94-c8a50fc35375",
+      "name": "Расписание: ежедневно 05:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9e343ef6-f9bf-5084-b881-3526bac92b12",
+      "name": "Ручной запуск",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fb9aab14-ad65-5b0b-9e0b-035368c95790",
+              "name": "base_url",
+              "value": "https://www.scrapingcourse.com/ecommerce/",
+              "type": "string"
+            },
+            {
+              "id": "54bcca6b-96da-570f-bc6c-12c96740d853",
+              "name": "pages",
+              "value": 2,
+              "type": "number"
+            },
+            {
+              "id": "d6beea4d-e8a0-57dd-923c-721499dff698",
+              "name": "min_cards",
+              "value": 30,
+              "type": "number"
+            },
+            {
+              "id": "a5f53ca3-cef2-5c80-9190-caba8bfa2ebd",
+              "name": "user_agent",
+              "value": "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "51365514-992e-5856-94a7-d6a661b34d35",
+      "name": "Параметры",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        100
+      ],
+      "notes": "min_cards — порог проверки результата: меньше карточек в каталоге → подозрение на заглушку/поломку."
+    },
+    {
+      "parameters": {
+        "jsCode": "const p = $input.first().json;\nconst base = p.base_url.endsWith('/') ? p.base_url : p.base_url + '/';\nconst pages = Math.max(1, Math.min(Number(p.pages) || 1, 50));\nreturn Array.from({ length: pages }, (_, i) => ({ json: {\n  page_no: i + 1, page_url: i === 0 ? base : `${base}page/${i + 1}/`, user_agent: p.user_agent } }));"
+      },
+      "id": "70af9deb-a6b4-5ce8-941d-99d85e26f815",
+      "name": "Номера страниц",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.page_url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $json.user_agent }}"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "html"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "9a63673e-2a1b-54c2-8253-7e55b59cef95",
+      "name": "Страница каталога",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        100
+      ],
+      "onError": "continueErrorOutput",
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 5000,
+      "notes": "Контроль скорости: 1 запрос в 2 с. Повторы: 4 попытки через 5 с (максимум интерфейса n8n)."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Аналог детектора блокировок: маркеры заглушек и размер ответа (до разбора)\nconst MARKERS = ['captcha', 'are you human', 'access denied', 'unusual traffic', 'доступ ограничен'];\nreturn $input.all().map(({ json: j }) => {\n  const html = String(j.html || '');\n  const low = html.toLowerCase();\n  return { json: { html, size: html.length, markers: MARKERS.filter(m => low.includes(m)) } };\n});"
+      },
+      "id": "65577a16-f1fa-5d1d-a06c-a1c9e976d6e0",
+      "name": "Проверка содержимого",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "html",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "links",
+              "cssSelector": "ul.products li.product a.woocommerce-LoopProduct-link",
+              "returnValue": "attribute",
+              "attribute": "href",
+              "returnArray": true
+            },
+            {
+              "key": "prices",
+              "cssSelector": "ul.products li.product a.woocommerce-LoopProduct-link .price",
+              "returnValue": "text",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "id": "9cedb96a-0d0e-57ae-9c3b-8338cdb6ed9b",
+      "name": "Ссылки и цены в каталоге",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Отпечаток карточки «URL|цена в каталоге» — для инкрементальности; итог проверки — для IF\nconst pages = $('Проверка содержимого').all();\nconst suspicious = pages.filter(p => p.json.markers.length > 0 || p.json.size < 1500).length;\nconst out = [];\nfor (const { json: j } of $input.all()) {\n  (j.links || []).forEach((url, i) => out.push({ url, fp: `${url}|${(j.prices || [])[i] || ''}` }));\n}\nconst total = out.length;\nreturn (total ? out : [{ url: '', fp: '' }]).map(o => ({ json: { ...o, cards_total: total, suspicious_pages: suspicious } }));"
+      },
+      "id": "085a879b-8c07-56ad-a034-3dd22a276918",
+      "name": "Отпечатки и итог проверки",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b645d082-215c-590c-b8ac-7e6e99f5ac36",
+              "leftValue": "={{ $json.cards_total }}",
+              "rightValue": "={{ $('Параметры').first().json.min_cards }}",
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "327b7a4c-1dc4-5ee5-8b0e-0edd1c727761",
+              "leftValue": "={{ $json.suspicious_pages }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6cc5a7d0-1e07-525a-bea0-2a87404c317c",
+      "name": "Карточек достаточно и нет заглушки?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1540,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "errorType": "errorMessage",
+        "errorMessage": "=Проверка результата не пройдена: карточек {{ $json.cards_total }} (порог {{ $('Параметры').first().json.min_cards }}), страниц-заглушек {{ $json.suspicious_pages }}. Сбор остановлен, скорость не повышаем."
+      },
+      "id": "52f3fc2c-3e96-51eb-b3d7-c37ab1f6016c",
+      "name": "Подозрительно мало данных",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        200
+      ],
+      "notes": "Падение выполнения запускает Error Workflow (Error Trigger → уведомление)."
+    },
+    {
+      "parameters": {
+        "operation": "removeItemsSeenInPreviousExecutions",
+        "logic": "removeItemsWithAlreadySeenKeyValues",
+        "dedupeValue": "={{ $json.fp }}",
+        "options": {
+          "scope": "workflow",
+          "historySize": 10000
+        }
+      },
+      "id": "12ed89a4-c438-56f6-b5f6-ce475a0e5288",
+      "name": "Только новые и изменённые",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        -100
+      ],
+      "notes": "Инкрементальность: отпечаток «URL|цена» из каталога, история хранится в БД n8n между запусками."
+    },
+    {
+      "parameters": {
+        "batchSize": 4,
+        "options": {}
+      },
+      "id": "cf3b7565-1795-5665-a791-bb8049764ea8",
+      "name": "Батчи по 4",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1980,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $('Параметры').first().json.user_agent }}"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 2,
+              "batchInterval": 1000
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "html"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "7cf79569-a7de-5c64-a04b-7d1273fd74f1",
+      "name": "Карточка товара",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2200,
+        0
+      ],
+      "onError": "continueErrorOutput",
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "html",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "url",
+              "cssSelector": "link[rel=canonical]",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "name",
+              "cssSelector": "h1.product_title",
+              "returnValue": "text"
+            },
+            {
+              "key": "price_all",
+              "cssSelector": "div.summary p.price .woocommerce-Price-amount",
+              "returnValue": "text",
+              "returnArray": true
+            },
+            {
+              "key": "price_ins",
+              "cssSelector": "div.summary p.price ins .woocommerce-Price-amount",
+              "returnValue": "text",
+              "returnArray": true
+            },
+            {
+              "key": "sku",
+              "cssSelector": "div.product_meta span.sku",
+              "returnValue": "text"
+            },
+            {
+              "key": "categories",
+              "cssSelector": "div.product_meta span.posted_in a",
+              "returnValue": "text",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "id": "ba754063-5a36-5c80-819a-15b7746f07d4",
+      "name": "Поля карточки",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2420,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9cb07e86-a20e-5a30-baa2-f10c73e4a65e",
+              "name": "error_message",
+              "value": "={{ $json.error && $json.error.message ? $json.error.message : JSON.stringify($json.error) }}",
+              "type": "string"
+            },
+            {
+              "id": "8b28820f-dc5d-598a-8ce1-0a936a11a9e7",
+              "name": "failed_url",
+              "value": "={{ $('Батчи по 4').item.json.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "03694469-e827-5b4e-9f64-8cdd73dfd795",
+      "name": "Ошибка карточки",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2420,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": 2,
+        "unit": "seconds"
+      },
+      "id": "58c2f65e-9c50-58d0-8e91-aacdda807b65",
+      "name": "Пауза 2 с между батчами",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2640,
+        0
+      ],
+      "notes": "Контроль скорости между батчами (аналог задержки ограничителя)."
+    },
+    {
+      "parameters": {
+        "jsCode": "const money = s => { const m = String(s || '').replace(/,/g, '').match(/\\d+(?:\\.\\d+)?/); return m ? Number(m[0]) : null; };\nconst clean = s => String(s || '').replace(/\\s+/g, ' ').trim();\nconst out = [];\nlet errors = 0;\nfor (const { json: j } of $input.all()) {\n  if (j.error_message) { errors++; continue; }\n  const sku = clean(j.sku).toUpperCase();\n  const cur = (j.price_ins && j.price_ins.length) ? j.price_ins : (j.price_all || []);\n  const amounts = cur.map(money).filter(v => v !== null && v > 0);\n  if (!sku || sku === 'N/A' || !amounts.length) continue;\n  out.push({ json: { sku, name: clean(j.name), price: Math.min(...amounts).toFixed(2),\n    categories: (j.categories || []).map(clean).join('; '), product_url: j.url || '',\n    scraped_at: new Date().toISOString(), card_errors_in_run: errors } });\n}\nreturn out;"
+      },
+      "id": "6c52ae54-75c9-5215-9507-8c3232c8fd21",
+      "name": "Типизация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        -300
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f1bbe084-14d3-5936-9b38-8263989f5352",
+              "leftValue": "={{ $json.sku ? 1 : 0 }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0a50b97c-62ae-5a18-bb51-69522070f051",
+      "name": "Есть новые записи?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2420,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "csv",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "nocode_result.csv"
+        }
+      },
+      "id": "afcb968e-f145-591c-a199-f8d4ac4c55fd",
+      "name": "В CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2640,
+        -380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $env.HOME }}/.n8n-files/lab7_nocode_result.csv",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "8a7dde6d-52a9-5737-927e-b6cb05759a96",
+      "name": "Записать результат",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2860,
+        -380
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "301a324d-b63b-5114-95ab-bfe8ee75b873",
+      "name": "Нет изменений",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        -220
+      ],
+      "notes": "Все карточки уже обработаны в прошлых запусках — запросы к карточкам не отправлялись."
+    },
+    {
+      "parameters": {
+        "errorType": "errorMessage",
+        "errorMessage": "=Страница каталога не получена после 4 попыток: {{ $json.error && $json.error.message ? $json.error.message : 'неизвестная ошибка' }}"
+      },
+      "id": "3f09f95c-ebac-5fb8-b120-4093f5b305a8",
+      "name": "Каталог недоступен",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        880,
+        300
+      ],
+      "notes": "Аналог предохранителя: после исчерпания повторов выполнение прекращается, домен не нагружается."
+    }
+  ],
+  "connections": {
+    "Расписание: ежедневно 05:00": {
+      "main": [
+        [
+          {
+            "node": "Параметры",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ручной запуск": {
+      "main": [
+        [
+          {
+            "node": "Параметры",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Параметры": {
+      "main": [
+        [
+          {
+            "node": "Номера страниц",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Номера страниц": {
+      "main": [
+        [
+          {
+            "node": "Страница каталога",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Страница каталога": {
+      "main": [
+        [
+          {
+            "node": "Проверка содержимого",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Каталог недоступен",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Проверка содержимого": {
+      "main": [
+        [
+          {
+            "node": "Ссылки и цены в каталоге",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ссылки и цены в каталоге": {
+      "main": [
+        [
+          {
+            "node": "Отпечатки и итог проверки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отпечатки и итог проверки": {
+      "main": [
+        [
+          {
+            "node": "Карточек достаточно и нет заглушки?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Карточек достаточно и нет заглушки?": {
+      "main": [
+        [
+          {
+            "node": "Только новые и изменённые",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Подозрительно мало данных",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Только новые и изменённые": {
+      "main": [
+        [
+          {
+            "node": "Батчи по 4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Батчи по 4": {
+      "main": [
+        [
+          {
+            "node": "Типизация",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Карточка товара",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Карточка товара": {
+      "main": [
+        [
+          {
+            "node": "Поля карточки",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ошибка карточки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Поля карточки": {
+      "main": [
+        [
+          {
+            "node": "Пауза 2 с между батчами",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ошибка карточки": {
+      "main": [
+        [
+          {
+            "node": "Пауза 2 с между батчами",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пауза 2 с между батчами": {
+      "main": [
+        [
+          {
+            "node": "Батчи по 4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Типизация": {
+      "main": [
+        [
+          {
+            "node": "Есть новые записи?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Есть новые записи?": {
+      "main": [
+        [
+          {
+            "node": "В CSV",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Нет изменений",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "В CSV": {
+      "main": [
+        [
+          {
+            "node": "Записать результат",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Yekaterinburg",
+    "saveManualExecutions": true,
+    "errorWorkflow": "lab7ErrorHandler1"
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

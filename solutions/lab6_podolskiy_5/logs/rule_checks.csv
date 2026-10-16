@@ -1,0 +1,15 @@
+сущность,правило,нарушений,"доля, %"
+repository,R-01 репозиторий подтверждён API (есть карточка /repos),0,0.0
+repository,"R-02 счётчики API ≥ 0 (stars, forks, watchers, open issues)",0,0.0
+repository,R-03 created_at ≤ pushed_at и ≤ момента сбора,0,0.0
+repository,R-04 id репозитория на странице = id в API,0,0.0
+repository,R-05 звёзды на странице ≈ звёзды в API (±2 % или погрешность «k»),0,0.0
+repository,"R-06 счётчики HTML ≥ 0, доля языка 0–100 %",0,0.0
+event,E-01 событие не из будущего (created_at ≤ момента сбора),18,0.47
+event,E-02 closed_at ≥ created_at,27,0.7
+event,E-03 state=closed ⇔ задан closed_at (issue/PR),22,0.57
+event,"E-04 merged_at только у PR, не раньше создания и только у закрытого",20,0.52
+event,E-05 число комментариев ≥ 0,17,0.44
+event,E-06 updated_at ≥ created_at,0,0.0
+event,E-07 релиз: есть тег и нет номера; issue/PR: есть номер,0,0.0
+event,E-08 репозиторий события есть в справочнике (ссылочная целостность),16,0.42

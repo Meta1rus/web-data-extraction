@@ -1,0 +1,132 @@
+{
+  "id": "lab7ErrorHandler1",
+  "name": "Лаб. 7: обработчик ошибок (Error Trigger)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1d008205-909d-57d9-9293-add84b4d651f",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map(({ json: e }) => {\n  const msg = `⚠️ ${e.workflow?.name}: выполнение ${e.execution?.id} упало на узле «${e.execution?.lastNodeExecuted}»: ${e.execution?.error?.message}`;\n  return { json: { text: msg, line: `${new Date().toISOString()}\\t${msg}\\n` } };\n});"
+      },
+      "id": "75aa859b-662d-510b-8c25-159ee8bdd64e",
+      "name": "Текст уведомления",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "line",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "lab7_n8n_incidents.log"
+        }
+      },
+      "id": "d4f29aa1-495e-546a-afb7-1ecc67bbfac9",
+      "name": "Журнал инцидентов в файл",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $env.HOME }}/.n8n-files/lab7_n8n_incidents.log",
+        "dataPropertyName": "data",
+        "options": {
+          "append": true
+        }
+      },
+      "id": "e3948644-fe08-5ebb-820c-fbb7ae814026",
+      "name": "Дописать lab7_n8n_incidents.log",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {}
+      },
+      "id": "800de46f-8182-5985-9e82-7c157e180f0f",
+      "name": "Уведомление в Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        100
+      ],
+      "disabled": true,
+      "notes": "Включить после настройки учётных данных Telegram."
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Текст уведомления",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Текст уведомления": {
+      "main": [
+        [
+          {
+            "node": "Журнал инцидентов в файл",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Уведомление в Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Журнал инцидентов в файл": {
+      "main": [
+        [
+          {
+            "node": "Дописать lab7_n8n_incidents.log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

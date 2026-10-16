@@ -1,0 +1,21 @@
+.env
+.venv/
+.cache/
+__pycache__/
+.pytest_cache/
+*.pyc
+demo/_mock_run/
+
+# Данные с логинами владельцев репозиториев не публикуются (docs/legal_checklist.md, п. 10):
+# остаются на диске автора и сдаются архивом; в Git — обезличенный mart/ и отчёты о прогонах.
+raw/*
+!raw/.gitkeep
+clean/*
+!clean/.gitkeep
+db/*.db
+logs/*.jsonl
+logs/*.log
+logs/incidents/*
+!logs/incidents/.gitkeep
+state/*.json
+tests/fixtures/real_topic_p1.html

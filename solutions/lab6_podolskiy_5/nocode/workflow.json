@@ -1,0 +1,798 @@
+{
+  "name": "lab6_podolskiy_5 — GitHub issues → Postgres (upsert)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "47 6 * * *"
+            }
+          ]
+        }
+      },
+      "id": "2598bb67-4098-5feb-9992-e892b1047284",
+      "name": "Каждый день 06:47",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6ff55c1f-edd7-5fd9-9ddc-a91022a525c2",
+      "name": "Запуск вручную",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/repos/scrapy/scrapy/issues",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "state",
+              "value": "all"
+            },
+            {
+              "name": "per_page",
+              "value": "100"
+            },
+            {
+              "name": "sort",
+              "value": "updated"
+            },
+            {
+              "name": "direction",
+              "value": "desc"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            },
+            {
+              "name": "User-Agent",
+              "value": "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "id": "66edd6e7-ff11-5300-8157-b4b49e844464",
+      "name": "GitHub API: issues scrapy/scrapy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput",
+      "notes": "Без токена: 60 запросов/час; один запуск = 1 запрос. Ответ — массив, n8n разворачивает его в элементы."
+    },
+    {
+      "parameters": {
+        "errorMessage": "={{ 'GitHub API недоступен после 3 попыток: ' + ($json.error?.message || JSON.stringify($json)) }}"
+      },
+      "id": "956fdbbb-7730-5228-8ea5-d732472c78d7",
+      "name": "Ошибка HTTP",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        480,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Добавляет 4 помеченные битые записи, чтобы показать ветку отбраковки и дедупликацию.\n// Для «чистого» прогона узел можно отключить (Deactivate) — поток не изменится.\nconst out = $input.all().map(i => i.json);\nif (out.length) {\n  const b = out[0];\n  out.push({ ...b, number: 900000001, title: ' \\u200b ', _synthetic: true });\n  out.push({ ...b, number: 900000002, state: 'closed', closed_at: null, _synthetic: true });\n  out.push({ ...b, number: 900000003, comments: -3, _synthetic: true });\n  out.push({ ...out[out.length - 1] });   // полный дубль — уберёт Remove Duplicates\n}\nreturn out.map(j => ({ json: j }));"
+      },
+      "id": "a105eb70-f70b-548e-bd09-f33093cd0c34",
+      "name": "Демо: синтетические битые записи",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        60
+      ],
+      "notes": "Синтетика для демонстрации (5–10 % разрешено заданием); строки помечены is_synthetic = true."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f623fd2a-4b54-5efe-97a0-87a49b98f506",
+              "name": "event_key",
+              "value": "={{ 'scrapy/scrapy#' + $json.number }}",
+              "type": "string"
+            },
+            {
+              "id": "ba8df079-e0cb-5d41-a8ac-71c1092b745f",
+              "name": "repo_key",
+              "value": "scrapy/scrapy",
+              "type": "string"
+            },
+            {
+              "id": "17e0d10e-cbee-5864-87b2-dfe3a3e3dae4",
+              "name": "number",
+              "value": "={{ $json.number }}",
+              "type": "number"
+            },
+            {
+              "id": "c2a873f5-52b3-5285-9335-265c386368b2",
+              "name": "event_type",
+              "value": "={{ $json.pull_request ? 'pull_request' : 'issue' }}",
+              "type": "string"
+            },
+            {
+              "id": "5335572a-72ee-558b-922b-b45a0f6e659b",
+              "name": "title",
+              "value": "={{ String($json.title || '').normalize('NFKC').replace(/[\\u200B-\\u200D\\u2060\\uFEFF]/g, '').replace(/\\s+/g, ' ').trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "eba85dec-e51d-52a4-b310-ef5eca936555",
+              "name": "state",
+              "value": "={{ String($json.state || '').toLowerCase().trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "cc8457c2-0e26-5482-a1dd-73a16a7e2342",
+              "name": "created_at",
+              "value": "={{ $json.created_at ? DateTime.fromISO($json.created_at, { setZone: true }).toUTC().toISO({ suppressMilliseconds: true }) : '' }}",
+              "type": "string"
+            },
+            {
+              "id": "3e3820ac-723f-5288-90d1-b30eb1e8b252",
+              "name": "closed_at",
+              "value": "={{ $json.closed_at ? DateTime.fromISO($json.closed_at, { setZone: true }).toUTC().toISO({ suppressMilliseconds: true }) : null }}",
+              "type": "string"
+            },
+            {
+              "id": "83243c8c-6241-50b6-bc41-6cf0905caea3",
+              "name": "comments",
+              "value": "={{ $json.comments }}",
+              "type": "number"
+            },
+            {
+              "id": "01e641de-f49d-560d-ace5-4e073b652294",
+              "name": "label_color",
+              "value": "={{ ($json.labels && $json.labels.length) ? String($json.labels[0].color).toLowerCase() : null }}",
+              "type": "string"
+            },
+            {
+              "id": "29185664-84c0-5d42-a8d1-716c13ed0231",
+              "name": "url",
+              "value": "={{ String($json.html_url || '').split('?')[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "36ac2d75-540e-5dca-adb7-06e07b5f784b",
+              "name": "is_synthetic",
+              "value": "={{ !!$json._synthetic }}",
+              "type": "boolean"
+            },
+            {
+              "id": "9fc00113-cfba-5ed4-b815-aab786ee25cc",
+              "name": "source",
+              "value": "n8n_github_api",
+              "type": "string"
+            },
+            {
+              "id": "57fa3f60-9f18-568f-bfba-2c92edb65371",
+              "name": "collected_at",
+              "value": "={{ $now.toUTC().toISO({ suppressMilliseconds: true }) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "id": "bf14ef15-5266-5e56-b42f-6709ba9dc1d2",
+      "name": "Нормализация полей",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        60
+      ],
+      "notes": "Нормализация: NFKC и zero-width в title, нижний регистр state, даты → UTC ISO 8601, URL без параметров, бизнес-ключ event_key."
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicateInputItems",
+        "compare": "selectedFields",
+        "fieldsToCompare": "event_key",
+        "options": {}
+      },
+      "id": "06e1269c-ed80-559a-bc73-652bf7c0fae4",
+      "name": "Дедупликация по event_key",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        960,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cda94bd4-743e-5cf7-bb34-04232aa78ea4",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "48735449-b4bd-58fb-9395-41d6a397aeee",
+              "leftValue": "={{ $json.created_at }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "90827481-db9b-57a0-8923-c2b221a8368b",
+              "leftValue": "={{ $json.comments }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "5627db10-34e7-5fec-ac19-f6c80b9f5828",
+              "leftValue": "={{ $json.state === 'open' || ($json.state === 'closed' && !!$json.closed_at) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "27a49f1a-4da8-5957-b29a-ce308d532175",
+      "name": "Запись валидна?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "name",
+          "value": "events_n8n"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "event_key"
+          ],
+          "schema": [
+            {
+              "id": "event_key",
+              "displayName": "event_key",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "repo_key",
+              "displayName": "repo_key",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "number",
+              "displayName": "number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "event_type",
+              "displayName": "event_type",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "state",
+              "displayName": "state",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "closed_at",
+              "displayName": "closed_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "label_color",
+              "displayName": "label_color",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "is_synthetic",
+              "displayName": "is_synthetic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "collected_at",
+              "displayName": "collected_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e5d4db43-1c03-5423-b89b-259e96759c02",
+      "name": "Upsert в events_n8n",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1460,
+        -40
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "lab6-postgres",
+          "name": "Postgres lab6 (docker)"
+        }
+      },
+      "alwaysOutputData": true,
+      "notes": "INSERT … ON CONFLICT (event_key) DO UPDATE. Без изменений строка не трогается — это делает триггер БД (nocode/pg_init.sql), в самом узле такого условия нет."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f623fd2a-4b54-5efe-97a0-87a49b98f506",
+              "name": "event_key",
+              "value": "={{ $json.event_key }}",
+              "type": "string"
+            },
+            {
+              "id": "941107b9-525e-58e7-b118-6873b2f64d81",
+              "name": "reason",
+              "value": "={{ [ !$json.title ? 'пустой title' : null, !$json.created_at ? 'нет created_at' : null, !($json.comments >= 0) ? 'comments < 0 или пусто' : null, ($json.state === 'closed' && !$json.closed_at) ? 'state=closed без closed_at' : null ].filter(Boolean).join('; ') || 'не прошла проверку' }}",
+              "type": "string"
+            },
+            {
+              "id": "939b6c70-8bca-5952-8fa6-97cda13319b4",
+              "name": "payload",
+              "value": "={{ JSON.stringify($json) }}",
+              "type": "string"
+            },
+            {
+              "id": "36ac2d75-540e-5dca-adb7-06e07b5f784b",
+              "name": "is_synthetic",
+              "value": "={{ $json.is_synthetic }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "id": "7089d131-aedf-5309-b792-d980ffd6613b",
+      "name": "Причина отбраковки",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1460,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "name",
+          "value": "rejects_n8n"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "event_key",
+            "reason"
+          ],
+          "schema": [
+            {
+              "id": "event_key",
+              "displayName": "event_key",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "payload",
+              "displayName": "payload",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "is_synthetic",
+              "displayName": "is_synthetic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "85c6c095-5936-5281-99eb-92c45c607816",
+      "name": "Upsert в rejects_n8n",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1700,
+        200
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "lab6-postgres",
+          "name": "Postgres lab6 (docker)"
+        }
+      },
+      "notes": "Отбракованные записи с причиной; повторный прогон не создаёт дублей (ключ event_key + reason)."
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT event_key, event_type, title, state, to_char(created_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS created_at, to_char(closed_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS closed_at, comments, label_color, url, is_synthetic, source, to_char(updated_at AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AS updated_at FROM events_n8n ORDER BY created_at DESC;",
+        "options": {}
+      },
+      "id": "a41e6a8e-f22b-5e64-be02-9078277533d6",
+      "name": "Выгрузка таблицы для отчёта",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1700,
+        -40
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "lab6-postgres",
+          "name": "Postgres lab6 (docker)"
+        }
+      },
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "operation": "csv",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "nocode_result.csv",
+          "headerRow": true
+        }
+      },
+      "id": "a1bb62da-125c-5283-b582-4ca508c066ce",
+      "name": "В CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1940,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $env.HOME }}/.n8n-files/lab6/nocode_result.csv",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "e27e22a4-ce66-5b44-b8c6-f5f953e594b2",
+      "name": "Сохранить nocode_result.csv",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        -40
+      ],
+      "notes": "Нужны N8N_RESTRICT_FILE_ACCESS_TO=$HOME/.n8n-files и N8N_BLOCK_ENV_ACCESS_IN_NODE=false (см. INSTRUCTIONS.md)."
+    }
+  ],
+  "connections": {
+    "Каждый день 06:47": {
+      "main": [
+        [
+          {
+            "node": "GitHub API: issues scrapy/scrapy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запуск вручную": {
+      "main": [
+        [
+          {
+            "node": "GitHub API: issues scrapy/scrapy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub API: issues scrapy/scrapy": {
+      "main": [
+        [
+          {
+            "node": "Демо: синтетические битые записи",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ошибка HTTP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Демо: синтетические битые записи": {
+      "main": [
+        [
+          {
+            "node": "Нормализация полей",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нормализация полей": {
+      "main": [
+        [
+          {
+            "node": "Дедупликация по event_key",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Дедупликация по event_key": {
+      "main": [
+        [
+          {
+            "node": "Запись валидна?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запись валидна?": {
+      "main": [
+        [
+          {
+            "node": "Upsert в events_n8n",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Причина отбраковки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert в events_n8n": {
+      "main": [
+        [
+          {
+            "node": "Выгрузка таблицы для отчёта",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Причина отбраковки": {
+      "main": [
+        [
+          {
+            "node": "Upsert в rejects_n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Выгрузка таблицы для отчёта": {
+      "main": [
+        [
+          {
+            "node": "В CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "В CSV": {
+      "main": [
+        [
+          {
+            "node": "Сохранить nocode_result.csv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Yekaterinburg",
+    "saveManualExecutions": true
+  },
+  "versionId": "12b08bce-c2f8-5e63-aaf4-21ed8b6fc4ba",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

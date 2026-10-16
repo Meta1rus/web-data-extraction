@@ -1,0 +1,141 @@
+{
+  "run_id": "20261015T214925Z",
+  "started_at": "2026-10-15T21:49:25Z",
+  "records": {
+    "resumed_from": null,
+    "html_pages_ok": 4,
+    "html_pages_failed": 0,
+    "html_cards": 60,
+    "html_pages_resumed": 0,
+    "html_pages_skipped_robots": 0,
+    "html_blocked": 0,
+    "api_200": 1,
+    "api_304": 6,
+    "zero_changes_streak": 0
+  },
+  "environment": {
+    "html_base": "https://github.com",
+    "api_base": "https://api.github.com",
+    "api_mode": "rest",
+    "token": "gith…xD (длина 93)",
+    "python": "3.10.12",
+    "topics": [
+      "web-scraping",
+      "cli"
+    ],
+    "parser_version": "gh-topics-1.0.0",
+    "scope": "cli,web-scraping|2|stars|html"
+  },
+  "robots": {
+    "robots_url": "https://github.com/robots.txt",
+    "status": 200,
+    "available": true,
+    "group": "*",
+    "crawl_delay": null,
+    "request_rate": null,
+    "sitemaps": [],
+    "checks": [
+      {
+        "url": "https://github.com/topics/web-scraping?l=python&page=2",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/topics/cli?l=python&page=2",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy/stargazers",
+        "rfc9309": false,
+        "rule": "disallow: /*/*/stargazers",
+        "urllib_robotparser": true
+      },
+      {
+        "url": "https://github.com/scrapy/scrapy?tab=readme-ov-file",
+        "rfc9309": false,
+        "rule": "disallow: /*?tab=*",
+        "urllib_robotparser": true
+      }
+    ],
+    "saved_copy": "raw/robots/github.com_20261015.txt"
+  },
+  "html_topics": {
+    "web-scraping": {
+      "pages": 1,
+      "cards": 20,
+      "strategy": "article-cards",
+      "total": 11620
+    },
+    "cli": {
+      "pages": 2,
+      "cards": 40,
+      "strategy": "article-cards",
+      "total": 39893
+    }
+  },
+  "finished_at": "2026-10-15T21:49:41Z",
+  "duration_s": 15.65,
+  "status": "interrupted",
+  "requests": {
+    "total": 12,
+    "by_status": {
+      "200": 5,
+      "304": 7
+    },
+    "by_host": {
+      "github.com": 5,
+      "api.github.com": 7
+    },
+    "by_source": {
+      "robots": 1,
+      "github_topics_html": 4,
+      "github_api_repos": 7
+    },
+    "error_rate_pct": 0.0,
+    "rate_limited_pct": 0.0,
+    "retries": 0,
+    "not_modified_304": 7,
+    "conditional_sent": 11,
+    "network_errors": 0,
+    "latency_ms": {
+      "median": 426.7,
+      "p95": 1064.7,
+      "max": 1072.7
+    },
+    "traffic": {
+      "body_bytes": 1769321,
+      "wire_bytes": 1411,
+      "wire_known_responses": 1,
+      "gzip_saving_pct": 91.6
+    },
+    "api_quota": {
+      "limit": 5000,
+      "remaining_first": "3555",
+      "remaining_last": "3554",
+      "remaining_last_pct": 71.1,
+      "used_delta_by_status": {
+        "304": 0,
+        "200": 1
+      },
+      "responses_304": 6
+    },
+    "cache_hits": 0,
+    "skipped_by_breaker": 0,
+    "breaker_activations": 0,
+    "robots_blocked": 0
+  },
+  "incidents": [],
+  "alerts": [],
+  "verdict": "red",
+  "exit_code": 130,
+  "report_path": "reports/run_report_20261015T214925Z.json"
+}

@@ -1,0 +1,8 @@
+# Python >= 3.10 (проверено на 3.11 и 3.13); macOS / Linux (общий счётчик использует fcntl)
+scrapy>=2.13          # краулер лабораторной № 5, доработанный здесь
+protego>=0.3          # robots.txt по RFC 9309 (шаблоны * и $) — перепроверка urllib.robotparser
+pandas>=2.0           # analysis.ipynb
+matplotlib>=3.7       # графики
+nbconvert>=7.0        # исполнение блокнота из run_real.sh
+ipykernel>=6.0
+nbclient>=0.8

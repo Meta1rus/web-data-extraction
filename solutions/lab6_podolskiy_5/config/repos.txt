@@ -1,0 +1,14 @@
+# Репозитории инструментов курса «Инструменты автоматизированного сбора данных».
+# Формат: owner/repo  # комментарий. Бюджет без токена: 12 × (1 + 3 страницы issues) = 48 запросов < 60/час.
+scrapy/scrapy                 # лаб. 5 — промышленный краулинг
+scrapy/parsel                 # лаб. 5 — селекторы Scrapy (XPath/CSS)
+psf/requests                  # лаб. 1–3 — HTTP-клиент
+encode/httpx                  # лаб. 7 — HTTP-клиент с async
+aio-libs/aiohttp              # лаб. 7 — асинхронный сбор
+microsoft/playwright-python   # лаб. 4 — динамические страницы
+SeleniumHQ/selenium           # лаб. 4 — автоматизация браузера
+n8n-io/n8n                    # no-code часть лаб. 5–7
+pandas-dev/pandas             # лаб. 2–6 — очистка и типизация
+pydantic/pydantic             # лаб. 6 — контракт данных
+apache/arrow                  # лаб. 6 — Parquet / PyArrow
+duckdb/duckdb                 # лаб. 6 — аналитика над Parquet (задание повышенной сложности)

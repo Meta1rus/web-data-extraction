@@ -1,0 +1,16 @@
+модель,проверка,результат,поле,сообщение
+Event,отрицательное число комментариев,отклонена,comments,Input should be greater than or equal to 0
+Event,пустой заголовок (пробелы и zero-width),отклонена,title,String should have at least 1 character
+Event,наивная дата без часового пояса,отклонена,created_at,дата без часового пояса (наивная) — источник времени неизвестен
+Event,state=closed без closed_at,отклонена,<запись>,"state='closed' должен сопровождаться closed_at, а open — его отсутствием"
+Event,closed_at раньше created_at,отклонена,<запись>,closed_at раньше created_at
+Event,merged_at у issue (не PR),отклонена,<запись>,merged_at допустим только у pull request
+Event,event_key не равен repo_key#number,отклонена,<запись>,event_key issue/PR должен быть repo_key#number
+Event,цвет метки не hex-6,отклонена,label_color,String should match pattern '^[0-9a-f]{6}$'
+Event,repo_key не в виде owner/name,отклонена,repo_key,repo_key должен иметь вид owner/name в нижнем регистре
+Event,неизвестный тип события,отклонена,event_type,"Input should be 'issue', 'pull_request' or 'release'"
+Event,событие из будущего,отклонена,<запись>,событие создано позже момента сбора (дата из будущего)
+Event,URL с параметрами трекинга,отклонена,url,URL содержит параметры трекинга — должен быть нормализован
+Repository,отрицательное число звёзд,отклонена,stars,Input should be greater than or equal to 0
+Repository,доля основного языка 120 %,отклонена,primary_language_pct,Input should be less than or equal to 100
+Repository,github_id = 0,отклонена,github_id,Input should be greater than 0

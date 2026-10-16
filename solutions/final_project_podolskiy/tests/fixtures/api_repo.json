@@ -1,0 +1,48 @@
+{
+  "id": 700147730,
+  "name": "web-mint-064",
+  "full_name": "fx-core588/web-mint-064",
+  "owner": {
+    "login": "fx-core588",
+    "id": 700147731,
+    "type": "User",
+    "avatar_url": "https://avatars.example/u/700147730",
+    "site_admin": false
+  },
+  "description": "Synthetic fixture repository #64 for topic web-scraping",
+  "fork": false,
+  "created_at": "2022-06-21T03:30:08Z",
+  "updated_at": "2026-10-04T23:33:43Z",
+  "pushed_at": "2026-09-07T08:57:40Z",
+  "homepage": null,
+  "size": 2067,
+  "stargazers_count": 17968,
+  "watchers_count": 17968,
+  "language": "Python",
+  "forks_count": 4229,
+  "open_issues_count": 69,
+  "archived": false,
+  "disabled": false,
+  "license": {
+    "key": "apache-2.0",
+    "spdx_id": "Apache-2.0",
+    "name": "Apache License 2.0",
+    "url": null,
+    "node_id": "MDc6TGljZW5zZTA="
+  },
+  "topics": [
+    "llm",
+    "python",
+    "web-scraping"
+  ],
+  "visibility": "public",
+  "default_branch": "master",
+  "subscribers_count": 288,
+  "network_count": 0,
+  "has_issues": true,
+  "has_wiki": true,
+  "has_discussions": false,
+  "is_template": false,
+  "html_url": "https://github.com/fx-core588/web-mint-064",
+  "url": "https://api.github.com/repos/fx-core588/web-mint-064"
+}

@@ -1,0 +1,298 @@
+{
+  "robots_url": "https://github.com/robots.txt",
+  "status": 200,
+  "group": "User-agent: *",
+  "crawl_delay": null,
+  "decisions": [
+    {
+      "url": "https://github.com/scrapy/scrapy/contributors",
+      "path": "/scrapy/scrapy/contributors",
+      "rfc9309": false,
+      "urllib": true,
+      "allowed": false,
+      "rule": "/*/*/contributors",
+      "reason": "Disallow: /*/*/contributors (urllib.robotparser считает: можно — расхождение)",
+      "purpose": "контроль (не запрашивается)"
+    },
+    {
+      "url": "https://github.com/scrapy/scrapy/stargazers",
+      "path": "/scrapy/scrapy/stargazers",
+      "rfc9309": false,
+      "urllib": true,
+      "allowed": false,
+      "rule": "/*/*/stargazers",
+      "reason": "Disallow: /*/*/stargazers (urllib.robotparser считает: можно — расхождение)",
+      "purpose": "контроль (не запрашивается)"
+    },
+    {
+      "url": "https://github.com/scrapy/scrapy/network/dependents",
+      "path": "/scrapy/scrapy/network/dependents",
+      "rfc9309": false,
+      "urllib": true,
+      "allowed": false,
+      "rule": "/*/*/network",
+      "reason": "Disallow: /*/*/network (urllib.robotparser считает: можно — расхождение)",
+      "purpose": "контроль (не запрашивается)"
+    },
+    {
+      "url": "https://github.com/scrapy/scrapy/tree/main",
+      "path": "/scrapy/scrapy/tree/main",
+      "rfc9309": false,
+      "urllib": true,
+      "allowed": false,
+      "rule": "/*/tree/",
+      "reason": "Disallow: /*/tree/ (urllib.robotparser считает: можно — расхождение)",
+      "purpose": "контроль (не запрашивается)"
+    },
+    {
+      "url": "https://github.com/scrapy/scrapy?tab=readme-ov-file",
+      "path": "/scrapy/scrapy?tab=readme-ov-file",
+      "rfc9309": false,
+      "urllib": true,
+      "allowed": false,
+      "rule": "/*?tab=*",
+      "reason": "Disallow: /*?tab=* (urllib.robotparser считает: можно — расхождение)",
+      "purpose": "контроль (не запрашивается)"
+    },
+    {
+      "url": "https://github.com/scrapy/scrapy",
+      "path": "/scrapy/scrapy",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/scrapy/scrapy/releases",
+      "path": "/scrapy/scrapy/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/scrapy/parsel",
+      "path": "/scrapy/parsel",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/scrapy/parsel/releases",
+      "path": "/scrapy/parsel/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/psf/requests",
+      "path": "/psf/requests",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/psf/requests/releases",
+      "path": "/psf/requests/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/encode/httpx",
+      "path": "/encode/httpx",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/encode/httpx/releases",
+      "path": "/encode/httpx/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/aio-libs/aiohttp",
+      "path": "/aio-libs/aiohttp",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/aio-libs/aiohttp/releases",
+      "path": "/aio-libs/aiohttp/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/microsoft/playwright-python",
+      "path": "/microsoft/playwright-python",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/microsoft/playwright-python/releases",
+      "path": "/microsoft/playwright-python/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/SeleniumHQ/selenium",
+      "path": "/SeleniumHQ/selenium",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/SeleniumHQ/selenium/releases",
+      "path": "/SeleniumHQ/selenium/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/n8n-io/n8n",
+      "path": "/n8n-io/n8n",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/n8n-io/n8n/releases",
+      "path": "/n8n-io/n8n/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/pandas-dev/pandas",
+      "path": "/pandas-dev/pandas",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/pandas-dev/pandas/releases",
+      "path": "/pandas-dev/pandas/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/pydantic/pydantic",
+      "path": "/pydantic/pydantic",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/pydantic/pydantic/releases",
+      "path": "/pydantic/pydantic/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/apache/arrow",
+      "path": "/apache/arrow",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/apache/arrow/releases",
+      "path": "/apache/arrow/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    },
+    {
+      "url": "https://github.com/duckdb/duckdb",
+      "path": "/duckdb/duckdb",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "repo_page"
+    },
+    {
+      "url": "https://github.com/duckdb/duckdb/releases",
+      "path": "/duckdb/duckdb/releases",
+      "rfc9309": true,
+      "urllib": true,
+      "allowed": true,
+      "rule": null,
+      "reason": "ни одно правило не совпало",
+      "purpose": "release"
+    }
+  ]
+}

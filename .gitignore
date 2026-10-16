@@ -1,6 +1,5 @@
-# Файлы заданий
-lab_1.txt
-lab2.md
+# Материалы курса (задания, блокноты занятий) — не публикуются
+materials/
 
 # Системные файлы macOS
 .DS_Store
@@ -15,3 +14,11 @@ __pycache__/
 .venv
 env/
 venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Служебное
+.n8n/
+node_modules/
+.transfer/

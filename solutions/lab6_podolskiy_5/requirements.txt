@@ -1,0 +1,13 @@
+# Python ≥ 3.10 (проверено на 3.11 с нижними границами и на 3.13 с pandas 3)
+requests>=2.31
+beautifulsoup4>=4.12
+pandas>=2.2
+pyarrow>=15.0
+pydantic>=2.6
+matplotlib>=3.8
+duckdb>=1.0
+# блокнот и тесты
+ipykernel>=6.29
+nbconvert>=7.16
+nbclient>=0.10
+pytest>=8.0

@@ -1,0 +1,5 @@
+формат,строк,"размер, КБ","чтение всего, мс","чтение 3 столбцов, мс",тип created_at,тип label_color,label_color «033166» →,commit_sha «0c5e5e1» →,тип comments (Int64 с пропусками),тип labels (список)
+CSV,3720,1824.1,11.8,5.7,object,object,'033166','0c5e5e1',float64,str
+JSON Lines,3720,3160.1,34.2,34.4,"datetime64[ns, UTC]",object,'033166','0c5e5e1',float64,list
+JSON Lines + gzip,3720,279.8,38.3,38.5,"datetime64[ns, UTC]",object,'033166','0c5e5e1',float64,list
+Parquet (zstd),3720,283.8,3.3,1.1,"datetime64[ns, UTC]",object,'033166','0c5e5e1',Int64,ndarray

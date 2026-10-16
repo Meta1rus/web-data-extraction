@@ -1,0 +1,109 @@
+# Итоговый проект: «Как популярность и активность Python-репозиториев связаны с их тематикой и размером?»
+# Конфигурация B (гибридная): код собирает и обрабатывает, n8n оркестрирует расписание и оповещения.
+#
+# Адреса источников можно переопределить переменными окружения (для локальной имитации и демонстрации отказа):
+#   GITHUB_HTML_BASE  (по умолчанию https://github.com)
+#   GITHUB_API_BASE   (по умолчанию https://api.github.com)
+#   GITHUB_TOKEN      — токен читается ТОЛЬКО из окружения/.env, в этом файле его нет и быть не должно.
+
+project:
+  author: "Подольский Ф. А., ПМИ-3-2025"
+  question: "Как популярность и активность Python-репозиториев связаны с их тематикой и размером?"
+  configuration: "B (гибрид: код + n8n)"
+  parser_version: "gh-topics-1.0.0"
+  api_normalizer_version: "gh-repo-1.0.0"
+
+sources:
+  html:
+    name: "GitHub Topics (HTML)"
+    base_url: "https://github.com"
+    # Пути строятся как /topics/<topic>?l=python&page=N (page=1 без параметра page).
+    # Темы выбраны так, чтобы покрыть разные «жанры» Python-проектов (обоснование — в docs/decisions.md, раздел 1):
+    topics:
+      - web-scraping       # инструменты сбора данных: библиотеки и фреймворки
+      - fastapi            # веб-сервисы и API: прикладные фреймворковые проекты
+      - machine-learning   # исследовательские и тяжёлые проекты: модели, ноутбуки, данные
+      - data-engineering   # инфраструктура данных: ETL, оркестрация
+      - cli                # консольные утилиты: небольшие, быстро «созревающие» проекты
+      - telegram           # массовые прикладные боты (тема telegram-bot на GitHub отсутствует: 404 при прогоне 15.10.2026)
+    language_filter: "python"      # параметр l= на странице темы
+    sort_modes: ["stars"]          # "stars" — порядок страницы по умолчанию (Most stars); "updated" добавит &o=desc&s=updated (не подтверждено реальным прогоном)
+    max_pages_per_topic: 5         # 20 карточек на странице -> до 100 репозиториев на тему
+    expected_cards_per_page: 20
+    rate_per_sec: 0.33             # 1 запрос в ~3 c к github.com (Crawl-delay для * не задан — берём собственный щадящий темп)
+    burst: 1
+    check_robots: true
+
+  api:
+    name: "GitHub REST API"
+    base_url: "https://api.github.com"
+    api_version: "2022-11-28"      # заголовок X-GitHub-Api-Version
+    # auto: есть GITHUB_TOKEN -> rest (поштучно /repos/{owner}/{repo} с ETag);
+    #       нет токена        -> search (пакетно /search/repositories по темам, 100 записей на запрос)
+    #                            + поштучные запросы к /repos в пределах unauth_core_budget.
+    mode: "auto"
+    rate_per_sec: 1.5              # 5000 запр/ч с токеном; сами держим ~90/мин — ниже вторичных лимитов GitHub
+    burst: 3
+    search_rate_per_sec: 0.15      # Search API: 10/мин без токена, 30/мин с токеном -> берём 9/мин
+    unauth_core_budget: 45         # без токена из 60 запр/ч оставляем запас 15 на ручную отладку
+    quota_reserve: 50              # при X-RateLimit-Remaining ниже резерва (с токеном) сбор API останавливается, остаток — в следующий прогон
+    refresh_max_age_hours: 20      # водяной знак: репозиторий перепроверяется, если с прошлой проверки прошло >= 20 ч
+    use_etag: true                 # условные запросы If-None-Match -> 304 (с токеном не расходует лимит)
+
+http:
+  user_agent: "PSU-edu-crawler/1.0 (+https://github.com/Meta1rus/web-data-extraction; student lab)"
+  connect_timeout_s: 5
+  read_timeout_s: 20
+  max_attempts: 4                  # 1 основная + 3 повтора, только для временных ошибок
+  backoff_base_s: 1.0
+  backoff_cap_s: 30
+  max_retry_wait_s: 120            # если сервер просит ждать дольше (Retry-After / X-RateLimit-Reset) — останавливаем домен до следующего прогона
+  jitter: 0.3                      # джиттер 30 % к интервалу ограничителя
+  breaker_fail_threshold: 5        # подряд неудачных попыток до размыкания
+  breaker_reset_after_s: 60
+  max_requests_per_run: 1500       # предохранитель от бесконечного цикла
+  # Условный запрос только по Last-Modified: ETag api.github.com нестабилен между запросами (прогон 15.10.2026),
+  # а при If-None-Match сервер игнорирует If-Modified-Since (RFC 9110 §13.1.3). Для HTML/robots — ETag.
+  conditional_ims_only_hosts: ["api.github.com"]
+  debug_cache: false               # кэш ответов HTML на диске (только для отладки парсера), включается флагом --debug-cache
+  debug_cache_ttl_hours: 6
+  local_rate_scale_max: 100        # ускорение лимитов (--rate-scale) разрешено ТОЛЬКО для 127.0.0.1/localhost
+
+storage:
+  db_path: "db/warehouse.db"
+  schema_path: "db/schema.sql"
+  listing_max_age_days: 7          # в mart попадают карточки тем, виденные не раньше чем 7 дней назад
+
+resume:
+  max_age_hours: 24                # незавершённый прогон моложе 24 ч продолжается с места остановки
+  checkpoint_every_api_keys: 10
+
+quality:
+  # direction: higher — чем больше, тем лучше; lower — чем меньше, тем лучше.
+  # Значение хуже порога yellow -> КРАСНЫЙ -> mart не обновляется, код возврата 2.
+  metrics:
+    required_completeness_pct: {green: 99.5, yellow: 98,   direction: higher}
+    reject_share_pct:          {green: 2,    yellow: 5,    direction: lower}
+    key_uniqueness_pct:        {green: 100,  yellow: 99.9, direction: higher}
+    join_coverage_pct:         {green: 95,   yellow: 80,   direction: higher}
+    stars_consistency_pct:     {green: 90,   yellow: 75,   direction: higher}
+    api_freshness_p95_hours:   {green: 48,   yellow: 168,  direction: lower}
+    volume_vs_prev_pct:        {green: 90,   yellow: 70,   direction: higher}
+    python_share_pct:          {green: 85,   yellow: 70,   direction: higher}
+    clean_repos_count:         {green: 500,  yellow: 300,  direction: higher}
+  stars_tolerance_pct: 5           # допустимое расхождение звёзд HTML и API (округление «71.3k» + лаг между запросами)
+
+alerts:
+  # Пороги оповещения по отчёту о прогоне. Сработавший red -> итоговый вердикт red.
+  error_rate_pct:          {yellow: 2,    red: 10}
+  rate_limited_pct:        {yellow: 0.01, red: 5}     # любой 403/429 — уже сигнал «сбавь скорость»
+  html_cards_drop_pct:     {yellow: 10,   red: 30}    # падение числа карточек HTML к прошлому успешному прогону
+  latency_p95_ms:          {yellow: 3000, red: 10000}
+  quota_remaining_pct:     {yellow: 20,   red: 5}
+  breaker_activations:     {yellow: 1,    red: 3}
+  zero_changes_streak:     {yellow: 3,    red: 7}     # столько прогонов подряд без вставок и обновлений
+
+schedule:
+  cron: "17 3 * * *"               # ежедневно 03:17 UTC (08:17 по Перми); не на :00, чтобы не совпадать с пиком чужих задач
+  timezone: "UTC"
+  rationale: "Звёзды и активность меняются в масштабе суток; ежедневный снимок даёт ряд для динамики и укладывается в квоты с большим запасом."

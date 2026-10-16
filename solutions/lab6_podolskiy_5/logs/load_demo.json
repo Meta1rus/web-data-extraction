@@ -1,0 +1,196 @@
+{
+  "db": "demo_idempotency.db",
+  "runs": [
+    {
+      "прогон": "1. исходный",
+      "load_ts": "2026-10-15T21:13:13.785Z",
+      "repos: передано": 12,
+      "repos: вставлено": 12,
+      "repos: обновлено": 0,
+      "repos: без изменений": 0,
+      "events: передано": 3720,
+      "events: вставлено": 3720,
+      "events: обновлено": 0,
+      "events: без изменений": 0,
+      "строк repositories": 12,
+      "строк events": 3720,
+      "строк с updated_at этого прогона": 3732,
+      "новых версий в истории": 3732,
+      "строк истории всего": 3732,
+      "rejects добавлено": 140
+    },
+    {
+      "прогон": "2. те же данные",
+      "load_ts": "2026-10-15T21:13:15.237Z",
+      "repos: передано": 12,
+      "repos: вставлено": 0,
+      "repos: обновлено": 0,
+      "repos: без изменений": 12,
+      "events: передано": 3720,
+      "events: вставлено": 0,
+      "events: обновлено": 0,
+      "events: без изменений": 3720,
+      "строк repositories": 12,
+      "строк events": 3720,
+      "строк с updated_at этого прогона": 0,
+      "новых версий в истории": 0,
+      "строк истории всего": 3732,
+      "rejects добавлено": 0
+    },
+    {
+      "прогон": "3. изменены 2 записи",
+      "load_ts": "2026-10-15T21:13:16.668Z",
+      "repos: передано": 12,
+      "repos: вставлено": 0,
+      "repos: обновлено": 1,
+      "repos: без изменений": 11,
+      "events: передано": 3720,
+      "events: вставлено": 0,
+      "events: обновлено": 1,
+      "events: без изменений": 3719,
+      "строк repositories": 12,
+      "строк events": 3720,
+      "строк с updated_at этого прогона": 2,
+      "новых версий в истории": 2,
+      "строк истории всего": 3734,
+      "rejects добавлено": 0
+    }
+  ],
+  "changed_keys": {
+    "repo_key": "aio-libs/aiohttp",
+    "event_key": "aio-libs/aiohttp#10047"
+  },
+  "repo_history": [
+    {
+      "repo_key": "aio-libs/aiohttp",
+      "stars": 16574,
+      "valid_from": "2026-10-15T21:13:13.785Z",
+      "valid_to": "2026-10-15T21:13:16.668Z",
+      "is_current": 0
+    },
+    {
+      "repo_key": "aio-libs/aiohttp",
+      "stars": 16599,
+      "valid_from": "2026-10-15T21:13:16.668Z",
+      "valid_to": null,
+      "is_current": 1
+    }
+  ],
+  "event_history": [
+    {
+      "event_key": "aio-libs/aiohttp#10047",
+      "state": "open",
+      "closed_at": null,
+      "comments": 10,
+      "valid_from": "2026-10-15T21:13:13.785Z",
+      "valid_to": "2026-10-15T21:13:16.668Z",
+      "is_current": 0
+    },
+    {
+      "event_key": "aio-libs/aiohttp#10047",
+      "state": "closed",
+      "closed_at": "2026-10-15T21:13:16Z",
+      "comments": 11,
+      "valid_from": "2026-10-15T21:13:16.668Z",
+      "valid_to": null,
+      "is_current": 1
+    }
+  ],
+  "asof_between": {
+    "ts": "2026-10-15T21:13:15.237Z",
+    "repo": [
+      {
+        "repo_key": "aio-libs/aiohttp",
+        "stars": 16574,
+        "forks": 2457,
+        "open_issues_prs": 233,
+        "valid_from": "2026-10-15T21:13:13.785Z",
+        "valid_to": "2026-10-15T21:13:16.668Z"
+      }
+    ],
+    "event": [
+      {
+        "event_key": "aio-libs/aiohttp#10047",
+        "state": "open",
+        "closed_at": null,
+        "comments": 10,
+        "valid_from": "2026-10-15T21:13:13.785Z",
+        "valid_to": "2026-10-15T21:13:16.668Z"
+      }
+    ]
+  },
+  "asof_now": {
+    "ts": "2026-10-15T21:13:16.889Z",
+    "repo": [
+      {
+        "repo_key": "aio-libs/aiohttp",
+        "stars": 16599,
+        "forks": 2457,
+        "open_issues_prs": 233,
+        "valid_from": "2026-10-15T21:13:16.668Z",
+        "valid_to": null
+      }
+    ],
+    "event": [
+      {
+        "event_key": "aio-libs/aiohttp#10047",
+        "state": "closed",
+        "closed_at": "2026-10-15T21:13:16Z",
+        "comments": 11,
+        "valid_from": "2026-10-15T21:13:16.668Z",
+        "valid_to": null
+      }
+    ]
+  },
+  "asof_full_between_rows": 12,
+  "constraints": [
+    {
+      "проверка": "CHECK: отрицательное число звёзд",
+      "таблица": "repositories",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "CHECK constraint failed: stars >= 0"
+    },
+    {
+      "проверка": "CHECK: наивная дата без Z",
+      "таблица": "repositories",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "CHECK constraint failed: created_at IS strftime('%Y-%m-%dT%H:%M:%SZ', created_at)"
+    },
+    {
+      "проверка": "PRIMARY KEY: повтор repo_key",
+      "таблица": "repositories",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "UNIQUE constraint failed: repositories.repo_key"
+    },
+    {
+      "проверка": "UNIQUE: чужой github_id у нового ключа",
+      "таблица": "repositories",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "UNIQUE constraint failed: repositories.github_id"
+    },
+    {
+      "проверка": "CHECK: state=closed без closed_at",
+      "таблица": "events",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "CHECK constraint failed: event_type = 'release' OR (state = 'closed') = (closed_at IS NOT NULL)"
+    },
+    {
+      "проверка": "CHECK: цвет метки не hex",
+      "таблица": "events",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "CHECK constraint failed: label_color IS NULL OR (length(label_color) = 6 AND label_color NOT GLOB '*[^0-9a-f]*"
+    },
+    {
+      "проверка": "FOREIGN KEY: событие несуществующего репозитория",
+      "таблица": "events",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "FOREIGN KEY constraint failed"
+    },
+    {
+      "проверка": "CHECK: event_key не соответствует repo_key#number",
+      "таблица": "events",
+      "результат": "отклонено базой",
+      "ошибка СУБД": "CHECK constraint failed: event_key = repo_key || CASE WHEN event_type = 'release' THEN '@' || tag ELSE '#' || "
+    }
+  ]
+}

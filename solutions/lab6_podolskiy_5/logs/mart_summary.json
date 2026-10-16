@@ -1,0 +1,19 @@
+{
+  "views": {
+    "repo_activity": 12,
+    "weekly_activity": 682,
+    "top_repos": 12
+  },
+  "snapshot_dt": "2026-10-15",
+  "snapshot_rows": 12,
+  "partitions": [
+    "dt=2026-10-15"
+  ],
+  "read_one_partition_rows": 12,
+  "charts": [
+    "weekly_activity.png",
+    "time_to_close.png",
+    "events_by_repo.png"
+  ],
+  "verdict": "ПРИГОДЕН С ЗАМЕЧАНИЯМИ"
+}

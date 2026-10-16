@@ -1,0 +1,9 @@
+{
+  "_comment": "Скопируйте в n8n_metrics.json и впишите ИЗМЕРЕННЫЕ значения (null = не измерено)",
+  "n8n_dev_minutes": null,
+  "scrapy_dev_minutes": null,
+  "run_seconds": null,
+  "http_requests": null,
+  "scrapy_support_1_5": null,
+  "n8n_support_1_5": null
+}
