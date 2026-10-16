@@ -1,0 +1,82 @@
+{
+  "run_id": "mock_hist_2_20261016T122944Z",
+  "requests": 35,
+  "status_counts": {
+    "200": 35
+  },
+  "error_rate": 0.0,
+  "share_429_403": 0.0,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 19.8,
+  "latency_p95_ms": 24.9,
+  "traffic_bytes": 220852,
+  "traffic_kb": 215.7,
+  "avg_response_bytes": 6310.1,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 35,
+  "limiter_wait_median_ms": 1791.8,
+  "autothrottle_delay_ms": {
+    "min": 16.2,
+    "max": 260.4,
+    "last": 23.4
+  },
+  "items_scraped": 30,
+  "items_dropped": 2,
+  "duration_s": 8.99,
+  "label": "mock_hist_2",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "http://127.0.0.1:18507/ecommerce/",
+  "pages": 2,
+  "profile": "mock-history",
+  "deferred_urls": 0,
+  "breakers": {
+    "127.0.0.1:18507": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/ecommerce/": true,
+        "http://127.0.0.1:18507/ecommerce/page/2/": true,
+        "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_hist_2_20261016T122944Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 35,
+    "downloader/response_bytes": 228937,
+    "item_dropped_count": 2
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 1,
+    "checks": []
+  },
+  "alerts": [],
+  "status": "зелёный"
+}

@@ -1,0 +1,14 @@
+== ЛР3, вариант 5: реальный прогон, 2026-10-16T12:02:12Z UTC ==
+Python: Python 3.13.7, окружение: .venv
+Demo-ключ не задан — keyless-режим; ожидаемое время исполнения блокнота — около 10 минут
+[NbConvertApp] Converting notebook lab3.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] Writing 318630 bytes to lab3.ipynb
+Блокнот исполнен за 1094 с; выводы сохранены в lab3.ipynb
+data_clean.csv:     401 строк, снимки: ['2026-10-16']
+data_raw.jsonl:     850 строк
+collection_log.csv: 66 строк
+{'run_id': 'run_20261016T120406237Z', 'duration_s': 844.8, 'http_attempts': 56, 'pages': 4, 'unique_records': 399, 'new_records': 399, 'enriched': 50, 'retries': 2, 'status_429': 2, 'status_5xx': 0, 'status_304': 0}
+{'run_id': 'run_20261016T121811006Z', 'duration_s': 59.0, 'http_attempts': 4, 'pages': 4, 'unique_records': 400, 'new_records': 2, 'enriched': 0, 'retries': 0, 'status_429': 0, 'status_5xx': 0, 'status_304': 0}
+Лог прогона: logs/real_run_20261016_170212.log
+Дальше: часть n8n — nocode/INSTRUCTIONS.md; числа для report.md печатает последняя ячейка блокнота (этап 12).

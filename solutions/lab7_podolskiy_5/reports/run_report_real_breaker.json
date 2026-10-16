@@ -1,0 +1,111 @@
+{
+  "run_id": "real_breaker_20261016T122315Z",
+  "requests": 69,
+  "status_counts": {
+    "200": 65,
+    "503": 4
+  },
+  "error_rate": 0.058,
+  "share_429_403": 0.0,
+  "retries": 4,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 4
+  },
+  "giveups": 0,
+  "latency_median_ms": 620.3,
+  "latency_p95_ms": 894.6,
+  "traffic_bytes": 2217800,
+  "traffic_kb": 2165.8,
+  "avg_response_bytes": 32142.0,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 1,
+  "breaker_rejected": 14,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 69,
+  "limiter_wait_median_ms": 1290.4,
+  "autothrottle_delay_ms": {
+    "min": 228.2,
+    "max": 1418.2,
+    "last": 232.6
+  },
+  "items_scraped": 32,
+  "items_dropped": 0,
+  "duration_s": 76.79,
+  "label": "real_breaker",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "https://scrapeme.live/shop/",
+  "pages": 2,
+  "profile": "scrapeme.live|pages=2|mode=B|cond=False|gzip=False|incr=False",
+  "deferred_urls": 3,
+  "breakers": {
+    "scrapeme.live": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    },
+    "httpbin.org": {
+      "state": "closed",
+      "activations": 1,
+      "rejected": 14
+    }
+  },
+  "robots": [
+    {
+      "origin": "https://scrapeme.live",
+      "status": 200,
+      "crawl_delay": null,
+      "request_rate": null,
+      "sitemaps": [
+        "https://scrapeme.live/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "https://scrapeme.live/shop/": true,
+        "https://scrapeme.live/shop/page/2/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    },
+    {
+      "origin": "https://httpbin.org",
+      "status": 200,
+      "crawl_delay": null,
+      "request_rate": null,
+      "sitemaps": [],
+      "can_fetch": {
+        "https://httpbin.org/status/200": true,
+        "https://httpbin.org/status/503": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_real_breaker_20261016T122315Z.jsonl",
+  "local_mock": false,
+  "scrapy_stats": {
+    "downloader/request_count": 69,
+    "downloader/response_bytes": 2243289
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "error_rate > 0.05",
+      "значение": 0.058,
+      "уровень": "красный",
+      "обоснование": "больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0"
+    },
+    {
+      "порог": "breaker_activations > 0",
+      "значение": 1,
+      "уровень": "жёлтый",
+      "обоснование": "срабатывание предохранителя — домен был недоступен, часть URL отложена"
+    }
+  ],
+  "status": "красный"
+}

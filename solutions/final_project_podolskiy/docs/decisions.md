@@ -41,9 +41,9 @@ push и доля активных, размер — `size`) и требует о
 
 | Шаг | Что проверяется | Результат |
 |---|---|---|
-| 1. Ответ сервера `requests` | код, размер страницы | 200, 642 581 байт (`/topics/web-scraping?l=python`) |
+| 1. Ответ сервера `requests` | код, размер страницы | 200, 642 474 байт (16.10.2026; 15.10.2026 — 642 581) (`/topics/web-scraping?l=python`) |
 | 2. Поиск текста в исходном HTML | имя первого репозитория (`needle_in_html`), число карточек, найденных BeautifulSoup | BeautifulSoup нашёл 20 карточек из 20 (стратегия `article-cards`); имя первого репозитория `browser-use/browser-use` есть в исходном HTML |
-| 3. Network → XHR | «Load more…» — `GET /topics/<t>?l=python&page=2` возвращает HTML с карточками (`load_more_target`) | форма «Load more…» ведёт на `https://github.com/topics/web-scraping?l=python` с `page=N+1` — обычный HTML, тот же парсер; скриншоты `docs/screenshot_view_source.png`, `docs/screenshot_network.png` — ⟪СДЕЛАТЬ в браузере⟫ |
+| 3. Network → XHR | «Load more…» — `GET /topics/<t>?l=python&page=2` возвращает HTML с карточками (`load_more_target`) | форма «Load more…» ведёт на `https://github.com/topics/web-scraping?l=python` с `page=N+1` — обычный HTML, тот же парсер; `docs/screenshot_view_source.png` — фрагмент исходного HTML сохранённой страницы (имя первого репозитория, звёзды в `aria-label`, 20 карточек, форма «Load more…» с `page=2`); `docs/screenshot_network.png` — запрос после нажатия «Load more…» в браузере: GET `/topics/web-scraping?l=python&page=2` → 200, HTML (перехват Claude in Chrome, 16.10.2026) |
 | 4. Вывод | браузер нужен, только если данных нет ни в HTML, ни в API | **достаточно HTTP** (requests + BeautifulSoup), Playwright не нужен |
 
 Заранее, чтением реальной страницы `github.com/topics/web-scraping?l=python` (15.10.2026), подтверждено содержание:
@@ -241,7 +241,18 @@ n8n оркестрирует прогон: Schedule Trigger → Set (парам�
 (разбор `RUN_SUMMARY` и кода возврата) → IF (вердикт ≠ green или код ≠ 0) → оповещение: JSON-файл + Telegram
 (включается при наличии бота) → Stop and Error при красном статусе; отдельная ветка Error Trigger на сбой самого
 workflow. Таблица «этап → код / no-code → что не удалось перенести» — `nocode/notes.md`; импорт и скриншоты —
-`nocode/INSTRUCTIONS.md`. Скриншоты: ⟪СДЕЛАТЬ после запуска n8n⟫.
+`nocode/INSTRUCTIONS.md`. Скриншоты — `nocode/screenshots/`.
+
+**Запуски из n8n 16.10.2026** (n8n 2.35.7 на Node.js 24.22.0, Mac автора):
+
+| Запуск n8n | Пайплайн | Что произошло | Путь в n8n |
+|---|---|---|---|
+| № 33, ручной, 37,0 с | `20261016T133543Z`, `--topics web-scraping --max-pages 1`, 11,4 с, 3 HTTP-запроса (robots.txt, 1 страница темы, 1 запрос к API) | вердикт **yellow**: p95 латентности 4,3 с при пороге 3 с (медленная сеть автора); в БД обновлено 213 репозиториев, код 0 | «Нужно оповещение?» → файл `nocode/alerts/alert_20261016_133554.json` → «Красный статус?» = нет → выполнение успешно |
+| № 34, ручной, 34,5 с | `20261016T133746Z`, сценарий «Отказ источника» (`GITHUB_API_BASE=https://api.github.invalid`), 33,7 с, 7 запросов | вердикт **red**, код 3: 5 сетевых ошибок к API (71,4 %), предохранитель разомкнулся; HTML-часть собрана (20 карточек) — отказ API изолирован | оповещение → файл `nocode/alerts/alert_20261016_133820.json` → **Stop and Error**, выполнение помечено ошибкой |
+
+После демонстрации параметры `args` и `env_prefix` возвращены к пустым значениям. Workflow не публиковался, поэтому
+расписание показано настроенным узлом, а ветка Error Trigger (срабатывает только у опубликованного workflow) не
+запускалась.
 
 ## 10. Правомерность
 

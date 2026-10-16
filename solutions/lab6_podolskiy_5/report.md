@@ -382,12 +382,14 @@ UPSERT: `INSERT … ON CONFLICT(key) DO UPDATE SET … WHERE <таблица>.ro
 
 Workflow `nocode/workflow.json` для n8n устроен так:
 1. Schedule Trigger (ежедневно в 06:47) или ручной запуск.
-2. HTTP Request: GitHub API, 100 последних обновлённых issues/PR `scrapy/scrapy`, retry 3×; ветка ошибки ведёт в Stop and Error.
+2. HTTP Request: GitHub API, 100 последних обновлённых issues/PR `scrapy/scrapy`, Retry On Fail 5 × 5 с; ветка ошибки ведёт в Stop and Error.
 3. Code «Демо»: +3 помеченные битые записи и 1 полный дубль.
 4. Set: нормализация 14 полей — NFKC и zero-width, регистр, даты в UTC, URL без параметров, `event_key`.
 5. Remove Duplicates по `event_key`.
 6. IF: 4 условия валидности. Ветка «да» — Postgres **Upsert** по `event_key`; ветка «нет» — Set с причиной и Postgres Upsert в `rejects_n8n`.
-7. SELECT → Convert to File (CSV) → Read/Write Files from Disk (`nocode_result.csv`). Подробности — в `nocode/INSTRUCTIONS.md`. До сдачи workflow выполнен в n8n 1.123.85 и 2.35.7 против локальной имитации API и Postgres 16 (на локальной имитации): первый прогон — 100 валидных записей и 3 отбракованные, второй — 0 изменённых строк и тот же `updated_at`. Числа реального прогона: ⟪ЗАПОЛНИТЬ после прогона в n8n: элементы на узлах, строк в nocode_result.csv⟫.
+7. SELECT → Convert to File (CSV) → Read/Write Files from Disk (`nocode_result.csv`). Подробности — в `nocode/INSTRUCTIONS.md`. До сдачи workflow проверен в n8n 1.123.85 и 2.35.7 против локальной имитации API и Postgres 16 (на локальной имитации): первый прогон — 100 валидных записей и 3 отбракованные, второй — 0 изменённых строк и тот же `updated_at`.
+
+**Реальный прогон** (16.10.2026, n8n 2.35.7 на Node.js 24.22.0, настоящий `api.github.com`, Postgres 16 в Docker): элементы на узлах — 100 → 104 (+4 синтетических) → 103 после Remove Duplicates → 100 в ветку «да» и 3 в ветку «нет»; `nocode_result.csv` — 100 строк; запуск длится 1,5 с. После первого прогона в `events_n8n` 100 строк и 100 ключей, в `events_n8n_history` — 100 версий, в `rejects_n8n` — 3 строки, по одной на причину («state=closed без closed_at», «пустой title», «comments < 0 или пусто»). Второй прогон через минуту ничего не изменил: те же 100 строк, `max(updated_at)` остался 13:28:24 UTC, история — 100 версий; узел Upsert вернул 1 пустой item вместо 100 — триггер `events_n8n_upsert_guard` отбросил все неизменённые строки. Самый первый запуск упал на Postgres с `ECONNREFUSED ::1:5432`: n8n разрешил `localhost` в IPv6-адрес, а Docker опубликовал порт на IPv4, поэтому в учётных данных указан `127.0.0.1`. Скриншоты — `nocode/screenshot_*.png`: схема, выполнение, дедупликация, ветка отбраковки, настройки Upsert, расписание и psql после второго прогона.
 
 | Этап пайплайна | Код | n8n | Что реализовать не удалось |
 |---|---|---|---|

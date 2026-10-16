@@ -4,8 +4,8 @@
 
 
 Workflow повторяет конвейер Scrapy на подмножестве: 2 страницы каталога × 16 карточек = 32 карточки
-(после проверки ≥ 30 записей). Проверен в n8n 2.43.6 (запуск через CLI на локальной имитации магазина):
-30 записей в CSV, ветка ошибки пишет журнал.
+(после проверки ≥ 30 записей). Проверен в n8n 2.43.6 (CLI, локальная имитация магазина) и запущен на реальном
+`scrapeme.live/shop` в n8n 2.35.7 (16.10.2026): 32 записи, 121,6 с, ветка ошибки пишет журнал.
 
 **Запускать только на источнике, который разрешён robots.txt.** n8n сам robots.txt не читает — это
 ответственность автора workflow. Сначала `python3 tools/robots_preflight.py --start-url <URL>`;
@@ -27,7 +27,7 @@ npx n8n                                            # UI: http://localhost:5678 (
 ## 2. Импорт
 
 UI → **Workflows → Create → ⋯ → Import from File…** → `nocode/workflow.json`.
-В узле **«Параметры»** проверьте `base_url` (по умолчанию источник варианта) и `pages = 2`.
+В узле **«Параметры»** проверьте `base_url` (по умолчанию — согласованный источник `https://scrapeme.live/shop/`) и `pages = 2`.
 
 ## 3. Устройство
 
@@ -36,11 +36,11 @@ UI → **Workflows → Create → ⋯ → Import from File…** → `nocode/work
 | Расписание: ежедневно 05:00 / Ручной запуск | Schedule Trigger (cron `0 5 * * *`) / Manual Trigger | cron / Scrapyd |
 | Параметры | Set | `start_url`, `max_pages`, `USER_AGENT` |
 | Номера страниц | Code — цикл по номерам `/page/N/` | пагинация |
-| Страница каталога | HTTP Request: batching 1 запрос / 1,5 с, таймаут 20 с, **Retry On Fail 3×3 с**, выход ошибки | Downloader + `DOWNLOAD_DELAY` + RetryMiddleware |
+| Цикл по страницам → Страница каталога → Пауза 1,5 с (каталог) | Loop Over Items (по 1) + HTTP Request (таймаут 20 с, **Retry On Fail 5×5 с**, выход ошибки) + Wait | Downloader + `DOWNLOAD_DELAY` + RetryMiddleware |
 | Ссылки на карточки | HTML Extract (`a.woocommerce-LoopProduct-link`, массив) | `parse()` |
 | По одной ссылке | Split Out | генератор запросов |
 | Убрать повторы URL | Remove Duplicates (по URL) | dupefilter |
-| Батчи по 4 карточки → Карточка товара → Поля карточки → Пауза 1 с | Loop Over Items + HTTP Request (2 параллельно, Retry On Fail) + HTML Extract + Wait | `parse_item`, `CONCURRENT_REQUESTS_PER_DOMAIN=2`, `DOWNLOAD_DELAY` |
+| Цикл по карточкам → Карточка товара → Поля карточки → Пауза 1 с | Loop Over Items (по 1) + HTTP Request (**Retry On Fail 5×5 с**) + HTML Extract + Wait | `parse_item`, `DOWNLOAD_DELAY`, RetryMiddleware |
 | Убрать дубли SKU | Remove Duplicates (по `sku`) | `DedupPipeline` |
 | Проверка и типизация | Code: валидация, цена → строка с 2 знаками, валюта, категории | `ValidationPipeline` + `CleanPipeline` |
 | В CSV → Записать nocode_result.csv | Convert to File (CSV) + Read/Write Files from Disk | `SQLitePipeline` / Feed Exports |
@@ -70,6 +70,13 @@ UI → **Workflows → Create → ⋯ → Import from File…** → `nocode/work
 | `screenshot_result_csv.png` | `nocode_result.csv`, открытый в редакторе/таблице (видно ≥ 30 строк) |
 | `screenshot_node_settings.png` | настройки узла «Карточка товара»: Retry On Fail, Max Tries, Wait Between Tries, On Error → Continue (using error output) |
 | `screenshot_error_branch.png` | (по желанию) выполнение с ошибкой: выход ошибки и строка в `n8n_errors.log` |
+
+## Результат реального запуска (16.10.2026)
+
+32 записи (все SKU совпадают с данными Scrapy), 121,6 с, 34 запроса + 6 повторов; ветка ошибки — 20,1 с,
+строка в `nocode/n8n_errors.log`. Замеры — в `nocode/n8n_metrics.json`, таблица — `nocode/comparison_table.md`.
+
+**Почему цикл «по одному».** В реальном запуске (16.10.2026) часть новых TLS-соединений с Mac автора обрывается (замер `curl`: от 0 до 4 обрывов на 6–10 рукопожатий). Scrapy держит соединения открытыми и повторяет запросы, а n8n открывает новое соединение на каждый запрос и повторяет узел (Retry On Fail) только если ошибкой стал первый item выхода (n8n-core 2.35.5, `workflow-execute.js`, `checkFailure`). Исходная версия (батч из 4 карточек, 2 параллельно) теряла бы карточки, упавшие не первыми: они уходили бы в ветку ошибки без повтора. Поэтому каталог и карточки идут через Loop Over Items по одному item, Retry On Fail — 5 × 5000 мс (максимум n8n).
 
 ## 6. Что вписать в таблицу сравнения (report.md, раздел 10)
 

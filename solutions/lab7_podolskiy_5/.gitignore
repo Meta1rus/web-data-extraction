@@ -1,0 +1,5 @@
+_old_runs/
+.venv/
+
+# Состояние JOBDIR Scrapy (очередь и отпечатки запросов) — служебное
+jobstate/

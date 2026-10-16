@@ -1,0 +1,84 @@
+{
+  "run_id": "real_resume_2_20261016T144834Z",
+  "requests": 30,
+  "status_counts": {
+    "200": 30
+  },
+  "error_rate": 0.0,
+  "share_429_403": 0.0,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 823.3,
+  "latency_p95_ms": 1036.6,
+  "traffic_bytes": 1894851,
+  "traffic_kb": 1850.4,
+  "avg_response_bytes": 63161.7,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 30,
+  "limiter_wait_median_ms": 1263.2,
+  "autothrottle_delay_ms": {
+    "min": 628.0,
+    "max": 1153.0,
+    "last": 1055.8
+  },
+  "items_scraped": 27,
+  "items_dropped": 0,
+  "duration_s": 31.03,
+  "label": "real_resume_2",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "https://scrapeme.live/shop/",
+  "pages": 2,
+  "profile": "scrapeme.live|pages=2|mode=B|cond=False|gzip=False|incr=False",
+  "deferred_urls": 0,
+  "breakers": {
+    "scrapeme.live": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "https://scrapeme.live",
+      "status": 200,
+      "crawl_delay": null,
+      "request_rate": null,
+      "sitemaps": [
+        "https://scrapeme.live/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "https://scrapeme.live/shop/": true,
+        "https://scrapeme.live/shop/page/2/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_real_resume_2_20261016T144834Z.jsonl",
+  "local_mock": false,
+  "scrapy_stats": {
+    "downloader/request_count": 30,
+    "downloader/response_bytes": 1910407,
+    "dupefilter/filtered": 17,
+    "scheduler/enqueued/disk": 46,
+    "scheduler/dequeued/disk": 46,
+    "lab7/deferred_resumed": 12
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [],
+  "status": "зелёный"
+}

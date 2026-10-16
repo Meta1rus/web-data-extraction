@@ -1,0 +1,85 @@
+{
+  "run_id": "mock_A_20261016T122543Z",
+  "requests": 18,
+  "status_counts": {
+    "200": 6,
+    "429": 12
+  },
+  "error_rate": 0.6667,
+  "share_429_403": 0.6667,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 45.6,
+  "latency_p95_ms": 82.7,
+  "traffic_bytes": 43573,
+  "traffic_kb": 42.6,
+  "avg_response_bytes": 2420.7,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 0,
+  "limiter_wait_median_ms": 0,
+  "autothrottle_delay_ms": null,
+  "items_scraped": 4,
+  "items_dropped": 0,
+  "duration_s": 0.14,
+  "label": "mock_A",
+  "mode": "A",
+  "close_reason": "finished",
+  "start_url": "http://127.0.0.1:18507/ecommerce/",
+  "pages": 1,
+  "profile": "127.0.0.1:18507|pages=1|mode=A|cond=False|gzip=False|incr=False",
+  "deferred_urls": 0,
+  "breakers": {},
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/ecommerce/": true,
+        "http://127.0.0.1:18507/ecommerce/page/2/": true,
+        "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_A_20261016T122543Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 18,
+    "downloader/response_bytes": 47024
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "error_rate > 0.05",
+      "значение": 0.6667,
+      "уровень": "красный",
+      "обоснование": "больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0"
+    },
+    {
+      "порог": "share_429_403 > 0.01",
+      "значение": 0.6667,
+      "уровень": "жёлтый",
+      "обоснование": "429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает"
+    }
+  ],
+  "status": "красный"
+}

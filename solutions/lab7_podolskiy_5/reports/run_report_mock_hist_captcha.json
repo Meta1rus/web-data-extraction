@@ -1,0 +1,112 @@
+{
+  "run_id": "mock_hist_captcha_20261016T123002Z",
+  "requests": 19,
+  "status_counts": {
+    "200": 19
+  },
+  "error_rate": 0.0,
+  "share_429_403": 0.0,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 20.0,
+  "latency_p95_ms": 24.1,
+  "traffic_bytes": 110536,
+  "traffic_kb": 107.9,
+  "avg_response_bytes": 5817.7,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 1,
+  "incidents_block": 1,
+  "blocked_domains": [
+    "127.0.0.1:18507"
+  ],
+  "limiter_waits": 19,
+  "limiter_wait_median_ms": 1911.1,
+  "autothrottle_delay_ms": {
+    "min": 18.0,
+    "max": 259.4,
+    "last": 22.2
+  },
+  "items_scraped": 15,
+  "items_dropped": 1,
+  "duration_s": 5.31,
+  "label": "mock_hist_captcha",
+  "mode": "B",
+  "close_reason": "blocked",
+  "start_url": "http://127.0.0.1:18507/ecommerce/",
+  "pages": 2,
+  "profile": "mock-history",
+  "deferred_urls": 0,
+  "breakers": {
+    "127.0.0.1:18507": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/ecommerce/": true,
+        "http://127.0.0.1:18507/ecommerce/page/2/": true,
+        "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_hist_captcha_20261016T123002Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 19,
+    "downloader/response_bytes": 114819,
+    "item_dropped_count": 1
+  },
+  "history": {
+    "status": "красный",
+    "previous_runs": 3,
+    "median_items": 30,
+    "median_avg_bytes": 6310.1,
+    "checks": [
+      {
+        "проверка": "записей к медиане",
+        "значение": 0.5,
+        "порог": "≥ 80%",
+        "статус": "красный"
+      },
+      {
+        "проверка": "средний размер ответа к медиане",
+        "значение": 0.922,
+        "порог": "≥ 70%",
+        "статус": "ок"
+      }
+    ]
+  },
+  "alerts": [
+    {
+      "порог": "incidents_block > 0",
+      "значение": 1,
+      "уровень": "красный",
+      "обоснование": "детектор нашёл заглушку/блокировку — сбор домена остановлен, нужен разбор"
+    },
+    {
+      "порог": "items_vs_median < 0.8",
+      "значение": 0.5,
+      "уровень": "красный",
+      "обоснование": "записей меньше 80 % медианы прошлых прогонов — поломка селекторов или тихая блокировка"
+    }
+  ],
+  "status": "красный"
+}

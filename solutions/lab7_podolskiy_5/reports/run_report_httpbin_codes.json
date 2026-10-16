@@ -1,0 +1,108 @@
+{
+  "run_id": "httpbin_codes_20261016T122445Z",
+  "requests": 12,
+  "status_counts": {
+    "200": 5,
+    "401": 1,
+    "403": 1,
+    "404": 1,
+    "429": 4
+  },
+  "error_rate": 0.5833,
+  "share_429_403": 0.4167,
+  "retries": 3,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 3
+  },
+  "giveups": 1,
+  "latency_median_ms": 229.4,
+  "latency_p95_ms": 659.5,
+  "traffic_bytes": 1043,
+  "traffic_kb": 1.0,
+  "avg_response_bytes": 86.9,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 1,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 12,
+  "limiter_wait_median_ms": 1149.8,
+  "autothrottle_delay_ms": {
+    "min": 294.6,
+    "max": 777.6,
+    "last": 562.8
+  },
+  "items_scraped": 0,
+  "items_dropped": 0,
+  "duration_s": 14.73,
+  "label": "httpbin_codes",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "https://www.scrapingcourse.com/ecommerce/",
+  "pages": 1,
+  "profile": "www.scrapingcourse.com|pages=1|mode=B|cond=True|gzip=True|incr=False",
+  "deferred_urls": 1,
+  "breakers": {
+    "httpbin.org": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "https://httpbin.org",
+      "status": 200,
+      "crawl_delay": null,
+      "request_rate": null,
+      "sitemaps": [],
+      "can_fetch": {
+        "https://httpbin.org/status/429": true,
+        "https://httpbin.org/status/401": true,
+        "https://httpbin.org/status/403": true,
+        "https://httpbin.org/status/404": true,
+        "https://httpbin.org/etag/lab7-v1": true,
+        "https://httpbin.org/gzip": true,
+        "https://httpbin.org/response-headers?Retry-After=3": true,
+        "https://httpbin.org/response-headers?Retry-After=Fri%2C%2016%20Oct%202026%2012%3A25%3A15%20GMT": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_httpbin_codes_20261016T122445Z.jsonl",
+  "local_mock": false,
+  "scrapy_stats": {
+    "downloader/request_count": 12,
+    "downloader/response_bytes": 3668,
+    "httpcompression/response_bytes": 455
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "error_rate > 0.05",
+      "значение": 0.5833,
+      "уровень": "красный",
+      "обоснование": "больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0"
+    },
+    {
+      "порог": "share_429_403 > 0.01",
+      "значение": 0.4167,
+      "уровень": "жёлтый",
+      "обоснование": "429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает"
+    },
+    {
+      "порог": "retries_per_request > 0.1",
+      "значение": 0.25,
+      "уровень": "жёлтый",
+      "обоснование": "больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость"
+    }
+  ],
+  "status": "красный"
+}

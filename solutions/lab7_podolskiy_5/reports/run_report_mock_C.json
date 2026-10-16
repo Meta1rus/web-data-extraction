@@ -1,0 +1,85 @@
+{
+  "run_id": "mock_C_20261016T122555Z",
+  "requests": 2,
+  "status_counts": {
+    "200": 1,
+    "304": 1
+  },
+  "error_rate": 0.0,
+  "share_429_403": 0.0,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 22.2,
+  "latency_p95_ms": 25.3,
+  "traffic_bytes": 147,
+  "traffic_kb": 0.1,
+  "avg_response_bytes": 73.5,
+  "not_modified_304": 1,
+  "incremental_skipped": 16,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 2,
+  "limiter_wait_median_ms": 199.3,
+  "autothrottle_delay_ms": {
+    "min": 259.4,
+    "max": 259.4,
+    "last": 259.4
+  },
+  "items_scraped": 0,
+  "items_dropped": 0,
+  "duration_s": 0.47,
+  "label": "mock_C",
+  "mode": "C",
+  "close_reason": "finished",
+  "start_url": "http://127.0.0.1:18507/ecommerce/",
+  "pages": 1,
+  "profile": "127.0.0.1:18507|pages=1|mode=C|cond=True|gzip=True|incr=True",
+  "deferred_urls": 0,
+  "breakers": {
+    "127.0.0.1:18507": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/ecommerce/": true,
+        "http://127.0.0.1:18507/ecommerce/page/2/": true,
+        "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_C_20261016T122555Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 2,
+    "downloader/response_bytes": 555,
+    "httpcompression/response_bytes": 196,
+    "lab7/incremental_skipped": 16,
+    "lab7/not_modified": 1
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [],
+  "status": "зелёный"
+}

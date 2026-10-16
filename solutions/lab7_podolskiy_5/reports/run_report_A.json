@@ -1,0 +1,84 @@
+{
+  "run_id": "A_20261016T122032Z",
+  "requests": 18,
+  "status_counts": {
+    "200": 17,
+    "exception:DownloadFailedError": 1
+  },
+  "error_rate": 0.0556,
+  "share_429_403": 0.0,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 2546.9,
+  "latency_p95_ms": 6284.5,
+  "traffic_bytes": 1044396,
+  "traffic_kb": 1019.9,
+  "avg_response_bytes": 61435.1,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 0,
+  "limiter_wait_median_ms": 0,
+  "autothrottle_delay_ms": null,
+  "items_scraped": 15,
+  "items_dropped": 0,
+  "duration_s": 8.8,
+  "label": "A",
+  "mode": "A",
+  "close_reason": "finished",
+  "start_url": "https://scrapeme.live/shop/",
+  "pages": 1,
+  "profile": "scrapeme.live|pages=1|mode=A|cond=False|gzip=False|incr=False",
+  "deferred_urls": 0,
+  "breakers": {},
+  "robots": [
+    {
+      "origin": "https://scrapeme.live",
+      "status": 200,
+      "crawl_delay": null,
+      "request_rate": null,
+      "sitemaps": [
+        "https://scrapeme.live/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "https://scrapeme.live/shop/": true,
+        "https://scrapeme.live/shop/page/2/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_A_20261016T122032Z.jsonl",
+  "local_mock": false,
+  "scrapy_stats": {
+    "downloader/request_count": 18,
+    "downloader/response_bytes": 1053172
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "error_rate > 0.05",
+      "значение": 0.0556,
+      "уровень": "красный",
+      "обоснование": "больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0"
+    },
+    {
+      "порог": "latency_p95_ms > 3000",
+      "значение": 6284.5,
+      "уровень": "жёлтый",
+      "обоснование": "p95 > 3 с — сервер перегружен (в том числе нами): лимит надо снизить"
+    }
+  ],
+  "status": "красный"
+}

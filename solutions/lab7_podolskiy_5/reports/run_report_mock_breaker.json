@@ -1,0 +1,108 @@
+{
+  "run_id": "mock_breaker_20261016T122752Z",
+  "requests": 102,
+  "status_counts": {
+    "200": 98,
+    "503": 4
+  },
+  "error_rate": 0.0392,
+  "share_429_403": 0.0,
+  "retries": 4,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 4
+  },
+  "giveups": 0,
+  "latency_median_ms": 19.1,
+  "latency_p95_ms": 25.0,
+  "traffic_bytes": 332509,
+  "traffic_kb": 324.7,
+  "avg_response_bytes": 3259.9,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 1,
+  "breaker_rejected": 51,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 102,
+  "limiter_wait_median_ms": 2457.4,
+  "autothrottle_delay_ms": {
+    "min": 15.5,
+    "max": 260.1,
+    "last": 22.2
+  },
+  "items_scraped": 46,
+  "items_dropped": 2,
+  "duration_s": 101.36,
+  "label": "mock_breaker",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "http://127.0.0.1:18507/ecommerce/",
+  "pages": 3,
+  "profile": "127.0.0.1:18507|pages=3|mode=B|cond=False|gzip=False|incr=False",
+  "deferred_urls": 3,
+  "breakers": {
+    "127.0.0.1:18507": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    },
+    "localhost:18508": {
+      "state": "closed",
+      "activations": 1,
+      "rejected": 51
+    }
+  },
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/ecommerce/": true,
+        "http://127.0.0.1:18507/ecommerce/page/2/": true,
+        "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    },
+    {
+      "origin": "http://localhost:18508",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://localhost:18508/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://localhost:18508/status/200": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_breaker_20261016T122752Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 102,
+    "downloader/response_bytes": 351946,
+    "item_dropped_count": 2
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "breaker_activations > 0",
+      "значение": 1,
+      "уровень": "жёлтый",
+      "обоснование": "срабатывание предохранителя — домен был недоступен, часть URL отложена"
+    }
+  ],
+  "status": "жёлтый"
+}

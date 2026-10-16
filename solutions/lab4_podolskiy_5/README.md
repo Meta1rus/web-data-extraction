@@ -51,7 +51,7 @@ lab4_podolskiy_5/
 ├── tests/
 │   ├── mock_site.py       # локальная имитация quotes.toscrape.com (только для проверки)
 │   └── run_mock_e2e.sh    # сквозная проверка всех шагов на имитации
-├── report.md              # отчёт (маркеры ⟪ЗАПОЛНИТЬ⟫ — после прогона)
+├── report.md              # отчёт (⟪ЗАПОЛНИТЬ⟫ осталось только у времени разработки)
 ├── requirements.txt
 └── .env.example
 ```
@@ -164,7 +164,7 @@ bash tests/run_mock_e2e.sh /tmp/lab4_mock     # сервер-имитация н
 | Требование задания | Как реализовано |
 |---|---|
 | 4.1 протокол диагностики | `diagnose.py` → `metrics/diagnostics.json`, таблица — report.md §2 и блокнот §1 |
-| ≥ 200 записей | итоговый набор «цитата × тег»; проверка `--min-records 200` (код 3) — ⟪ЗАПОЛНИТЬ после прогона: число записей⟫ |
+| ≥ 200 записей | итоговый набор «цитата × тег»; проверка `--min-records 200` (код 3) — в прогоне 16.10.2026 собрано 232 записи, проверка пройдена |
 | ≥ 5 циклов взаимодействия | 9 кликов «Next» в ленте + страницы всех тегов; каждая итерация — строка в `collection_log.csv` |
 | browser → context → page, закрытие | `collect.py`: `with sync_playwright()` + `try/finally` для `browser.close()` и `ctx.close()` |
 | user_agent, viewport, locale, таймауты | `new_context(...)`: UA курса, 1280×900, `en-US`, `set_default_timeout(15 с)`, `set_default_navigation_timeout(30 с)` |

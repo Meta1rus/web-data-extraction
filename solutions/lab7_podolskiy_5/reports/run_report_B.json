@@ -1,0 +1,80 @@
+{
+  "run_id": "B_20261016T122052Z",
+  "requests": 18,
+  "status_counts": {
+    "200": 18
+  },
+  "error_rate": 0.0,
+  "share_429_403": 0.0,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 800.6,
+  "latency_p95_ms": 1384.4,
+  "traffic_bytes": 1108926,
+  "traffic_kb": 1082.9,
+  "avg_response_bytes": 61607.0,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 18,
+  "limiter_wait_median_ms": 2572.9,
+  "autothrottle_delay_ms": {
+    "min": 703.1,
+    "max": 1429.3,
+    "last": 703.1
+  },
+  "items_scraped": 16,
+  "items_dropped": 0,
+  "duration_s": 23.41,
+  "label": "B",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "https://scrapeme.live/shop/",
+  "pages": 1,
+  "profile": "scrapeme.live|pages=1|mode=B|cond=False|gzip=False|incr=False",
+  "deferred_urls": 0,
+  "breakers": {
+    "scrapeme.live": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "https://scrapeme.live",
+      "status": 200,
+      "crawl_delay": null,
+      "request_rate": null,
+      "sitemaps": [
+        "https://scrapeme.live/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "https://scrapeme.live/shop/": true,
+        "https://scrapeme.live/shop/page/2/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_B_20261016T122052Z.jsonl",
+  "local_mock": false,
+  "scrapy_stats": {
+    "downloader/request_count": 18,
+    "downloader/response_bytes": 1118236
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [],
+  "status": "зелёный"
+}

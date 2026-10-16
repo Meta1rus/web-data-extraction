@@ -1,0 +1,81 @@
+{
+  "run_id": "mock_probe_etag_repeat_20261016T123138Z",
+  "requests": 2,
+  "status_counts": {
+    "200": 1,
+    "304": 1
+  },
+  "error_rate": 0.0,
+  "share_429_403": 0.0,
+  "retries": 0,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 0
+  },
+  "giveups": 0,
+  "latency_median_ms": 20.4,
+  "latency_p95_ms": 23.8,
+  "traffic_bytes": 196,
+  "traffic_kb": 0.2,
+  "avg_response_bytes": 98.0,
+  "not_modified_304": 1,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 2,
+  "limiter_wait_median_ms": 234.7,
+  "autothrottle_delay_ms": {
+    "min": 258.4,
+    "max": 258.4,
+    "last": 258.4
+  },
+  "items_scraped": 0,
+  "items_dropped": 0,
+  "duration_s": 0.52,
+  "label": "mock_probe_etag_repeat",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "https://www.scrapingcourse.com/ecommerce/",
+  "pages": 1,
+  "profile": "www.scrapingcourse.com|pages=1|mode=B|cond=True|gzip=False|incr=False",
+  "deferred_urls": 0,
+  "breakers": {
+    "127.0.0.1:18507": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/etag/lab7-v1": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_probe_etag_repeat_20261016T123138Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 2,
+    "downloader/response_bytes": 502,
+    "lab7/not_modified": 1
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [],
+  "status": "зелёный"
+}

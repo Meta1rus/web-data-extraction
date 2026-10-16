@@ -1,0 +1,420 @@
+{
+  "mock_A": {
+    "requests": 18,
+    "status_counts": {
+      "200": 6,
+      "429": 12
+    },
+    "error_rate": 0.6667,
+    "retries": 0,
+    "traffic_kb": 42.6,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 4,
+    "duration_s": 0.14,
+    "status": "красный",
+    "_exit_code": 1
+  },
+  "mock_B": {
+    "requests": 18,
+    "status_counts": {
+      "200": 18
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 107.7,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 15,
+    "duration_s": 8.08,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_C": {
+    "requests": 2,
+    "status_counts": {
+      "200": 1,
+      "304": 1
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 0.1,
+    "not_modified_304": 1,
+    "incremental_skipped": 16,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 0,
+    "duration_s": 0.47,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_S0_base": {
+    "requests": 18,
+    "status_counts": {
+      "200": 18
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 107.7,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 15,
+    "duration_s": 8.09,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_S1_cond": {
+    "requests": 18,
+    "status_counts": {
+      "200": 1,
+      "304": 17
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 0.2,
+    "not_modified_304": 17,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 0,
+    "duration_s": 8.15,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_S2_gzip": {
+    "requests": 18,
+    "status_counts": {
+      "200": 18
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 31.3,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 15,
+    "duration_s": 8.11,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_S3_incr": {
+    "requests": 2,
+    "status_counts": {
+      "200": 1,
+      "304": 1
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 0.2,
+    "not_modified_304": 1,
+    "incremental_skipped": 16,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 0,
+    "duration_s": 0.73,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_mutated_products": {
+    "changed": [
+      "emma-trek-jacket",
+      "antonia-sweatshirt",
+      "deion-gym-tee"
+    ]
+  },
+  "mock_S4_after_change": {
+    "requests": 5,
+    "status_counts": {
+      "200": 5
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 7.8,
+    "not_modified_304": 0,
+    "incremental_skipped": 13,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 3,
+    "duration_s": 1.63,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_429": {
+    "requests": 40,
+    "status_counts": {
+      "200": 35,
+      "429": 5
+    },
+    "error_rate": 0.125,
+    "retries": 5,
+    "traffic_kb": 215.8,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 30,
+    "duration_s": 16.98,
+    "status": "красный",
+    "_exit_code": 1
+  },
+  "mock_429_polite": {
+    "requests": 35,
+    "status_counts": {
+      "200": 35
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 215.7,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 30,
+    "duration_s": 16.66,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_autothrottle": {
+    "requests": 52,
+    "status_counts": {
+      "200": 52
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 324.0,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 46,
+    "duration_s": 25.56,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_resume": {
+    "local_mock": true,
+    "start_url": "http://127.0.0.1:18507/ecommerce/",
+    "pages": 3,
+    "run1": {
+      "close_reason": "shutdown",
+      "requests": 19,
+      "items": 15,
+      "scrapy_stats": {
+        "downloader/request_count": 19,
+        "downloader/response_bytes": 135693,
+        "scheduler/enqueued/disk": 35,
+        "scheduler/dequeued/disk": 18,
+        "item_dropped_count": 1
+      }
+    },
+    "jobstate_files": [
+      "jobstate/mock_resume/requests.queue/127.0.0.1-f528764d624db129b32c21fbca0cb8d6/-10 (9491 Б)",
+      "jobstate/mock_resume/requests.queue/127.0.0.1-f528764d624db129b32c21fbca0cb8d6/0 (343 Б)",
+      "jobstate/mock_resume/requests.queue/active.json (23 Б)",
+      "jobstate/mock_resume/requests.seen (748 Б)",
+      "jobstate/mock_resume/spider.state (5 Б)"
+    ],
+    "run2": {
+      "close_reason": "finished",
+      "requests": 35,
+      "items": 31,
+      "dupefilter/filtered": 17,
+      "scrapy_stats": {
+        "downloader/request_count": 35,
+        "downloader/response_bytes": 229278,
+        "dupefilter/filtered": 17,
+        "scheduler/enqueued/disk": 17,
+        "scheduler/dequeued/disk": 34,
+        "lab7/deferred_resumed": 0,
+        "item_dropped_count": 1
+      }
+    },
+    "db_rows_by_run": [
+      [
+        "mock_resume_1_20261016T122726Z",
+        15
+      ],
+      [
+        "mock_resume_2_20261016T122735Z",
+        31
+      ]
+    ]
+  },
+  "mock_breaker": {
+    "requests": 102,
+    "status_counts": {
+      "200": 98,
+      "503": 4
+    },
+    "error_rate": 0.0392,
+    "retries": 4,
+    "traffic_kb": 324.7,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 1,
+    "incidents": 0,
+    "items_scraped": 46,
+    "duration_s": 101.36,
+    "status": "жёлтый",
+    "_exit_code": 0
+  },
+  "mock_hist_1": {
+    "requests": 35,
+    "status_counts": {
+      "200": 35
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 215.7,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 30,
+    "duration_s": 8.93,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_hist_2": {
+    "requests": 35,
+    "status_counts": {
+      "200": 35
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 215.7,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 30,
+    "duration_s": 8.99,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_hist_3": {
+    "requests": 35,
+    "status_counts": {
+      "200": 35
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 215.7,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 30,
+    "duration_s": 8.89,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_hist_captcha": {
+    "requests": 19,
+    "status_counts": {
+      "200": 19
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 107.9,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 1,
+    "items_scraped": 15,
+    "duration_s": 5.31,
+    "status": "красный",
+    "_exit_code": 2
+  },
+  "mock_probe_codes": {
+    "requests": 19,
+    "status_counts": {
+      "200": 4,
+      "401": 1,
+      "403": 1,
+      "404": 1,
+      "429": 12
+    },
+    "error_rate": 0.7895,
+    "retries": 9,
+    "traffic_kb": 0.8,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 1,
+    "items_scraped": 0,
+    "duration_s": 88.67,
+    "status": "красный",
+    "_exit_code": 1
+  },
+  "mock_probe_etag_repeat": {
+    "requests": 2,
+    "status_counts": {
+      "200": 1,
+      "304": 1
+    },
+    "error_rate": 0.0,
+    "retries": 0,
+    "traffic_kb": 0.2,
+    "not_modified_304": 1,
+    "incremental_skipped": 0,
+    "breaker_activations": 0,
+    "incidents": 0,
+    "items_scraped": 0,
+    "duration_s": 0.52,
+    "status": "зелёный",
+    "_exit_code": 0
+  },
+  "mock_probe_503_timeout": {
+    "requests": 12,
+    "status_counts": {
+      "200": 2,
+      "503": 8,
+      "exception:DownloadTimeoutError": 2
+    },
+    "error_rate": 0.8333,
+    "retries": 8,
+    "traffic_kb": 0.3,
+    "not_modified_304": 0,
+    "incremental_skipped": 0,
+    "breaker_activations": 5,
+    "incidents": 0,
+    "items_scraped": 0,
+    "duration_s": 90.2,
+    "status": "красный",
+    "_exit_code": 1
+  },
+  "mock_robots_real": {
+    "requests": null,
+    "status_counts": null,
+    "error_rate": null,
+    "retries": null,
+    "traffic_kb": null,
+    "not_modified_304": null,
+    "incremental_skipped": null,
+    "breaker_activations": null,
+    "incidents": null,
+    "items_scraped": null,
+    "duration_s": null,
+    "status": null,
+    "_exit_code": 3
+  },
+  "mock_robots_404": {
+    "exit_code": 0,
+    "stdout": [
+      "robots.txt http://127.0.0.1:18507/robots.txt: HTTP 404; Crawl-delay=None; Request-rate=None; Sitemap=[]",
+      "   can_fetch http://127.0.0.1:18507/ecommerce/: True  (urllib.robotparser=True, Protego=None)",
+      "   can_fetch http://127.0.0.1:18507/ecommerce/page/2/: True  (urllib.robotparser=True, Protego=None)",
+      "   can_fetch http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/: True  (urllib.robotparser=True, Protego=None)",
+      "   HTTP 404: файла нет — явных запретов нет, но это не разрешение на любую нагрузку: действуют условия использования сайта и собственные лимиты"
+    ]
+  },
+  "_total_seconds": 446.8
+}

@@ -5,7 +5,7 @@
 
 **Сценарий (упрощённый, тот же источник):** `GET /login` → извлечь hidden `csrf_token` (узел HTML) →
 `POST /login` (form-urlencoded) с cookie сессии → проверить редирект 3xx → склеить cookie →
-лента `/page/N/` с той же cookie через встроенную пагинацию HTTP Request → разбор карточек →
+лента `/page/N/` с той же cookie — цикл по ссылке Next, один запрос за запуск узла → разбор карточек →
 нормализация → удаление дублей → smoke-check → `nocode/nocode_result.csv`.
 
 **Почему без рендеринг-API.** Диагностика (`diagnose.py`, `metrics/diagnostics.json`) показывает, что страницы
@@ -21,12 +21,12 @@
 |---|------|-----|-----------|
 | 1 | Ручной запуск / Расписание: ежедневно 07:10 | Manual Trigger, Schedule Trigger | два входа в один сценарий |
 | 2 | Config | Edit Fields (Set) | `baseUrl`, учебные `username`/`password` (любые), `userAgent`, `outputPath` |
-| 3 | GET /login | HTTP Request 4.2 | ответ «Include Response Headers and Status», формат Text; Retry On Fail: 3 попытки через 2000 мс; On Error → ветка ошибки |
+| 3 | GET /login | HTTP Request 4.2 | ответ «Include Response Headers and Status», формат Text; Retry On Fail: 5 попыток через 5000 мс; On Error → ветка ошибки |
 | 4 | HTML: csrf_token | HTML → Extract HTML Content | `form input[name="csrf_token"]` → атрибут `value` |
 | 5 | POST /login | HTTP Request 4.2 | Form URL Encoded: `csrf_token`, `username`, `password`; заголовок `Cookie` из `Set-Cookie` шага 3; **Follow Redirects = off**, Never Error = on |
 | 6 | Вход выполнен? | If | `statusCode` в диапазоне 300–399; иначе → «Вход не выполнен» (Stop and Error) |
 | 7 | Cookie сессии | Code | склейка cookie из ответов GET и POST (сервер выдаёт новую cookie после входа) |
-| 8 | GET /page/N (пагинация после входа) | HTTP Request 4.2 | Pagination: *Response Contains Next URL* (ссылка из `<li class="next">`), завершение — нет `li.next`; **Max Pages = 15**, интервал **1000 мс**; Retry 3×2000 мс; On Error → ветка ошибки |
+| 8 | Шаг ленты → GET /page/N (страница ленты) → Следующая страница? → Есть следующая страница? → Пауза 1 с (лента) | Code → HTTP Request 4.2 → Code → If → Wait | цикл по ссылке Next (`<li class="next">`): **одна страница за запуск HTTP-узла**, Retry 5×5000 мс, On Error → ветка ошибки; предохранитель — не больше 15 страниц; пауза 1 с; «Страницы ленты» (Code) разворачивает накопленный HTML в items |
 | 9 | HTML: карточки цитат | HTML | `[itemtype*="schema.org/CreativeWork"]` → HTML (массив), признак входа `a[href="/logout"]` |
 | 10 | Split Out: по цитате | Split Out | поле `quotes`, + `loggedIn` |
 | 11 | HTML: поля цитаты | HTML | `[itemprop="text"]`, `[itemprop="author"]`, `a[href*="/author/"]`, `a[href*="goodreads.com"]`, `meta[itemprop="keywords"]@content` |
@@ -82,7 +82,7 @@ n8n 2.43.6 (Node.js 24) и выполнен `n8n execute`: вход 302 → 10 �
 | Время сборки workflow, мин | собственный учёт: импорт + настройка/проверка узлов (или сборка с нуля по таблице выше) |
 | Время одного прогона, с | Executions → длительность прогона (среднее по 3 запускам) |
 | Записей | `wc -l nocode/nocode_result.csv` − 1 |
-| Число запросов | 1 (GET /login) + 1 (POST /login) + число страниц ленты (в узле 8 — число output items) |
+| Число запросов | 1 (GET /login) + 1 (POST /login) + число страниц ленты (число запусков узла «GET /page/N (страница ленты)») |
 | Запросов с JS-рендерингом | 0 (рендеринг не нужен, см. диагностику) |
 | Пиковая память | «Мониторинг системы» → процесс `node` (n8n) во время прогона |
 
@@ -91,6 +91,11 @@ n8n 2.43.6 (Node.js 24) и выполнен `n8n execute`: вход 302 → 10 �
 сайт требовал JS-рендеринга, каждая страница стала бы платным запросом к рендеринг-API
 (ScrapingBee / ScraperAPI / Browserless): стоимость = P × цена рендер-запроса по тарифу провайдера,
 то есть ≈ 30 000 рендер-запросов в месяц для того же объёма.
+
+## Результат реального запуска (16.10.2026, n8n 2.35.7)
+
+100 строк в `nocode_result.csv`, 5 успешных запусков подряд (21,7–37,9 с, медиана 25,9 с), 12 запросов + 0–2 повтора,
+совпадение с лентой браузера 100/100. **Что выяснилось при реальном запуске (16.10.2026).** На Mac автора часть новых TLS-соединений обрывается: замер `curl` — 4 из 10 рукопожатий с `quotes.toscrape.com` завершились ошибкой `rc=35` (в другие минуты 0–2 из 6–8). Python-сборщики этого почти не замечали: `requests.Session` и браузер держат одно соединение (keep-alive), а редкие обрывы закрывают повторы. n8n открывает новое соединение на каждый запрос, а Retry On Fail повторяет узел, только если ошибкой стал **первый** item выхода (n8n-core 2.35.5, `workflow-execute.js`: `checkFailure` проверяет `data[0][0].json.error`). Встроенная пагинация HTTP Request выполняет все страницы внутри одного запуска узла: обрыв на любой странице валит узел, а повтор начинает ленту заново. Первые 4 запуска исходной версии закончились ошибкой «Client network socket disconnected before secure TLS connection was established» (видны в `screenshot_execution.png`). Поэтому пагинация переделана в цикл: «Шаг ленты» → «GET /page/N (страница ленты)» — один запрос за запуск узла, Retry On Fail 5 × 5000 мс (максимум n8n) → «Следующая страница?» (ссылка Next, предохранитель 15 страниц) → IF → «Пауза 1 с (лента)» → снова «Шаг ленты»; после последней страницы «Страницы ленты» разворачивает накопленный HTML в items. После переделки — 5 успешных запусков из 5, в трёх из них сработали повторы отдельных страниц (1–2 на прогон).
 
 ## Ограничения n8n в этом сценарии
 
@@ -101,7 +106,7 @@ n8n 2.43.6 (Node.js 24) и выполнен `n8n execute`: вход 302 → 10 �
   переименованию класса пагинации — это слабее, чем `get_by_role("link", name="Next")` в Playwright.
 - Нет браузера: если вход станет JS-формой или появится капча — нужен рендеринг-API (платно) или Octoparse;
   обход капчи в рамках курса запрещён.
-- Предохранители: Max Pages = 15, интервал 1000 мс, Retry 3 × 2000 мс, ветка ошибки → Stop and Error,
+- Предохранители: не больше 15 страниц, пауза 1 с, Retry 5 × 5000 мс на каждый запрос, ветка ошибки → Stop and Error,
   Smoke-check останавливает прогон при пустых полях.
 
 ## Запасной вариант: Octoparse (если n8n недоступен)

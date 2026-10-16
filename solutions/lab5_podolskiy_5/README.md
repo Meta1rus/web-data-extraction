@@ -73,9 +73,12 @@ lab5_podolskiy_5/
 ├── nocode/
 │   ├── workflow.json               # экспорт n8n
 │   ├── INSTRUCTIONS.md             # импорт, запуск, какие скриншоты сделать
-│   ├── n8n_metrics.example.json    # куда вписать замеры n8n
-│   ├── screenshot_*.png            # ⟪ЗАПОЛНИТЬ⟫ — делает студент
-│   └── nocode_result.csv           # ⟪ЗАПОЛНИТЬ⟫ — результат выполнения workflow
+│   ├── n8n_metrics.example.json    # шаблон замеров n8n
+│   ├── n8n_metrics.json            # замеры реального запуска n8n (16.10.2026)
+│   ├── n8n_errors.log              # журнал ветки ошибок n8n
+│   ├── comparison_table.md         # таблица Scrapy vs n8n (tools/compare_table.py)
+│   ├── screenshot_*.png            # скриншоты n8n: схема, выполнение, список, настройки, ветка ошибок, CSV
+│   └── nocode_result.csv           # результат выполнения workflow (32 товара)
 ├── tools/
 │   ├── robots_preflight.py         # robots.txt: Protego (как Scrapy) + urllib.robotparser
 │   ├── demo_resume_cache.py        # п. 4.5: JOBDIR и HTTPCACHE с цифрами
@@ -222,7 +225,7 @@ START_URL=http://127.0.0.1:18515/ecommerce/ ./run_real.sh     # → запрет
 | HTTPCACHE: два прогона, `store`/`hit`, время | там же |
 | Отчёт о качестве | `quality/quality_report.ipynb` (полнота, причины отброса, коды, повторы, трафик, длительность, 3 агрегата, графики) |
 | Smoke-check | `quality/smoke_check.py`: −20 % записей / > 5 % пустых обязательных полей, код возврата 1; `--self-test` |
-| n8n-эквивалент ≥ 30 записей | `nocode/workflow.json` (2 стр. × 16): Schedule + Manual Trigger, HTTP Request (batching, Retry On Fail), HTML Extract, Split Out, Remove Duplicates ×2, Loop Over Items, Wait, Code (типизация), Convert to File → CSV, ветка ошибки с журналом и Telegram |
+| n8n-эквивалент ≥ 30 записей | `nocode/workflow.json` (2 стр. × 16): Schedule + Manual Trigger, HTTP Request (Retry On Fail 5×5 с, по одному запросу), HTML Extract, Split Out, Remove Duplicates ×2, Loop Over Items ×2, Wait, Code (типизация), Convert to File → CSV, ветка ошибки с журналом и Telegram |
 | Таблица сравнения из измерений | `tools/compare_table.py` → `nocode/comparison_table.md`; время n8n — из журнала выполнений |
 | Отчёт 3–5 стр. | `report.md` |
 
@@ -233,9 +236,9 @@ START_URL=http://127.0.0.1:18515/ecommerce/ ./run_real.sh     # → запрет
    селектор **в начало** соответствующего списка `SEL` в `spiders/ecommerce.py` (фолбэки оставить).
 3. Повторить шаг 3 `run_real.sh` (он работает с HTTP-кэшем и не нагружает сайт повторно).
 
-## Что заполнить после прогона
+## Что осталось заполнить
 
-Все места помечены `⟪ЗАПОЛНИТЬ⟫` в `report.md` и `nocode/`: цифры итогового прогона, JOBDIR/HTTPCACHE,
-отчёта о качестве, время и число записей n8n, время разработки, скриншоты n8n, `nocode/nocode_result.csv`.
+Цифры итогового прогона, JOBDIR/HTTPCACHE, отчёта о качестве и n8n уже внесены (прогоны 16.10.2026).
+Вручную остаются только помеченные `⟪ЗАПОЛНИТЬ⟫` строки `report.md`: время разработки и оценка поддержки.
 Источники цифр: `logs/real_run_*.log`, `data/stats_*.json`, `data/demo/demo_summary.md`, исполненный
 `quality/quality_report.ipynb`, `nocode/comparison_table.md`.

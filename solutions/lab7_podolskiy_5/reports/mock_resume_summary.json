@@ -1,0 +1,49 @@
+{
+  "local_mock": true,
+  "start_url": "http://127.0.0.1:18507/ecommerce/",
+  "pages": 3,
+  "run1": {
+    "close_reason": "shutdown",
+    "requests": 19,
+    "items": 15,
+    "scrapy_stats": {
+      "downloader/request_count": 19,
+      "downloader/response_bytes": 135693,
+      "scheduler/enqueued/disk": 35,
+      "scheduler/dequeued/disk": 18,
+      "item_dropped_count": 1
+    }
+  },
+  "jobstate_files": [
+    "jobstate/mock_resume/requests.queue/127.0.0.1-f528764d624db129b32c21fbca0cb8d6/-10 (9491 Б)",
+    "jobstate/mock_resume/requests.queue/127.0.0.1-f528764d624db129b32c21fbca0cb8d6/0 (343 Б)",
+    "jobstate/mock_resume/requests.queue/active.json (23 Б)",
+    "jobstate/mock_resume/requests.seen (748 Б)",
+    "jobstate/mock_resume/spider.state (5 Б)"
+  ],
+  "run2": {
+    "close_reason": "finished",
+    "requests": 35,
+    "items": 31,
+    "dupefilter/filtered": 17,
+    "scrapy_stats": {
+      "downloader/request_count": 35,
+      "downloader/response_bytes": 229278,
+      "dupefilter/filtered": 17,
+      "scheduler/enqueued/disk": 17,
+      "scheduler/dequeued/disk": 34,
+      "lab7/deferred_resumed": 0,
+      "item_dropped_count": 1
+    }
+  },
+  "db_rows_by_run": [
+    [
+      "mock_resume_1_20261016T122726Z",
+      15
+    ],
+    [
+      "mock_resume_2_20261016T122735Z",
+      31
+    ]
+  ]
+}

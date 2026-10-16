@@ -55,7 +55,8 @@ lab7_podolskiy_5/
 ├── nocode/
 │   ├── workflow.json, workflow_error_handler.json
 │   ├── INSTRUCTIONS.md, nocode_notes.md
-│   └── screenshot_*.png    # ⟪ЗАПОЛНИТЬ⟫ — делает студент
+│   ├── nocode_result.csv   # результат первого запуска n8n (32 записи)
+│   └── screenshot_*.png    # скриншоты n8n: схема, запуски, повторы, обработчик ошибок
 ├── tools/                  # mock_shop.py (имитация), run_mock_scenarios.py, resume_demo.py,
 │                           #   demo_shared_limit.py, make_comparison.py
 ├── data/crawl.db           # собранные записи (появляется после прогона)
@@ -170,8 +171,8 @@ python tools/run_mock_scenarios.py --only 429,autothrottle,resume
 | Сценарии варианта 5 | 429 — `mock_429`, `httpbin_codes`; AutoThrottle — `mock_autothrottle`, события `autothrottle` в B/C; прерывание — `tools/resume_demo.py` |
 | Без обхода защит | нет прокси, ротации UA, решения капчи; UA честный с контактом; при блокировке — остановка |
 
-## Что заполнить после прогона
+## Что было заполнено после прогона
 
-`report.md` и `nocode/nocode_notes.md` — места `⟪ЗАПОЛНИТЬ⟫`: цифры реальных прогонов A/B/C, экономии,
-возобновления, httpbin; скриншоты n8n. Источники: `reports/comparison.md`, `reports/run_report_*.json`,
+Цифры реального прогона 16.10.2026 внесены в `report.md`, `legal_checklist.md` и `nocode/nocode_notes.md`;
+скриншоты n8n лежат в `nocode/`. Источники: `reports/comparison.md`, `reports/run_report_*.json`,
 исполненный `analysis.ipynb`, `logs/real_run_*.log`.

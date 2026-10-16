@@ -1,0 +1,45 @@
+{
+  "local_mock": false,
+  "start_url": "https://scrapeme.live/shop/",
+  "pages": 2,
+  "run1": {
+    "close_reason": "shutdown",
+    "requests": 7,
+    "items": 5,
+    "scrapy_stats": {
+      "downloader/request_count": 7,
+      "downloader/response_bytes": 401712,
+      "scheduler/enqueued/disk": 18,
+      "scheduler/dequeued/disk": 18
+    }
+  },
+  "jobstate_files": [
+    "jobstate/real_resume/requests.queue/active.json (2 Б)",
+    "jobstate/real_resume/requests.seen (374 Б)",
+    "jobstate/real_resume/spider.state (5 Б)"
+  ],
+  "run2": {
+    "close_reason": "finished",
+    "requests": 30,
+    "items": 27,
+    "dupefilter/filtered": 17,
+    "scrapy_stats": {
+      "downloader/request_count": 30,
+      "downloader/response_bytes": 1910407,
+      "dupefilter/filtered": 17,
+      "scheduler/enqueued/disk": 46,
+      "scheduler/dequeued/disk": 46,
+      "lab7/deferred_resumed": 12
+    }
+  },
+  "db_rows_by_run": [
+    [
+      "real_resume_1_20261016T144823Z",
+      5
+    ],
+    [
+      "real_resume_2_20261016T144834Z",
+      27
+    ]
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "Content-Length": [
+    "0"
+  ],
+  "Date": [
+    "Fri, 16 Oct 2026 12:24:49 GMT"
+  ],
+  "Content-Type": [
+    "text/html; charset=utf-8"
+  ],
+  "Server": [
+    "gunicorn/19.9.0"
+  ],
+  "Access-Control-Allow-Origin": [
+    "*"
+  ],
+  "Access-Control-Allow-Credentials": [
+    "true"
+  ]
+}

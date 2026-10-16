@@ -1,0 +1,111 @@
+{
+  "run_id": "mock_probe_codes_20261016T123008Z",
+  "requests": 19,
+  "status_counts": {
+    "200": 4,
+    "401": 1,
+    "403": 1,
+    "404": 1,
+    "429": 12
+  },
+  "error_rate": 0.7895,
+  "share_429_403": 0.6842,
+  "retries": 9,
+  "retry_sources": {
+    "retry-after": 6,
+    "backoff": 3
+  },
+  "giveups": 3,
+  "latency_median_ms": 21.1,
+  "latency_p95_ms": 26.1,
+  "traffic_bytes": 790,
+  "traffic_kb": 0.8,
+  "avg_response_bytes": 41.6,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 1,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 19,
+  "limiter_wait_median_ms": 2064.3,
+  "autothrottle_delay_ms": {
+    "min": 52.6,
+    "max": 260.9,
+    "last": 52.6
+  },
+  "items_scraped": 0,
+  "items_dropped": 0,
+  "duration_s": 88.67,
+  "label": "mock_probe_codes",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "https://www.scrapingcourse.com/ecommerce/",
+  "pages": 1,
+  "profile": "www.scrapingcourse.com|pages=1|mode=B|cond=True|gzip=True|incr=False",
+  "deferred_urls": 3,
+  "breakers": {
+    "127.0.0.1:18507": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/status/429?retry_after=2": true,
+        "http://127.0.0.1:18507/status/429": true,
+        "http://127.0.0.1:18507/status/429?retry_after=Fri%2C%2016%20Oct%202026%2012%3A30%3A12%20GMT": true,
+        "http://127.0.0.1:18507/status/401": true,
+        "http://127.0.0.1:18507/status/403": true,
+        "http://127.0.0.1:18507/status/404": true,
+        "http://127.0.0.1:18507/etag/lab7-v1": true,
+        "http://127.0.0.1:18507/gzip": true,
+        "http://127.0.0.1:18507/response-headers?Retry-After=3": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_probe_codes_20261016T123008Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 19,
+    "downloader/response_bytes": 4745,
+    "httpcompression/response_bytes": 5424
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "error_rate > 0.05",
+      "значение": 0.7895,
+      "уровень": "красный",
+      "обоснование": "больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0"
+    },
+    {
+      "порог": "share_429_403 > 0.01",
+      "значение": 0.6842,
+      "уровень": "жёлтый",
+      "обоснование": "429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает"
+    },
+    {
+      "порог": "retries_per_request > 0.1",
+      "значение": 0.47368421052631576,
+      "уровень": "жёлтый",
+      "обоснование": "больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость"
+    }
+  ],
+  "status": "красный"
+}

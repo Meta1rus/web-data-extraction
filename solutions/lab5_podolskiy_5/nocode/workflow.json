@@ -41,7 +41,7 @@
             {
               "id": "84c7a54b-1a32-5eb8-9b1f-f92e8fd4e18c",
               "name": "base_url",
-              "value": "https://www.scrapingcourse.com/ecommerce/",
+              "value": "https://scrapeme.live/shop/",
               "type": "string"
             },
             {
@@ -96,12 +96,6 @@
           ]
         },
         "options": {
-          "batching": {
-            "batch": {
-              "batchSize": 1,
-              "batchInterval": 1500
-            }
-          },
           "response": {
             "response": {
               "responseFormat": "text",
@@ -116,14 +110,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        660,
-        100
+        1100,
+        260
       ],
       "onError": "continueErrorOutput",
       "retryOnFail": true,
-      "maxTries": 3,
-      "waitBetweenTries": 3000,
-      "notes": "По одной странице раз в 1,5 с (batching) — аналог DOWNLOAD_DELAY. Retry On Fail: 3 попытки через 3 с."
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "notes": "Одна страница каталога за запуск. Повторы: 5 попыток через 5 с (максимум n8n). Узел получает ровно 1 item за запуск — иначе n8n повторяет узел, только если упал первый item."
     },
     {
       "parameters": {
@@ -149,7 +143,7 @@
       "type": "n8n-nodes-base.html",
       "typeVersion": 1.2,
       "position": [
-        880,
+        1320,
         0
       ]
     },
@@ -163,7 +157,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1100,
+        1540,
         0
       ]
     },
@@ -179,22 +173,22 @@
       "type": "n8n-nodes-base.removeDuplicates",
       "typeVersion": 2,
       "position": [
-        1320,
+        1760,
         0
       ],
       "notes": "Аналог dupefilter: один URL запрашивается один раз."
     },
     {
       "parameters": {
-        "batchSize": 4,
+        "batchSize": 1,
         "options": {}
       },
       "id": "f0ec9740-fee6-5005-975f-f03ab3439fb9",
-      "name": "Батчи по 4 карточки",
+      "name": "Цикл по карточкам",
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1540,
+        1980,
         0
       ]
     },
@@ -211,12 +205,6 @@
           ]
         },
         "options": {
-          "batching": {
-            "batch": {
-              "batchSize": 2,
-              "batchInterval": 1000
-            }
-          },
           "response": {
             "response": {
               "responseFormat": "text",
@@ -231,14 +219,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1760,
+        2200,
         100
       ],
       "onError": "continueErrorOutput",
       "retryOnFail": true,
-      "maxTries": 3,
-      "waitBetweenTries": 3000,
-      "notes": "Не более 2 запросов одновременно (как CONCURRENT_REQUESTS_PER_DOMAIN=2)."
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "notes": "Одна карточка за запуск. Повторы: 5 попыток через 5 с (максимум n8n). Узел получает ровно 1 item за запуск — иначе n8n повторяет узел, только если упал первый item."
     },
     {
       "parameters": {
@@ -308,7 +296,7 @@
       "type": "n8n-nodes-base.html",
       "typeVersion": 1.2,
       "position": [
-        1980,
+        2420,
         0
       ]
     },
@@ -323,10 +311,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2200,
+        2640,
         100
       ],
-      "notes": "Пауза между батчами — аналог DOWNLOAD_DELAY."
+      "notes": "Пауза между карточками — аналог DOWNLOAD_DELAY."
     },
     {
       "parameters": {
@@ -342,7 +330,7 @@
             {
               "id": "ceb21073-13c4-5559-9a8e-2ae9afcb8f68",
               "name": "failed_url",
-              "value": "={{ $('Батчи по 4 карточки').item.json.links }}",
+              "value": "={{ $('Цикл по карточкам').item.json.links }}",
               "type": "string"
             },
             {
@@ -360,7 +348,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1980,
+        2420,
         300
       ]
     },
@@ -378,7 +366,7 @@
             {
               "id": "b8d7e301-95d9-5da0-beb7-af01807971dd",
               "name": "failed_url",
-              "value": "={{ $('Номера страниц').item.json.page_url }}",
+              "value": "={{ $('Цикл по страницам').item.json.page_url }}",
               "type": "string"
             },
             {
@@ -396,8 +384,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        880,
-        300
+        1320,
+        460
       ]
     },
     {
@@ -409,7 +397,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2200,
+        2640,
         420
       ]
     },
@@ -427,7 +415,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        2420,
+        2860,
         420
       ]
     },
@@ -445,7 +433,7 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        2640,
+        3080,
         420
       ]
     },
@@ -460,7 +448,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2420,
+        2860,
         600
       ],
       "disabled": true,
@@ -478,7 +466,7 @@
       "type": "n8n-nodes-base.removeDuplicates",
       "typeVersion": 2,
       "position": [
-        1760,
+        2200,
         -220
       ],
       "notes": "Дедупликация по бизнес-ключу (артикул), как DedupPipeline."
@@ -492,7 +480,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1980,
+        2420,
         -220
       ]
     },
@@ -509,7 +497,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        2200,
+        2640,
         -220
       ]
     },
@@ -525,9 +513,42 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        2420,
+        2860,
         -220
       ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "fa68b923-2bbe-5ab4-a4a9-f31535b94d4e",
+      "name": "Цикл по страницам",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        880,
+        100
+      ],
+      "notes": "По одной странице каталога за проход (аналог очереди запросов)."
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": 1.5,
+        "unit": "seconds"
+      },
+      "id": "13af68e8-1708-54dc-941c-e4320fc93637",
+      "name": "Пауза 1,5 с (каталог)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1320,
+        260
+      ],
+      "webhookId": "8b43d999-a69c-5fd1-8787-131fe6293da4",
+      "notes": "Пауза между страницами каталога — аналог DOWNLOAD_DELAY.",
+      "notesInFlow": false
     }
   ],
   "connections": {
@@ -568,7 +589,7 @@
       "main": [
         [
           {
-            "node": "Страница каталога",
+            "node": "Цикл по страницам",
             "type": "main",
             "index": 0
           }
@@ -579,7 +600,7 @@
       "main": [
         [
           {
-            "node": "Ссылки на карточки",
+            "node": "Пауза 1,5 с (каталог)",
             "type": "main",
             "index": 0
           }
@@ -619,14 +640,14 @@
       "main": [
         [
           {
-            "node": "Батчи по 4 карточки",
+            "node": "Цикл по карточкам",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Батчи по 4 карточки": {
+    "Цикл по карточкам": {
       "main": [
         [
           {
@@ -704,7 +725,7 @@
       "main": [
         [
           {
-            "node": "Батчи по 4 карточки",
+            "node": "Цикл по карточкам",
             "type": "main",
             "index": 0
           }
@@ -765,6 +786,35 @@
         [
           {
             "node": "Записать nocode_result.csv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Цикл по страницам": {
+      "main": [
+        [
+          {
+            "node": "Ссылки на карточки",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Страница каталога",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пауза 1,5 с (каталог)": {
+      "main": [
+        [
+          {
+            "node": "Цикл по страницам",
             "type": "main",
             "index": 0
           }

@@ -1,0 +1,29 @@
+[
+  {
+    "origin": "http://127.0.0.1:18507",
+    "robots_url": "http://127.0.0.1:18507/robots.txt",
+    "status": 404,
+    "found": false,
+    "lines": 0,
+    "crawl_delay": null,
+    "request_rate": null,
+    "sitemaps": [],
+    "can_fetch": {
+      "http://127.0.0.1:18507/ecommerce/": true,
+      "http://127.0.0.1:18507/ecommerce/page/2/": true,
+      "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+    },
+    "can_fetch_urllib": {
+      "http://127.0.0.1:18507/ecommerce/": true,
+      "http://127.0.0.1:18507/ecommerce/page/2/": true,
+      "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+    },
+    "can_fetch_protego": {
+      "http://127.0.0.1:18507/ecommerce/": null,
+      "http://127.0.0.1:18507/ecommerce/page/2/": null,
+      "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": null
+    },
+    "policy_note": "HTTP 404: файла нет — явных запретов нет, но это не разрешение на любую нагрузку: действуют условия использования сайта и собственные лимиты",
+    "text": ""
+  }
+]

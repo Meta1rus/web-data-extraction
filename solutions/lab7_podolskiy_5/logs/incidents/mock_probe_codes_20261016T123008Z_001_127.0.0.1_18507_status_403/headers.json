@@ -1,0 +1,17 @@
+{
+  "Content-Length": [
+    "30"
+  ],
+  "Server": [
+    "MockWooCommerce/1.0 Python/3.13.7"
+  ],
+  "Date": [
+    "Fri, 16 Oct 2026 12:30:11 GMT"
+  ],
+  "Content-Type": [
+    "text/plain"
+  ],
+  "Vary": [
+    "Accept-Encoding"
+  ]
+}

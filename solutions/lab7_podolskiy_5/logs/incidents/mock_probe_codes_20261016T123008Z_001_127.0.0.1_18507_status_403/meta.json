@@ -1,0 +1,13 @@
+{
+  "ts": "2026-10-16T12:30:11.365+00:00",
+  "run_id": "mock_probe_codes_20261016T123008Z",
+  "url": "http://127.0.0.1:18507/status/403",
+  "status": 403,
+  "bytes": 10,
+  "verdict": "подозрение",
+  "signals": [
+    "код 403"
+  ],
+  "page_kind": "probe",
+  "mode": "B"
+}

@@ -1,0 +1,518 @@
+== Лабораторная 7: старт 2026-10-16 17:20:28; источник: https://scrapeme.live/shop/; стенд кодов: https://httpbin.org
+Python 3.13.7 | Scrapy 2.19.0
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+== src.collect --robots-only --start-url https://httpbin.org/ → код возврата 0
+2026-10-16 17:20:36 [ecommerce] WARNING: Ошибка запроса [DownloadFailedError] https://scrapeme.live/shop/Charizard/: [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне A (A_20261016T122032Z)
+  mode                   A
+  requests               18
+  status_counts          {'200': 17, 'exception:DownloadFailedError': 1}
+  error_rate             0.0556
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      2546.9
+  latency_p95_ms         6284.5
+  traffic_kb             1019.9
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          15
+  items_dropped          0
+  deferred_urls          0
+  duration_s             8.8
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.0556: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] latency_p95_ms > 3000 = 6284.5: p95 > 3 с — сервер перегружен (в том числе нами): лимит надо снизить
+== src.collect --mode A --pages 1 --max-requests 30 --fresh-state --label A --start-url https://scrapeme.live/shop/ → код возврата 1
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне B (B_20261016T122052Z)
+  mode                   B
+  requests               18
+  status_counts          {'200': 18}
+  error_rate             0.0
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      800.6
+  latency_p95_ms         1384.4
+  traffic_kb             1082.9
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          16
+  items_dropped          0
+  deferred_urls          0
+  duration_s             23.41
+  status                 зелёный
+== src.collect --mode B --pages 1 --fresh-state --label B --start-url https://scrapeme.live/shop/ → код возврата 0
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне C (C_20261016T122117Z)
+  mode                   C
+  requests               2
+  status_counts          {'200': 2}
+  error_rate             0.0
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      1218.5
+  latency_p95_ms         1589.8
+  traffic_kb             13.3
+  not_modified_304       0
+  incremental_skipped    16
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          0
+  items_dropped          0
+  deferred_urls          0
+  duration_s             2.88
+  status                 зелёный
+== src.collect --mode C --pages 1 --label C --start-url https://scrapeme.live/shop/ → код возврата 0
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне S0_base (S0_base_20261016T122122Z)
+  mode                   B
+  requests               18
+  status_counts          {'200': 18}
+  error_rate             0.0
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      803.9
+  latency_p95_ms         1103.5
+  traffic_kb             1083.1
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          16
+  items_dropped          0
+  deferred_urls          0
+  duration_s             21.25
+  status                 зелёный
+== src.collect --mode B --pages 1 --fresh-state --no-history --label S0_base --start-url https://scrapeme.live/shop/ → код возврата 0
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне S1_cond (S1_cond_20261016T122145Z)
+  mode                   B
+  requests               18
+  status_counts          {'200': 18}
+  error_rate             0.0
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      834.0
+  latency_p95_ms         1185.1
+  traffic_kb             1082.9
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          16
+  items_dropped          0
+  deferred_urls          0
+  duration_s             21.03
+  status                 зелёный
+== src.collect --mode B --pages 1 --cond --no-history --label S1_cond --start-url https://scrapeme.live/shop/ → код возврата 0
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне S2_gzip (S2_gzip_20261016T122208Z)
+  mode                   B
+  requests               18
+  status_counts          {'200': 18}
+  error_rate             0.0
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      837.2
+  latency_p95_ms         1408.4
+  traffic_kb             241.6
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          16
+  items_dropped          0
+  deferred_urls          0
+  duration_s             22.8
+  status                 зелёный
+== src.collect --mode B --pages 1 --gzip --no-history --label S2_gzip --start-url https://scrapeme.live/shop/ → код возврата 0
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне S3_incr (S3_incr_20261016T122234Z)
+  mode                   B
+  requests               3
+  status_counts          {'200': 2, 'exception:DownloadFailedError': 1}
+  error_rate             0.3333
+  share_429_403          0.0
+  retries                1
+  retry_sources          {'retry-after': 0, 'backoff': 1}
+  latency_median_ms      894.5
+  latency_p95_ms         958.6
+  traffic_kb             73.7
+  not_modified_304       0
+  incremental_skipped    16
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          0
+  items_dropped          0
+  deferred_urls          0
+  duration_s             3.61
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.3333: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.3333333333333333: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+== src.collect --mode B --pages 1 --cond --incremental --no-history --label S3_incr --start-url https://scrapeme.live/shop/ → код возврата 1
+$ src.collect --label real_resume_1 --fresh-state --mode B --pages 2 --start-url https://scrapeme.live/shop/ --jobdir jobstate/real_resume --no-history   (через 10.0 с — SIGINT)
+$ src.collect --label real_resume_2 --resume-deferred --mode B --pages 2 --start-url https://scrapeme.live/shop/ --jobdir jobstate/real_resume --no-history
+{
+ "run1": {
+  "close_reason": "shutdown",
+  "requests": 8,
+  "items": 6,
+  "scrapy_stats": {
+   "downloader/request_count": 8,
+   "downloader/response_bytes": 466819,
+   "scheduler/enqueued/disk": 20,
+   "scheduler/dequeued/disk": 19
+  }
+ },
+ "run2": {
+  "close_reason": "finished",
+  "requests": 12,
+  "items": 10,
+  "dupefilter/filtered": 17,
+  "scrapy_stats": {
+   "downloader/request_count": 12,
+   "downloader/response_bytes": 727693,
+   "dupefilter/filtered": 17,
+   "scheduler/enqueued/disk": 18,
+   "scheduler/dequeued/disk": 19,
+   "lab7/deferred_resumed": 10
+  }
+ },
+ "db_rows_by_run": [
+  [
+   "real_resume_1_20261016T122240Z",
+   6
+  ],
+  [
+   "real_resume_2_20261016T122252Z",
+   10
+  ]
+ ]
+}
+robots.txt https://scrapeme.live/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=['https://scrapeme.live/wp-sitemap.xml']
+   can_fetch https://scrapeme.live/shop/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://scrapeme.live/shop/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/status/200: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/503: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне real_breaker (real_breaker_20261016T122315Z)
+  mode                   B
+  requests               69
+  status_counts          {'200': 65, '503': 4}
+  error_rate             0.058
+  share_429_403          0.0
+  retries                4
+  retry_sources          {'retry-after': 0, 'backoff': 4}
+  latency_median_ms      620.3
+  latency_p95_ms         894.6
+  traffic_kb             2165.8
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    1
+  breaker_rejected       14
+  incidents              0
+  items_scraped          32
+  items_dropped          0
+  deferred_urls          3
+  duration_s             76.79
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.058: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] breaker_activations > 0 = 1: срабатывание предохранителя — домен был недоступен, часть URL отложена
+== src.collect --mode B --pages 2 --fresh-state --no-history --label real_breaker --start-url https://scrapeme.live/shop/ --extra-fail-url https://httpbin.org/status/503 --extra-url https://httpbin.org/status/200 --extra-outage-s 6 --breaker-reset 5 → код возврата 1
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/status/429: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/401: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/403: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/404: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/etag/lab7-v1: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/gzip: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/response-headers?Retry-After=3: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/response-headers?Retry-After=Fri%2C%2016%20Oct%202026%2012%3A25%3A15%20GMT: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне httpbin_codes (httpbin_codes_20261016T122445Z)
+  mode                   B
+  requests               12
+  status_counts          {'200': 5, '401': 1, '403': 1, '404': 1, '429': 4}
+  error_rate             0.5833
+  share_429_403          0.4167
+  retries                3
+  retry_sources          {'retry-after': 0, 'backoff': 3}
+  latency_median_ms      229.4
+  latency_p95_ms         659.5
+  traffic_kb             1.0
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              1
+  items_scraped          0
+  items_dropped          0
+  deferred_urls          1
+  duration_s             14.73
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.5833: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.4167: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.25: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+== src.collect --label httpbin_codes --cond --gzip --fresh-state --no-history --probe-urls https://httpbin.org/status/429|https://httpbin.org/status/401|https://httpbin.org/status/403|https://httpbin.org/status/404|https://httpbin.org/etag/lab7-v1|https://httpbin.org/gzip|https://httpbin.org/response-headers?Retry-After=3|https://httpbin.org/response-headers?Retry-After=Fri%2C%2016%20Oct%202026%2012%3A25%3A15%20GMT → код возврата 1
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/etag/lab7-v1: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне httpbin_etag_repeat (httpbin_etag_repeat_20261016T122502Z)
+  mode                   B
+  requests               2
+  status_counts          {'200': 1, '304': 1}
+  error_rate             0.0
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      505.1
+  latency_p95_ms         749.5
+  traffic_kb             0.0
+  not_modified_304       1
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          0
+  items_dropped          0
+  deferred_urls          0
+  duration_s             1.31
+  status                 зелёный
+== src.collect --label httpbin_etag_repeat --cond --no-history --probe-urls https://httpbin.org/etag/lab7-v1 → код возврата 0
+robots.txt https://httpbin.org/robots.txt: HTTP None; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/status/503: False  (urllib.robotparser=False, Protego=None)
+   can_fetch https://httpbin.org/delay/10: False  (urllib.robotparser=False, Protego=None)
+   can_fetch https://httpbin.org/status/503?x=2: False  (urllib.robotparser=False, Protego=None)
+   can_fetch https://httpbin.org/status/200: False  (urllib.robotparser=False, Protego=None)
+   robots.txt недоступен (5xx/сеть) — по RFC 9309 обход не начинаем
+СТОП: robots.txt запрещает обход стартового URL — сбор не начинаем (код 3).
+== src.collect --label httpbin_503_timeout --timeout 5 --breaker-reset 10 --no-history --probe-urls https://httpbin.org/status/503|https://httpbin.org/delay/10|https://httpbin.org/status/503?x=2|https://httpbin.org/status/200 → код возврата 3
+
+### сценарий abc
+$ src.collect --label mock_A --local-mock --mode A --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --max-requests 30 --no-history
+  код возврата 1;   duration_s             0.14
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.6667: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.6667: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+$ src.collect --label mock_B --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --no-history
+  код возврата 0;   items_dropped          1
+  deferred_urls          0
+  duration_s             8.08
+  status                 зелёный
+$ src.collect --label mock_C --local-mock --mode C --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             0.47
+  status                 зелёный
+
+### сценарий savings
+$ src.collect --label mock_S0_base --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --no-history
+  код возврата 0;   items_dropped          1
+  deferred_urls          0
+  duration_s             8.09
+  status                 зелёный
+$ src.collect --label mock_S1_cond --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --cond --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             8.15
+  status                 зелёный
+$ src.collect --label mock_S2_gzip --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --gzip --no-history
+  код возврата 0;   items_dropped          1
+  deferred_urls          0
+  duration_s             8.11
+  status                 зелёный
+$ src.collect --label mock_S3_incr --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --cond --incremental --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             0.73
+  status                 зелёный
+$ src.collect --label mock_S4_after_change --local-mock --mode C --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             1.63
+  status                 зелёный
+
+### сценарий 429
+$ src.collect --label mock_429 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --rate 8 --burst 8 --no-history
+  код возврата 1;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.125: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.125: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.125: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+$ src.collect --label mock_429_polite --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --rate 2 --burst 2 --no-history
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             16.66
+  status                 зелёный
+
+### сценарий autothrottle
+$ src.collect --label mock_autothrottle --local-mock --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --rate 4 --burst 2 --no-history
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             25.56
+  status                 зелёный
+
+### сценарий resume
+$ src.collect --label mock_resume_1 --fresh-state --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --jobdir jobstate/mock_resume --no-history --local-mock   (через 8.0 с — SIGINT)
+$ src.collect --label mock_resume_2 --resume-deferred --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --jobdir jobstate/mock_resume --no-history --local-mock
+{
+ "run1": {
+  "close_reason": "shutdown",
+  "requests": 19,
+  "items": 15,
+  "scrapy_stats": {
+   "downloader/request_count": 19,
+   "downloader/response_bytes": 135693,
+   "scheduler/enqueued/disk": 35,
+   "scheduler/dequeued/disk": 18,
+   "item_dropped_count": 1
+  }
+ },
+ "run2": {
+  "close_reason": "finished",
+  "requests": 35,
+  "items": 31,
+  "dupefilter/filtered": 17,
+  "scrapy_stats": {
+   "downloader/request_count": 35,
+   "downloader/response_bytes": 229278,
+   "dupefilter/filtered": 17,
+   "scheduler/enqueued/disk": 17,
+   "scheduler/dequeued/disk": 34,
+   "lab7/deferred_resumed": 0,
+   "item_dropped_count": 1
+  }
+ },
+ "db_rows_by_run": [
+  [
+   "mock_resume_1_20261016T122726Z",
+   15
+  ],
+  [
+   "mock_resume_2_20261016T122735Z",
+   31
+  ]
+ ]
+}
+
+### сценарий breaker
+$ src.collect --label mock_breaker --local-mock --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --extra-url http://localhost:18508/status/200 --breaker-reset 5 --no-history
+  код возврата 0;   deferred_urls          3
+  duration_s             101.36
+  status                 жёлтый
+  ОПОВЕЩЕНИЕ [жёлтый] breaker_activations > 0 = 1: срабатывание предохранителя — домен был недоступен, часть URL отложена
+
+### сценарий history
+$ src.collect --label mock_hist_1 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             8.93
+  status                 зелёный
+$ src.collect --label mock_hist_2 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             8.99
+  status                 зелёный
+$ src.collect --label mock_hist_3 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             8.89
+  status                 зелёный
+$ src.collect --label mock_hist_captcha --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 2;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] incidents_block > 0 = 1: детектор нашёл заглушку/блокировку — сбор домена остановлен, нужен разбор
+  ОПОВЕЩЕНИЕ [красный] items_vs_median < 0.8 = 0.5: записей меньше 80 % медианы прошлых прогонов — поломка селекторов или тихая блокировка
+ИТОГ: блокировка — сбор домена остановлен, артефакты в logs/incidents/ (код 2)
+
+### сценарий probes
+$ src.collect --label mock_probe_codes --local-mock --probe-urls http://127.0.0.1:18507/status/429?retry_after=2|http://127.0.0.1:18507/status/429|http://127.0.0.1:18507/status/429?retry_after=Fri%2C%2016%20Oct%202026%2012%3A30%3A12%20GMT|http://127.0.0.1:18507/status/401|http://127.0.0.1:18507/status/403|http://127.0.0.1:18507/status/404|http://127.0.0.1:18507/etag/lab7-v1|http://127.0.0.1:18507/gzip|http://127.0.0.1:18507/response-headers?Retry-After=3 --cond --gzip --fresh-state --no-history
+  код возврата 1;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.7895: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.6842: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.47368421052631576: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+$ src.collect --label mock_probe_etag_repeat --local-mock --probe-urls http://127.0.0.1:18507/etag/lab7-v1 --cond --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             0.52
+  status                 зелёный
+$ src.collect --label mock_probe_503_timeout --local-mock --probe-urls http://localhost:18508/status/503|http://localhost:18508/delay/8|http://localhost:18508/status/503?x=2|http://localhost:18508/status/200 --timeout 3 --breaker-reset 5 --no-history
+  код возврата 1;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.8333: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.6666666666666666: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+  ОПОВЕЩЕНИЕ [жёлтый] breaker_activations > 0 = 5: срабатывание предохранителя — домен был недоступен, часть URL отложена
+
+### сценарий robots
+$ src.collect --label mock_robots_real --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --no-history
+  код возврата 3;    can_fetch http://127.0.0.1:18507/ecommerce/page/2/: False  (urllib.robotparser=True, Protego=False)
+   can_fetch http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/: False  (urllib.robotparser=True, Protego=False)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+СТОП: robots.txt запрещает обход стартового URL — сбор не начинаем (код 3).
+
+Сводка: reports/mock_scenarios_summary.json (446.8 с)
+| режим | воркеров | лимит, запр/с | запросов | время, с | средняя скорость на сервере, запр/с | максимум за любую 1 с |
+|---|---|---|---|---|---|---|
+| local | 4 | 2.0 | 32 | 3.65 | 8.89 | 12 |
+| shared | 4 | 2.0 | 32 | 15.63 | 2.0 | 3 |
+(на локальной имитации)
+[NbConvertApp] Converting notebook analysis.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] Writing 370573 bytes to analysis.ipynb
+== Готово 2026-10-16 17:33:32. Журнал: logs/real_run_20261016_172028.log
+== Дальше: n8n по nocode/INSTRUCTIONS.md; заполнить ⟪ЗАПОЛНИТЬ⟫ в report.md по reports/comparison.md и analysis.ipynb

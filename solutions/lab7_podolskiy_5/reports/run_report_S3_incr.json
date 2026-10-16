@@ -1,0 +1,95 @@
+{
+  "run_id": "S3_incr_20261016T122234Z",
+  "requests": 3,
+  "status_counts": {
+    "200": 2,
+    "exception:DownloadFailedError": 1
+  },
+  "error_rate": 0.3333,
+  "share_429_403": 0.0,
+  "retries": 1,
+  "retry_sources": {
+    "retry-after": 0,
+    "backoff": 1
+  },
+  "giveups": 0,
+  "latency_median_ms": 894.5,
+  "latency_p95_ms": 958.6,
+  "traffic_bytes": 75460,
+  "traffic_kb": 73.7,
+  "avg_response_bytes": 37730.0,
+  "not_modified_304": 0,
+  "incremental_skipped": 16,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 3,
+  "limiter_wait_median_ms": 104.9,
+  "autothrottle_delay_ms": {
+    "min": 894.6,
+    "max": 965.7,
+    "last": 894.6
+  },
+  "items_scraped": 0,
+  "items_dropped": 0,
+  "duration_s": 3.61,
+  "label": "S3_incr",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "https://scrapeme.live/shop/",
+  "pages": 1,
+  "profile": "scrapeme.live|pages=1|mode=B|cond=True|gzip=False|incr=True",
+  "deferred_urls": 0,
+  "breakers": {
+    "scrapeme.live": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "https://scrapeme.live",
+      "status": 200,
+      "crawl_delay": null,
+      "request_rate": null,
+      "sitemaps": [
+        "https://scrapeme.live/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "https://scrapeme.live/shop/": true,
+        "https://scrapeme.live/shop/page/2/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_S3_incr_20261016T122234Z.jsonl",
+  "local_mock": false,
+  "scrapy_stats": {
+    "downloader/request_count": 3,
+    "downloader/response_bytes": 76226,
+    "lab7/incremental_skipped": 16
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "error_rate > 0.05",
+      "значение": 0.3333,
+      "уровень": "красный",
+      "обоснование": "больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0"
+    },
+    {
+      "порог": "retries_per_request > 0.1",
+      "значение": 0.3333333333333333,
+      "уровень": "жёлтый",
+      "обоснование": "больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость"
+    }
+  ],
+  "status": "красный"
+}

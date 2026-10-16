@@ -41,7 +41,7 @@
             {
               "id": "fb9aab14-ad65-5b0b-9e0b-035368c95790",
               "name": "base_url",
-              "value": "https://www.scrapingcourse.com/ecommerce/",
+              "value": "https://scrapeme.live/shop/",
               "type": "string"
             },
             {
@@ -106,12 +106,6 @@
           ]
         },
         "options": {
-          "batching": {
-            "batch": {
-              "batchSize": 1,
-              "batchInterval": 2000
-            }
-          },
           "response": {
             "response": {
               "responseFormat": "text",
@@ -126,14 +120,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        660,
-        100
+        1100,
+        260
       ],
       "onError": "continueErrorOutput",
       "retryOnFail": true,
-      "maxTries": 4,
+      "maxTries": 5,
       "waitBetweenTries": 5000,
-      "notes": "Контроль скорости: 1 запрос в 2 с. Повторы: 4 попытки через 5 с (максимум интерфейса n8n)."
+      "notes": "Одна страница каталога за запуск. Повторы: 5 попыток через 5 с (максимум n8n). Узел получает ровно 1 item за запуск — иначе n8n повторяет узел, только если упал первый item."
     },
     {
       "parameters": {
@@ -144,7 +138,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        880,
+        1320,
         0
       ]
     },
@@ -178,7 +172,7 @@
       "type": "n8n-nodes-base.html",
       "typeVersion": 1.2,
       "position": [
-        1100,
+        1540,
         0
       ]
     },
@@ -191,7 +185,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1320,
+        1760,
         0
       ]
     },
@@ -233,7 +227,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1540,
+        1980,
         0
       ]
     },
@@ -247,7 +241,7 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        1760,
+        2200,
         200
       ],
       "notes": "Падение выполнения запускает Error Workflow (Error Trigger → уведомление)."
@@ -267,22 +261,22 @@
       "type": "n8n-nodes-base.removeDuplicates",
       "typeVersion": 2,
       "position": [
-        1760,
+        2200,
         -100
       ],
       "notes": "Инкрементальность: отпечаток «URL|цена» из каталога, история хранится в БД n8n между запусками."
     },
     {
       "parameters": {
-        "batchSize": 4,
+        "batchSize": 1,
         "options": {}
       },
       "id": "cf3b7565-1795-5665-a791-bb8049764ea8",
-      "name": "Батчи по 4",
+      "name": "Цикл по карточкам",
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1980,
+        2420,
         -100
       ]
     },
@@ -303,12 +297,6 @@
           ]
         },
         "options": {
-          "batching": {
-            "batch": {
-              "batchSize": 2,
-              "batchInterval": 1000
-            }
-          },
           "response": {
             "response": {
               "responseFormat": "text",
@@ -323,13 +311,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2200,
+        2640,
         0
       ],
       "onError": "continueErrorOutput",
       "retryOnFail": true,
-      "maxTries": 4,
-      "waitBetweenTries": 5000
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "notes": "Одна карточка за запуск. Повторы: 5 попыток через 5 с (максимум n8n). Узел получает ровно 1 item за запуск — иначе n8n повторяет узел, только если упал первый item."
     },
     {
       "parameters": {
@@ -382,7 +371,7 @@
       "type": "n8n-nodes-base.html",
       "typeVersion": 1.2,
       "position": [
-        2420,
+        2860,
         -100
       ]
     },
@@ -400,7 +389,7 @@
             {
               "id": "8b28820f-dc5d-598a-8ce1-0a936a11a9e7",
               "name": "failed_url",
-              "value": "={{ $('Батчи по 4').item.json.url }}",
+              "value": "={{ $('Цикл по карточкам').item.json.url }}",
               "type": "string"
             }
           ]
@@ -412,25 +401,25 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2420,
+        2860,
         100
       ]
     },
     {
       "parameters": {
         "resume": "timeInterval",
-        "amount": 2,
+        "amount": 1,
         "unit": "seconds"
       },
       "id": "58c2f65e-9c50-58d0-8e91-aacdda807b65",
-      "name": "Пауза 2 с между батчами",
+      "name": "Пауза 1 с между карточками",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2640,
+        3080,
         0
       ],
-      "notes": "Контроль скорости между батчами (аналог задержки ограничителя)."
+      "notes": "Контроль скорости между карточками (аналог задержки ограничителя)."
     },
     {
       "parameters": {
@@ -441,7 +430,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2200,
+        2640,
         -300
       ],
       "alwaysOutputData": true
@@ -475,7 +464,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2420,
+        2860,
         -300
       ]
     },
@@ -492,7 +481,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        2640,
+        3080,
         -380
       ]
     },
@@ -508,7 +497,7 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        2860,
+        3300,
         -380
       ]
     },
@@ -519,7 +508,7 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        2640,
+        3080,
         -220
       ],
       "notes": "Все карточки уже обработаны в прошлых запусках — запросы к карточкам не отправлялись."
@@ -534,10 +523,43 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        880,
-        300
+        1320,
+        460
       ],
       "notes": "Аналог предохранителя: после исчерпания повторов выполнение прекращается, домен не нагружается."
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "fa68b923-2bbe-5ab4-a4a9-f31535b94d4e",
+      "name": "Цикл по страницам",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        880,
+        100
+      ],
+      "notes": "По одной странице каталога за проход."
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": 2,
+        "unit": "seconds"
+      },
+      "id": "f1eb889d-b75b-50c0-9be5-7f65bbb27c56",
+      "name": "Пауза 2 с (каталог)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1320,
+        260
+      ],
+      "webhookId": "314f040d-5d52-56d0-b905-1e3e5d8f4bb5",
+      "notes": "Контроль скорости: 1 страница каталога в 2 с.",
+      "notesInFlow": false
     }
   ],
   "connections": {
@@ -578,7 +600,7 @@
       "main": [
         [
           {
-            "node": "Страница каталога",
+            "node": "Цикл по страницам",
             "type": "main",
             "index": 0
           }
@@ -589,7 +611,7 @@
       "main": [
         [
           {
-            "node": "Проверка содержимого",
+            "node": "Пауза 2 с (каталог)",
             "type": "main",
             "index": 0
           }
@@ -658,14 +680,14 @@
       "main": [
         [
           {
-            "node": "Батчи по 4",
+            "node": "Цикл по карточкам",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Батчи по 4": {
+    "Цикл по карточкам": {
       "main": [
         [
           {
@@ -705,7 +727,7 @@
       "main": [
         [
           {
-            "node": "Пауза 2 с между батчами",
+            "node": "Пауза 1 с между карточками",
             "type": "main",
             "index": 0
           }
@@ -716,18 +738,18 @@
       "main": [
         [
           {
-            "node": "Пауза 2 с между батчами",
+            "node": "Пауза 1 с между карточками",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Пауза 2 с между батчами": {
+    "Пауза 1 с между карточками": {
       "main": [
         [
           {
-            "node": "Батчи по 4",
+            "node": "Цикл по карточкам",
             "type": "main",
             "index": 0
           }
@@ -768,6 +790,35 @@
         [
           {
             "node": "Записать результат",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Цикл по страницам": {
+      "main": [
+        [
+          {
+            "node": "Проверка содержимого",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Страница каталога",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пауза 2 с (каталог)": {
+      "main": [
+        [
+          {
+            "node": "Цикл по страницам",
             "type": "main",
             "index": 0
           }

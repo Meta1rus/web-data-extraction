@@ -1,0 +1,15 @@
+{
+  "ts": "2026-10-16T12:30:08.224+00:00",
+  "run_id": "mock_hist_captcha_20261016T123002Z",
+  "url": "http://127.0.0.1:18507/ecommerce/page/2/",
+  "status": 200,
+  "bytes": 214,
+  "verdict": "блокировка",
+  "signals": [
+    "маркеры: captcha, are you human, access denied, cf-browser-verification",
+    "аномально малый ответ: 214 байт < 1500",
+    "нет ожидаемых элементов при коде 200"
+  ],
+  "page_kind": "list",
+  "mode": "B"
+}

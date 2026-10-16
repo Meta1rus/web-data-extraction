@@ -86,14 +86,14 @@
         100
       ],
       "retryOnFail": true,
-      "maxTries": 3,
+      "maxTries": 5,
       "waitBetweenTries": 5000,
       "onError": "continueErrorOutput",
       "notes": "Без токена: 60 запросов/час; один запуск = 1 запрос. Ответ — массив, n8n разворачивает его в элементы."
     },
     {
       "parameters": {
-        "errorMessage": "={{ 'GitHub API недоступен после 3 попыток: ' + ($json.error?.message || JSON.stringify($json)) }}"
+        "errorMessage": "={{ 'GitHub API недоступен после 5 попыток: ' + ($json.error?.message || JSON.stringify($json)) }}"
       },
       "id": "956fdbbb-7730-5228-8ea5-d732472c78d7",
       "name": "Ошибка HTTP",

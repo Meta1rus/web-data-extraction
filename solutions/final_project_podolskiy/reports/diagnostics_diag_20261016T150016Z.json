@@ -1,0 +1,31 @@
+{
+  "url": "https://github.com/topics/web-scraping?l=python",
+  "status": 200,
+  "bytes": 642474,
+  "cards_found_by_requests": 20,
+  "strategy": "article-cards",
+  "needle": "browser-use/browser-use",
+  "needle_in_html": true,
+  "json_script_blocks": 4,
+  "load_more_target": "https://github.com/topics/web-scraping?l=python",
+  "найденный_xhr": "кнопка Load more — GET https://github.com/topics/web-scraping?l=python (обычный HTML, тот же парсер)",
+  "вывод": "достаточно HTTP (requests + BeautifulSoup)",
+  "robots": {
+    "robots_url": "https://github.com/robots.txt",
+    "status": 200,
+    "available": true,
+    "group": "*",
+    "crawl_delay": null,
+    "request_rate": null,
+    "sitemaps": [],
+    "checks": [
+      {
+        "url": "https://github.com/topics/web-scraping?l=python",
+        "rfc9309": true,
+        "rule": null,
+        "urllib_robotparser": true
+      }
+    ],
+    "saved_copy": "raw/robots/github.com_20261016.txt"
+  }
+}

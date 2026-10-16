@@ -1,0 +1,28 @@
+[
+  {
+    "origin": "https://scrapeme.live",
+    "robots_url": "https://scrapeme.live/robots.txt",
+    "status": 200,
+    "found": true,
+    "lines": 10,
+    "crawl_delay": null,
+    "request_rate": null,
+    "sitemaps": [
+      "https://scrapeme.live/wp-sitemap.xml"
+    ],
+    "can_fetch": {
+      "https://scrapeme.live/shop/": true,
+      "https://scrapeme.live/shop/page/2/": true
+    },
+    "can_fetch_urllib": {
+      "https://scrapeme.live/shop/": true,
+      "https://scrapeme.live/shop/page/2/": true
+    },
+    "can_fetch_protego": {
+      "https://scrapeme.live/shop/": true,
+      "https://scrapeme.live/shop/page/2/": true
+    },
+    "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами",
+    "text": "User-agent: *\nDisallow: /wp-content/uploads/wc-logs/\nDisallow: /wp-content/uploads/woocommerce_transient_files/\nDisallow: /wp-content/uploads/woocommerce_uploads/\nDisallow: /*?add-to-cart=\nDisallow: /*?*add-to-cart=\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://scrapeme.live/wp-sitemap.xml\n"
+  }
+]

@@ -3,3 +3,6 @@
 __pycache__/
 .ipynb_checkpoints/
 *.tmp
+
+# Полный сырой массив CoinGecko в открытый репозиторий не выкладывается (report.md, раздел 8)
+data_raw.jsonl

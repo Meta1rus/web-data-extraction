@@ -1,0 +1,102 @@
+{
+  "run_id": "mock_429_20261016T122625Z",
+  "requests": 40,
+  "status_counts": {
+    "200": 35,
+    "429": 5
+  },
+  "error_rate": 0.125,
+  "share_429_403": 0.125,
+  "retries": 5,
+  "retry_sources": {
+    "retry-after": 4,
+    "backoff": 1
+  },
+  "giveups": 0,
+  "latency_median_ms": 19.4,
+  "latency_p95_ms": 24.3,
+  "traffic_bytes": 221002,
+  "traffic_kb": 215.8,
+  "avg_response_bytes": 5525.1,
+  "not_modified_304": 0,
+  "incremental_skipped": 0,
+  "breaker_activations": 0,
+  "breaker_rejected": 0,
+  "incidents": 0,
+  "incidents_block": 0,
+  "blocked_domains": [],
+  "limiter_waits": 40,
+  "limiter_wait_median_ms": 2180.2,
+  "autothrottle_delay_ms": {
+    "min": 17.9,
+    "max": 258.0,
+    "last": 18.3
+  },
+  "items_scraped": 30,
+  "items_dropped": 2,
+  "duration_s": 16.98,
+  "label": "mock_429",
+  "mode": "B",
+  "close_reason": "finished",
+  "start_url": "http://127.0.0.1:18507/ecommerce/",
+  "pages": 2,
+  "profile": "127.0.0.1:18507|pages=2|mode=B|cond=False|gzip=False|incr=False",
+  "deferred_urls": 0,
+  "breakers": {
+    "127.0.0.1:18507": {
+      "state": "closed",
+      "activations": 0,
+      "rejected": 0
+    }
+  },
+  "robots": [
+    {
+      "origin": "http://127.0.0.1:18507",
+      "status": 200,
+      "crawl_delay": 0.2,
+      "request_rate": null,
+      "sitemaps": [
+        "http://127.0.0.1:18507/wp-sitemap.xml"
+      ],
+      "can_fetch": {
+        "http://127.0.0.1:18507/ecommerce/": true,
+        "http://127.0.0.1:18507/ecommerce/page/2/": true,
+        "http://127.0.0.1:18507/ecommerce/product/abominable-hoodie/": true
+      },
+      "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами"
+    }
+  ],
+  "log_file": "logs/run_mock_429_20261016T122625Z.jsonl",
+  "local_mock": true,
+  "scrapy_stats": {
+    "downloader/request_count": 40,
+    "downloader/response_bytes": 229992,
+    "item_dropped_count": 2
+  },
+  "history": {
+    "status": "нет истории",
+    "previous_runs": 0,
+    "checks": []
+  },
+  "alerts": [
+    {
+      "порог": "error_rate > 0.05",
+      "значение": 0.125,
+      "уровень": "красный",
+      "обоснование": "больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0"
+    },
+    {
+      "порог": "share_429_403 > 0.01",
+      "значение": 0.125,
+      "уровень": "жёлтый",
+      "обоснование": "429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает"
+    },
+    {
+      "порог": "retries_per_request > 0.1",
+      "значение": 0.125,
+      "уровень": "жёлтый",
+      "обоснование": "больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость"
+    }
+  ],
+  "status": "красный"
+}

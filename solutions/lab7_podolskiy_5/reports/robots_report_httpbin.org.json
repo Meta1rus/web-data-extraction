@@ -1,0 +1,26 @@
+[
+  {
+    "origin": "https://httpbin.org",
+    "robots_url": "https://httpbin.org/robots.txt",
+    "status": 200,
+    "found": true,
+    "lines": 2,
+    "crawl_delay": null,
+    "request_rate": null,
+    "sitemaps": [],
+    "can_fetch": {
+      "https://httpbin.org/": true,
+      "https://httpbin.org/page/2/": true
+    },
+    "can_fetch_urllib": {
+      "https://httpbin.org/": true,
+      "https://httpbin.org/page/2/": true
+    },
+    "can_fetch_protego": {
+      "https://httpbin.org/": true,
+      "https://httpbin.org/page/2/": true
+    },
+    "policy_note": "robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами",
+    "text": "User-agent: *\nDisallow: /deny\n"
+  }
+]

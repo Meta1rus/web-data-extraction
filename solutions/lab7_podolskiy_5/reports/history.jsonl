@@ -1,0 +1,7 @@
+{"run_id": "A_20261016T122032Z", "profile": "scrapeme.live|pages=1|mode=A|cond=False|gzip=False|incr=False", "items": 15, "avg_bytes": 61435.1, "mode": "A", "label": "A"}
+{"run_id": "B_20261016T122052Z", "profile": "scrapeme.live|pages=1|mode=B|cond=False|gzip=False|incr=False", "items": 16, "avg_bytes": 61607.0, "mode": "B", "label": "B"}
+{"run_id": "C_20261016T122117Z", "profile": "scrapeme.live|pages=1|mode=C|cond=True|gzip=True|incr=True", "items": 0, "avg_bytes": 6812.0, "mode": "C", "label": "C"}
+{"run_id": "mock_hist_1_20261016T122934Z", "profile": "mock-history", "items": 30, "avg_bytes": 6310.1, "mode": "B", "label": "mock_hist_1"}
+{"run_id": "mock_hist_2_20261016T122944Z", "profile": "mock-history", "items": 30, "avg_bytes": 6310.1, "mode": "B", "label": "mock_hist_2"}
+{"run_id": "mock_hist_3_20261016T122953Z", "profile": "mock-history", "items": 30, "avg_bytes": 6310.1, "mode": "B", "label": "mock_hist_3"}
+{"run_id": "mock_hist_captcha_20261016T123002Z", "profile": "mock-history", "items": 15, "avg_bytes": 5817.7, "mode": "B", "label": "mock_hist_captcha"}

@@ -10,7 +10,7 @@
 
 ```
 Каждый день 06:47 ─┐
-Запуск вручную ────┴─► GitHub API: issues scrapy/scrapy ──(ошибка после 3 попыток)──► Ошибка HTTP (Stop and Error)
+Запуск вручную ────┴─► GitHub API: issues scrapy/scrapy ──(ошибка после 5 попыток)──► Ошибка HTTP (Stop and Error)
                               │ 100 последних обновлённых issues/PR
                               ▼
                      Демо: синтетические битые записи (+3 битые, +1 полный дубль, помечены is_synthetic)
@@ -49,7 +49,7 @@ npx n8n                                                   # UI: http://localhost
 
 ## 3. Учётные данные и импорт
 
-1. **Credentials → Add credential → Postgres**, имя `Postgres lab6 (docker)`: Host `localhost`, Port `5432`, Database `lab6`, User `lab6`, Password `lab6_local_only`, SSL `disable`. Нажать **Test** → *Connection tested successfully*.
+1. **Credentials → Add credential → Postgres**, имя `Postgres lab6 (docker)`: Host `127.0.0.1` (не `localhost`: n8n на Node.js 24 разрешает его в IPv6 `::1`, а Docker публикует порт на IPv4 — будет `ECONNREFUSED ::1:5432`), Port `5432`, Database `lab6`, User `lab6`, Password `lab6_local_only`, SSL `disable`. Нажать **Test** → *Connection tested successfully*.
 2. **Workflows → Import from File** → `nocode/workflow.json`.
 3. Открыть три узла Postgres (`Upsert в events_n8n`, `Upsert в rejects_n8n`, `Выгрузка таблицы для отчёта`) и выбрать созданный credential. ID в экспорте ссылается на чужую установку, поэтому выбрать его нужно вручную.
 4. В узлах Upsert проверить: *Operation* = **Upsert**, *Table* = `events_n8n` / `rejects_n8n`, *Mapping Column Mode* = **Map Automatically**, *Columns to match on* = `event_key` (для rejects — `event_key` и `reason`). Если после импорта поле пустое, выбрать столбец из списка.
@@ -77,21 +77,35 @@ npx n8n                                                   # UI: http://localhost
 | `screenshot_dedup.png` | вход и выход узла «Дедупликация по event_key» (104 → 103) |
 | `screenshot_if_rejects.png` | ветка «нет» узла IF и `rejects_n8n` с причинами |
 | `screenshot_upsert.png` | настройки узла «Upsert в events_n8n» (Operation Upsert, match по `event_key`) |
-| `screenshot_schedule.png` | Schedule Trigger с cron `47 6 * * *` и включённый Active/Publish |
+| `screenshot_schedule.png` | Schedule Trigger с cron `47 6 * * *` (публиковать workflow для сдачи не обязательно) |
 | `screenshot_second_run_psql.png` | терминал с запросами из шага 4.2 после второго прогона |
 
 ## 6. Что вписать в отчёт (раздел 11)
 
-⟪ЗАПОЛНИТЬ после прогона в n8n⟫: число элементов на каждом узле в первом прогоне (100 / 104 / 103 / 100 / 3), результаты запросов из шага 4.2 после первого и второго прогона (`rows`, `keys`, `last_change`, `history_rows`), число строк в `nocode_result.csv`.
+Реальный прогон 16.10.2026 (n8n 2.35.7, настоящий `api.github.com`, Postgres 16 в Docker), запуски № 28 и № 30 в Executions:
+
+| Узел | Первый прогон | Второй прогон |
+|---|---|---|
+| GitHub API: issues scrapy/scrapy | 100 (1,2 с) | 100 |
+| Демо: синтетические битые записи | 104 | 104 |
+| Дедупликация по event_key | 103 | 103 |
+| Запись валидна? (да / нет) | 100 / 3 | 100 / 3 |
+| Upsert в events_n8n | 100 | 1 пустой item — триггер отбросил все неизменённые строки |
+| Upsert в rejects_n8n | 3 | 3 |
+| Длительность | 1,5 с | 1,5 с |
+
+Запросы шага 4.2 после первого и после второго прогона дали одинаковый результат: `rows` 100, `keys` 100, `last_change` 2026-10-16 13:28:24 UTC, `history_rows` 100; `rejects_n8n` — по одной строке на причину («state=closed без closed_at», «пустой title», «comments < 0 или пусто»). `nocode_result.csv` — 100 строк.
+
+Самый первый запуск (№ 27) упал на узле Postgres с `ECONNREFUSED ::1:5432` — после замены Host на `127.0.0.1` ошибка ушла. Retry On Fail узла HTTP Request поднят с 3 до 5 попыток через 5 с (максимум n8n): в сети автора часть новых TLS-соединений обрывается (замеры — в отчёте лабы 4). Расписание настроено (cron `47 6 * * *`), но workflow не публиковался: для сдачи достаточно настроенного узла.
 
 ## 7. Как workflow проверен до сдачи (на локальной имитации)
 
 Workflow импортирован и выполнен через CLI **n8n 1.123.85 и n8n 2.35.7** (`n8n import:credentials`, `n8n import:workflow`, `n8n execute`) на копии, где URL узла HTTP Request указывал на локальную имитацию GitHub API (`tests/mock_github.py`, синтетические данные), а Postgres 16 был инициализирован `pg_init.sql`. Результаты (на локальной имитации):
 - первый прогон: 100 → 104 → 103 → 100 / 3 → Upsert 100 → CSV на 100 строк; в `rejects_n8n` 3 помеченные записи с причинами;
 - второй прогон: таблица `events_n8n` осталась на 100 строках, `max(updated_at)` не изменился, `events_n8n_history` — по-прежнему 100 версий, `rejects_n8n` — 3 строки.
-- с недоступным API (порт закрыт): 3 попытки узла HTTP Request, затем ветка ошибки → *Stop and Error* с текстом «GitHub API недоступен после 3 попыток: connect ECONNREFUSED …».
+- с недоступным API (порт закрыт): 3 попытки узла HTTP Request (в той версии workflow; сейчас их 5), затем ветка ошибки → *Stop and Error* с текстом «GitHub API недоступен после N попыток: connect ECONNREFUSED …».
 
-С настоящим `api.github.com` workflow не запускался — это первый шаг реального прогона.
+С настоящим `api.github.com` workflow выполнен 16.10.2026 — результаты в разделе 6.
 
 ## 8. Ограничения n8n (честно)
 

@@ -5,7 +5,7 @@
 
 Тот же сценарий, что и в блокноте, — `/coins/markets` постранично → разворачивание массива → преобразование полей →
 CSV, — собранный в n8n. Файл workflow: `workflow.json` (формат экспорта n8n; проверен импортом и выполнением в
-n8n 2.43.6 на локальной имитации API).
+n8n 2.43.6 на локальной имитации API, затем выполнен в n8n 2.35.7 на реальном API 16.10.2026 — см. раздел «Результат реального запуска»).
 
 ## Схема workflow
 
@@ -16,7 +16,7 @@ n8n 2.43.6 на локальной имитации API).
                                                                           (loop)       ▼        │
                                                           CoinGecko /coins/markets ──(успех)─► Пауза 6,5 с
                                                                    │
-                                                                   └──(ошибка после 3 попыток)─► Ошибка: что случилось ─► Остановить с ошибкой
+                                                                   └──(ошибка после 5 попыток)─► Ошибка: что случилось ─► Остановить с ошибкой
                               (done, все страницы получены)
 Цикл по страницам ─► Развернуть массив монет ─► Поля: имена, типы, расчёт ─► Убрать дубли по coin_id
                   ─► Преобразовать в CSV ─► Записать nocode_result.csv
@@ -29,7 +29,7 @@ n8n 2.43.6 на локальной имитации API).
 | Параметры: страницы и размер | Edit Fields (Set) | `page_list = [1, 2, 3]` (это и есть `max_pages`), `per_page = 100` |
 | Страницы → items | Split Out | `page_list` → три item-а с полями `page` и `per_page` |
 | Цикл по страницам | Loop Over Items (Split in Batches v3) | по одной странице за проход; выход **loop** → запрос, выход **done** → обработка |
-| CoinGecko /coins/markets | HTTP Request 4.2 | GET `https://api.coingecko.com/api/v3/coins/markets`; query: `vs_currency=usd`, `order=market_cap_desc`, `per_page={{ $json.per_page }}`, `page={{ $json.page }}`, `price_change_percentage=24h`; заголовки `User-Agent`, `Accept`; Response → Include Response Headers and Status (в item: `body`, `headers`, `statusCode`); Timeout 30 000 мс; Settings → **Retry On Fail**: 3 попытки через 5000 мс; **On Error → Continue (using error output)** |
+| CoinGecko /coins/markets | HTTP Request 4.2 | GET `https://api.coingecko.com/api/v3/coins/markets`; query: `vs_currency=usd`, `order=market_cap_desc`, `per_page={{ $json.per_page }}`, `page={{ $json.page }}`, `price_change_percentage=24h`; заголовки `User-Agent`, `Accept`; Response → Include Response Headers and Status (в item: `body`, `headers`, `statusCode`); Timeout 30 000 мс; Settings → **Retry On Fail**: 5 попыток через 5000 мс; **On Error → Continue (using error output)** |
 | Пауза 6,5 с (лимит API) | Wait | 6,5 с после каждой страницы — ограничение скорости (≈9 запросов/мин) |
 | Развернуть массив монет | Split Out | поле `body` (массив монет страницы) → отдельный item на монету |
 | Поля: имена, типы, расчёт | Edit Fields (Set) 3.4 | переименование (`id` → `coin_id`, `market_cap_rank` → `rank`, `current_price` → `price_usd`, …); типы (Number для чисел; `last_updated` → ISO-строка UTC через `DateTime.fromISO`); вычисляемые поля: `range_24h_pct = (high_24h − low_24h) / current_price × 100`, `market_cap_bn_usd` (млрд $), `volume_24h_mn_usd` (млн $); `snapshot_date` — дата UTC; `source` — атрибуция «Powered by CoinGecko» |
@@ -37,7 +37,7 @@ n8n 2.43.6 на локальной имитации API).
 | Преобразовать в CSV | Convert to File 1.1 | CSV с заголовком, имя `nocode_result.csv` |
 | Записать nocode_result.csv | Read/Write Files from Disk | путь `{{ $env.LAB3_NOCODE_DIR }}/nocode_result.csv` |
 | Ошибка: что случилось | Edit Fields (Set) | время, номер страницы, текст ошибки, HTTP-код — со второго (ошибочного) выхода HTTP Request |
-| Остановить с ошибкой | Stop and Error | выполнение помечается неуспешным: «CoinGecko: страница N не получена после 3 попыток (HTTP …)» |
+| Остановить с ошибкой | Stop and Error | выполнение помечается неуспешным: «CoinGecko: страница N не получена после 5 попыток (HTTP …)» |
 
 Капитализация и объём выгружаются в млрд и млн $, потому что конвертер CSV в n8n пишет числа от 10¹¹ в E-нотации
 с 6 значащими цифрами (например, `1.30075E+12`) — точность терялась бы молча.
@@ -91,7 +91,7 @@ workflow не попадает.
 3. Скопировать результат и проверить: `cp ~/.n8n-files/lab3/nocode_result.csv nocode/ && wc -l nocode/nocode_result.csv` (около 300 строк; требование — не меньше 20).
 
 **Ветка ошибки** (для скриншота): в HTTP Request временно заменить URL на
-`https://api.coingecko.com/api/v3/coins/marketz` → Execute workflow → три попытки с ответом 404, затем item уходит во второй
+`https://api.coingecko.com/api/v3/coins/marketz` → Execute workflow → пять попыток с ответом 404 (≈ 29 с), затем item уходит во второй
 выход, и выполнение завершается узлом «Остановить с ошибкой». Вернуть URL и сохранить.
 
 **Расписание:** чтобы Schedule Trigger срабатывал сам, workflow нужно опубликовать / активировать (кнопка **Publish** или
@@ -103,23 +103,36 @@ workflow не попадает.
 |---|---|
 | `screenshot_workflow.png` | холст после успешного ручного запуска: зелёные отметки и число items на связях |
 | `screenshot_http_request.png` | открытый узел HTTP Request: URL, query-параметры (`page`, `per_page` из цикла), заголовки |
-| `screenshot_retry_settings.png` | вкладка Settings того же узла: Retry On Fail (3 попытки, 5000 мс), On Error → Continue (using error output) |
+| `screenshot_retry_settings.png` | вкладка Settings того же узла: Retry On Fail (5 попыток, 5000 мс), On Error → Continue (using error output) |
 | `screenshot_result.png` | выход узла «Поля: имена, типы, расчёт» в режиме Table |
 | `screenshot_executions.png` | список Executions с длительностью успешного прогона (число для таблицы сравнения) |
 | `screenshot_error_branch.png` | запуск с ошибочным URL: путь по ветке ошибки до «Остановить с ошибкой» |
 
 ## 5. Что вписать в таблицу сравнения (report.md, раздел 7)
 
-- **Число записей n8n** — строки `nocode/nocode_result.csv` без заголовка; после выгрузки перезапустить последнюю ячейку
-  блокнота — она посчитает строки и сверит `coin_id` с Python-снимком.
+- **Число записей n8n** — строки `nocode/nocode_result.csv` без заголовка; сверку `coin_id` с Python-снимком делает
+  ячейка «Этап 12б» блокнота (читает только файлы, запросов к API нет).
 - **Время прогона n8n** — Duration успешного выполнения в Executions.
 - **Время разработки n8n** — сколько ушло на сборку и отладку workflow (засечь самостоятельно).
 
+## Результат реального запуска (16.10.2026)
+
+n8n 2.35.7 на Node.js 24.22.0 (Mac автора), CoinGecko без ключа; цифры из Executions — в `n8n_metrics.json`.
+
+| Запуск | Итог | Длительность | Запросов | Что видно |
+|---|---|---|---|---|
+| № 16 | успех | 28,5 с | 3 (+1 повтор) | страница 1 — 6,6 с: неудачная попытка и повтор через 5 с |
+| № 17 | ошибка | 28,8 с | 5 | путь `/coins/marketz`: 404 на все 5 попыток → «Остановить с ошибкой» |
+| № 18 | успех | 22,7 с | 3 | записал `nocode_result.csv`: 300 строк, дублей на границах страниц нет |
+
+Retry On Fail поднят с 3 до 5 попыток (максимум n8n): в сети автора 10–40 % новых TLS-соединений обрываются
+(VPN-клиент в режиме TUN, замеры — в отчёте лабы 4).
+
 ## Ограничения n8n в этой задаче (для вывода в отчёте)
 
-- Retry On Fail повторяет при **любой** ошибке, включая 404 (на имитации: три запроса к несуществующему пути),
+- Retry On Fail повторяет при **любой** ошибке, включая 404 (в реальном запуске: пять запросов к несуществующему пути),
   не читает `Retry-After`, пауза фиксирована и не больше 5000 мс, попыток не больше 5. Для keyless-лимита CoinGecko
-  (окно — минута) трёх попыток через 5 с может не хватить — тогда выполнение остановится с ошибкой, его надо перезапустить.
+  (окно — минута) пяти попыток через 5 с (≈ 25 с) может не хватить — тогда выполнение остановится с ошибкой, его надо перезапустить.
 - При встроенной пагинации HTTP Request сбой на середине даёт частичный результат без повтора (см. выше).
 - Ограничение скорости — узел Wait внутри цикла; общего ограничителя на workflow нет.
 - Инкрементальность (водяной знак) и обогащение через `/market_chart` потребовали бы ещё цикл, Code-узлы и хранилище

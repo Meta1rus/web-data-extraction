@@ -107,10 +107,10 @@
         200
       ],
       "retryOnFail": true,
-      "maxTries": 3,
+      "maxTries": 5,
       "waitBetweenTries": 5000,
       "onError": "continueErrorOutput",
-      "notes": "Одна страница за запуск узла: page и per_page из цикла. Повторы: 3 попытки через 5 с. После всех попыток ошибка уходит во второй выход.",
+      "notes": "Одна страница за запуск узла: page и per_page из цикла. Повторы: 5 попыток через 5 с (максимум n8n). После всех попыток ошибка уходит во второй выход.",
       "notesInFlow": true,
       "parameters": {
         "method": "GET",
@@ -390,7 +390,7 @@
       ],
       "parameters": {
         "errorType": "errorMessage",
-        "errorMessage": "=CoinGecko: страница {{ $json.page }} не получена после 3 попыток (HTTP {{ $json.http_code }}): {{ $json.error_message }}"
+        "errorMessage": "=CoinGecko: страница {{ $json.page }} не получена после 5 попыток (HTTP {{ $json.http_code }}): {{ $json.error_message }}"
       }
     }
   ],

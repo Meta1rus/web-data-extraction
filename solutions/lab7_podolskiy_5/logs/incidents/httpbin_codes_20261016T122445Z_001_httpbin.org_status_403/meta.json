@@ -1,0 +1,13 @@
+{
+  "ts": "2026-10-16T12:24:49.554+00:00",
+  "run_id": "httpbin_codes_20261016T122445Z",
+  "url": "https://httpbin.org/status/403",
+  "status": 403,
+  "bytes": 0,
+  "verdict": "подозрение",
+  "signals": [
+    "код 403"
+  ],
+  "page_kind": "probe",
+  "mode": "B"
+}

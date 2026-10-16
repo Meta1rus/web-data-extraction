@@ -1,0 +1,301 @@
+﻿snapshot_date,rank,coin_id,symbol,name,price_usd,market_cap_bn_usd,volume_24h_mn_usd,change_24h_pct,range_24h_pct,last_updated_utc,source
+2026-10-16,1,bitcoin,BTC,Bitcoin,81921,1646.523,31125.36,1.7551,3.35,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,2,ethereum,ETH,Ethereum,2458.06,300.227,14325.86,4.59409,6.17,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,3,tether,USDT,Tether,0.999256,183.527,57806.11,0.01251,0.04,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,4,binancecoin,BNB,BNB,726.83,96.783,817.07,1.24025,2.97,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,5,ripple,XRP,XRP,1.33,84.167,1531.8,2.67327,4.51,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,6,usd-coin,USDC,USDC,0.999838,72.531,17569.8,0.02049,0.38,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,7,solana,SOL,Solana,105.4,62.112,3148.5,3.50252,5.57,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,8,tron,TRX,TRON,0.335119,31.836,382.45,1.77002,1.94,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,9,figure-heloc,FIGR_HELOC,Figure Heloc,1.031,24.661,293.14,-0.7666,2.81,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,10,zcash,ZEC,Zcash,1217.61,20.685,1472.87,11.733,13.44,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,11,hyperliquid,HYPE,Hyperliquid,81.15,18.051,770.3,3.61124,5.95,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,12,dogecoin,DOGE,Dogecoin,0.081619,12.761,1059.03,2.89325,5.91,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,13,monero,XMR,Monero,556.16,10.466,103.73,4.13833,7.54,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,14,usds,USDS,USDS,1,10.227,149.68,-0.00291,0.04,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,15,chainlink,LINK,Chainlink,12.56,9.629,324.46,5.1825,7.01,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,16,whitebit,WBT,WhiteBIT Coin,80.6,9.574,125.64,2.33355,3.9,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,17,cardano,ADA,Cardano,0.228603,8.585,328.85,4.27474,6.34,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,18,leo-token,LEO,LEO Token,9.04,8.319,0.15,0.06124,0.22,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,19,near,NEAR,NEAR Protocol,5.22,6.833,1339.34,14.02702,16.48,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,20,rain,RAIN,Rain,0.00916236,6.498,13.65,12.94936,19.69,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,21,stellar,XLM,Stellar,0.182738,6.428,132.01,2.41695,4.51,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,22,bitcoin-cash,BCH,Bitcoin Cash,281.01,5.649,155.03,6.9201,7.86,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,23,litecoin,LTC,Litecoin,60.83,4.727,258.35,4.95441,5.49,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,24,ethena-usde,USDE,Ethena USDe,0.999506,4.697,36.3,0.0085,0.05,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,25,uniswap,UNI,Uniswap,7.39,4.618,600.43,7.58611,8.8,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,26,avalanche-2,AVAX,Avalanche,10.25,4.545,386.08,7.52152,9.46,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,27,dai,DAI,Dai,1,4.518,247.36,0.0329,0.11,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,28,sui,SUI,Sui,1.04,4.282,682.21,7.16249,8.87,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,29,canton-network,CC,Canton,0.103658,4.131,25.47,-3.03225,7.24,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,30,usd1-wlfi,USD1,USD1,0.999277,4.064,970.24,-0.01104,0.06,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,31,the-open-network,GRAM,Gram (prev. Toncoin),1.38,3.917,32.31,3.30375,3.62,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,32,hedera-hashgraph,HBAR,Hedera,0.086783,3.821,111.18,7.26053,7.61,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,33,tether-gold,XAUT,Tether Gold,4162.16,3.367,205.55,0.54903,1.06,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,34,bittensor,TAO,Bittensor,285.31,3.235,205.7,10.11256,11.68,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,35,global-dollar,USDG,Global Dollar,1,3.096,590.38,0.01395,0.01,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,36,shiba-inu,SHIB,Shiba Inu,0.00000514,3.026,52.87,3.73275,4.86,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,37,quant-network,QNT,Quant,206.82,3.01,106.98,6.49603,10.42,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,38,crypto-com-chain,CRO,Cronos,0.059335,2.94,6.7,5.51982,6.52,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,39,paypal-usd,PYUSD,PayPal USD,0.999762,2.825,112.7,-0.01071,0.04,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,40,ethena,ENA,Ethena,0.20489,2.747,391.63,10.21577,10.95,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,41,bitway,BTW,Bitway,1.74,2.617,33.23,-12.67396,27.01,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,42,okb,OKB,OKB,118.91,2.497,29.53,3.25875,4.86,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,43,aave,AAVE,Aave,161.23,2.489,265.67,8.9324,10.7,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,44,hashnote-usyc,USYC,Circle USYC,1.14,2.387,0,0.03003,0,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,45,ripple-usd,RLUSD,Ripple USD,1,2.387,153.4,0.02104,0.11,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,46,ondo-us-dollar-yield,USDY,Ondo US Dollar Yield,1.15,2.354,5.34,0.05788,0,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,47,ondo-finance,ONDO,Ondo,0.465826,2.268,167.88,9.50987,10.95,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,48,blackrock-usd-institutional-digital-liquidity-fund,BUIDL,BlackRock USD Institutional Digital Liquidity Fund,1,2.187,0,0,0,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,49,worldcoin-wld,WLD,Worldcoin,0.53302,2.033,348.47,13.91731,15.11,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,50,pump-fun,PUMP,Pump.fun,0.00438724,2.031,136.95,3.1924,8.34,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,51,polkadot,DOT,Polkadot,1.17,1.995,214.19,8.79278,11.54,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,52,aster-2,ASTER,Aster,0.711578,1.931,99.84,3.19816,4.57,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,53,memecore,M,MemeCore,0.825666,1.888,0.89,5.22152,6.96,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,54,falcon-finance,USDF,Falcon USD,0.995118,1.882,0.95,0.03494,0.21,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,55,pax-gold,PAXG,PAX Gold,4163.3,1.835,127.73,0.48369,1,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,56,world-liberty-financial,WLFI,World Liberty Financial,0.056968,1.81,24.47,-0.02158,2.48,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,57,mantle,MNT,Mantle,0.540589,1.785,25.54,5.97362,6.09,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,58,usdd,USDD,USDD,0.997649,1.758,3.16,0.02578,0.25,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,59,pepe,PEPE,Pepe,0.00000407,1.71,235.46,4.29157,8.11,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,60,morpho,MORPHO,Morpho,2.44,1.709,20.82,6.84298,8.61,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,61,internet-computer,ICP,Internet Computer,3.05,1.699,66,5.83587,7.54,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,62,spiko-amundi-overnight-swap-fund-eur,EURSAFO,Spiko Amundi Overnight Swap Fund (EUR),1.14,1.698,0,0.2628,0,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,63,sky,SKY,Sky,0.072116,1.69,10.15,4.59312,7.39,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,64,united-stables,U,United Stables,0.999425,1.574,134.88,0.01273,0.07,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,65,htx-dao,HTX,HTX DAO,0.00000166,1.471,83.04,0.86067,1.81,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,66,bitget-token,BGB,Bitget Token,1.94,1.36,9.48,1.31251,2.58,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,67,arbitrum,ARB,Arbitrum,0.199058,1.351,229.07,15.46569,14.73,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,68,bfusd,BFUSD,BFUSD,0.998405,1.318,5.75,0.0325,0.09,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,69,ethereum-classic,ETC,Ethereum Classic,8.03,1.275,56.69,4.66967,4.98,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,70,usdgo,USDGO,USDGO,1,1.271,12.11,0.00017,0.01,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,71,venice-token,VVV,Venice Token,24.24,1.175,50.53,7.58886,11.43,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,72,just,JST,JUST,0.137937,1.13,43.08,3.30942,5.37,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,73,gatechain-token,GT,Gate,10.4,1.088,2.6,2.95193,5.19,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,74,algorand,ALGO,Algorand,0.1186,1.076,58.94,8.98293,11.3,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,75,kaspa,KAS,Kaspa,0.0379114,1.052,21.69,7.40022,11.14,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,76,kucoin-shares,KCS,KuCoin,7.49,1.046,9.44,4.06643,4.67,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,77,jupiter-exchange-solana,JUP,Jupiter,0.309734,1.028,71.98,4.32273,7.62,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,78,polygon-ecosystem-token,POL,POL (ex-MATIC),0.096045,1.021,62.3,3.66781,5.52,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,79,render-token,RENDER,Render,1.96,1.019,66.07,8.08475,9.69,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,80,filecoin,FIL,Filecoin,1.15,0.964,245.19,12.67087,16.7,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,81,blockchain-capital,BCAP,Blockchain Capital,105.74,0.964,0,0,0,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,82,cosmos,ATOM,Cosmos Hub,1.75,0.939,51.71,4.60291,6.86,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,83,aerodrome-finance,AERO,Aerodrome Finance,0.910361,0.914,92.77,8.71772,14.43,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,84,pi-network,PI,Pi Network,0.080982,0.911,3.99,3.84685,5.58,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,85,injective-protocol,INJ,Injective,9.1,0.91,344.51,27.09466,24.84,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,86,layerzero,ZRO,LayerZero,2.16,0.862,164.74,18.22916,21.76,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,87,open-usd,OUSD,Open USD,0.999347,0.824,0.29,0.01885,0.65,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,88,superstate-short-duration-us-government-securities-fund-ustb,USTB,Invesco Short Duration US Government Securities Fund,11.25,0.824,0,0.00936,0,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,89,nexo,NEXO,NEXO,0.816169,0.816,5.86,1.57654,4.97,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,90,lighter,LIT,Lighter,3.25,0.814,74.99,10.68738,12.31,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,91,aptos,APT,Aptos,0.876529,0.774,104.07,14.68618,14.59,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,92,blockstack,STX,Stacks,0.409878,0.769,30.43,3.63711,10.67,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,93,stable-2,STABLE,​​Stable,0.02695659,0.735,9.75,3.39147,4.93,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,94,midnight-3,NIGHT,Midnight,0.04300256,0.714,21.09,3.31898,8.45,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,95,gho,GHO,GHO,0.998685,0.698,3.05,0.05306,0.05,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,96,pancakeswap-token,CAKE,PancakeSwap,2.19,0.697,59.99,0.71266,4.11,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,97,pyth-network,PYTH,Pyth Network,0.087489,0.689,136.54,7.15102,20.41,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,98,xdce-crowd-sale,XDC,XDC Network,0.03453887,0.689,13.7,-0.21166,3.4,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,99,celestia,TIA,Celestia,0.688243,0.676,234.44,29.35673,25.09,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,100,ether-fi,ETHFI,Ether.fi,0.697999,0.674,56.39,16.59989,15.74,2026-10-16T13:06:47.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,101,akedo,AKE,Akedo,0.029318,0.668,29.5,-10.22783,30.45,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,102,eutbl,EUTBL,Spiko EU T-Bills Money Market Fund,1.19,0.641,0,0.26417,0.84,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,103,dash,DASH,Dash,49.72,0.64,53.22,6.20576,7.52,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,104,pearl-2,PRL,Pearl,1.81,0.628,7.57,-2.14975,11.6,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,105,beldex,BDX,Beldex,0.078531,0.618,5.01,-4.3903,13.46,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,106,vechain,VET,VeChain,0.00708426,0.609,10.52,6.41011,8.45,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,107,flare-networks,FLR,Flare,0.00666259,0.583,2.59,1.87855,3.6,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,108,janus-henderson-anemoy-aaa-clo-fund,JAAA,Janus Henderson Anemoy AAA CLO Fund,1.052,0.58,0,0.01597,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,109,starknet,STRK,Starknet,0.075807,0.575,303.93,-2.37763,29.66,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,110,curve-dao-token,CRV,Curve DAO,0.349931,0.551,78.65,2.81853,7.58,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,111,usual-usd,USD0,Usual USD,0.998937,0.542,0.92,0.01001,0.04,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,112,kinesis-gold,KAU,Kinesis Gold,133.83,0.533,0.29,0.06622,1.6,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,113,official-trump,TRUMP,Official Trump,1.87,0.526,130,3.25304,4.81,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,114,raydium,RAY,Raydium,1.89,0.51,58.21,7.5359,10.05,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,115,ylds,YLDS,YLDS,0.999329,0.509,10.07,0.01821,0.04,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,116,euro-coin,EURC,EURC,1.12,0.502,34.71,0.38681,0.89,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,117,true-usd,TUSD,TrueUSD,0.998769,0.494,12.36,0.01792,0.11,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,118,pudgy-penguins,PENGU,Pudgy Penguins,0.00768252,0.483,150.01,5.04794,6.96,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,119,bianrensheng,币安人生,币安人生 (BinanceLife),0.476436,0.477,3.28,2.19403,4.03,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,120,fetch-ai,FET,Artificial Superintelligence Alliance,0.2044,0.473,133.19,6.20588,9.44,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,121,grass,GRASS,Grass,0.658324,0.461,29.47,5.7081,12.37,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,122,a7a5,A7A5,A7A5,0.01172742,0.46,0,0.78675,0.82,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,123,virtual-protocol,VIRTUAL,Virtuals Protocol,0.684852,0.451,46.19,6.98145,8.79,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,124,sei-network,SEI,Sei,0.065142,0.438,62.89,11.90033,12.26,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,125,derive,DRV,Derive,0.425714,0.426,13.98,13.94597,14.16,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,126,hash-2,HASH,Provenance Blockchain,0.00674363,0.399,0,-6.1583,20.97,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,127,plasma,XPL,Plasma,0.084762,0.384,64.6,7.8432,7.44,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,128,bitcoin-cash-sv,BSV,Bitcoin SV,18.87,0.38,5.71,6.02104,6.73,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,129,falcon-finance-ff,FF,Falcon Finance,0.112383,0.376,20.06,2.13121,8.01,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,130,pendle,PENDLE,Pendle,2.14,0.372,66.97,11.76402,11.68,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,131,sofiusd,SOFID,SoFiUSD,0.999439,0.357,9.85,0.00074,0.23,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,132,bittorrent,BTT,BitTorrent,3.52746E-07,0.348,12.08,0.04619,2.76,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,133,tezos,XTZ,Tezos,0.31388,0.345,7.9,5.84898,9.05,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,134,lido-dao,LDO,Lido DAO,0.409109,0.34,56.66,7.4999,9.97,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,135,re-protocol-reusd,REUSD,Re Protocol reUSD,1.11,0.331,4.15,0.03406,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,136,janus-henderson-anemoy-treasury-fund,JTRSY,Janus Henderson Anemoy Treasury Fund,1.12,0.327,0,0.00715,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,137,optimism,OP,Optimism,0.141292,0.325,119.5,8.8909,9.95,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,138,spx6900,SPX,SPX6900,0.346451,0.323,5.95,1.95752,6.8,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,139,unibase,UB,Unibase,0.127895,0.32,12.02,13.17727,16.86,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,140,ousg,OUSG,Ondo Short-Term U.S. Government Bond Fund,116.91,0.319,0,0.00886,0.01,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,141,sun-token,SUN,Sun Token,0.01654312,0.318,11.64,0.89888,1.47,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,142,pieverse,PIEVERSE,Pieverse,1.16,0.317,2.2,-0.92311,3.45,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,143,first-digital-usd,FDUSD,First Digital USD,0.998118,0.315,138.24,0.08387,0.14,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,144,apxusd,APXUSD,apxUSD,0.992525,0.311,3.45,0.20666,0.63,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,145,gnosis,GNO,Gnosis,115.55,0.305,0.91,2.38111,2.45,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,146,collector-crypt,CARDS,Collector Crypt,0.328515,0.297,14.55,10.54746,19.39,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,147,basic-attention-token,BAT,Basic Attention,0.198033,0.296,75.13,12.36289,24.08,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,148,olympus,OHM,Olympus,19.73,0.295,0.18,-0.33443,1.82,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,149,conflux-token,CFX,Conflux,0.056058,0.294,8.41,4.69355,6.85,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,150,kite-2,KITE,Kite,0.122599,0.293,9.59,2.68757,6.51,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,151,kaia,KAIA,Kaia,0.04482987,0.289,16.38,6.58315,7.42,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,152,the-graph,GRT,The Graph,0.02537163,0.278,9.47,6.57243,9.28,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,153,monad,MON,Monad,0.02321441,0.275,19.19,4.05904,6.98,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,154,bonk,BONK,Bonk,0.00000309,0.272,28.65,3.92221,6.15,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,155,terra-luna,LUNC,Terra Luna Classic,0.0000486,0.268,7.24,4.21355,4.84,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,156,decred,DCR,Decred,15.09,0.266,0.76,0.65765,3.98,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,157,backpack,BP,Backpack,1.065,0.266,4.9,15.11367,13.58,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,158,arweave,AR,Arweave,3.99,0.262,14.1,9.40891,10.53,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,159,usdai,USDAI,USDai,0.998929,0.262,3.62,0.02608,0.21,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,160,jito-governance-token,JTO,Jito,0.480238,0.256,36.12,6.90427,9.48,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,161,quack-ai,Q,Quack AI,0.05302,0.25,11.84,2.0463,8.96,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,162,shuffle-2,SHFL,Shuffle,0.506296,0.249,1.54,-1.00097,12.66,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,163,eigenlayer,EIGEN,EigenCloud (prev. EigenLayer),0.254184,0.248,39.64,12.85105,13.8,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,164,ethereum-name-service,ENS,Ethereum Name Service,5.81,0.245,9.41,6.15763,7.75,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,165,ape-and-pepe,APEPE,Ape and Pepe,0.00000117,0.245,16.44,-0.24832,0.85,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,166,syrup,SYRUP,Maple Finance,0.209925,0.245,9.78,6.82733,8.92,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,167,floki,FLOKI,FLOKI,0.00002456,0.237,16.22,4.662,6.51,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,168,jasmycoin,JASMY,JasmyCoin,0.00477301,0.236,8.35,6.58627,8.79,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,169,safo,SAFO,Spiko Amundi Overnight Swap Fund,1.024,0.236,0,0.01172,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,170,apenft,NFT,AINFT,2.38007E-07,0.236,4.64,-0.05085,1.74,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,171,iota,IOTA,IOTA,0.0499448,0.235,8.16,10.99206,11.21,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,172,pons,PONS,Pons,0.336417,0.227,46.62,9.88894,12.09,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,173,compound-governance-token,COMP,Compound,22.55,0.226,12.99,4.77314,6.16,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,174,kamino,KMNO,Kamino,0.03895903,0.225,26.93,18.3463,25.45,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,175,zebec-network,ZBCN,Zebec Network,0.0022467,0.225,7.29,5.86351,7.16,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,176,crvusd,CRVUSD,crvUSD,0.999123,0.219,20.61,0.05382,0.16,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,177,frax,FRAX,Legacy Frax Dollar,0.991979,0.218,0.26,0.13214,0.31,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,178,bnb48-club-token,KOGE,KOGE,63.36,0.214,0.02,-0.01113,0.17,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,179,thorchain,RUNE,THORChain,0.647428,0.213,66.93,4.16465,5.55,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,180,kinesis-silver,KAG,Kinesis Silver,57.69,0.212,0.82,1.24782,2.24,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,181,akash-network,AKT,Akash Network,0.70846,0.212,6.78,10.91342,11.94,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,182,sonic-3,S,Sonic,0.05419,0.211,60.76,1.53812,13.6,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,183,usx,USX,USX,0.999575,0.209,0.77,0.01051,0.05,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,184,tradable-na-rent-financing-platform-sstn,PC0000031,Tradable NA Rent Financing Platform SSTN,1,0.208,0,0,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,185,trust-wallet-token,TWT,Trust Wallet,0.495561,0.206,7.53,5.4659,7.55,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,186,meteora,MET,Meteora,0.365205,0.204,12.18,4.62843,9.29,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,187,dogwifcoin,WIF,dogwifhat,0.202575,0.202,40.57,6.15458,7.81,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,188,theta-token,THETA,Theta Network,0.199016,0.199,3.62,5.90222,7.6,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,189,zama,ZAMA,Zama,0.076731,0.195,17.11,4.58509,6.67,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,190,societe-generale-forge-eurcv,EURCV,EUR CoinVertible,1.12,0.19,23.05,0.37919,0.89,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,191,instadapp,FLUID,Fluid,2.25,0.188,3.33,-0.71793,4.89,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,192,axie-infinity,AXS,Axie Infinity,1.068,0.187,12.64,4.87378,7.12,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,193,convex-finance,CVX,Convex Finance,2,0.186,7.13,5.59256,9,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,194,agora-dollar,AUSD,AUSD,0.999033,0.185,10.57,0.00885,0.05,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,195,zksync,ZK,ZKsync,0.01705867,0.185,61.25,4.67376,15.92,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,196,usa,USAT,USAT,0.998757,0.183,0.93,-0.013,0.08,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,197,origintrail,TRAC,OriginTrail,0.409001,0.183,4.87,4.10446,10.06,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,198,mx-token,MX,MX,1.92,0.176,6.19,2.35999,2.6,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,199,decentraland,MANA,Decentraland,0.089701,0.176,10.84,6.74895,8.63,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,200,vaulta,A,Vaulta,0.10425,0.175,8.59,9.41586,11.83,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,201,doublezero,2Z,DoubleZero,0.03327132,0.173,4.13,2.95061,5.36,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,202,useless-3,USELESS,Useless Coin,0.169549,0.17,15.22,12.34305,14.83,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,203,non-playable-coin,NPC,Non-Playable Coin,0.0207385,0.167,4.99,20.9758,21.32,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,204,swissborg,BORG,SwissBorg,0.169286,0.166,0.19,2.84898,4.54,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,205,neo,NEO,NEO,2.35,0.166,3.44,5.98185,7.66,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,206,chain-2,XCN,Onyxcoin,0.00418019,0.165,3.54,3.46923,5.23,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,207,spiko-us-t-bills-money-market-fund,USTBL,Spiko US T-Bills Money Market Fund,1.099,0.165,0,0.005,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,208,btse-token,BTSE,BTSE Token,1.007,0.163,0.19,1.19416,1.74,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,209,apyusd,APYUSD,apyUSD,1.4,0.161,1.59,-0.0432,1.43,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,210,vision-3,VSN,Vision,0.04237977,0.161,1.6,0.95411,3.61,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,211,the-sandbox,SAND,The Sandbox,0.054574,0.16,40.83,1.48688,7.02,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,212,fartcoin,FARTCOIN,Fartcoin,0.157254,0.157,27.27,6.10292,7.76,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,213,strategy-pp-variable-xstock,STRCX,Strategy PP Variable xStock,106.09,0.157,0.23,-1.94605,2.71,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,214,railgun,RAIL,Railgun,2.58,0.155,0.27,7.44757,8.91,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,215,sentient,SENT,Sentient,0.02138012,0.155,11.21,10.19541,11.15,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,216,coco-2,COCO,coco,0.154498,0.155,0.04,0.92445,1.58,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,217,beam-2,BEAM,Beam,0.0030103,0.154,11.96,5.02026,11.05,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,218,celium,SN51,lium,31.16,0.153,2.36,9.71796,11.07,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,219,circle-internet-group-bstock,CRCLB,Circle Internet Group (bStocks Tokenized Stock),85.04,0.153,37.69,12.5529,11.85,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,220,apecoin,APE,ApeCoin,0.151874,0.152,17.41,13.29149,14.54,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,221,zero-gravity,0G,0G,0.251144,0.151,7,6.87412,9.74,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,222,chiliz,CHZ,Chiliz,0.01422929,0.15,15.94,4.40336,5.95,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,223,gusd,GUSD,GUSD,0.997659,0.149,0.22,0.00931,0.05,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,224,gmt-token,GOMINING,GoMining Token,0.370254,0.149,19.06,-3.56255,3.88,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,225,immutable-x,IMX,Immutable,0.164723,0.149,8.06,4.53344,9.21,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,226,build-on,B,BUILDon,0.139571,0.14,3.06,3.72895,6.82,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,227,superfarm,SUPER,SuperVerse,0.20881,0.136,21.95,11.2847,20.54,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,228,aioz-network,AIOZ,AIOZ Network,0.105418,0.135,5.94,2.57296,6.74,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,229,jpycoin,JPYC,JPY Coin,0.00630343,0.134,0.44,0.00953,0.58,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,230,ecash,XEC,eCash,0.00000663,0.133,2.94,2.76803,4.83,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,231,1inch,1INCH,1INCH,0.094828,0.133,5.73,4.29264,5.5,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,232,ultima,ULTIMA,Ultima,1572.1,0.133,5.27,-1.45861,1.47,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,233,havven,SNX,Synthetix,0.22722,0.132,5.3,6.28003,7.77,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,234,spacex-bstocks-tokenized-stock,SPCXB,SpaceX (bStocks Tokenized Stock),147.42,0.131,83.34,-0.44642,7.86,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,235,plume,PLUME,Plume,0.01968678,0.13,26.84,7.96216,15.72,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,236,onyc,ONYC,OnRe Tokenized Reinsurance,1.15,0.13,3.25,0.03622,0.87,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,237,safepal,SFP,SafePal,0.2588,0.129,0.66,3.44013,4.16,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,238,jpysc,JPYSC,JPYSC,0.00632745,0.129,0,-0.07284,0.39,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,239,dgrid-ai,DGAI,DGrid AI,0.859317,0.129,25.28,-5.46873,6.38,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,240,cash-4,CASH,CASH,0.99904,0.127,10.96,0.01554,0.05,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,241,ozone-chain,OZO,Ozone Chain,0.130808,0.126,0.21,0.11685,0.33,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,242,nest-blackopal-liquidstone-ii-vault,NOPAL,Nest BlackOpal LiquidStone II Vault,1.11,0.125,0,0.02903,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,243,stp-network,AWE,AWE Network,0.063044,0.122,0.96,2.51211,4.03,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,244,humanity,H,Humanity,0.05749,0.122,1.39,1.90497,6.95,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,245,geodnet,GEOD,Geodnet,0.263422,0.122,1.94,8.3217,8.87,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,246,reserve-rights-token,RSR,Reserve Rights,0.00194713,0.122,14.39,1.52694,5.78,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,247,chutes,SN64,Chutes,19.42,0.12,0.24,9.99559,11.23,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,248,anvil,ANVL,Anvil,0.00136315,0.12,0.26,20.64079,21.65,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,249,avant-usd,AVUSD,Avant USD,0.998226,0.12,0,0.00135,0.21,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,250,bc-token,BC,BCGame Coin,0.0372766,0.12,0.03,0.74702,4.79,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,251,walrus-2,WAL,Walrus,0.04570056,0.12,45.65,-10.92523,25.86,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,252,midas-fasanara-global-open,MGLO,Midas Fasanara Global Open,1.006,0.119,0,0,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,253,meta-2-2,META,MetaDAO,5.24,0.119,1.04,6.62891,7.25,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,254,golem,GLM,Golem,0.118747,0.119,1.65,4.29642,6.9,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,255,aethir,ATH,Aethir,0.00587031,0.118,8.72,4.98612,8.73,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,256,theo-short-duration-us-treasury-fund,THBILL,Theo Short Duration US Treasury Fund,1.016,0.118,0,0.0342,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,257,orca,ORCA,Orca,1.93,0.117,10.65,3.07004,8.29,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,258,elrond-erd-2,EGLD,MultiversX,3.75,0.116,2.93,6.86972,8.8,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,259,microstrategy-xstock,MSTRX,MicroStrategy xStock,146.3,0.116,4.48,5.18321,10.1,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,260,rollbit-coin,RLB,Rollbit Coin,0.073677,0.115,0.25,4.15548,5.62,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,,tradable-singapore-fintech-ssl-2,PC0000023,Tradable Singapore Fintech SSL,1,0.115,0,,0,2026-07-10T19:20:16.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,261,alpha-bulgaria-warrants,ALFW,Alpha Bulgaria Warrants,3.2,0.114,0,0,0,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,262,cap-4,CAP,Cap,0.073195,0.114,7.74,-6.00236,13.26,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,263,debridge,DBR,deBridge,0.01917077,0.114,1.08,2.44609,4.4,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,264,zencash,ZEN,Horizen,6.11,0.113,8.79,5.83968,8.18,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,,tradable-latam-middle-market-lender-sstl,PC0000085,Tradable LatAm Middle-Market Lender SSTL,1,0.112,0,,0,2026-10-12T06:04:59.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,265,stronghold-token,SHX,Stronghold,0.00602069,0.112,1.66,4.30883,14.08,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,266,astherus-usdf,USDF,Aster USDF,0.996954,0.112,0.03,-0.03283,0.09,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,267,cash-cat,CASHCAT,Cash Cat,0.112683,0.111,17.77,9.55153,22.01,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,268,seeker,SKR,Seeker,0.01546605,0.111,4.01,10.10569,12.21,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,269,artificial-inu-3,AI,Artificial Inu,0.110667,0.11,11.23,26.03064,31.95,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,270,edgex,EDGE,edgeX,0.307733,0.108,1.31,-0.70341,6.84,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,271,dydx-chain,DYDX,dYdX,0.125056,0.106,2.82,6.0316,7.58,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,272,circle-xstock,CRCLX,Circle xStock,84.95,0.104,23.54,11.16271,11.28,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,273,securitize-tokenized-aaa-clo-fund,STAC,Securitize Tokenized AAA CLO Fund,1036.15,0.104,0,0.00633,0.01,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,274,gala,GALA,GALA,0.00205768,0.104,25.11,6.28521,8.68,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,275,frax-usd,FRXUSD,Frax USD,1,0.104,3.21,0.03042,0.04,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,276,sosovalue,SOSO,SoSoValue,0.301162,0.103,2.26,2.38479,3.51,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,277,soon-2,SOON,SOON,0.302034,0.103,6.43,2.0289,3.96,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,278,3jane-usd3,USD3,3Jane USD3,1.19,0.102,0.53,0.43267,0.84,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,279,circle-internet-group-ondo-tokenized-stock,CRCLON,Circle Internet Group (Ondo Tokenized Stock),84.82,0.102,0.84,12.03815,11.73,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,280,peaq-2,PEAQ,peaq,0.03936794,0.102,1.97,6.46925,8.61,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,281,genius-3,GENIUS,Genius,0.302679,0.102,15.95,0.32187,16.11,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,282,unity-usd,UUSD,Unity USD,0.999075,0.1,1.63,-0.01341,0.35,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,283,nxm,NXM,Nexus Mutual,62.19,0.099,0,3.42457,6.08,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,284,four,FORM,Four,0.25741,0.098,3.05,5.91857,8.26,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,285,bedrock-token,BR,Bedrock,0.329811,0.098,2.95,-16.05067,19.14,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,286,saturn-dollar,USDAT,Saturn Dollar,0.999078,0.098,3.7,0.04602,0.16,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,287,bitget-wrapped-btc,BGBTC,Bitget Wrapped BTC,82048,0.097,0.1,1.73982,3.17,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,288,chip-2,CHIP,USD.AI,0.04848086,0.097,23.63,12.94262,19.4,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,289,qtum,QTUM,Qtum,0.911081,0.097,1.51,3.9377,6.36,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,290,wormhole,W,Wormhole,0.0144628,0.096,39.68,1.19414,9.56,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,291,0x,ZRX,0x Protocol,0.11302,0.096,3.84,4.00775,6.21,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,292,mina-protocol,MINA,Mina Protocol,0.073844,0.095,10.19,1.11828,5.02,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,293,apollo-diversified-credit-securitize-fund,ACRED,Apollo Diversified Credit Securitize Fund,1105.11,0.095,0,-0.08992,0.29,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,294,hastra-auto,AUTO,Hastra AUTO,1.024,0.095,0.58,-0.0185,0.1,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,295,gmx,GMX,GMX,9.05,0.095,6.84,9.77275,10.17,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,,usda-2,USDA,USDa,0.967102,0.095,0,,0,2026-08-14T08:19:10.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,296,kinetiq,KNTQ,Kinetiq,0.299697,0.094,2.08,4.69254,8.62,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko
+2026-10-16,297,cheems-token,CHEEMS,Cheems Token,4.61451E-07,0.094,0.3,1.54033,3.77,2026-10-16T13:08:52.000Z,CoinGecko API — Powered by CoinGecko

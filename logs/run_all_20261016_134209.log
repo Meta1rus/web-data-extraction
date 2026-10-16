@@ -1,0 +1,1373 @@
+== Общий прогон: 2026-10-16 13:42:09, Python 3.13.7, журнал logs/run_all_20261016_134209.log
+
+================================================================
+== Лаба 3: solutions/lab3_podolskiy_5 — старт 13:42:09
+================================================================
+== ЛР3, вариант 5: реальный прогон, 2026-10-16T08:42:09Z UTC ==
+Создаю виртуальное окружение .venv
+Python: Python 3.13.7, окружение: .venv
+Demo-ключ не задан — keyless-режим; ожидаемое время исполнения блокнота — около 10 минут
+[NbConvertApp] Converting notebook lab3.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/bin/jupyter-nbconvert", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/jupyter_core/application.py", line 284, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/traitlets/config/application.py", line 1080, in launch_instance
+    app.start()
+    ~~~~~~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources, input_buffer=input_buffer
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources=resources
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        nbformat.read(file_stream, as_version=4), resources=resources, **kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+                ~~~~~~~~~~~~^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/preprocessors/base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Пробные запросы: намеренно простые requests.get, чтобы увидеть «сырой» ответ сервера
+probe_headers = {"Accept": "application/json", "User-Agent": USER_AGENT}
+if API_KEY:
+    probe_headers["x-cg-demo-api-key"] = API_KEY
+
+PROBE_PAUSE = float(os.getenv("PROBE_PAUSE", "6"))
+
+probes = [
+    ("ping",           "/ping",                          {}),
+    ("markets p1",     "/coins/markets",                 {"vs_currency": "usd", "per_page": 3, "page": 1,
+                                                          "sparkline": "true", "price_change_percentage": "24h,7d"}),
+    ("markets пустая", "/coins/markets",                 {"vs_currency": "usd", "per_page": 250, "page": 100000}),
+    ("market_chart",   "/coins/bitcoin/market_chart",    {"vs_currency": "usd", "days": 30, "interval": "daily"}),
+    ("несущ. монета",  "/coins/no-such-coin-xyz/market_chart", {"vs_currency": "usd", "days": 30}),
+]
+
+probe_results = {}
+for name, path, params in probes:
+    t0 = time.perf_counter()
+    r = requests.get(BASE_URL + path, params=params, headers=probe_headers, timeout=15)
+    dt = time.perf_counter() - t0
+    probe_results[name] = r
+    print(f"=== {name}: HTTP {r.status_code}, {dt:.2f} c, {len(r.content)} байт")
+    print("    Content-Type:", r.headers.get("Content-Type"))
+    time.sleep(PROBE_PAUSE)   # пауза даже в пробах — у keyless-доступа лимит всего 5–30 запросов/мин
+------------------
+
+----- stdout -----
+=== ping: HTTP 200, 1.44 c, 34 байт
+    Content-Type: application/json; charset=utf-8
+----- stdout -----
+=== markets p1: HTTP 200, 5.59 c, 12061 байт
+    Content-Type: application/json; charset=utf-8
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mSSLEOFError[39m                               Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py:470[39m, in [36mHTTPConnectionPool._make_request[39m[34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[39m
+[32m    469[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m470[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_validate_conn[39;49m[30;43m([39;49m[30;43mconn[39;49m[30;43m)[39;49m
+[32m    471[39m [38;5;28;01mexcept[39;00m (SocketTimeout, BaseSSLError) [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py:1125[39m, in [36mHTTPSConnectionPool._validate_conn[39m[34m(self, conn)[39m
+[32m   1124[39m [38;5;28;01mif[39;00m conn.is_closed:
+[32m-> [39m[32m1125[39m     [30;43mconn[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1127[39m [38;5;66;03m# TODO revise this, see https://github.com/urllib3/urllib3/issues/2791[39;00m
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/connection.py:878[39m, in [36mHTTPSConnection.connect[39m[34m(self)[39m
+[32m    877[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m878[39m     wrapped_socket, is_verified = [30;43m_ssl_wrap_socket_and_match_hostname[39;49m[30;43m([39;49m
+[32m    879[39m [30;43m        [39;49m[30;43msock[39;49m[30;43m=[39;49m[30;43msock[39;49m[30;43m,[39;49m
+[32m    880[39m [30;43m        [39;49m[30;43mcert_reqs[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mcert_reqs[39;49m[30;43m,[39;49m
+[32m    881[39m [30;43m        [39;49m[30;43mssl_version[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mssl_version[39;49m[30;43m,[39;49m
+[32m    882[39m [30;43m        [39;49m[30;43mssl_minimum_version[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mssl_minimum_version[39;49m[30;43m,[39;49m
+[32m    883[39m [30;43m        [39;49m[30;43mssl_maximum_version[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mssl_maximum_version[39;49m[30;43m,[39;49m
+[32m    884[39m [30;43m        [39;49m[30;43mca_certs[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mca_certs[39;49m[30;43m,[39;49m
+[32m    885[39m [30;43m        [39;49m[30;43mca_cert_dir[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mca_cert_dir[39;49m[30;43m,[39;49m
+[32m    886[39m [30;43m        [39;49m[30;43mca_cert_data[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mca_cert_data[39;49m[30;43m,[39;49m
+[32m    887[39m [30;43m        [39;49m[30;43mcert_file[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mcert_file[39;49m[30;43m,[39;49m
+[32m    888[39m [30;43m        [39;49m[30;43mkey_file[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mkey_file[39;49m[30;43m,[39;49m
+[32m    889[39m [30;43m        [39;49m[30;43mkey_password[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mkey_password[39;49m[30;43m,[39;49m
+[32m    890[39m [30;43m        [39;49m[30;43mserver_hostname[39;49m[30;43m=[39;49m[30;43mserver_hostname_rm_dot[39;49m[30;43m,[39;49m
+[32m    891[39m [30;43m        [39;49m[30;43mssl_context[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mssl_context[39;49m[30;43m,[39;49m
+[32m    892[39m [30;43m        [39;49m[30;43mtls_in_tls[39;49m[30;43m=[39;49m[30;43mtls_in_tls[39;49m[30;43m,[39;49m
+[32m    893[39m [30;43m        [39;49m[30;43massert_hostname[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43massert_hostname[39;49m[30;43m,[39;49m
+[32m    894[39m [30;43m        [39;49m[30;43massert_fingerprint[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43massert_fingerprint[39;49m[30;43m,[39;49m
+[32m    895[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    896[39m [38;5;28mself[39m.sock = wrapped_socket
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/connection.py:1080[39m, in [36m_ssl_wrap_socket_and_match_hostname[39m[34m(sock, cert_reqs, ssl_version, ssl_minimum_version, ssl_maximum_version, cert_file, key_file, key_password, ca_certs, ca_cert_dir, ca_cert_data, assert_hostname, assert_fingerprint, server_hostname, ssl_context, tls_in_tls)[39m
+[32m   1078[39m         server_hostname = normalized
+[32m-> [39m[32m1080[39m ssl_sock = [30;43mssl_wrap_socket[39;49m[30;43m([39;49m
+[32m   1081[39m [30;43m    [39;49m[30;43msock[39;49m[30;43m=[39;49m[30;43msock[39;49m[30;43m,[39;49m
+[32m   1082[39m [30;43m    [39;49m[30;43mkeyfile[39;49m[30;43m=[39;49m[30;43mkey_file[39;49m[30;43m,[39;49m
+[32m   1083[39m [30;43m    [39;49m[30;43mcertfile[39;49m[30;43m=[39;49m[30;43mcert_file[39;49m[30;43m,[39;49m
+[32m   1084[39m [30;43m    [39;49m[30;43mkey_password[39;49m[30;43m=[39;49m[30;43mkey_password[39;49m[30;43m,[39;49m
+[32m   1085[39m [30;43m    [39;49m[30;43mca_certs[39;49m[30;43m=[39;49m[30;43mca_certs[39;49m[30;43m,[39;49m
+[32m   1086[39m [30;43m    [39;49m[30;43mca_cert_dir[39;49m[30;43m=[39;49m[30;43mca_cert_dir[39;49m[30;43m,[39;49m
+[32m   1087[39m [30;43m    [39;49m[30;43mca_cert_data[39;49m[30;43m=[39;49m[30;43mca_cert_data[39;49m[30;43m,[39;49m
+[32m   1088[39m [30;43m    [39;49m[30;43mserver_hostname[39;49m[30;43m=[39;49m[30;43mserver_hostname[39;49m[30;43m,[39;49m
+[32m   1089[39m [30;43m    [39;49m[30;43mssl_context[39;49m[30;43m=[39;49m[30;43mcontext[39;49m[30;43m,[39;49m
+[32m   1090[39m [30;43m    [39;49m[30;43mtls_in_tls[39;49m[30;43m=[39;49m[30;43mtls_in_tls[39;49m[30;43m,[39;49m
+[32m   1091[39m [30;43m[39;49m[30;43m)[39;49m
+[32m   1093[39m [38;5;28;01mtry[39;00m:
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/util/ssl_.py:437[39m, in [36mssl_wrap_socket[39m[34m(sock, keyfile, certfile, cert_reqs, ca_certs, server_hostname, ssl_version, ciphers, ssl_context, ca_cert_dir, key_password, ca_cert_data, tls_in_tls)[39m
+[32m    435[39m context.set_alpn_protocols(ALPN_PROTOCOLS)
+[32m--> [39m[32m437[39m ssl_sock = [30;43m_ssl_wrap_socket_impl[39;49m[30;43m([39;49m[30;43msock[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcontext[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtls_in_tls[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mserver_hostname[39;49m[30;43m)[39;49m
+[32m    438[39m [38;5;28;01mreturn[39;00m ssl_sock
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/util/ssl_.py:481[39m, in [36m_ssl_wrap_socket_impl[39m[34m(sock, ssl_context, tls_in_tls, server_hostname)[39m
+[32m    479[39m     [38;5;28;01mreturn[39;00m SSLTransport(sock, ssl_context, server_hostname)
+[32m--> [39m[32m481[39m [38;5;28;01mreturn[39;00m [30;43mssl_context[39;49m[30;43m.[39;49m[30;43mwrap_socket[39;49m[30;43m([39;49m[30;43msock[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mserver_hostname[39;49m[30;43m=[39;49m[30;43mserver_hostname[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py:455[39m, in [36mSSLContext.wrap_socket[39m[34m(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)[39m
+[32m    449[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mwrap_socket[39m([38;5;28mself[39m, sock, server_side=[38;5;28;01mFalse[39;00m,
+[32m    450[39m                 do_handshake_on_connect=[38;5;28;01mTrue[39;00m,
+[32m    451[39m                 suppress_ragged_eofs=[38;5;28;01mTrue[39;00m,
+[32m    452[39m                 server_hostname=[38;5;28;01mNone[39;00m, session=[38;5;28;01mNone[39;00m):
+[32m    453[39m     [38;5;66;03m# SSLSocket class handles server_hostname encoding before it calls[39;00m
+[32m    454[39m     [38;5;66;03m# ctx._wrap_socket()[39;00m
+[32m--> [39m[32m455[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43msslsocket_class[39;49m[30;43m.[39;49m[30;43m_create[39;49m[30;43m([39;49m
+[32m    456[39m [30;43m        [39;49m[30;43msock[39;49m[30;43m=[39;49m[30;43msock[39;49m[30;43m,[39;49m
+[32m    457[39m [30;43m        [39;49m[30;43mserver_side[39;49m[30;43m=[39;49m[30;43mserver_side[39;49m[30;43m,[39;49m
+[32m    458[39m [30;43m        [39;49m[30;43mdo_handshake_on_connect[39;49m[30;43m=[39;49m[30;43mdo_handshake_on_connect[39;49m[30;43m,[39;49m
+[32m    459[39m [30;43m        [39;49m[30;43msuppress_ragged_eofs[39;49m[30;43m=[39;49m[30;43msuppress_ragged_eofs[39;49m[30;43m,[39;49m
+[32m    460[39m [30;43m        [39;49m[30;43mserver_hostname[39;49m[30;43m=[39;49m[30;43mserver_hostname[39;49m[30;43m,[39;49m
+[32m    461[39m [30;43m        [39;49m[30;43mcontext[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m,[39;49m
+[32m    462[39m [30;43m        [39;49m[30;43msession[39;49m[30;43m=[39;49m[30;43msession[39;49m
+[32m    463[39m [30;43m    [39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py:1076[39m, in [36mSSLSocket._create[39m[34m(cls, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, context, session)[39m
+[32m   1075[39m                 [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([33m"[39m[33mdo_handshake_on_connect should not be specified for non-blocking sockets[39m[33m"[39m)
+[32m-> [39m[32m1076[39m             [30;43mself[39;49m[30;43m.[39;49m[30;43mdo_handshake[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1077[39m [38;5;28;01mexcept[39;00m:
+
+[36mFile [39m[32m/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py:1372[39m, in [36mSSLSocket.do_handshake[39m[34m(self, block)[39m
+[32m   1371[39m         [38;5;28mself[39m.settimeout([38;5;28;01mNone[39;00m)
+[32m-> [39m[32m1372[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_sslobj[39;49m[30;43m.[39;49m[30;43mdo_handshake[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1373[39m [38;5;28;01mfinally[39;00m:
+
+[31mSSLEOFError[39m: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)
+
+During handling of the above exception, another exception occurred:
+
+[31mSSLError[39m                                  Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py:793[39m, in [36mHTTPConnectionPool.urlopen[39m[34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[39m
+[32m    792[39m [38;5;66;03m# Make the request on the HTTPConnection object[39;00m
+[32m--> [39m[32m793[39m response = [30;43mself[39;49m[30;43m.[39;49m[30;43m_make_request[39;49m[30;43m([39;49m
+[32m    794[39m [30;43m    [39;49m[30;43mconn[39;49m[30;43m,[39;49m
+[32m    795[39m [30;43m    [39;49m[30;43mmethod[39;49m[30;43m,[39;49m
+[32m    796[39m [30;43m    [39;49m[30;43murl[39;49m[30;43m,[39;49m
+[32m    797[39m [30;43m    [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mtimeout_obj[39;49m[30;43m,[39;49m
+[32m    798[39m [30;43m    [39;49m[30;43mbody[39;49m[30;43m=[39;49m[30;43mbody[39;49m[30;43m,[39;49m
+[32m    799[39m [30;43m    [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mheaders[39;49m[30;43m,[39;49m
+[32m    800[39m [30;43m    [39;49m[30;43mchunked[39;49m[30;43m=[39;49m[30;43mchunked[39;49m[30;43m,[39;49m
+[32m    801[39m [30;43m    [39;49m[30;43mretries[39;49m[30;43m=[39;49m[30;43mretries[39;49m[30;43m,[39;49m
+[32m    802[39m [30;43m    [39;49m[30;43mresponse_conn[39;49m[30;43m=[39;49m[30;43mresponse_conn[39;49m[30;43m,[39;49m
+[32m    803[39m [30;43m    [39;49m[30;43mpreload_content[39;49m[30;43m=[39;49m[30;43mpreload_content[39;49m[30;43m,[39;49m
+[32m    804[39m [30;43m    [39;49m[30;43mdecode_content[39;49m[30;43m=[39;49m[30;43mdecode_content[39;49m[30;43m,[39;49m
+[32m    805[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mresponse_kw[39;49m[30;43m,[39;49m
+[32m    806[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    808[39m [38;5;66;03m# Everything went great![39;00m
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py:494[39m, in [36mHTTPConnectionPool._make_request[39m[34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[39m
+[32m    493[39m         new_e = _wrap_proxy_error(new_e, conn.proxy.scheme)
+[32m--> [39m[32m494[39m     [38;5;28;01mraise[39;00m new_e
+[32m    496[39m [38;5;66;03m# conn.request() calls http.client.*.request, not the method in[39;00m
+[32m    497[39m [38;5;66;03m# urllib3.request. It also calls makefile (recv) on the socket.[39;00m
+
+[31mSSLError[39m: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)
+
+The above exception was the direct cause of the following exception:
+
+[31mMaxRetryError[39m                             Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/requests/adapters.py:696[39m, in [36mHTTPAdapter.send[39m[34m(self, request, stream, timeout, verify, cert, proxies)[39m
+[32m    695[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m696[39m     resp = [30;43mconn[39;49m[30;43m.[39;49m[30;43murlopen[39;49m[30;43m([39;49m
+[32m    697[39m [30;43m        [39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43mmethod[39;49m[30;43m,[39;49m
+[32m    698[39m [30;43m        [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m
+[32m    699[39m [30;43m        [39;49m[30;43mbody[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43mbody[39;49m[30;43m,[39;49m[30;43m  [39;49m[30;43;03m# type: ignore[arg-type]  # urllib3 stubs don't accept Iterable[bytes | str][39;49;00m
+[32m    700[39m [30;43m        [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43mheaders[39;49m[30;43m,[39;49m[30;43m  [39;49m[30;43;03m# type: ignore[arg-type]  # urllib3#3072[39;49;00m
+[32m    701[39m [30;43m        [39;49m[30;43mredirect[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    702[39m [30;43m        [39;49m[30;43massert_same_host[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    703[39m [30;43m        [39;49m[30;43mpreload_content[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    704[39m [30;43m        [39;49m[30;43mdecode_content[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m    705[39m [30;43m        [39;49m[30;43mretries[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mmax_retries[39;49m[30;43m,[39;49m
+[32m    706[39m [30;43m        [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mresolved_timeout[39;49m[30;43m,[39;49m
+[32m    707[39m [30;43m        [39;49m[30;43mchunked[39;49m[30;43m=[39;49m[30;43mchunked[39;49m[30;43m,[39;49m
+[32m    708[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    710[39m [38;5;28;01mexcept[39;00m (ProtocolError, [38;5;167;01mOSError[39;00m) [38;5;28;01mas[39;00m err:
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py:847[39m, in [36mHTTPConnectionPool.urlopen[39m[34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[39m
+[32m    845[39m     new_e = ProtocolError([33m"[39m[33mConnection aborted.[39m[33m"[39m, new_e)
+[32m--> [39m[32m847[39m retries = [30;43mretries[39;49m[30;43m.[39;49m[30;43mincrement[39;49m[30;43m([39;49m
+[32m    848[39m [30;43m    [39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43merror[39;49m[30;43m=[39;49m[30;43mnew_e[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m_pool[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m_stacktrace[39;49m[30;43m=[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexc_info[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m[[39;49m[30;43m2[39;49m[30;43m][39;49m
+[32m    849[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    850[39m retries.sleep()
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/urllib3/util/retry.py:555[39m, in [36mRetry.increment[39m[34m(self, method, url, response, error, _pool, _stacktrace)[39m
+[32m    554[39m     reason = error [38;5;129;01mor[39;00m ResponseError(cause)
+[32m--> [39m[32m555[39m     [38;5;28;01mraise[39;00m MaxRetryError(_pool, url, reason) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mreason[39;00m  [38;5;66;03m# type: ignore[arg-type][39;00m
+[32m    557[39m log.debug([33m"[39m[33mIncremented Retry for (url=[39m[33m'[39m[38;5;132;01m%s[39;00m[33m'[39m[33m): [39m[38;5;132;01m%r[39;00m[33m"[39m, url, new_retry)
+
+[31mMaxRetryError[39m: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd&per_page=250&page=100000 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+
+During handling of the above exception, another exception occurred:
+
+[31mSSLError[39m                                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 20[39m
+[32m     16[39m 
+[32m     17[39m probe_results = {}
+[32m     18[39m [38;5;28;01mfor[39;00m name, path, params [38;5;28;01min[39;00m probes:
+[32m     19[39m     t0 = time.perf_counter()
+[32m---> [39m[32m20[39m     r = requests.get(BASE_URL + path, params=params, headers=probe_headers, timeout=[32m15[39m)
+[32m     21[39m     dt = time.perf_counter() - t0
+[32m     22[39m     probe_results[name] = r
+[32m     23[39m     print(f"=== {name}: HTTP {r.status_code}, {dt:.2f} c, {len(r.content)} байт")
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/requests/api.py:87[39m, in [36mget[39m[34m(url, params, **kwargs)[39m
+[32m     74[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget[39m(
+[32m     75[39m     url: _t.UriType, params: _t.ParamsType = [38;5;28;01mNone[39;00m, **kwargs: Unpack[_t.GetKwargs]
+[32m     76[39m ) -> Response:
+[32m     77[39m [38;5;250m    [39m[33mr[39m[33;03m"""Sends a GET request.[39;00m
+[32m     78[39m 
+[32m     79[39m [33;03m    :param url: URL for the new :class:`Request` object.[39;00m
+[32m   (...)[39m[32m     84[39m [33;03m    :rtype: requests.Response[39;00m
+[32m     85[39m [33;03m    """[39;00m
+[32m---> [39m[32m87[39m     [38;5;28;01mreturn[39;00m [30;43mrequest[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mget[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m=[39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/requests/api.py:71[39m, in [36mrequest[39m[34m(method, url, **kwargs)[39m
+[32m     67[39m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[32m     68[39m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[32m     69[39m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[32m     70[39m [38;5;28;01mwith[39;00m sessions.Session() [38;5;28;01mas[39;00m session:
+[32m---> [39m[32m71[39m     [38;5;28;01mreturn[39;00m [30;43msession[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/requests/sessions.py:651[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
+[32m    646[39m send_kwargs = {
+[32m    647[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
+[32m    648[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
+[32m    649[39m }
+[32m    650[39m send_kwargs.update(settings)
+[32m--> [39m[32m651[39m resp = [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mprep[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43msend_kwargs[39;49m[30;43m)[39;49m
+[32m    653[39m [38;5;28;01mreturn[39;00m resp
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/requests/sessions.py:784[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
+[32m    781[39m start = preferred_clock()
+[32m    783[39m [38;5;66;03m# Send the request[39;00m
+[32m--> [39m[32m784[39m r = [30;43madapter[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mrequest[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    786[39m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
+[32m    787[39m elapsed = preferred_clock() - start
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab3_podolskiy_5/.venv/lib/python3.13/site-packages/requests/adapters.py:727[39m, in [36mHTTPAdapter.send[39m[34m(self, request, stream, timeout, verify, cert, proxies)[39m
+[32m    723[39m         [38;5;28;01mraise[39;00m ProxyError(e, request=request)
+[32m    725[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e.reason, _SSLError):
+[32m    726[39m         [38;5;66;03m# This branch is for urllib3 v1.22 and later.[39;00m
+[32m--> [39m[32m727[39m         [38;5;28;01mraise[39;00m SSLError(e, request=request)
+[32m    729[39m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e, request=request)
+[32m    731[39m [38;5;28;01mexcept[39;00m ClosedPoolError [38;5;28;01mas[39;00m e:
+
+[31mSSLError[39m: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd&per_page=250&page=100000 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+
+
+================================================================
+== Лаба 4: solutions/lab4_podolskiy_5 — старт 13:43:22
+================================================================
+Старт: 2026-10-16 13:43:22 | лог: logs/real_run_20261016-134322.log
+Python 3.13.7
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /simple/pip/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /simple/pip/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))': /simple/pip/
+Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip[22m
+|                                                                                |   0% of 185.8 MiB
+|■■■■■■■■                                                                        |  10% of 185.8 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 185.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 185.8 MiB
+Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to ~/Library/Caches/ms-playwright/chromium-1248
+Downloading FFmpeg (playwright ffmpeg v1013)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-mac-arm64.zip[22m
+|                                                                                |   1% of 1.4 MiB
+|■■■■■■■■                                                                        |  10% of 1.4 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  61% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.4 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.4 MiB
+FFmpeg (playwright ffmpeg v1013) downloaded to ~/Library/Caches/ms-playwright/ffmpeg-1013
+Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248)[2m from https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-headless-shell-mac-arm64.zip[22m
+|                                                                                |   0% of 99 MiB
+|■■■■■■■■                                                                        |  10% of 99 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 99 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 99 MiB
+Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to ~/Library/Caches/ms-playwright/chromium_headless_shell-1248
+
+=== 13:51:17 diagnose: python diagnose.py ===
+| Проверка | Результат |
+|---|---|
+| Ответ сервера (requests, без входа) | HTTP 200, 11064 байт, карточек 10, «Goodreads» 0 |
+| Ответ сервера (requests, после входа) | 11928 байт, карточек 10, «Goodreads» 10, Logout=True |
+| Целевой текст в исходном HTML | найден в <span class="text" itemprop="text">; <script>: 0, JSON-LD: False, __NEXT_DATA__: False, var data: False |
+| Форма /login | post /login, поля ['csrf_token', 'username', 'password', 'submit'], csrf_token 52 симв., cookie ['session'] |
+| POST без csrf_token / с csrf_token | [200] вход=False / [302, 200] вход=True |
+| Network → Fetch/XHR (вход + пагинация) | всего ответов 17, по типам {'document': 5, 'stylesheet': 12}, XHR/fetch: 0 |
+| /api/quotes?page=1 без входа (раздел /scroll) | {'status': 200, 'content_type': 'application/json', 'keys': ['has_next', 'page', 'quotes', 'tag', 'top_ten_tags'], 'quotes': 10, 'author_keys': ['goodreads_link', 'name', 'slug'], 'goodreads_link_present': True} |
+| Сайт с отключённым JS | {'login_ok': True, 'quote_cards': 10, 'goodreads_links': 10, 'next_link': True} |
+| robots.txt | HTTP 404 |
+| Вывод | Браузер технически не обязателен: страницы рендерятся сервером, XHR на целевых страницах нет, без JS вход и пагинация работают. Барьер — авторизация (форма с CSRF + cookie сессии); её воспроизводит requests.Session. Браузерная реализация выполнена как требование ЛР и как база сравнения. |
+
+Сохранено: metrics/diagnostics.json
+--- diagnose: код 0, 25 с
+
+=== 13:51:42 browser: python collect.py --trace ===
+[run 20261016-135142] BASE_URL=https://quotes.toscrape.com | robots.txt: HTTP 404 | пауза 1.0 c | блокировка ресурсов: True
+[auth] вход выполнен как st*****, CSRF gkVp************************************************, storage_state → auth_state.json
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    0.37 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.38 c
+[browser] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.32 c
+[browser] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.29 c
+[browser] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    1.91 c
+[browser] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.59 c
+[browser] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.82 c
+[browser] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.55 c
+[browser] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.43 c
+[browser] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.54 c
+[trace] artifacts/trace.zip (лента после входа)
+[browser] тегов для обхода: 137
+[browser] # 11 tag:abilities              стр.1  элементов=1  прирост=1  всего=1     0.33 c
+[browser] # 12 tag:activism               стр.1  элементов=1  прирост=1  всего=2     0.26 c
+[browser] # 13 tag:adulthood              стр.1  элементов=1  прирост=1  всего=3     0.67 c
+[browser] # 14 tag:adventure              стр.1  элементов=1  прирост=1  всего=4     0.23 c
+[browser] # 15 tag:age                    стр.1  элементов=1  прирост=1  всего=5     0.24 c
+[browser] # 16 tag:alcohol                стр.1  элементов=1  прирост=1  всего=6     0.31 c
+[browser] # 17 tag:aliteracy              стр.1  элементов=1  прирост=1  всего=7     0.78 c
+[browser] # 18 tag:apathy                 стр.1  элементов=1  прирост=1  всего=8     0.36 c
+[browser] # 19 tag:attributed             стр.1  элементов=1  прирост=1  всего=9     0.24 c
+[browser] # 20 tag:attributed-no-source   стр.1  элементов=3  прирост=3  всего=12    0.71 c
+[browser] # 21 tag:authors                стр.1  элементов=1  прирост=1  всего=13    0.38 c
+[browser] # 22 tag:be-yourself            стр.1  элементов=1  прирост=1  всего=14    0.23 c
+[browser] # 23 tag:beatles                стр.1  элементов=1  прирост=1  всего=15    0.44 c
+[browser] # 24 tag:better-life-empathy    стр.1  элементов=1  прирост=1  всего=16    0.31 c
+[browser] # 25 tag:bilbo                  стр.1  элементов=1  прирост=1  всего=17    0.73 c
+[browser] # 26 tag:books                  стр.1  элементов=10 прирост=10 всего=27    0.40 c
+[browser] # 27 tag:books                  стр.2  элементов=1  прирост=1  всего=28    0.29 c
+[browser] # 28 tag:change                 стр.1  элементов=1  прирост=1  всего=29    0.69 c
+[browser] # 29 tag:children               стр.1  элементов=2  прирост=2  всего=31    0.52 c
+[browser] # 30 tag:chocolate              стр.1  элементов=1  прирост=1  всего=32    0.38 c
+[browser] # 31 tag:choices                стр.1  элементов=1  прирост=1  всего=33    1.07 c
+[browser] # 32 tag:christianity           стр.1  элементов=1  прирост=1  всего=34    0.47 c
+[browser] # 33 tag:classic                стр.1  элементов=2  прирост=2  всего=36    0.69 c
+[browser] # 34 tag:comedy                 стр.1  элементов=1  прирост=1  всего=37    0.26 c
+[browser] # 35 tag:connection             стр.1  элементов=1  прирост=1  всего=38    2.16 c
+[browser] # 36 tag:contentment            стр.1  элементов=1  прирост=1  всего=39    0.63 c
+[browser] # 37 tag:courage                стр.1  элементов=2  прирост=2  всего=41    0.34 c
+[browser] # 38 tag:death                  стр.1  элементов=3  прирост=3  всего=44    0.54 c
+[browser] # 39 tag:deep-thoughts          стр.1  элементов=1  прирост=1  всего=45    0.37 c
+[browser] # 40 tag:difficult              стр.1  элементов=1  прирост=1  всего=46    0.82 c
+[browser] # 41 tag:dreamers               стр.1  элементов=1  прирост=1  всего=47    0.50 c
+[browser] # 42 tag:dreaming               стр.1  элементов=1  прирост=1  всего=48    0.40 c
+[browser] # 43 tag:dreams                 стр.1  элементов=1  прирост=1  всего=49    0.36 c
+[browser] # 44 tag:drug                   стр.1  элементов=1  прирост=1  всего=50    0.76 c
+[browser] # 45 tag:dumbledore             стр.1  элементов=2  прирост=2  всего=52    0.74 c
+[browser] # 46 tag:edison                 стр.1  элементов=1  прирост=1  всего=53    0.25 c
+[browser] # 47 tag:education              стр.1  элементов=1  прирост=1  всего=54    0.23 c
+[browser] # 48 tag:elizabeth-bennet       стр.1  элементов=1  прирост=1  всего=55    0.27 c
+[browser] # 49 tag:failure                стр.1  элементов=1  прирост=1  всего=56    0.29 c
+[browser] # 50 tag:fairy-tales            стр.1  элементов=1  прирост=1  всего=57    0.33 c
+[browser] # 51 tag:fairytales             стр.1  элементов=1  прирост=1  всего=58    0.27 c
+[browser] # 52 tag:faith                  стр.1  элементов=1  прирост=1  всего=59    0.36 c
+[browser] # 53 tag:fantasy                стр.1  элементов=1  прирост=1  всего=60    0.27 c
+[browser] # 54 tag:fate                   стр.1  элементов=1  прирост=1  всего=61    0.72 c
+[browser] # 55 tag:fear                   стр.1  элементов=1  прирост=1  всего=62    0.31 c
+[browser] # 56 tag:food                   стр.1  элементов=1  прирост=1  всего=63    0.24 c
+[browser] # 57 tag:friends                стр.1  элементов=4  прирост=4  всего=67    0.37 c
+[browser] # 58 tag:friendship             стр.1  элементов=5  прирост=5  всего=72    0.83 c
+[browser] # 59 tag:girls                  стр.1  элементов=1  прирост=1  всего=73    0.34 c
+[browser] # 60 tag:god                    стр.1  элементов=1  прирост=1  всего=74    0.28 c
+[browser] # 61 tag:good                   стр.1  элементов=1  прирост=1  всего=75    0.25 c
+[browser] # 62 tag:growing-up             стр.1  элементов=1  прирост=1  всего=76    0.27 c
+[browser] # 63 tag:grown-ups              стр.1  элементов=1  прирост=1  всего=77    0.74 c
+[browser] # 64 tag:happiness              стр.1  элементов=1  прирост=1  всего=78    0.27 c
+[browser] # 65 tag:hate                   стр.1  элементов=1  прирост=1  всего=79    0.36 c
+[browser] # 66 tag:heartbreak             стр.1  элементов=1  прирост=1  всего=80    0.36 c
+[browser] # 67 tag:hope                   стр.1  элементов=2  прирост=2  всего=82    0.25 c
+[browser] # 68 tag:humor                  стр.1  элементов=10 прирост=10 всего=92    0.38 c
+[browser] # 69 tag:humor                  стр.2  элементов=2  прирост=2  всего=94    0.82 c
+[browser] # 70 tag:imagination            стр.1  элементов=1  прирост=1  всего=95    0.62 c
+[browser] # 71 tag:indifference           стр.1  элементов=1  прирост=1  всего=96    0.38 c
+[browser] # 72 tag:insanity               стр.1  элементов=1  прирост=1  всего=97    0.65 c
+[browser] # 73 tag:inspiration            стр.1  элементов=1  прирост=1  всего=98    0.37 c
+[browser] # 74 tag:inspirational          стр.1  элементов=10 прирост=10 всего=108   0.35 c
+[browser] # 75 tag:inspirational          стр.2  элементов=3  прирост=3  всего=111   1.08 c
+[browser] # 76 tag:integrity              стр.1  элементов=1  прирост=1  всего=112   0.27 c
+[browser] # 77 tag:jane-austen            стр.1  элементов=1  прирост=1  всего=113   1.00 c
+[browser] # 78 tag:journey                стр.1  элементов=1  прирост=1  всего=114   0.31 c
+[browser] # 79 tag:knowledge              стр.1  элементов=1  прирост=1  всего=115   0.70 c
+[browser] # 80 tag:lack-of-friendship     стр.1  элементов=1  прирост=1  всего=116   0.43 c
+[browser] # 81 tag:lack-of-love           стр.1  элементов=1  прирост=1  всего=117   0.41 c
+[browser] # 82 tag:learning               стр.1  элементов=2  прирост=2  всего=119   0.97 c
+[browser] # 83 tag:library                стр.1  элементов=2  прирост=2  всего=121   0.49 c
+[browser] # 84 tag:lies                   стр.1  элементов=1  прирост=1  всего=122   0.25 c
+[browser] # 85 tag:life                   стр.1  элементов=10 прирост=10 всего=132   0.90 c
+[browser] # 86 tag:life                   стр.2  элементов=3  прирост=3  всего=135   0.41 c
+[browser] # 87 tag:literature             стр.1  элементов=1  прирост=1  всего=136   0.30 c
+[browser] # 88 tag:live                   стр.1  элементов=1  прирост=1  всего=137   1.05 c
+[browser] # 89 tag:live-death-love        стр.1  элементов=1  прирост=1  всего=138   0.58 c
+[browser] # 90 tag:lost                   стр.1  элементов=1  прирост=1  всего=139   0.74 c
+[browser] # 91 tag:love                   стр.1  элементов=10 прирост=10 всего=149   0.67 c
+[browser] # 92 tag:love                   стр.2  элементов=4  прирост=4  всего=153   1.27 c
+[browser] # 93 tag:lying                  стр.1  элементов=1  прирост=1  всего=154   0.75 c
+[browser] # 94 tag:marriage               стр.1  элементов=1  прирост=1  всего=155   0.84 c
+[browser] # 95 tag:mind                   стр.1  элементов=1  прирост=1  всего=156   0.96 c
+[browser] # 96 tag:miracle                стр.1  элементов=1  прирост=1  всего=157   0.58 c
+[browser] # 97 tag:miracles               стр.1  элементов=1  прирост=1  всего=158   0.38 c
+[browser] # 98 tag:misattributed-eleanor-roosevelt стр.1  элементов=1  прирост=1  всего=159   0.33 c
+[browser] # 99 tag:misattributed-john-lennon стр.1  элементов=1  прирост=1  всего=160   0.83 c
+[browser] #100 tag:misattributed-mark-twain стр.1  элементов=1  прирост=1  всего=161   0.27 c
+[browser] #101 tag:misattributed-to-c-s-lewis стр.1  элементов=1  прирост=1  всего=162   0.24 c
+[browser] #102 tag:misattributed-to-einstein стр.1  элементов=1  прирост=1  всего=163   0.67 c
+[browser] #103 tag:misattributed-to-mother-teresa стр.1  элементов=1  прирост=1  всего=164   0.45 c
+[browser] #104 tag:mistakes               стр.1  элементов=1  прирост=1  всего=165   0.68 c
+[browser] #105 tag:music                  стр.1  элементов=2  прирост=2  всего=167   0.75 c
+[browser] #106 tag:navigation             стр.1  элементов=1  прирост=1  всего=168   0.25 c
+[browser] #107 tag:novelist-quotes        стр.1  элементов=1  прирост=1  всего=169   0.30 c
+[browser] #108 tag:obvious                стр.1  элементов=1  прирост=1  всего=170   0.68 c
+[browser] #109 tag:open-mind              стр.1  элементов=1  прирост=1  всего=171   0.27 c
+[browser] #110 tag:opposite               стр.1  элементов=1  прирост=1  всего=172   0.47 c
+[browser] #111 tag:paraphrased            стр.1  элементов=2  прирост=2  всего=174   0.74 c
+[browser] #112 tag:peace                  стр.1  элементов=1  прирост=1  всего=175   0.72 c
+[browser] #113 tag:philosophy             стр.1  элементов=2  прирост=2  всего=177   0.41 c
+[browser] #114 tag:planning               стр.1  элементов=1  прирост=1  всего=178   0.36 c
+[browser] #115 tag:plans                  стр.1  элементов=1  прирост=1  всего=179   0.39 c
+[browser] #116 tag:poetry                 стр.1  элементов=1  прирост=1  всего=180   0.73 c
+[browser] #117 tag:quest                  стр.1  элементов=1  прирост=1  всего=181   0.70 c
+[browser] #118 tag:read                   стр.1  элементов=1  прирост=1  всего=182   0.25 c
+[browser] #119 tag:readers                стр.1  элементов=1  прирост=1  всего=183   0.79 c
+[browser] #120 tag:reading                стр.1  элементов=7  прирост=7  всего=190   0.40 c
+[browser] #121 tag:reading-books          стр.1  элементов=1  прирост=1  всего=191   0.77 c
+[browser] #122 tag:regrets                стр.1  элементов=1  прирост=1  всего=192   0.25 c
+[browser] #123 tag:religion               стр.1  элементов=2  прирост=2  всего=194   0.33 c
+[browser] #124 tag:romance                стр.1  элементов=1  прирост=1  всего=195   0.30 c
+[browser] #125 tag:romantic               стр.1  элементов=1  прирост=1  всего=196   0.44 c
+[browser] #126 tag:self-indulgence        стр.1  элементов=1  прирост=1  всего=197   0.29 c
+[browser] #127 tag:seuss                  стр.1  элементов=1  прирост=1  всего=198   0.59 c
+[browser] #128 tag:simile                 стр.1  элементов=3  прирост=3  всего=201   0.77 c
+[browser] #129 tag:simplicity             стр.1  элементов=1  прирост=1  всего=202   0.35 c
+[browser] #130 tag:sinister               стр.1  элементов=1  прирост=1  всего=203   0.82 c
+[browser] #131 tag:sisters                стр.1  элементов=1  прирост=1  всего=204   0.80 c
+[browser] #132 tag:success                стр.1  элементов=1  прирост=1  всего=205   0.69 c
+[browser] #133 tag:sun                    стр.1  элементов=1  прирост=1  всего=206   0.27 c
+[browser] #134 tag:tea                    стр.1  элементов=1  прирост=1  всего=207   0.67 c
+[browser] #135 tag:the-hunger-games       стр.1  элементов=1  прирост=1  всего=208   0.56 c
+[browser] #136 tag:thinking               стр.1  элементов=2  прирост=2  всего=210   0.41 c
+[browser] #137 tag:thought                стр.1  элементов=1  прирост=1  всего=211   0.34 c
+[browser] #138 tag:travel                 стр.1  элементов=1  прирост=1  всего=212   0.73 c
+[browser] #139 tag:troubles               стр.1  элементов=1  прирост=1  всего=213   0.99 c
+[browser] #140 tag:truth                  стр.1  элементов=4  прирост=4  всего=217   0.42 c
+[browser] #141 tag:understand             стр.1  элементов=1  прирост=1  всего=218   0.29 c
+[browser] #142 tag:understanding          стр.1  элементов=1  прирост=1  всего=219   0.52 c
+[browser] #143 tag:unhappy-marriage       стр.1  элементов=1  прирост=1  всего=220   0.42 c
+[browser] #144 tag:value                  стр.1  элементов=1  прирост=1  всего=221   0.96 c
+[browser] #145 tag:wander                 стр.1  элементов=1  прирост=1  всего=222   0.72 c
+[browser] #146 tag:wisdom                 стр.1  элементов=1  прирост=1  всего=223   0.26 c
+[browser] #147 tag:women                  стр.1  элементов=1  прирост=1  всего=224   0.33 c
+[browser] #148 tag:world                  стр.1  элементов=1  прирост=1  всего=225   0.37 c
+[browser] #149 tag:write                  стр.1  элементов=1  прирост=1  всего=226   0.28 c
+[browser] #150 tag:writers                стр.1  элементов=1  прирост=1  всего=227   0.75 c
+[browser] #151 tag:writing                стр.1  элементов=3  прирост=3  всего=230   0.38 c
+[browser] #152 tag:yourself               стр.1  элементов=2  прирост=2  всего=232   0.73 c
+smoke-check data_browser.csv: OK (ключевые поля заполнены, порог пустых 5%)
+
+Записей (цитата × тег): 232 | уникальных цитат в ленте: 100 | циклов: 152 | сбоев: 0
+Дубликатов по ключу: 0 | доли пустых: {'text': 0.0, 'author': 0.0, 'author_url': 0.0, 'goodreads_url': 0.0, 'tag': 0.0}
+Время прогона: 233.8 c | запросов: 155 (заблокировано 308) | трафик: 0.189 МБ | пик памяти: 715.9 МБ | код возврата: 0
+--- browser: код 0, 271 с
+
+=== 13:56:13 authcheck: python collect.py --auth-check ===
+[auth] сессия восстановлена из auth_state.json — повторный вход не нужен
+[auth-check] режим: reused_storage_state, сессия активна: True, 12.404 c, запросов: 1
+--- authcheck: код 0, 12 с
+
+=== 13:56:25 light: python light.py ===
+[run 20261016-135626] BASE_URL=https://quotes.toscrape.com | robots.txt: HTTP 404 | пауза 1.0 c
+[auth] вход выполнен как st*****, CSRF NTQy************************************************, cookies → auth_state_light.json
+[light] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    0.29 c
+[light] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.37 c
+[light] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.37 c
+[light] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.31 c
+[light] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    0.38 c
+[light] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.34 c
+[light] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.32 c
+[light] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.32 c
+[light] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.39 c
+[light] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.36 c
+[light] тегов для обхода: 137
+[light] # 11 tag:abilities              стр.1  элементов=1  прирост=1  всего=1     0.21 c
+[light] # 12 tag:activism               стр.1  элементов=1  прирост=1  всего=2     0.20 c
+[light] # 13 tag:adulthood              стр.1  элементов=1  прирост=1  всего=3     0.29 c
+[light] # 14 tag:adventure              стр.1  элементов=1  прирост=1  всего=4     0.25 c
+[light] # 15 tag:age                    стр.1  элементов=1  прирост=1  всего=5     0.22 c
+[light] # 16 tag:alcohol                стр.1  элементов=1  прирост=1  всего=6     0.21 c
+[light] # 17 tag:aliteracy              стр.1  элементов=1  прирост=1  всего=7     0.30 c
+[light] # 18 tag:apathy                 стр.1  элементов=1  прирост=1  всего=8     0.33 c
+[light] # 19 tag:attributed             стр.1  элементов=1  прирост=1  всего=9     0.24 c
+[light] # 20 tag:attributed-no-source   стр.1  элементов=3  прирост=3  всего=12    0.23 c
+[light] # 21 tag:authors                стр.1  элементов=1  прирост=1  всего=13    0.30 c
+[light] # 22 tag:be-yourself            стр.1  элементов=1  прирост=1  всего=14    0.26 c
+[light] # 23 tag:beatles                стр.1  элементов=1  прирост=1  всего=15    0.23 c
+[light] # 24 tag:better-life-empathy    стр.1  элементов=1  прирост=1  всего=16    0.22 c
+[light] # 25 tag:bilbo                  стр.1  элементов=1  прирост=1  всего=17    0.24 c
+[light] # 26 tag:books                  стр.1  элементов=10 прирост=10 всего=27    0.31 c
+[light] # 27 tag:books                  стр.2  элементов=1  прирост=1  всего=28    0.22 c
+[light] # 28 tag:change                 стр.1  элементов=1  прирост=1  всего=29    0.25 c
+[light] # 29 tag:children               стр.1  элементов=2  прирост=2  всего=31    0.25 c
+[light] # 30 tag:chocolate              стр.1  элементов=1  прирост=1  всего=32    0.21 c
+[light] # 31 tag:choices                стр.1  элементов=1  прирост=1  всего=33    0.33 c
+[light] # 32 tag:christianity           стр.1  элементов=1  прирост=1  всего=34    0.24 c
+[light] # 33 tag:classic                стр.1  элементов=2  прирост=2  всего=36    0.22 c
+[light] # 34 tag:comedy                 стр.1  элементов=1  прирост=1  всего=37    0.29 c
+[light] # 35 tag:connection             стр.1  элементов=1  прирост=1  всего=38    0.25 c
+[light] # 36 tag:contentment            стр.1  элементов=1  прирост=1  всего=39    0.22 c
+[light] # 37 tag:courage                стр.1  элементов=2  прирост=2  всего=41    0.28 c
+[light] # 38 tag:death                  стр.1  элементов=3  прирост=3  всего=44    0.24 c
+[light] # 39 tag:deep-thoughts          стр.1  элементов=1  прирост=1  всего=45    0.28 c
+[light] # 40 tag:difficult              стр.1  элементов=1  прирост=1  всего=46    0.20 c
+[light] # 41 tag:dreamers               стр.1  элементов=1  прирост=1  всего=47    0.21 c
+[light] # 42 tag:dreaming               стр.1  элементов=1  прирост=1  всего=48    0.25 c
+[light] # 43 tag:dreams                 стр.1  элементов=1  прирост=1  всего=49    0.51 c
+[light] # 44 tag:drug                   стр.1  элементов=1  прирост=1  всего=50    0.34 c
+[light] # 45 tag:dumbledore             стр.1  элементов=2  прирост=2  всего=52    0.40 c
+[light] # 46 tag:edison                 стр.1  элементов=1  прирост=1  всего=53    0.27 c
+[light] # 47 tag:education              стр.1  элементов=1  прирост=1  всего=54    0.35 c
+[light] # 48 tag:elizabeth-bennet       стр.1  элементов=1  прирост=1  всего=55    0.19 c
+[light] # 49 tag:failure                стр.1  элементов=1  прирост=1  всего=56    0.36 c
+[light] # 50 tag:fairy-tales            стр.1  элементов=1  прирост=1  всего=57    0.33 c
+[light] # 51 tag:fairytales             стр.1  элементов=1  прирост=1  всего=58    0.23 c
+[light] # 52 tag:faith                  стр.1  элементов=1  прирост=1  всего=59    0.45 c
+[light] # 53 tag:fantasy                стр.1  элементов=1  прирост=1  всего=60    0.62 c
+[light] # 54 tag:fate                   стр.1  элементов=1  прирост=1  всего=61    0.42 c
+[light] # 55 tag:fear                   стр.1  элементов=1  прирост=1  всего=62    0.27 c
+[light] # 56 tag:food                   стр.1  элементов=1  прирост=1  всего=63    0.20 c
+[light] # 57 tag:friends                стр.1  элементов=4  прирост=4  всего=67    0.23 c
+[light] # 58 tag:friendship             стр.1  элементов=5  прирост=5  всего=72    0.42 c
+[light] # 59 tag:girls                  стр.1  элементов=1  прирост=1  всего=73    0.23 c
+[light] # 60 tag:god                    стр.1  элементов=1  прирост=1  всего=74    0.50 c
+[light] # 61 tag:good                   стр.1  элементов=1  прирост=1  всего=75    0.22 c
+[light] # 62 tag:growing-up             стр.1  элементов=1  прирост=1  всего=76    0.23 c
+[light] # 63 tag:grown-ups              стр.1  элементов=1  прирост=1  всего=77    0.31 c
+[light] # 64 tag:happiness              стр.1  элементов=1  прирост=1  всего=78    0.21 c
+[light] # 65 tag:hate                   стр.1  элементов=1  прирост=1  всего=79    0.25 c
+[light] # 66 tag:heartbreak             стр.1  элементов=1  прирост=1  всего=80    0.23 c
+[light] # 67 tag:hope                   стр.1  элементов=2  прирост=2  всего=82    0.20 c
+[light] # 68 tag:humor                  стр.1  элементов=10 прирост=10 всего=92    0.30 c
+[light] # 69 tag:humor                  стр.2  элементов=2  прирост=2  всего=94    0.28 c
+[light] # 70 tag:imagination            стр.1  элементов=1  прирост=1  всего=95    0.25 c
+[light] # 71 tag:indifference           стр.1  элементов=1  прирост=1  всего=96    0.26 c
+[light] # 72 tag:insanity               стр.1  элементов=1  прирост=1  всего=97    0.19 c
+[light] # 73 tag:inspiration            стр.1  элементов=1  прирост=1  всего=98    0.21 c
+[light] # 74 tag:inspirational          стр.1  элементов=10 прирост=10 всего=108   0.72 c
+[light] # 75 tag:inspirational          стр.2  элементов=3  прирост=3  всего=111   0.27 c
+[light] # 76 tag:integrity              стр.1  элементов=1  прирост=1  всего=112   0.24 c
+[light] # 77 tag:jane-austen            стр.1  элементов=1  прирост=1  всего=113   0.31 c
+[light] # 78 tag:journey                стр.1  элементов=1  прирост=1  всего=114   0.42 c
+[light] # 79 tag:knowledge              стр.1  элементов=1  прирост=1  всего=115   0.27 c
+[light] # 80 tag:lack-of-friendship     стр.1  элементов=1  прирост=1  всего=116   0.21 c
+[light] # 81 tag:lack-of-love           стр.1  элементов=1  прирост=1  всего=117   0.22 c
+[light] # 82 tag:learning               стр.1  элементов=2  прирост=2  всего=119   0.34 c
+[light] # 83 tag:library                стр.1  элементов=2  прирост=2  всего=121   0.22 c
+[light] # 84 tag:lies                   стр.1  элементов=1  прирост=1  всего=122   0.20 c
+[light] # 85 tag:life                   стр.1  элементов=10 прирост=10 всего=132   0.31 c
+[light] # 86 tag:life                   стр.2  элементов=3  прирост=3  всего=135   0.21 c
+[light] # 87 tag:literature             стр.1  элементов=1  прирост=1  всего=136   0.22 c
+[light] # 88 tag:live                   стр.1  элементов=1  прирост=1  всего=137   0.22 c
+[light] # 89 tag:live-death-love        стр.1  элементов=1  прирост=1  всего=138   0.20 c
+[light] # 90 tag:lost                   стр.1  элементов=1  прирост=1  всего=139   0.22 c
+[light] # 91 tag:love                   стр.1  элементов=10 прирост=10 всего=149   0.34 c
+[light] # 92 tag:love                   стр.2  элементов=4  прирост=4  всего=153   0.25 c
+[light] # 93 tag:lying                  стр.1  элементов=1  прирост=1  всего=154   0.21 c
+[light] # 94 tag:marriage               стр.1  элементов=1  прирост=1  всего=155   0.22 c
+[light] # 95 tag:mind                   стр.1  элементов=1  прирост=1  всего=156   0.20 c
+[light] # 96 tag:miracle                стр.1  элементов=1  прирост=1  всего=157   0.22 c
+[light] # 97 tag:miracles               стр.1  элементов=1  прирост=1  всего=158   0.29 c
+[light] # 98 tag:misattributed-eleanor-roosevelt стр.1  элементов=1  прирост=1  всего=159   0.29 c
+[light] # 99 tag:misattributed-john-lennon стр.1  элементов=1  прирост=1  всего=160   0.22 c
+[light] #100 tag:misattributed-mark-twain стр.1  элементов=1  прирост=1  всего=161   0.22 c
+[light] #101 tag:misattributed-to-c-s-lewis стр.1  элементов=1  прирост=1  всего=162   0.24 c
+[light] #102 tag:misattributed-to-einstein стр.1  элементов=1  прирост=1  всего=163   0.30 c
+[light] #103 tag:misattributed-to-mother-teresa стр.1  элементов=1  прирост=1  всего=164   0.29 c
+[light] #104 tag:mistakes               стр.1  элементов=1  прирост=1  всего=165   0.23 c
+[light] #105 tag:music                  стр.1  элементов=2  прирост=2  всего=167   0.28 c
+[light] #106 tag:navigation             стр.1  элементов=1  прирост=1  всего=168   0.29 c
+[light] #107 tag:novelist-quotes        стр.1  элементов=1  прирост=1  всего=169   0.21 c
+[light] #108 tag:obvious                стр.1  элементов=1  прирост=1  всего=170   0.31 c
+[light] #109 tag:open-mind              стр.1  элементов=1  прирост=1  всего=171   0.23 c
+[light] #110 tag:opposite               стр.1  элементов=1  прирост=1  всего=172   0.35 c
+[light] #111 tag:paraphrased            стр.1  элементов=2  прирост=2  всего=174   0.25 c
+[light] #112 tag:peace                  стр.1  элементов=1  прирост=1  всего=175   0.41 c
+[light] #113 tag:philosophy             стр.1  элементов=2  прирост=2  всего=177   0.32 c
+[light] #114 tag:planning               стр.1  элементов=1  прирост=1  всего=178   0.21 c
+[light] #115 tag:plans                  стр.1  элементов=1  прирост=1  всего=179   0.26 c
+[light] #116 tag:poetry                 стр.1  элементов=1  прирост=1  всего=180   0.26 c
+[light] #117 tag:quest                  стр.1  элементов=1  прирост=1  всего=181   0.23 c
+[light] #118 tag:read                   стр.1  элементов=1  прирост=1  всего=182   0.20 c
+[light] #119 tag:readers                стр.1  элементов=1  прирост=1  всего=183   0.24 c
+[light] #120 tag:reading                стр.1  элементов=7  прирост=7  всего=190   0.35 c
+[light] #121 tag:reading-books          стр.1  элементов=1  прирост=1  всего=191   0.35 c
+[light] #122 tag:regrets                стр.1  элементов=1  прирост=1  всего=192   0.23 c
+[light] #123 tag:religion               стр.1  элементов=2  прирост=2  всего=194   0.27 c
+[light] #124 tag:romance                стр.1  элементов=1  прирост=1  всего=195   0.22 c
+[light] #125 tag:romantic               стр.1  элементов=1  прирост=1  всего=196   0.20 c
+[light] #126 tag:self-indulgence        стр.1  элементов=1  прирост=1  всего=197   0.30 c
+[light] #127 tag:seuss                  стр.1  элементов=1  прирост=1  всего=198   0.23 c
+[light] #128 tag:simile                 стр.1  элементов=3  прирост=3  всего=201   0.28 c
+[light] #129 tag:simplicity             стр.1  элементов=1  прирост=1  всего=202   0.20 c
+[light] #130 tag:sinister               стр.1  элементов=1  прирост=1  всего=203   0.21 c
+[light] #131 tag:sisters                стр.1  элементов=1  прирост=1  всего=204   0.29 c
+[light] #132 tag:success                стр.1  элементов=1  прирост=1  всего=205   0.21 c
+[light] #133 tag:sun                    стр.1  элементов=1  прирост=1  всего=206   0.21 c
+[light] #134 tag:tea                    стр.1  элементов=1  прирост=1  всего=207   0.28 c
+[light] #135 tag:the-hunger-games       стр.1  элементов=1  прирост=1  всего=208   0.30 c
+[light] #136 tag:thinking               стр.1  элементов=2  прирост=2  всего=210   0.23 c
+[light] #137 tag:thought                стр.1  элементов=1  прирост=1  всего=211   0.35 c
+[light] #138 tag:travel                 стр.1  элементов=1  прирост=1  всего=212   0.21 c
+[light] #139 tag:troubles               стр.1  элементов=1  прирост=1  всего=213   0.20 c
+[light] #140 tag:truth                  стр.1  элементов=4  прирост=4  всего=217   0.33 c
+[light] #141 tag:understand             стр.1  элементов=1  прирост=1  всего=218   0.23 c
+[light] #142 tag:understanding          стр.1  элементов=1  прирост=1  всего=219   0.23 c
+[light] #143 tag:unhappy-marriage       стр.1  элементов=1  прирост=1  всего=220   0.21 c
+[light] #144 tag:value                  стр.1  элементов=1  прирост=1  всего=221   0.21 c
+[light] #145 tag:wander                 стр.1  элементов=1  прирост=1  всего=222   0.22 c
+[light] #146 tag:wisdom                 стр.1  элементов=1  прирост=1  всего=223   0.23 c
+[light] #147 tag:women                  стр.1  элементов=1  прирост=1  всего=224   0.22 c
+[light] #148 tag:world                  стр.1  элементов=1  прирост=1  всего=225   0.25 c
+[light] #149 tag:write                  стр.1  элементов=1  прирост=1  всего=226   0.24 c
+[light] #150 tag:writers                стр.1  элементов=1  прирост=1  всего=227   0.23 c
+[light] #151 tag:writing                стр.1  элементов=3  прирост=3  всего=230   0.24 c
+[light] #152 tag:yourself               стр.1  элементов=2  прирост=2  всего=232   0.24 c
+smoke-check data_light.csv: OK (ключевые поля заполнены, порог пустых 5%)
+
+Записей (цитата × тег): 232 | уникальных цитат в ленте: 100 | циклов: 152 | сбоев: 0
+Время прогона: 195.0 c | запросов: 155 | трафик: 0.774 МБ | пик памяти: 49.8 МБ | код возврата: 0
+--- light: код 0, 196 с
+
+=== 13:59:41 compare: python compare.py ===
+[pairs] браузер=232 light=232 общих=232 только браузер=0 только light=0 расхождения полей={} → СОВПАДАЮТ
+[feed] браузер=100 light=100 общих=100 только браузер=0 только light=0 расхождения полей={} → СОВПАДАЮТ
+[consistency_browser] тегов в ленте=137 обойдено=137; ожидалось пар по ленте=232 найдено на страницах тегов=232 (для обойдённых тегов не найдено: 0, лишних: 0); цитат без тегов: 3
+[consistency_light] тегов в ленте=137 обойдено=137; ожидалось пар по ленте=232 найдено на страницах тегов=232 (для обойдённых тегов не найдено: 0, лишних: 0); цитат без тегов: 3
+Итог сверки: наборы совпадают
+--- compare: код 0, 0 с
+
+=== 13:59:41 bench: python bench.py --reps 3 ===
+[A] повтор 1 full : 10 стр., 4.258 c, запросов 53, заблокировано 0, 107.2 КБ
+[A] повтор 1 block: 10 стр., 3.38 c, запросов 10, заблокировано 20, 23.2 КБ
+[A] повтор 2 block: 10 стр., 4.085 c, запросов 10, заблокировано 20, 23.3 КБ
+[A] повтор 2 full : 10 стр., 4.691 c, запросов 55, заблокировано 0, 107.8 КБ
+[A] повтор 3 full : 10 стр., 4.23 c, запросов 53, заблокировано 0, 107.2 КБ
+[A] повтор 3 block: 10 стр., 4.541 c, запросов 10, заблокировано 20, 23.3 КБ
+
+A. Блокировка ресурсов (медианы):
+        seconds  requests  blocked     kb
+mode                                    
+block    4.085      10.0     20.0   23.3
+full     4.258      53.0      0.0  107.2
+   экономия времени 4.1 %, трафика 78.3 %
+B. Извлечение: eval_on_selector_all 108.8 мс против поэлементно 889.9 мс (×8.2), записи совпадают: True
+C. Авторизация: {'fresh': {'median_s': 1.511, 'median_requests': 3, 'all_ok': True}, 'restore': {'median_s': 1.038, 'median_requests': 1, 'all_ok': True}}
+Сохранено: metrics/bench_*.csv, metrics/bench.json
+--- bench: код 0, 110 с
+
+=== 14:01:31 faults: python faults.py ===
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    0.87 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.44 c
+  [artifacts] сохранено: timeout__page_3__20261016-140137.png, timeout__page_3__20261016-140137.html
+  [artifacts] сохранено: timeout__page_3__20261016-140140.png, timeout__page_3__20261016-140140.html
+[browser] тегов для обхода: 0
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    2.18 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    0.28 c
+[browser] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.47 c
+[browser] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.28 c
+[browser] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    0.35 c
+[browser] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.32 c
+[browser] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.27 c
+[browser] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.33 c
+[browser] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.38 c
+[browser] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.28 c
+[browser] тегов для обхода: 3
+  [artifacts] сохранено: http500__tag_abilities_page_1__20261016-140151.png, http500__tag_abilities_page_1__20261016-140151.html
+  [artifacts] сохранено: http500__tag_abilities_page_1__20261016-140151.png, http500__tag_abilities_page_1__20261016-140151.html
+[browser] # 12 tag:activism               стр.1  элементов=1  прирост=1  всего=1     0.26 c
+[browser] # 13 tag:adulthood              стр.1  элементов=1  прирост=1  всего=2     0.29 c
+[browser] #  1 feed:feed                   стр.1  элементов=10 прирост=10 всего=10    2.49 c
+[browser] #  2 feed:feed                   стр.2  элементов=10 прирост=10 всего=20    1.00 c
+[browser] #  3 feed:feed                   стр.3  элементов=10 прирост=10 всего=30    0.46 c
+[browser] #  4 feed:feed                   стр.4  элементов=10 прирост=10 всего=40    0.64 c
+[browser] #  5 feed:feed                   стр.5  элементов=10 прирост=10 всего=50    0.66 c
+[browser] #  6 feed:feed                   стр.6  элементов=10 прирост=10 всего=60    0.39 c
+[browser] #  7 feed:feed                   стр.7  элементов=10 прирост=10 всего=70    0.68 c
+[browser] #  8 feed:feed                   стр.8  элементов=10 прирост=10 всего=80    0.42 c
+[browser] #  9 feed:feed                   стр.9  элементов=10 прирост=10 всего=90    0.63 c
+[browser] # 10 feed:feed                   стр.10 элементов=10 прирост=10 всего=100   0.77 c
+[browser] тегов для обхода: 3
+[auth] сессия не активна — повторный вход (однократно)
+[auth] вход выполнен как st*****, CSRF vaAk************************************************, storage_state → auth_state.json
+  [artifacts] сохранено: http500__tag_abilities_page_1__20261016-140216.png, http500__tag_abilities_page_1__20261016-140216.html
+[trace] инцидент зафиксирован: http_500 https://quotes.toscrape.com/tag/abilities/page/1/
+PASS empty: раздел остановлен с ошибкой ожидания, страницы 1–2 сохранены
+PASS http500: тег пропущен после повтора, следующие теги собраны
+PASS expired: ровно один повторный вход, затем AuthLost
+Сохранено: metrics/faults.json, metrics/faults_log.csv, artifacts/trace_faults.zip
+--- faults: код 0, 45 с
+
+=== 14:02:16 parallel: python parallel.py --workers 3 --max-tags 30 ===
+Тегов: 30 | K=1: 41.0 c, 47 записей, ошибок 0 | K=3: 19.37 c, 47 записей, ошибок 0 | ускорение ×2.12 | наборы совпадают: True | с data_browser.csv: True
+--- parallel: код 0, 61 с
+
+=== 14:03:17 summarize: python summarize.py ===
+smoke-check data_browser.csv: OK (ключевые поля заполнены, порог пустых 5%)
+smoke-check data_light.csv: OK (ключевые поля заполнены, порог пустых 5%)
+Сохранено: ~/web-data-extraction/solutions/lab4_podolskiy_5/metrics/summary.md
+--- summarize: код 0, 2 с
+
+=== 14:03:19 notebook: исполнение lab4.ipynb ===
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+lab4.ipynb исполнен, ошибок в ячейках: 0
+
+Готово: 2026-10-16 14:03:35
+Данные: data_browser.csv, data_light.csv, collection_log.csv | метрики: metrics/ | сводка для отчёта: metrics/summary.md
+storage_state: повторный запуск прошёл без входа — OK
+Все шаги завершились с кодом 0. Дальше: nocode/INSTRUCTIONS.md (n8n) и маркеры ⟪ЗАПОЛНИТЬ⟫ в report.md.
+
+================================================================
+== Лаба 5: solutions/lab5_podolskiy_5 — старт 14:03:35
+================================================================
+== Лабораторная 5: старт 2026-10-16 14:03:35, источник: https://www.scrapingcourse.com/ecommerce/
+Python 3.13.7 | Scrapy 2.19.0
+robots.txt: https://www.scrapingcourse.com/robots.txt → HTTP 200
+---
+User-agent: *
+Disallow: /ecommerce/*
+---
+  https://www.scrapingcourse.com/ecommerce/
+    urllib.robotparser=True  Protego(Scrapy)=False  → НЕЛЬЗЯ
+  https://www.scrapingcourse.com/ecommerce/page/2/
+    urllib.robotparser=True  Protego(Scrapy)=False  → НЕЛЬЗЯ
+  https://www.scrapingcourse.com/ecommerce/product/abominable-hoodie/
+    urllib.robotparser=True  Protego(Scrapy)=False  → НЕЛЬЗЯ
+Вердикт: обход ЗАПРЕЩЁН robots.txt — сбор не запускаем (ROBOTSTXT_OBEY=True)
+== robots.txt запрещает обход (https://www.scrapingcourse.com/ecommerce/) или недоступен (код 3).
+== Фиксируем доказательство: паук с ROBOTSTXT_OBEY=True делает 1 запрос (robots.txt),
+== все страницы каталога отсекает (robotstxt/forbidden), записей 0.
+2026-10-16 14:03:37 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: ecommerce_crawler)
+2026-10-16 14:03:37 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.6.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.4.0',
+ 'Python': '3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 '
+           '(clang-1600.0.26.6)]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'macOS-26.6.2-arm64-arm-64bit-Mach-O'}
+2026-10-16 14:03:37 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-10-16 14:03:37 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.closespider.CloseSpider',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-10-16 14:03:37 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 10.0,
+ 'AUTOTHROTTLE_START_DELAY': 1.0,
+ 'BOT_NAME': 'ecommerce_crawler',
+ 'CLOSESPIDER_ERRORCOUNT': 20,
+ 'CLOSESPIDER_ITEMCOUNT': 400,
+ 'CLOSESPIDER_PAGECOUNT': 700,
+ 'CLOSESPIDER_TIMEOUT': '120',
+ 'CONCURRENT_REQUESTS': 8,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
+ 'COOKIES_ENABLED': False,
+ 'DEPTH_LIMIT': 60,
+ 'DEPTH_STATS_VERBOSE': True,
+ 'DOWNLOAD_DELAY': 0.5,
+ 'DOWNLOAD_MAXSIZE': 5242880,
+ 'DOWNLOAD_TIMEOUT': 20,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'HTTPCACHE_DIR': '~/Desktop/рабочий стол/Вуз/учеба/Инструменты '
+                  'автоматизирвоанного сбора данных в сети '
+                  'Интернет/solutions/lab5_podolskiy_5/.scrapy/httpcache',
+ 'HTTPCACHE_EXPIRATION_SECS': 86400,
+ 'HTTPCACHE_IGNORE_HTTP_CODES': [403, 429, 500, 502, 503, 504],
+ 'LOGSTATS_INTERVAL': 30.0,
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'ecommerce_crawler.spiders',
+ 'RETRY_HTTP_CODES': [408, 429, 500, 502, 503, 504, 522, 524],
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['ecommerce_crawler.spiders'],
+ 'TELNETCONSOLE_ENABLED': False,
+ 'USER_AGENT': 'PSU-edu-crawler/1.0 '
+               '(+https://github.com/Meta1rus/web-data-extraction; student '
+               'lab)'}
+2026-10-16 14:03:37 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-10-16 14:03:37 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-10-16 14:03:37 [scrapy.middleware] INFO: Enabled item pipelines:
+['ecommerce_crawler.pipelines.ValidationPipeline',
+ 'ecommerce_crawler.pipelines.CleanPipeline',
+ 'ecommerce_crawler.pipelines.DedupPipeline',
+ 'ecommerce_crawler.pipelines.SQLitePipeline']
+2026-10-16 14:03:37 [scrapy.core.engine] INFO: Spider opened
+2026-10-16 14:03:37 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-10-16 14:03:37 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 63762 (job 61307-077d98fef8cb45c4bdf224915cc2d004)
+2026-10-16 14:03:41 [ecommerce] WARNING: Ошибка запроса [ignored] https://www.scrapingcourse.com/ecommerce/: Forbidden by robots.txt
+2026-10-16 14:03:41 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-10-16 14:03:41 [ecommerce] INFO: Статистика прогона сохранена: ~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab5_podolskiy_5/data/stats_08_robots_evidence.json
+2026-10-16 14:03:41 [scrapy.extensions.feedexport] INFO: Stored jsonlines feed (0 items) in: data/demo/items_robots_evidence.jsonl
+2026-10-16 14:03:41 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'db/rows_total_in_table': 0,
+ 'downloader/exception_count': 1,
+ 'downloader/exception_type_count/scrapy.exceptions.IgnoreRequest': 1,
+ 'downloader/request_bytes': 291,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 1074,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 3.482728084025439,
+ 'errback/ignored': 1,
+ 'errback/total': 1,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 10, 16, 9, 3, 41, 222833, tzinfo=datetime.timezone.utc),
+ 'items_per_minute': 0.0,
+ 'log_count/INFO': 4,
+ 'log_count/WARNING': 1,
+ 'memusage/max': 86884352,
+ 'memusage/startup': 86884352,
+ 'response_received_count': 1,
+ 'responses_per_minute': 20.0,
+ 'robotstxt/forbidden': 1,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2026, 10, 16, 9, 3, 37, 740127, tzinfo=datetime.timezone.utc)}
+2026-10-16 14:03:41 [scrapy.core.engine] INFO: Spider closed (finished)
+== СБОР ОСТАНОВЛЕН. Нужна замена источника по согласованию с преподавателем
+== (см. README, раздел «Источник закрыт robots.txt»). После согласования:
+==   START_URL=https://scrapeme.live/shop/ ./run_real.sh
+== Журнал: logs/real_run_20261016_140335.log
+
+================================================================
+== Лаба 7: solutions/lab7_podolskiy_5 — старт 14:03:42
+================================================================
+== Лабораторная 7: старт 2026-10-16 14:03:42; источник: https://www.scrapingcourse.com/ecommerce/; стенд кодов: https://httpbin.org
+Python 3.13.7 | Scrapy 2.19.0
+robots.txt https://www.scrapingcourse.com/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://www.scrapingcourse.com/ecommerce/: False  (urllib.robotparser=True, Protego=False)
+   can_fetch https://www.scrapingcourse.com/ecommerce/page/2/: False  (urllib.robotparser=True, Protego=False)
+   can_fetch https://www.scrapingcourse.com/ecommerce/product/abominable-hoodie/: False  (urllib.robotparser=True, Protego=False)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/page/2/: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+== src.collect --robots-only --start-url https://httpbin.org/ → код возврата 0
+== robots.txt запрещает обход https://www.scrapingcourse.com/ecommerce/ (код 3): прогоны краулера на реальном сайте
+== пропущены. Нужна замена источника по согласованию (README, раздел про robots.txt).
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/status/429: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/401: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/403: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/404: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/etag/lab7-v1: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/gzip: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/response-headers?Retry-After=3: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/response-headers?Retry-After=Fri%2C%2016%20Oct%202026%2009%3A04%3A15%20GMT: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне httpbin_codes (httpbin_codes_20261016T090345Z)
+  mode                   B
+  requests               12
+  status_counts          {'200': 5, '401': 1, '403': 1, '404': 1, '429': 4}
+  error_rate             0.5833
+  share_429_403          0.4167
+  retries                3
+  retry_sources          {'retry-after': 0, 'backoff': 3}
+  latency_median_ms      1237.8
+  latency_p95_ms         3131.0
+  traffic_kb             1.0
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              1
+  items_scraped          0
+  items_dropped          0
+  deferred_urls          1
+  duration_s             74.37
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.5833: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.4167: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+  ОПОВЕЩЕНИЕ [жёлтый] latency_p95_ms > 3000 = 3131.0: p95 > 3 с — сервер перегружен (в том числе нами): лимит надо снизить
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.25: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+== src.collect --label httpbin_codes --cond --gzip --fresh-state --no-history --probe-urls https://httpbin.org/status/429|https://httpbin.org/status/401|https://httpbin.org/status/403|https://httpbin.org/status/404|https://httpbin.org/etag/lab7-v1|https://httpbin.org/gzip|https://httpbin.org/response-headers?Retry-After=3|https://httpbin.org/response-headers?Retry-After=Fri%2C%2016%20Oct%202026%2009%3A04%3A15%20GMT → код возврата 1
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/etag/lab7-v1: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне httpbin_etag_repeat (httpbin_etag_repeat_20261016T090503Z)
+  mode                   B
+  requests               2
+  status_counts          {'200': 1, '304': 1}
+  error_rate             0.0
+  share_429_403          0.0
+  retries                0
+  retry_sources          {'retry-after': 0, 'backoff': 0}
+  latency_median_ms      1239.8
+  latency_p95_ms         1557.6
+  traffic_kb             0.0
+  not_modified_304       1
+  incremental_skipped    0
+  breaker_activations    0
+  breaker_rejected       0
+  incidents              0
+  items_scraped          0
+  items_dropped          0
+  deferred_urls          0
+  duration_s             2.85
+  status                 зелёный
+== src.collect --label httpbin_etag_repeat --cond --no-history --probe-urls https://httpbin.org/etag/lab7-v1 → код возврата 0
+robots.txt https://httpbin.org/robots.txt: HTTP 200; Crawl-delay=None; Request-rate=None; Sitemap=[]
+   can_fetch https://httpbin.org/status/503: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/delay/10: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/503?x=2: True  (urllib.robotparser=True, Protego=True)
+   can_fetch https://httpbin.org/status/200: True  (urllib.robotparser=True, Protego=True)
+   robots.txt найден: применяются его правила; Crawl-delay имеет приоритет над нашими лимитами
+
+== Отчёт о прогоне httpbin_503_timeout (httpbin_503_timeout_20261016T090510Z)
+  mode                   B
+  requests               10
+  status_counts          {'200': 1, '503': 6, 'exception:DownloadTimeoutError': 3}
+  error_rate             0.9
+  share_429_403          0.0
+  retries                7
+  retry_sources          {'retry-after': 0, 'backoff': 7}
+  latency_median_ms      1360.4
+  latency_p95_ms         2324.6
+  traffic_kb             0.0
+  not_modified_304       0
+  incremental_skipped    0
+  breaker_activations    4
+  breaker_rejected       18
+  incidents              0
+  items_scraped          0
+  items_dropped          0
+  deferred_urls          4
+  duration_s             94.73
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.9: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.7: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+  ОПОВЕЩЕНИЕ [жёлтый] breaker_activations > 0 = 4: срабатывание предохранителя — домен был недоступен, часть URL отложена
+== src.collect --label httpbin_503_timeout --timeout 5 --breaker-reset 10 --no-history --probe-urls https://httpbin.org/status/503|https://httpbin.org/delay/10|https://httpbin.org/status/503?x=2|https://httpbin.org/status/200 → код возврата 1
+
+### сценарий abc
+$ src.collect --label mock_A --local-mock --mode A --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --max-requests 30 --no-history
+  код возврата 1;   duration_s             0.13
+  status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.8889: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.8889: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+$ src.collect --label mock_B --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --no-history
+  код возврата 1;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.1429: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.1429: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.14285714285714285: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+$ src.collect --label mock_C --local-mock --mode C --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             0.56
+  status                 зелёный
+
+### сценарий savings
+$ src.collect --label mock_S0_base --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --no-history
+  код возврата 0;   items_dropped          1
+  deferred_urls          0
+  duration_s             11.9
+  status                 зелёный
+$ src.collect --label mock_S1_cond --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --cond --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             8.15
+  status                 зелёный
+$ src.collect --label mock_S2_gzip --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --gzip --no-history
+  код возврата 0;   items_dropped          1
+  deferred_urls          0
+  duration_s             8.1
+  status                 зелёный
+$ src.collect --label mock_S3_incr --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --cond --incremental --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             0.61
+  status                 зелёный
+$ src.collect --label mock_S4_after_change --local-mock --mode C --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             1.56
+  status                 зелёный
+
+### сценарий 429
+$ src.collect --label mock_429 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --rate 8 --burst 8 --no-history
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             8.7
+  status                 зелёный
+$ src.collect --label mock_429_polite --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --rate 2 --burst 2 --no-history
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             16.59
+  status                 зелёный
+
+### сценарий autothrottle
+$ src.collect --label mock_autothrottle --local-mock --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --rate 4 --burst 2 --no-history
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             12.93
+  status                 зелёный
+
+### сценарий resume
+$ src.collect --label mock_resume_1 --fresh-state --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --jobdir jobstate/mock_resume --no-history --local-mock   (через 8.0 с — SIGINT)
+$ src.collect --label mock_resume_2 --resume-deferred --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --jobdir jobstate/mock_resume --no-history --local-mock
+{
+ "run1": {
+  "close_reason": "shutdown",
+  "requests": 19,
+  "items": 15,
+  "scrapy_stats": {
+   "downloader/request_count": 19,
+   "downloader/response_bytes": 135693,
+   "scheduler/enqueued/disk": 35,
+   "scheduler/dequeued/disk": 18,
+   "item_dropped_count": 1
+  }
+ },
+ "run2": {
+  "close_reason": "finished",
+  "requests": 35,
+  "items": 31,
+  "dupefilter/filtered": 17,
+  "scrapy_stats": {
+   "downloader/request_count": 35,
+   "downloader/response_bytes": 229278,
+   "dupefilter/filtered": 17,
+   "scheduler/enqueued/disk": 17,
+   "scheduler/dequeued/disk": 34,
+   "lab7/deferred_resumed": 0,
+   "item_dropped_count": 1
+  }
+ },
+ "db_rows_by_run": [
+  [
+   "mock_resume_1_20261016T090818Z",
+   15
+  ],
+  [
+   "mock_resume_2_20261016T090827Z",
+   31
+  ]
+ ]
+}
+
+### сценарий breaker
+$ src.collect --label mock_breaker --local-mock --mode B --pages 3 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --extra-url http://localhost:18508/status/200 --breaker-reset 5 --no-history
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             25.19
+  status                 зелёный
+
+### сценарий history
+$ src.collect --label mock_hist_1 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             8.81
+  status                 зелёный
+$ src.collect --label mock_hist_2 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             9.11
+  status                 зелёный
+$ src.collect --label mock_hist_3 --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 0;   items_dropped          2
+  deferred_urls          0
+  duration_s             9.03
+  status                 зелёный
+$ src.collect --label mock_hist_captcha --local-mock --mode B --pages 2 --start-url http://127.0.0.1:18507/ecommerce/ --fresh-state --profile mock-history --rate 4 --burst 4
+  код возврата 2;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] incidents_block > 0 = 1: детектор нашёл заглушку/блокировку — сбор домена остановлен, нужен разбор
+  ОПОВЕЩЕНИЕ [красный] items_vs_median < 0.8 = 0.5: записей меньше 80 % медианы прошлых прогонов — поломка селекторов или тихая блокировка
+ИТОГ: блокировка — сбор домена остановлен, артефакты в logs/incidents/ (код 2)
+
+### сценарий probes
+$ src.collect --label mock_probe_codes --local-mock --probe-urls http://127.0.0.1:18507/status/429?retry_after=2|http://127.0.0.1:18507/status/429|http://127.0.0.1:18507/status/429?retry_after=Fri%2C%2016%20Oct%202026%2009%3A09%3A47%20GMT|http://127.0.0.1:18507/status/401|http://127.0.0.1:18507/status/403|http://127.0.0.1:18507/status/404|http://127.0.0.1:18507/etag/lab7-v1|http://127.0.0.1:18507/gzip|http://127.0.0.1:18507/response-headers?Retry-After=3 --cond --gzip --fresh-state --no-history
+  код возврата 1;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.7895: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] share_429_403 > 0.01 = 0.6842: 429/403 — сайт просит снизить нагрузку или ограничил доступ; вежливый сборщик их почти не получает
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.47368421052631576: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+$ src.collect --label mock_probe_etag_repeat --local-mock --probe-urls http://127.0.0.1:18507/etag/lab7-v1 --cond --no-history
+  код возврата 0;   items_dropped          0
+  deferred_urls          0
+  duration_s             0.56
+  status                 зелёный
+$ src.collect --label mock_probe_503_timeout --local-mock --probe-urls http://localhost:18508/status/503|http://localhost:18508/delay/8|http://localhost:18508/status/503?x=2|http://localhost:18508/status/200 --timeout 3 --breaker-reset 5 --no-history
+  код возврата 1;   status                 красный
+  ОПОВЕЩЕНИЕ [красный] error_rate > 0.05 = 0.8182: больше 5 % ошибок — сбор неполный; на учебной площадке норма — 0
+  ОПОВЕЩЕНИЕ [жёлтый] retries_per_request > 0.1 = 0.8181818181818182: больше одного повтора на 10 запросов — нестабильность или слишком высокая скорость
+  ОПОВЕЩЕНИЕ [жёлтый] breaker_activations > 0 = 4: срабатывание предохранителя — домен был недоступен, часть URL отложена
+
+### сценарий robots
+$ src.collect --label mock_robots_real --local-mock --mode B --pages 1 --start-url http://127.0.0.1:18507/ecommerce/ --no-history
+  код возврата 0;   items_dropped          1
+  deferred_urls          0
+  duration_s             8.06
+  status                 зелёный
+
+Сводка: reports/mock_scenarios_summary.json (334.7 с)
+| режим | воркеров | лимит, запр/с | запросов | время, с | средняя скорость на сервере, запр/с | максимум за любую 1 с |
+|---|---|---|---|---|---|---|
+| local | 4 | 2.0 | 32 | 3.65 | 8.86 | 12 |
+| shared | 4 | 2.0 | 32 | 15.6 | 2.0 | 3 |
+(на локальной имитации)
+[NbConvertApp] Converting notebook analysis.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/bin/jupyter-nbconvert", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/jupyter_core/application.py", line 284, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/traitlets/config/application.py", line 1080, in launch_instance
+    app.start()
+    ~~~~~~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources, input_buffer=input_buffer
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources=resources
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        nbformat.read(file_stream, as_version=4), resources=resources, **kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+                ~~~~~~~~~~~~^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/preprocessors/base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+for lab in [l for l in ("real_breaker", "mock_breaker") if report(l)]:
+    ev = events(lab)
+    print(lab, "(на локальной имитации)" if report(lab).get("local_mock") else "", "| предохранитель:", report(lab)["breakers"])
+    display(ev[ev["event"] == "breaker"][["t", "host", "from_state", "to_state", "reason"]].round(1))
+    req = ev[ev["event"] == "request"]
+    fig, ax = plt.subplots(figsize=(10, 3))
+    for i, (host, g) in enumerate(req.groupby("host")):
+        ax.scatter(g["t"], [i] * len(g), c=["tab:red" if (s or 0) >= 500 else "tab:green" for s in g["status"]], s=14)
+    rej = ev[ev["event"] == "breaker_reject"]
+    hosts = list(req.groupby("host").groups)
+    ax.scatter(rej["t"], [hosts.index(h) - 0.25 if h in hosts else 0 for h in rej["host"]], marker="x", c="gray", s=12,
+               label="не отправлен (open/half-open)")
+    ax.set_yticks(range(len(hosts))); ax.set_yticklabels(hosts); ax.set_xlabel("с"); ax.legend(loc="upper right")
+    ax.set_title(f"{lab}: запросы по доменам (зелёный — ок, красный — 5xx)")
+    plt.tight_layout(); plt.show()
+------------------
+
+----- stdout -----
+real_breaker  | предохранитель: {'scrapeme.live': {'state': 'closed', 'activations': 0, 'rejected': 0}, 'httpbin.org': {'state': 'closed', 'activations': 0, 'rejected': 0}}
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mKeyError[39m                                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[8][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mfor[39;00m lab [38;5;28;01min[39;00m [l [38;5;28;01mfor[39;00m l [38;5;28;01min[39;00m ([33m"real_breaker"[39m, [33m"mock_breaker"[39m) [38;5;28;01mif[39;00m report(l)]:
+[32m      2[39m     ev = events(lab)
+[32m      3[39m     print(lab, [33m"(на локальной имитации)"[39m [38;5;28;01mif[39;00m report(lab).get([33m"local_mock"[39m) [38;5;28;01melse[39;00m [33m""[39m, [33m"| предохранитель:"[39m, report(lab)[[33m"breakers"[39m])
+[32m----> [39m[32m4[39m     display(ev[ev[[33m"event"[39m] == [33m"breaker"[39m][[[33m"t"[39m, [33m"host"[39m, [33m"from_state"[39m, [33m"to_state"[39m, [33m"reason"[39m]].round([32m1[39m))
+[32m      5[39m     req = ev[ev[[33m"event"[39m] == [33m"request"[39m]
+[32m      6[39m     fig, ax = plt.subplots(figsize=([32m10[39m, [32m3[39m))
+[32m      7[39m     [38;5;28;01mfor[39;00m i, (host, g) [38;5;28;01min[39;00m enumerate(req.groupby([33m"host"[39m)):
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/pandas/core/frame.py:4384[39m, in [36mDataFrame.__getitem__[39m[34m(self, key)[39m
+[32m   4380[39m                 indexer = [indexer]
+[32m   4381[39m         [38;5;28;01melse[39;00m:
+[32m   4382[39m             [38;5;28;01mif[39;00m is_iterator(key):
+[32m   4383[39m                 key = list(key)
+[32m-> [39m[32m4384[39m             indexer = self.columns._get_indexer_strict(key, [33m"columns"[39m)[[32m1[39m]
+[32m   4385[39m 
+[32m   4386[39m         [38;5;66;03m# take() does not accept boolean indexers[39;00m
+[32m   4387[39m         [38;5;28;01mif[39;00m getattr(indexer, [33m"dtype"[39m, [38;5;28;01mNone[39;00m) == bool:
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/pandas/core/indexes/base.py:6302[39m, in [36mIndex._get_indexer_strict[39m[34m(self, key, axis_name)[39m
+[32m   6299[39m [38;5;28;01melse[39;00m:
+[32m   6300[39m     keyarr, indexer, new_indexer = [38;5;28mself[39m._reindex_non_unique(keyarr)
+[32m-> [39m[32m6302[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_raise_if_missing[39;49m[30;43m([39;49m[30;43mkeyarr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mindexer[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43maxis_name[39;49m[30;43m)[39;49m
+[32m   6304[39m keyarr = [38;5;28mself[39m.take(indexer)
+[32m   6305[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(key, Index):
+[32m   6306[39m     [38;5;66;03m# GH 42790 - Preserve name from an Index[39;00m
+
+[36mFile [39m[32m~/Desktop/рабочий стол/Вуз/учеба/Инструменты автоматизирвоанного сбора данных в сети Интернет/solutions/lab7_podolskiy_5/.venv/lib/python3.13/site-packages/pandas/core/indexes/base.py:6355[39m, in [36mIndex._raise_if_missing[39m[34m(self, key, indexer, axis_name)[39m
+[32m   6352[39m     [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m([33mf[39m[33m"[39m[33mNone of [[39m[38;5;132;01m{[39;00mkey[38;5;132;01m}[39;00m[33m] are in the [[39m[38;5;132;01m{[39;00maxis_name[38;5;132;01m}[39;00m[33m][39m[33m"[39m)
+[32m   6354[39m not_found = [38;5;28mlist[39m(ensure_index(key)[missing_mask.nonzero()[[32m0[39m]].unique())
+[32m-> [39m[32m6355[39m [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m([33mf[39m[33m"[39m[38;5;132;01m{[39;00mnot_found[38;5;132;01m}[39;00m[33m not in index[39m[33m"[39m)
+
+[31mKeyError[39m: "['from_state', 'to_state'] not in index"
+
+
+================ Итог ================
+лаба результат время, с
+3       код 1     73
+4       код 0     1213
+5       код 0     7
+7       код 1     587
+
+Дальше:
+  1) n8n: ./start_n8n.sh, затем по nocode/INSTRUCTIONS.md каждой лабы — импорт workflow.json, запуск, скриншоты;
+  2) напиши Claude «прогон готов» — он прочитает журналы и заполнит места ⟪ЗАПОЛНИТЬ⟫ в отчётах.
+Журнал: logs/run_all_20261016_134209.log

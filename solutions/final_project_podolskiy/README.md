@@ -223,7 +223,7 @@ final_project_podolskiy/
 | ≥ 4 порогов оповещения, вкл. сравнение с прошлым прогоном | `config.yaml → alerts` (7): доля ошибок, 403/429, падение числа карточек к прошлому прогону того же охвата, p95, остаток квоты, срабатывания предохранителя, серия прогонов без изменений |
 | Расписание с обоснованием | n8n Schedule Trigger `17 3 * * *` UTC; обоснование — `docs/decisions.md` §7, `nocode/notes.md` |
 | Возобновляемость | `state/checkpoint.json` (страницы и ключи), водяной знак, ETag, атомарная запись состояния; `demo/demo_resume.sh` |
-| **2.5** No-code компонент | `nocode/workflow.json` (n8n: расписание → Execute Command → разбор отчёта → IF → оповещение → Stop and Error; Error Trigger), `nocode/notes.md` (таблица «этап → код / no-code → что не перенесено»), скриншоты — ⟪ЗАПОЛНИТЬ⟫ (`nocode/INSTRUCTIONS.md`) |
+| **2.5** No-code компонент | `nocode/workflow.json` (n8n: расписание → Execute Command → разбор отчёта → IF → оповещение → Stop and Error; Error Trigger), `nocode/notes.md` (таблица «этап → код / no-code → что не перенесено»), скриншоты — `nocode/screenshots/` (схема, расписание, успешный и сбойный запуск, файл оповещения, список запусков); реальные запуски 16.10.2026 — `docs/decisions.md`, раздел 9 |
 | **2.6** 2–3 вывода, ≥ 2 графика, ограничения | `analysis.ipynb` §8 (выводы формируются из вычислений, 3–4 графика в `mart/fig*.png`); `docs/decisions.md` §8 — три вывода по реальным данным |
 | **2.7** README воспроизведения | этот файл |
 | Схема пайплайна | `docs/pipeline_diagram.md` (Mermaid) |

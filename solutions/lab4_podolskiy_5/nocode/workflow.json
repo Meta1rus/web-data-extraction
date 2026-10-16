@@ -112,8 +112,8 @@
         100
       ],
       "retryOnFail": true,
-      "maxTries": 3,
-      "waitBetweenTries": 2000,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "onError": "continueErrorOutput",
       "notes": "Форма входа + cookie сессии (Set-Cookie), к которой привязан CSRF-токен"
     },
@@ -206,8 +206,8 @@
         0
       ],
       "retryOnFail": true,
-      "maxTries": 2,
-      "waitBetweenTries": 2000,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "onError": "continueErrorOutput",
       "notes": "Редирект НЕ выполняем: из ответа 302 берём новую cookie сессии"
     },
@@ -262,56 +262,6 @@
     },
     {
       "parameters": {
-        "url": "={{ $('Config').first().json.baseUrl }}/page/1/",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "User-Agent",
-              "value": "={{ $('Config').first().json.userAgent }}"
-            },
-            {
-              "name": "Cookie",
-              "value": "={{ $json.cookie }}"
-            }
-          ]
-        },
-        "options": {
-          "pagination": {
-            "pagination": {
-              "paginationMode": "responseContainsNextURL",
-              "nextURL": "={{ $('Config').first().json.baseUrl + ($response.body.match(/<li class=\"next\">[\\s\\S]*?href=\"([^\"]+)\"/) || [])[1] }}",
-              "paginationCompleteWhen": "other",
-              "completeExpression": "={{ !/<li class=\"next\">/.test($response.body) }}",
-              "limitPagesFetched": true,
-              "maxRequests": 15,
-              "requestInterval": 1000
-            }
-          },
-          "response": {
-            "response": {
-              "responseFormat": "text"
-            }
-          },
-          "timeout": 15000
-        }
-      },
-      "id": "e1cd9d36-7d65-5f00-bfb4-f36cdfef3b50",
-      "name": "GET /page/N (пагинация после входа)",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1540,
-        -100
-      ],
-      "retryOnFail": true,
-      "maxTries": 3,
-      "waitBetweenTries": 2000,
-      "onError": "continueErrorOutput",
-      "notes": "Пагинация по ссылке Next; предохранители: maxRequests=15, пауза 1000 мс между страницами"
-    },
-    {
-      "parameters": {
         "operation": "extractHtmlContent",
         "sourceData": "json",
         "dataPropertyName": "data",
@@ -340,7 +290,7 @@
       "type": "n8n-nodes-base.html",
       "typeVersion": 1.2,
       "position": [
-        1760,
+        2640,
         -100
       ]
     },
@@ -356,7 +306,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1980,
+        2860,
         -100
       ]
     },
@@ -407,7 +357,7 @@
       "type": "n8n-nodes-base.html",
       "typeVersion": 1.2,
       "position": [
-        2200,
+        3080,
         -100
       ],
       "notes": "cleanUpText выключен намеренно: узел (v1.2) получает текст через html-to-text с переносом строк по 80 символов, а cleanUpText удаляет переносы без пробела и склеивает слова. Пробелы нормализует узел «Нормализация»."
@@ -422,7 +372,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2420,
+        3300,
         -100
       ]
     },
@@ -438,7 +388,7 @@
       "type": "n8n-nodes-base.removeDuplicates",
       "typeVersion": 2,
       "position": [
-        2640,
+        3520,
         -100
       ]
     },
@@ -452,7 +402,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2860,
+        3740,
         -100
       ]
     },
@@ -469,7 +419,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        3080,
+        3960,
         -100
       ]
     },
@@ -485,7 +435,7 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        3300,
+        4180,
         -100
       ]
     },
@@ -551,6 +501,140 @@
       "position": [
         1540,
         320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Состояние обхода ленты. 1-я итерация приходит из «Cookie сессии», следующие — из «Пауза 1 с (лента)»\nconst cfg = $('Config').first().json;\nconst s = $input.first().json;\nif (s.next_url === undefined) {\n  return [{ json: { cookie: s.cookie, next_url: cfg.baseUrl + '/page/1/', page_no: 1, pages: [] } }];\n}\nreturn [{ json: s }];\n"
+      },
+      "id": "080deea8-71d0-55ce-846f-45042d648aeb",
+      "name": "Шаг ленты",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        -100
+      ],
+      "notes": "Цикл по ссылке Next вместо встроенной пагинации HTTP Request: у неё нет повтора отдельной страницы."
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.next_url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "={{ $('Config').first().json.userAgent }}"
+            },
+            {
+              "name": "Cookie",
+              "value": "={{ $json.cookie }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "id": "b677b70f-f6b3-508d-88c5-0675880b6c5a",
+      "name": "GET /page/N (страница ленты)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        -100
+      ],
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput",
+      "notes": "Одна страница ленты за запуск; cookie сессии — заголовком. Повторы: 5 попыток через 5 с (максимум n8n). Узел получает ровно 1 item за запуск — иначе n8n повторяет узел, только если упал первый item."
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Сохраняем HTML страницы и ищем ссылку Next; предохранитель — не больше 15 страниц ленты\nconst MAX_PAGES = 15;\nconst cfg = $('Config').first().json;\nconst st = $('Шаг ленты').last().json;\nconst html = String($input.first().json.data || '');\nconst m = html.match(/<li class=\"next\">[\\s\\S]*?href=\"([^\"]+)\"/);\nconst hasNext = Boolean(m) && st.page_no < MAX_PAGES;\nreturn [{ json: {\n  cookie: st.cookie,\n  pages: st.pages.concat([html]),\n  page_no: st.page_no + 1,\n  next_url: hasNext ? cfg.baseUrl + m[1] : null,\n  has_next: hasNext,\n} }];\n"
+      },
+      "id": "b59b0aa7-0b1c-5ad1-b943-5de9bbe6a24b",
+      "name": "Следующая страница?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c0554e36-2581-57cf-92f4-a8631f29404c",
+              "leftValue": "={{ $json.has_next }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7e045659-0574-521c-b5cb-4aa39dca7d67",
+      "name": "Есть следующая страница?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2200,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": 1,
+        "unit": "seconds"
+      },
+      "id": "d99d9927-0a3b-5c47-941d-63521e811961",
+      "name": "Пауза 1 с (лента)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1980,
+        -320
+      ],
+      "webhookId": "ab7c5e17-ac7b-5c15-9a38-332266c02a4f",
+      "notes": "Вежливость: 1 с между страницами ленты.",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Разворачиваем накопленные страницы: по item на страницу (поле data — HTML)\nreturn $input.first().json.pages.map((data, i) => ({ json: { data, page_no: i + 1 } }));\n"
+      },
+      "id": "ea7e275b-f4ce-525f-9c8c-b4abdf9032ab",
+      "name": "Страницы ленты",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        -200
       ]
     }
   ],
@@ -657,25 +741,7 @@
       "main": [
         [
           {
-            "node": "GET /page/N (пагинация после входа)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "GET /page/N (пагинация после входа)": {
-      "main": [
-        [
-          {
-            "node": "HTML: карточки цитат",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Детали сбоя",
+            "node": "Шаг ленты",
             "type": "main",
             "index": 0
           }
@@ -764,6 +830,86 @@
         [
           {
             "node": "Остановить: сбой запроса",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Шаг ленты": {
+      "main": [
+        [
+          {
+            "node": "GET /page/N (страница ленты)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET /page/N (страница ленты)": {
+      "main": [
+        [
+          {
+            "node": "Следующая страница?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Детали сбоя",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Следующая страница?": {
+      "main": [
+        [
+          {
+            "node": "Есть следующая страница?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Есть следующая страница?": {
+      "main": [
+        [
+          {
+            "node": "Пауза 1 с (лента)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Страницы ленты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пауза 1 с (лента)": {
+      "main": [
+        [
+          {
+            "node": "Шаг ленты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Страницы ленты": {
+      "main": [
+        [
+          {
+            "node": "HTML: карточки цитат",
             "type": "main",
             "index": 0
           }
