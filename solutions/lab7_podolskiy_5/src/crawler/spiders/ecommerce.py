@@ -125,6 +125,12 @@ class EcommerceSpider(scrapy.Spider):
                     yield scrapy.Request(d["url"], callback=self.parse_item, errback=self.on_error,
                                          cb_kwargs={"list_ctx": {}}, meta={"page_kind": "product"},
                                          dont_filter=True, priority=20)
+                elif d.get("kind") == "list" and d["url"] != self.start_url:
+                    # страница каталога, ждавшая по таймеру в момент прерывания: без этого она теряется —
+                    # повторный запрос стартовой страницы найдёт ссылку на неё, но dupefilter (JOBDIR) её отбросит
+                    yield scrapy.Request(d["url"], callback=self.parse, errback=self.on_error,
+                                         cb_kwargs={"page_no": d.get("page_no") or 2}, meta={"page_kind": "list"},
+                                         dont_filter=True, priority=15)
             self.crawler.stats.set_value("lab7/deferred_resumed", len(saved))
         yield scrapy.Request(self.start_url, callback=self.parse, errback=self.on_error,
                              cb_kwargs={"page_no": 1}, meta={"page_kind": "list"}, dont_filter=True)

@@ -111,6 +111,7 @@ class Runtime:
 
     def defer(self, request, reason: str) -> None:
         self.deferred.append({"url": request.url, "reason": reason, "kind": request.meta.get("page_kind"),
+                              "page_no": (getattr(request, "cb_kwargs", None) or {}).get("page_no"),
                               "ts": datetime.now(timezone.utc).isoformat(timespec="seconds")})
 
     def save_state(self) -> None:

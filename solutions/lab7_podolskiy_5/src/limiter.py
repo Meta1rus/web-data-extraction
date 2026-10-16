@@ -250,14 +250,22 @@ def read_robots(origin: str, user_agent: str, probe_urls: list[str], timeout: fl
     robots_url = origin.rstrip("/") + "/robots.txt"
     req = urllib.request.Request(robots_url, headers={"User-Agent": user_agent})
     status, text = None, ""
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            status = resp.status
-            text = resp.read(512 * 1024).decode("utf-8", errors="replace")
-    except urllib.error.HTTPError as e:
-        status = e.code
-    except (urllib.error.URLError, TimeoutError, OSError) as e:
-        text = f"# network error: {e}"
+    # Единичный обрыв соединения (реальный прогон 16.10.2026: SSL EOF / ConnectionLost) не означает,
+    # что robots.txt «недоступен»: до вывода по RFC 9309 делаем до 3 попыток с паузой 2 и 4 с.
+    for attempt in range(1, 4):
+        status, text = None, ""
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                status = resp.status
+                text = resp.read(512 * 1024).decode("utf-8", errors="replace")
+        except urllib.error.HTTPError as e:
+            status = e.code
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            text = f"# network error (попытка {attempt}): {e}"
+        if status is not None and status < 500:
+            break                               # получен ответ, который можно трактовать
+        if attempt < 3:
+            time.sleep(2 * attempt)
 
     rp = robotparser.RobotFileParser(robots_url)
     pg = None
