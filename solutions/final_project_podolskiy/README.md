@@ -253,10 +253,10 @@ final_project_podolskiy/
 
 ## 8. Что осталось сделать вручную
 
-Цифры отчётных документов заполнены по реальному прогону 15.10.2026. Остались действия, которые требуют интерфейса:
+Цифры отчётных документов заполнены по реальному прогону 15.10.2026, `slides.pdf` собран из `slides.md`
+(`python docs/build_slides.py slides.md mart slides.pdf`). Остались действия, которые требуют интерфейса:
 
 | Файл | Что сделать |
 |---|---|
 | `nocode/INSTRUCTIONS.md`, `nocode/screenshots/` | запустить n8n, импортировать `workflow.json`, выполнить, сделать скриншоты `screenshot_*.png`, вписать версию `n8n --version` |
 | `docs/decisions.md` §3 | скриншоты протокола диагностики: `docs/screenshot_view_source.png` (View Source, поиск имени репозитория) и `docs/screenshot_network.png` (DevTools → Network при нажатии «Load more…») |
-| `slides.md` → `slides.pdf` | собрать PDF из содержания слайдов (можно попросить Claude) |
