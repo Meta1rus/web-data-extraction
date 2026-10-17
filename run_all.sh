@@ -83,5 +83,5 @@ done
 echo
 echo "Дальше:"
 echo "  1) n8n: ./start_n8n.sh, затем по nocode/INSTRUCTIONS.md каждой лабы — импорт workflow.json, запуск, скриншоты;"
-echo "  2) напиши Claude «прогон готов» — он прочитает журналы и заполнит места ⟪ЗАПОЛНИТЬ⟫ в отчётах."
+echo "  2) цифры для отчётов — в журналах logs/real_run_*.log и отчётах reports/ каждой лабы."
 echo "Журнал: $LOG"

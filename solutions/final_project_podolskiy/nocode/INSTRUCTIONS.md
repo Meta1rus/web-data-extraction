@@ -1,7 +1,7 @@
 # n8n: импорт, запуск, скриншоты
 
-> **Как запускать на этом Mac:** n8n запускается одной командой из корня папки курса — `./start_n8n.sh` (в ней уже заданы все переменные окружения). Результаты workflow пишутся в `~/.n8n-files/podolskiy/`, оттуда их нужно скопировать в `nocode/` этой лабы. Общая пошаговая инструкция — `ИНСТРУКЦИЯ.md` в корне.
-
+> Короткий путь: `./start_n8n.sh` из корня репозитория запускает n8n с нужными переменными окружения; workflow
+> пишет результат в `~/.n8n-files/podolskiy/`, откуда он копируется в `nocode/`.
 
 Workflow `nocode/workflow.json` оркестрирует пайплайн: расписание → запуск `src/run_pipeline.py` → разбор
 `RUN_SUMMARY` → оповещение при жёлтом/красном статусе → Stop and Error при красном; ветка Error Trigger.
@@ -9,7 +9,7 @@ Workflow `nocode/workflow.json` оркестрирует пайплайн: ра�
 
 ## 1. Подготовка (macOS, один раз)
 
-Сначала выполните реальный прогон (`./run_real.sh`) — он создаёт `.venv` и данные, на которые опирается workflow.
+Сначала выполняется реальный прогон (`./run_real.sh`) — он создаёт `.venv` и данные, на которые опирается workflow.
 
 ```bash
 mkdir -p ~/.n8n-files/podolskiy                      # сюда n8n пишет файлы оповещений
@@ -23,21 +23,22 @@ npx n8n                                               # UI: http://localhost:567
 Node.js 20.19–24 используйте ветку 1.x: `npx n8n@1`. В n8n 2.x узел Execute Command исключён по умолчанию
 (`NODES_EXCLUDE = ["n8n-nodes-base.executeCommand", "n8n-nodes-base.localFileTrigger"]` в конфигурации n8n) —
 поэтому `NODES_EXCLUDE="[]"` обязателен; в 1.x переменная не нужна, но не мешает. Запись файлов по умолчанию
-разрешена только в `~/.n8n-files`. На Mac автора 16.10.2026: n8n 2.35.7 (глобальная установка npm) на Node.js 24.22.0, запуск — `./start_n8n.sh` из
-корня папки курса.
-Если узел Execute Command в вашей версии недоступен вовсе — см. раздел 5 «Запасной вариант».
+разрешена только в `~/.n8n-files`. Проверено 16.10.2026: n8n 2.35.7 (глобальная установка npm) на Node.js 24.22.0, запуск — `./start_n8n.sh` из
+корня репозитория.
+Если узел Execute Command в установленной версии недоступен вовсе — см. раздел 5 «Запасной вариант».
 
 ## 2. Импорт и настройка
 
 1. **Workflows → Import from File** → `nocode/workflow.json`
    (или из терминала: `npx n8n import:workflow --input=nocode/workflow.json`).
-2. Узел **Параметры запуска**: `project_dir` и `alerts_dir` уже указывают на папку проекта на этом Mac и на
-   `~/.n8n-files/podolskiy`. `python` оставьте `.venv/bin/python`, `args` и `env_prefix` — пустыми.
-3. **Settings (⋯ → Settings) → Error workflow** → выберите этот же workflow (ветка «При сбое workflow»).
+2. Узел **Параметры запуска**: `project_dir` и `alerts_dir` указывают на папку проекта (абсолютный путь рабочего
+   компьютера — при переносе меняется) и на `~/.n8n-files/podolskiy`; `python` — `.venv/bin/python`, `args` и
+   `env_prefix` — пустые.
+3. **Settings (⋯ → Settings) → Error workflow** → этот же workflow (ветка «При сбое workflow»).
    Ветка Error Trigger срабатывает для запусков по расписанию (не для ручных). Часовой пояс workflow уже задан: UTC.
-4. Telegram (необязательно): создайте бота у @BotFather, добавьте учётные данные Telegram API в узел
-   «Telegram (включить при наличии бота)», впишите `chatId`, включите узел (Deactivate → Activate node).
-5. Сохраните. Для работы по расписанию переключите workflow в **Active** (в n8n 2.x — **Publish**).
+4. Telegram (необязательно): бот создаётся у @BotFather, учётные данные Telegram API добавляются в узел
+   «Telegram (включить при наличии бота)», туда же вписывается `chatId`, затем узел включается (Deactivate → Activate node).
+5. Workflow сохраняется; для работы по расписанию он переключается в **Active** (в n8n 2.x — **Publish**).
 
 ## 3. Запуски для отчёта и защиты
 
@@ -48,7 +49,7 @@ Node.js 20.19–24 используйте ветку 1.x: `npx n8n@1`. В n8n 2.
 | Отказ источника | `env_prefix = GITHUB_API_BASE=https://api.github.invalid`, `args = --topics web-scraping --max-pages 1 --refresh-max-age-hours 0` | код 3 → оповещение → файл → «Красный статус?» → **Stop and Error** (выполнение помечено ошибкой) |
 | Сбой запуска | `python = .venv/bin/python-missing` | ветка ошибки Execute Command → «Сбой запуска команды» → оповещение |
 
-После демонстрации верните `env_prefix` и `python` к исходным значениям.
+После демонстрации `env_prefix` и `python` возвращаются к исходным значениям.
 
 ## 4. Скриншоты (сохранить в `nocode/screenshots/`)
 
@@ -71,7 +72,7 @@ crontab -e
 ```
 
 Оповещения в этом случае — по `reports/latest_run_report.json` (поле `verdict`) и коду возврата в `logs/cron.log`.
-В отчёте нужно честно указать, что no-code-часть сведена к оповещениям, и почему (политика безопасности n8n 2.x).
+В этом случае в отчёте указывается, что no-code-часть сведена к оповещениям, и почему (политика безопасности n8n 2.x).
 
 ## 6. Что вписать в таблицу сравнения
 

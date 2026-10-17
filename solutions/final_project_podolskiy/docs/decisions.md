@@ -9,7 +9,7 @@ push и доля активных, размер — `size`) и требует о
 метрики — только API.
 
 Цифры ниже — из реального прогона 15.10.2026 (21:22–21:51 UTC, Python 3.10, токен GitHub). Код, который их считает, —
-`src/observability.py`, `src/quality.py`, `analysis.ipynb`. Вручную остаются только скриншоты (DevTools и n8n).
+`src/observability.py`, `src/quality.py`, `analysis.ipynb`.
 
 ---
 
@@ -43,7 +43,7 @@ push и доля активных, размер — `size`) и требует о
 |---|---|---|
 | 1. Ответ сервера `requests` | код, размер страницы | 200, 642 474 байт (16.10.2026; 15.10.2026 — 642 581) (`/topics/web-scraping?l=python`) |
 | 2. Поиск текста в исходном HTML | имя первого репозитория (`needle_in_html`), число карточек, найденных BeautifulSoup | BeautifulSoup нашёл 20 карточек из 20 (стратегия `article-cards`); имя первого репозитория `browser-use/browser-use` есть в исходном HTML |
-| 3. Network → XHR | «Load more…» — `GET /topics/<t>?l=python&page=2` возвращает HTML с карточками (`load_more_target`) | форма «Load more…» ведёт на `https://github.com/topics/web-scraping?l=python` с `page=N+1` — обычный HTML, тот же парсер; `docs/screenshot_view_source.png` — фрагмент исходного HTML сохранённой страницы (имя первого репозитория, звёзды в `aria-label`, 20 карточек, форма «Load more…» с `page=2`); `docs/screenshot_network.png` — запрос после нажатия «Load more…» в браузере: GET `/topics/web-scraping?l=python&page=2` → 200, HTML (перехват Claude in Chrome, 16.10.2026) |
+| 3. Network → XHR | «Load more…» — `GET /topics/<t>?l=python&page=2` возвращает HTML с карточками (`load_more_target`) | форма «Load more…» ведёт на `https://github.com/topics/web-scraping?l=python` с `page=N+1` — обычный HTML, тот же парсер; `docs/screenshot_view_source.png` — фрагмент исходного HTML сохранённой страницы (имя первого репозитория, звёзды в `aria-label`, 20 карточек, форма «Load more…» с `page=2`); `docs/screenshot_network.png` — запрос после нажатия «Load more…» в браузере: GET `/topics/web-scraping?l=python&page=2` → 200, HTML (сетевые запросы вкладки браузера, 16.10.2026) |
 | 4. Вывод | браузер нужен, только если данных нет ни в HTML, ни в API | **достаточно HTTP** (requests + BeautifulSoup), Playwright не нужен |
 
 Заранее, чтением реальной страницы `github.com/topics/web-scraping?l=python` (15.10.2026), подтверждено содержание:
@@ -243,7 +243,7 @@ n8n оркестрирует прогон: Schedule Trigger → Set (парам�
 workflow. Таблица «этап → код / no-code → что не удалось перенести» — `nocode/notes.md`; импорт и скриншоты —
 `nocode/INSTRUCTIONS.md`. Скриншоты — `nocode/screenshots/`.
 
-**Запуски из n8n 16.10.2026** (n8n 2.35.7 на Node.js 24.22.0, Mac автора):
+**Запуски из n8n 16.10.2026** (n8n 2.35.7 на Node.js 24.22.0, macOS):
 
 | Запуск n8n | Пайплайн | Что произошло | Путь в n8n |
 |---|---|---|---|

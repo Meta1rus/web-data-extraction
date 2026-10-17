@@ -1,0 +1,14 @@
+{
+  "source": "Executions n8n 2.35.7 и RSS процесса n8n во время прогона, рабочий Mac, 16.10.2026",
+  "runs": 5,
+  "run_seconds_median": 25.9,
+  "run_seconds_min": 21.7,
+  "run_seconds_max": 37.9,
+  "http_requests": 12,
+  "retries_range": "0–2",
+  "traffic_mb_estimate": 0.03,
+  "traffic_note": "оценка: n8n трафик не показывает; 12 ответов × ≈ 2,3 КБ gzip",
+  "peak_rss_mb": 790,
+  "peak_rss_range_mb": "774–794",
+  "sec_per_record": 0.26
+}

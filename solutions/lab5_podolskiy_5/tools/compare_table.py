@@ -3,9 +3,8 @@
 
 Scrapy-часть берётся из статистики прогонов (data/stats_*_subset_n8n.json — то же
 подмножество из 2 страниц каталога, что обрабатывает workflow, и data/stats_*_main.json).
-n8n-часть: число записей считается по nocode/nocode_result.csv, время прогона и время
-разработки вписываются в nocode/n8n_metrics.json после запуска workflow (значения из
-журнала выполнений n8n: Executions → длительность).
+n8n-часть: число записей считается по nocode/nocode_result.csv, время прогона и число
+запросов берутся из nocode/n8n_metrics.json (журнал выполнений n8n: Executions → длительность).
 
 Трафик n8n сам не сообщает: выводится ОЦЕНКА = число запросов × средний размер ответа,
 измеренный Scrapy на тех же страницах (помечено «оценка»).
@@ -63,7 +62,6 @@ def main() -> None:
     n_mb = (n_req * avg_resp / 1_048_576) if (n_req and avg_resp) else None
 
     rows = [
-        ("Время разработки, мин", fmt(m.get("scrapy_dev_minutes")), "—", fmt(m.get("n8n_dev_minutes"))),
         ("Записей собрано", fmt(sc["items"]), fmt(sm["items"]), fmt(n8n_rows or None)),
         ("Время прогона, с", fmt(sc["secs"], 1), fmt(sm["secs"], 1), fmt(n_secs, 1)),
         ("Записей в минуту", fmt(sc["ipm"], 1), fmt(sm["ipm"], 1),
@@ -79,8 +77,6 @@ def main() -> None:
          "Schedule Trigger + ветка ошибки из коробки"),
         ("Версионирование логики", "git: код, настройки, тесты", "",
          "экспорт workflow.json в git; diff JSON малочитаем"),
-        ("Оценка усилий на поддержку (1–5)", fmt(m.get("scrapy_support_1_5")), "",
-         fmt(m.get("n8n_support_1_5"))),
     ]
     lines = ["| Метрика | Scrapy (подмножество, 2 стр.) | Scrapy (итоговый прогон) | n8n (2 стр.) |",
              "|---|---|---|---|"]

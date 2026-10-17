@@ -88,4 +88,4 @@ python tools/make_comparison.py > /dev/null
 python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=600 analysis.ipynb
 
 echo "== Готово $(date '+%F %T'). Журнал: $LOG"
-echo "== Дальше: n8n по nocode/INSTRUCTIONS.md; заполнить ⟪ЗАПОЛНИТЬ⟫ в report.md по reports/comparison.md и analysis.ipynb"
+echo "== Сравнение — reports/comparison.md, анализ — analysis.ipynb; n8n — nocode/INSTRUCTIONS.md"

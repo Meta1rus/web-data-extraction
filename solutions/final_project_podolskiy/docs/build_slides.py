@@ -50,7 +50,7 @@ def parse(md: str):
         lines = block[m.end():].strip("\n").splitlines()
         items, cur, table = [], None, None
         for ln in lines:
-            if ln.startswith("*Говорить:*"):
+            if ln.startswith("*Комментарий:*"):
                 cur = None
                 continue                                   # заметки докладчика в PDF не выводим
             if ln.startswith("|"):

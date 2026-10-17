@@ -575,7 +575,7 @@ def releases_page(r: tuple, rels: list[dict], page: int, has_next: bool, variant
 
 ROBOTS = """# If you would like to crawl GitHub contact us via https://support.github.com?tags=dotcom-robots
 # We also provide an extensive API: https://docs.github.com
-# (ФИКСТУРА: восстановлено по памяти автора; реальный файл скачивается при сборе)
+# (ФИКСТУРА: восстановлено по памяти; реальный файл скачивается при сборе)
 User-agent: baidu
 crawl-delay: 1
 

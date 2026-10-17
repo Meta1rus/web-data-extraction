@@ -35,7 +35,7 @@
 | is_archived, is_fork | 0/1 | — | `archived`, `fork` | обязательно |
 | created_at, pushed_at, gh_updated_at | TEXT ISO 8601 UTC | — | `created_at`, `pushed_at`, `updated_at` | created/updated — обязательно |
 | default_branch, etag | TEXT | — | `default_branch`, заголовок `ETag` | нет |
-| source, collected_at, first_seen_at, updated_at, parser_version, run_id, row_hash | служебные | `updated_at` — когда запись **изменилась** в нашей БД | — | обязательно |
+| source, collected_at, first_seen_at, updated_at, parser_version, run_id, row_hash | служебные | `updated_at` — когда запись **изменилась** в БД проекта | — | обязательно |
 
 ### `topic_listings` — карточка на странице темы (источник: HTML), ключ (`topic`, `repo_key`)
 

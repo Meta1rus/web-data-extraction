@@ -145,9 +145,10 @@ final_project_podolskiy/
 
 Разметка воспроизведена по знанию вёрстки github.com/topics; содержание страницы (20 карточек, «Most stars», фильтр
 `l=python`, звёзды вида «71.3k», «Updated <дата>», кнопка «Load more…») подтверждено чтением реальной страницы
-15.10.2026, а **классы и атрибуты нужно подтвердить первым реальным прогоном** (шаг 4 `run_real.sh`).
+15.10.2026; классы и атрибуты подтверждены реальными прогонами 15–16.10.2026 (шаг 4 `run_real.sh`): стратегия
+разбора `article-cards`, 20 карточек из 20, фолбэки не понадобились (`reports/diagnostics_latest.json`).
 
-| Поле | Селектор (внутри `article`) | Как получаем значение | Фолбэк |
+| Поле | Селектор (внутри `article`) | Как извлекается значение | Фолбэк |
 |---|---|---|---|
 | карточка | `article` | одна карточка = один репозиторий | JSON в `script[type=application/json]`, затем `h3 a[href]` |
 | `owner/repo` | `h3 a[href]` | `href` вида `/owner/repo` (регулярное выражение; `/login`, `/topics/…` отсекаются) | любая `a[href]` карточки |
@@ -235,28 +236,28 @@ final_project_podolskiy/
 
 ---
 
-## 7. Риски и что подтвердить первым реальным прогоном
+## 7. Риски и что показали реальные прогоны
 
-1. **Классы и атрибуты разметки github.com/topics** (таблица селекторов выше) воспроизведены по знанию вёрстки, а не
-   сняты с реальной страницы (из среды разработки github.com недоступен). Проверка: шаг 4 `run_real.sh`
-   (`tests/fixtures/real_topic_p1.html`, тест `test_real_page_if_present`), в отчёте — `html_topics.*.strategy`
-   (ожидается `article-cards`). Если сработал фолбэк или 0 карточек — красное оповещение `html_no_cards`.
+1. **Классы и атрибуты разметки github.com/topics** (таблица селекторов выше) сначала воспроизведены по знанию вёрстки;
+   реальные прогоны их подтвердили: в отчётах `html_topics.*.strategy = article-cards`, 20 карточек из 20. Проверка —
+   шаг 4 `run_real.sh` (`tests/fixtures/real_topic_p1.html`, тест `test_real_page_if_present`). Если сработает фолбэк
+   или карточек будет 0 — красное оповещение `html_no_cards`.
 2. **Параметр сортировки `s=updated`** (опция `sort_modes`) не подтверждён; по умолчанию не используется.
 3. **304 и квота.** По документации GitHub ответ 304 на авторизованный запрос не расходует основную квоту; отчёт
    проверяет это по `X-RateLimit-Used` (`requests.api_quota.used_delta_by_status`). Без токена 304 квоту расходует.
 4. **ETag страниц HTML**: страницы GitHub содержат одноразовые токены, поэтому 304 для HTML не ожидается; механизм
    включён и измеряется, основной эффект условных запросов — на API.
-5. **n8n ≥ 2.0**: узел Execute Command отключён по умолчанию — запуск с `NODES_EXCLUDE="[]"`; n8n 2.43 требует Node.js ≥ 24, при Node 20–24 — `npx n8n@1` (см. `nocode/INSTRUCTIONS.md`). Сам n8n в среде разработки не запускался (установка не прошла по памяти); имена параметров и версии узлов `workflow.json` сверены с исходниками `n8n-nodes-base` 2.43.4.
-6. Цифры в `docs/decisions.md`, `slides.md`, `docs/data_card.md` заполнены по реальному прогону 15.10.2026. При реальном
-   прогоне найдено и исправлено: тема `telegram-bot` не существует (404) → `telegram`; ETag `api.github.com` нестабилен →
+5. **n8n ≥ 2.0**: узел Execute Command отключён по умолчанию — запуск с `NODES_EXCLUDE="[]"`; n8n 2.43 требует Node.js ≥ 24, при Node 20–24 — `npx n8n@1` (см. `nocode/INSTRUCTIONS.md`). Workflow выполнен в n8n 2.35.7 на Node.js 24.22.0 (16.10.2026, результаты — `docs/decisions.md`, раздел 9); имена параметров и версии узлов `workflow.json` сверены с исходниками `n8n-nodes-base` 2.43.4.
+6. Цифры в `docs/decisions.md`, `slides.md`, `docs/data_card.md` — по реальному прогону 15.10.2026. В этом прогоне
+   найдено и исправлено: тема `telegram-bot` не существует (404) → `telegram`; ETag `api.github.com` нестабилен →
    условный запрос к API по `If-Modified-Since` (`docs/decisions.md` §7).
 
-## 8. Что осталось сделать вручную
+## 8. Материалы к защите
 
-Цифры отчётных документов заполнены по реальному прогону 15.10.2026, `slides.pdf` собран из `slides.md`
-(`python docs/build_slides.py slides.md mart slides.pdf`). Остались действия, которые требуют интерфейса:
+Цифры отчётных документов — по реальному прогону 15.10.2026; `slides.pdf` собран из `slides.md`
+(`python docs/build_slides.py slides.md mart slides.pdf`).
 
-| Файл | Что сделать |
+| Файл | Содержимое |
 |---|---|
-| `nocode/INSTRUCTIONS.md`, `nocode/screenshots/` | запустить n8n, импортировать `workflow.json`, выполнить, сделать скриншоты `screenshot_*.png`, вписать версию `n8n --version` |
-| `docs/decisions.md` §3 | скриншоты протокола диагностики: `docs/screenshot_view_source.png` (View Source, поиск имени репозитория) и `docs/screenshot_network.png` (DevTools → Network при нажатии «Load more…») |
+| `nocode/screenshots/` | n8n 2.35.7: схема, расписание, успешный и сбойный запуск, файл оповещения, список запусков (16.10.2026) |
+| `docs/screenshot_view_source.png`, `docs/screenshot_network.png` | протокол диагностики (`docs/decisions.md` §3): фрагмент исходного HTML и запрос, который отправляет кнопка «Load more…» |

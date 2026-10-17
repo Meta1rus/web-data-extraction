@@ -3,7 +3,7 @@
   "nodes": [
     {
       "parameters": {
-        "content": "## Оркестрация пайплайна (конфигурация B)\n1. Пути в узле **Параметры запуска** уже указывают на папку проекта на этом Mac.\n2. n8n ≥ 2.0: узел Execute Command отключён по умолчанию — запускайте n8n с `NODES_EXCLUDE=\"[]\"`.\n3. Запись файлов: `N8N_RESTRICT_FILE_ACCESS_TO=$HOME/.n8n-files`.\n4. Settings → Error workflow → этот же workflow (ветка Error Trigger).\n5. Telegram-узел выключен: включите после добавления учётных данных бота.\nПодробно: nocode/INSTRUCTIONS.md",
+        "content": "## Оркестрация пайплайна (конфигурация B)\n1. Пути в узле **Параметры запуска** указывают на папку проекта (абсолютный путь рабочего компьютера).\n2. n8n ≥ 2.0: узел Execute Command отключён по умолчанию — n8n запускается с `NODES_EXCLUDE=\"[]\"`.\n3. Запись файлов: `N8N_RESTRICT_FILE_ACCESS_TO=$HOME/.n8n-files`.\n4. Settings → Error workflow → этот же workflow (ветка Error Trigger).\n5. Telegram-узел выключен: включается после добавления учётных данных бота.\nПодробно: nocode/INSTRUCTIONS.md",
         "height": 300,
         "width": 420
       },

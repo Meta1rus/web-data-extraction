@@ -69,4 +69,4 @@ if [ "${#FAILED[@]}" -gt 0 ]; then
   echo "Шаги с ненулевым кодом: ${FAILED[*]} — см. лог $LOG и artifacts/"
   exit 1
 fi
-echo "Все шаги завершились с кодом 0. Дальше: nocode/INSTRUCTIONS.md (n8n) и маркеры ⟪ЗАПОЛНИТЬ⟫ в report.md."
+echo "Все шаги завершились с кодом 0. Сводка для отчёта — metrics/summary.md; n8n — nocode/INSTRUCTIONS.md."

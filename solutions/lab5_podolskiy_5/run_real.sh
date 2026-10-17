@@ -83,8 +83,8 @@ python quality/smoke_check.py --self-test
 python -m jupyter nbconvert --to notebook --execute --inplace \
     --ExecutePreprocessor.timeout=600 quality/quality_report.ipynb
 
-# 9. Таблица сравнения Scrapy vs n8n (заготовка; время n8n вписывается после запуска workflow)
+# 9. Таблица сравнения Scrapy vs n8n (n8n-колонка — из nocode/n8n_metrics.json)
 python tools/compare_table.py
 
 echo "== Готово $(date '+%F %T'). Журнал: $LOG"
-echo "== Дальше вручную: n8n по nocode/INSTRUCTIONS.md, затем заполнить ⟪ЗАПОЛНИТЬ⟫ в report.md"
+echo "== Таблица сравнения — nocode/comparison_table.md; n8n — nocode/INSTRUCTIONS.md"

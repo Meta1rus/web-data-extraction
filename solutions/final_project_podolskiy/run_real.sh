@@ -80,8 +80,6 @@ for r in c.execute("SELECT run_id, status, verdict, exit_code, html_cards, api_2
     print(" ".join(f"{'' if v is None else v!s:>5}" if i > 2 else f"{v!s:{[18, 11, 7][i]}}" for i, v in enumerate(r)))
 EOF
 echo
-echo "Готово. Дальше вручную:"
-echo "  1) перенести цифры в места ⟪ЗАПОЛНИТЬ⟫ (README §8 перечисляет их) из reports/ и analysis.ipynb;"
-echo "  2) n8n: nocode/INSTRUCTIONS.md (импорт workflow.json, запуск, скриншоты nocode/screenshots/screenshot_*.png);"
-echo "  3) скриншоты диагностики (View Source / Network) — docs/decisions.md §3; slides.md -> slides.pdf."
+echo "Готово. Цифры для отчётов — reports/, analysis.ipynb и таблица pipeline_runs;"
+echo "  n8n — nocode/INSTRUCTIONS.md; слайды — python docs/build_slides.py slides.md mart slides.pdf."
 date -u

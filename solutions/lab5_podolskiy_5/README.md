@@ -28,18 +28,18 @@ Disallow: /ecommerce/*
 без запрета (обход по категориям даёт те же товары, дедупликация по SKU их схлопнет).
 Точное число товаров проверить нельзя: страницы каталога закрыты тем же правилом.
 
-**Что делать.** Задание разрешает замену источника по согласованию с преподавателем. Проект
+**Замена источника.** Задание разрешает замену источника по согласованию с преподавателем. Проект
 написан под разметку WooCommerce и без изменений кода работает на родственной учебной
 площадке того же автора (ZenRows): **`https://scrapeme.live/shop/`** — 755 товаров на 48
 страницах, `robots.txt` разрешает `/shop/` (запрещены только служебные пути и `?add-to-cart=`),
 на карточке есть все поля варианта (название, цена, SKU, категории, описание, изображение).
-Площадки нет в списке курса, поэтому сначала — письмо преподавателю (черновик ниже), затем:
+Площадки нет в списке курса, поэтому замена согласована с преподавателем (текст запроса — ниже); итоговый прогон:
 
 ```bash
 START_URL=https://scrapeme.live/shop/ ./run_real.sh
 ```
 
-Черновик письма:
+Текст запроса на согласование:
 
 > Здравствуйте! Вариант 5 лабораторной № 5 — scrapingcourse.com/ecommerce. Сейчас его robots.txt
 > запрещает весь каталог (`User-agent: *` / `Disallow: /ecommerce/*`, проверено 15.10.2026; лог
@@ -72,7 +72,7 @@ lab5_podolskiy_5/
 │   └── smoke_check.py              # деградация между прогонами (−20 % записей / >5 % пустых)
 ├── nocode/
 │   ├── workflow.json               # экспорт n8n
-│   ├── INSTRUCTIONS.md             # импорт, запуск, какие скриншоты сделать
+│   ├── INSTRUCTIONS.md             # импорт, запуск, скриншоты, результат реального запуска
 │   ├── n8n_metrics.example.json    # шаблон замеров n8n
 │   ├── n8n_metrics.json            # замеры реального запуска n8n (16.10.2026)
 │   ├── n8n_errors.log              # журнал ветки ошибок n8n
@@ -101,7 +101,7 @@ lab5_podolskiy_5/
 cd lab5_podolskiy_5
 chmod +x run_real.sh
 ./run_real.sh                                          # источник варианта; при запрете robots.txt — стоп с доказательством
-START_URL=https://scrapeme.live/shop/ ./run_real.sh    # после согласования замены
+START_URL=https://scrapeme.live/shop/ ./run_real.sh    # согласованная замена (итоговый прогон 16.10.2026)
 ```
 
 Скрипт сам создаёт `.venv`, ставит зависимости и пишет весь вывод в `logs/real_run_<время>.log`.
@@ -116,7 +116,7 @@ START_URL=https://scrapeme.live/shop/ ./run_real.sh    # после соглас
 | 6 | подмножество 2 стр. для сравнения с n8n | 30 с |
 | 7 | smoke-check + self-test | 2 с |
 | 8 | исполнение `quality/quality_report.ipynb` | 20 с |
-| 9 | `tools/compare_table.py` (n8n-колонка заполняется после workflow) | 1 с |
+| 9 | `tools/compare_table.py` (n8n-колонка — из `nocode/n8n_metrics.json`) | 1 с |
 
 Итого ≈ 10–12 минут. Если источник закрыт robots.txt (вариант по умолчанию) — ≈ 1 минута:
 скрипт фиксирует запрет и останавливается **с кодом 0**, чтобы не прерывать общий `run_all.sh`.
@@ -138,7 +138,7 @@ python quality/smoke_check.py --self-test
 
 ## Карта источника
 
-| Уровень | Точка входа | Что берём | Как переходим дальше |
+| Уровень | Точка входа | Что извлекается | Переход дальше |
 |---|---|---|---|
 | 1. Каталог | `/ecommerce/` (или `/shop/`) | ссылки на карточки + контекст (название и цена в списке, позиция, `data-product_sku`, `data-product_id`) | `nav.woocommerce-pagination a.next` → `/page/N/` |
 | 2. Карточка | `/ecommerce/product/<slug>/` | название, цена (со скидкой/диапазоном), SKU, категории, метки, краткое и полное описание, изображение | — |
@@ -150,14 +150,14 @@ python quality/smoke_check.py --self-test
 Только семантические классы WooCommerce, `data-*`, `itemprop`, `rel`; индексных XPath нет. Для каждого
 поля — цепочка фолбэков; последний рубеж — JSON-LD `Product`, который WooCommerce выводит на карточке.
 
-| Поле | Основной селектор | Фолбэки | Как получаем значение |
+| Поле | Основной селектор | Фолбэки | Как извлекается значение |
 |---|---|---|---|
 | карточка в списке | `ul.products li.product` | `li.type-product`, `li[class*='product_cat-']` | одна `li` = один товар, 16 на странице |
 | ссылка на карточку | `a.woocommerce-LoopProduct-link::attr(href)` | `a.woocommerce-loop-product__link`, `a[href*='/product/']` | `response.follow` |
 | SKU в списке | `a.add_to_cart_button::attr(data-product_sku)` | `[data-product_sku]` | контекст через `cb_kwargs`, фолбэк артикула |
 | следующая страница | `nav.woocommerce-pagination a.next::attr(href)` | `a.next.page-numbers`, `link[rel='next']` | `response.follow` (Spider, не CrawlSpider) |
 | название | `h1.product_title::text` | `div.summary h1`, `h1.entry-title`, `[itemprop='name']`, JSON-LD `name` | пробелы и `&nbsp;` схлопываются |
-| цена | `div.summary p.price` → `.woocommerce-Price-amount` | `p.price`, `[itemprop='offers']`, JSON-LD `offers.price` | при скидке берём `ins`, старая цена — `del`; диапазон «$45 – $52» → `price` = мин., `price_max` = макс.; → `Decimal` |
+| цена | `div.summary p.price` → `.woocommerce-Price-amount` | `p.price`, `[itemprop='offers']`, JSON-LD `offers.price` | при скидке берётся `ins`, старая цена — `del`; диапазон «$45 – $52» → `price` = мин., `price_max` = макс.; → `Decimal` |
 | SKU | `div.product_meta span.sku::text` | `[itemprop='sku']`, JSON-LD `sku`, `data-product_sku` из списка | `N/A` = пусто; источник пишется в `sku_source` |
 | категории | `div.product_meta span.posted_in a[rel='tag']::text` | `span.posted_in a` | список → `product_categories` |
 | описание | `div#tab-description` (текст без заголовка `h2`) | `div.woocommerce-Tabs-panel--description`, JSON-LD `description` | пробелы схлопываются |
@@ -165,9 +165,10 @@ python quality/smoke_check.py --self-test
 
 Разметка взята по шаблонам WooCommerce/Storefront и описаниям площадки (статьи ZenRows о scrapingcourse.com:
 `li.product`, `h2.woocommerce-loop-product__title`, `a.page-numbers`, URL `/ecommerce/page/N/`).
-Проверить её на живом сайте не удалось (из среды разработки сайты недоступны, а каталог scrapingcourse
-закрыт robots.txt) — **первый реальный прогон шаг 3 `run_real.sh` проверяет селекторы на одной странице**
-и печатает заполненность каждого поля. Если что-то пусто — см. «Если селекторы не сработали».
+Каталог scrapingcourse закрыт robots.txt, поэтому селекторы проверены на родственной площадке scrapeme.live: шаг 3
+`run_real.sh` проверяет их на одной странице и печатает заполненность каждого поля. В прогоне 16.10.2026 все шесть
+полей варианта заполнены у 100 % записей (`report.md`, раздел 8); порядок действий при поломке разметки — в разделе
+«Если селекторы не сработали».
 
 ## Item Pipeline
 
@@ -183,14 +184,14 @@ python quality/smoke_check.py --self-test
 
 ## Проверка на локальной имитации
 
-Реальные площадки из среды разработки недоступны, поэтому всё прогнано end-to-end на имитации
+Помимо реального прогона, сценарий целиком прогнан end-to-end на имитации
 `tools/mock_shop.py`: те же классы WooCommerce, 331 синтетический товар на 21 странице и
 специально подготовленные «трудные» карточки (нет SKU, «SKU: N/A», SKU только в JSON-LD,
 дубль SKU под другим URL, «Price on request», нет описания, заглушка вместо фото, грязный заголовок).
 
 ```bash
 python3 tools/mock_shop.py --port 18505 &                     # имитация (robots.txt разрешающий)
-START_URL=http://127.0.0.1:18505/ecommerce/ ./run_real.sh     # тот же сценарий, что у студента
+START_URL=http://127.0.0.1:18505/ecommerce/ ./run_real.sh     # тот же сценарий, что и на реальном сайте
 python3 tools/mock_shop.py --port 18515 --robots real &       # копия настоящего robots.txt scrapingcourse
 START_URL=http://127.0.0.1:18515/ecommerce/ ./run_real.sh     # → запрет, 1 запрос, 0 записей
 ```
@@ -236,9 +237,8 @@ START_URL=http://127.0.0.1:18515/ecommerce/ ./run_real.sh     # → запрет
    селектор **в начало** соответствующего списка `SEL` в `spiders/ecommerce.py` (фолбэки оставить).
 3. Повторить шаг 3 `run_real.sh` (он работает с HTTP-кэшем и не нагружает сайт повторно).
 
-## Что осталось заполнить
+## Источники цифр в отчёте
 
-Цифры итогового прогона, JOBDIR/HTTPCACHE, отчёта о качестве и n8n уже внесены (прогоны 16.10.2026).
-Вручную остаются только помеченные `⟪ЗАПОЛНИТЬ⟫` строки `report.md`: время разработки и оценка поддержки.
-Источники цифр: `logs/real_run_*.log`, `data/stats_*.json`, `data/demo/demo_summary.md`, исполненный
+Цифры итогового прогона, JOBDIR/HTTPCACHE, отчёта о качестве и n8n получены в прогонах 16.10.2026.
+Источники: `logs/real_run_*.log`, `data/stats_*.json`, `data/demo/demo_summary.md`, исполненный
 `quality/quality_report.ipynb`, `nocode/comparison_table.md`.

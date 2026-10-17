@@ -1,7 +1,7 @@
 """Сводка измерений для отчёта: metrics/summary.md (таблицы, готовые для вставки в report.md).
 
 Источники: metrics/*.json, metrics/bench_*.csv, collection_log.csv, data_*.csv, nocode/nocode_result.csv.
-Где значения нет (no-code меряется вручную в n8n) — печатается маркер ⟪ЗАПОЛНИТЬ⟫.
+Замеры n8n берутся из nocode/n8n_metrics.json (Executions и RSS процесса n8n); где значения нет — маркер ⟪ЗАПОЛНИТЬ⟫.
 Функции возвращают DataFrame и используются блокнотом lab4.ipynb.
 """
 from __future__ import annotations
@@ -71,22 +71,31 @@ def nocode_rows() -> int | None:
     return int(len(pd.read_csv(p, keep_default_na=False)))
 
 
+def n8n_metrics() -> dict:
+    p = C.OUT_DIR / "nocode" / "n8n_metrics.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+
+
 def comparison_table() -> pd.DataFrame:
     b, l = jload("browser.json"), jload("light.json")
+    n = n8n_metrics()
     nrows = nocode_rows()
     spr = lambda m: m.get("sec_per_record")
+    n_run = (f"{fmt(n.get('run_seconds_median'), 1)} (медиана {n.get('runs')} запусков, "
+             f"{fmt(n.get('run_seconds_min'), 1)}–{fmt(n.get('run_seconds_max'), 1)})") if n else FILL
     rows = [
-        ("Время разработки, мин", FILL, FILL, FILL),
         ("Записей собрано", fmt(b.get("records")), fmt(l.get("records")),
          f"{nrows} (лента, 1 запись = цитата)" if nrows is not None else FILL),
-        ("Время одного прогона, с", fmt(b.get("duration_s")), fmt(l.get("duration_s")), f"{FILL} (n8n → Executions)"),
+        ("Время одного прогона, с", fmt(b.get("duration_s")), fmt(l.get("duration_s")), n_run),
         ("  из них паузы вежливости, с", fmt(b.get("paused_s")), fmt(l.get("paused_s")), "1 с × (страниц − 1)"),
-        ("Число сетевых запросов", fmt(b.get("requests")), fmt(l.get("requests")), f"{FILL} (2 + число страниц)"),
+        ("Число сетевых запросов", fmt(b.get("requests")), fmt(l.get("requests")),
+         f"{n['http_requests']} (+ {n['retries_range']} повтора)" if n else FILL),
         ("  заблокировано (route.abort)", fmt(b.get("blocked")), "—", "—"),
-        ("Трафик, МБ", fmt(b.get("mb"), 3), fmt(l.get("mb"), 3), FILL),
+        ("Трафик, МБ", fmt(b.get("mb"), 3), fmt(l.get("mb"), 3),
+         f"≈ {fmt(n.get('traffic_mb_estimate'), 2)} (оценка)" if n else FILL),
         ("Пиковая память процесса, МБ", fmt(b.get("peak_rss_mb"), 1), fmt(l.get("peak_rss_mb"), 1),
-         f"{FILL} (Монитор системы: node n8n)"),
-        ("Секунд на запись", fmt(spr(b), 4), fmt(spr(l), 4), FILL),
+         f"≈ {n['peak_rss_mb']} (RSS n8n)" if n else FILL),
+        ("Секунд на запись", fmt(spr(b), 4), fmt(spr(l), 4), fmt(n.get("sec_per_record")) if n else FILL),
         ("Устойчивость к редизайну (1–5)", "4", "4", "3"),
         ("Воспроизводимость (Git / экспорт)", "Git: код + requirements.txt", "Git: код + requirements.txt",
          "экспорт nocode/workflow.json + ручной запуск n8n"),
