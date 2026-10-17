@@ -4,7 +4,7 @@ import os
 import requests
 
 BASE_URL = "https://api.nasa.gov"
-API_KEY = os.getenv("NASA_API_KEY", "***")
+API_KEY = os.getenv("NASA_API_KEY", "DEMO_KEY")
 
 SESSION = requests.Session()
 SESSION.trust_env = False

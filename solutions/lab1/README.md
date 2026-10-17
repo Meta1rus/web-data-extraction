@@ -39,9 +39,9 @@ https://github.com/public-apis/public-apis (раздел *Science & Math*).
 
 **Выбранное API:** NASA Open APIs, https://api.nasa.gov
 **Тип авторизации:** API key. Ключ передаётся в query-параметре `api_key`.
-Ключ получен после персональной регистрации (имя + e-mail) на `api.nasa.gov`:
-`***`.
-Для тестов также поддерживается переменная окружения `NASA_API_KEY` или встроенный `DEMO_KEY`.
+Ключ получен после персональной регистрации (имя + e-mail) на `api.nasa.gov` и в репозиторий не входит:
+скрипт читает его из переменной окружения `NASA_API_KEY`, а без неё использует общий `DEMO_KEY`
+(лимит ниже — 30 запросов в час и 50 в сутки на IP). В сохранённых ответах и выводе скрипта ключ заменён на `***`.
 
 Скрипт `api_auth_request.py` делает три запроса:
 
@@ -55,6 +55,7 @@ https://github.com/public-apis/public-apis (раздел *Science & Math*).
 
 Запуск:
 ```bash
+export NASA_API_KEY=<персональный ключ>   # без этой строки — DEMO_KEY
 python3 api_auth_request.py
 ```
 
