@@ -182,7 +182,7 @@ bash tests/run_mock_e2e.sh /tmp/lab4_mock     # сервер-имитация н
 | 4.6 устойчивость + smoke-check | report.md §4; `common.smoke_check` (порог 5 %), вызывается в конце `collect.py`/`light.py`, демонстрация срабатывания — блокнот §4 |
 | отчёт с правовым разделом | `report.md` §11 (правовая оценка), §10 (выводы по трём сценариям), §12 (источники) |
 | бонус: параллельный сбор | `parallel.py` (async, K контекстов, совпадение наборов, ускорение) |
-| бонус: Trace Viewer | `artifacts/trace.zip` (вход + лента), `artifacts/trace_faults.zip` (инцидент HTTP 500), разбор — report.md §9 |
+| бонус: Trace Viewer | `artifacts/trace.zip` (вход + лента; 2 МБ, ассет `lab4_trace.zip` в [GitHub Release](https://github.com/Meta1rus/web-data-extraction/releases/tag/lab-data)), `artifacts/trace_faults.zip` (инцидент HTTP 500), разбор — report.md §9 |
 | бонус: подмена ответа | `faults.py`: пустой ответ, 500, страница без сессии — PASS/FAIL |
 | User-Agent, robots.txt, паузы | UA `PSU-edu-crawler/1.0 (...)`; `RobotsGuard` (robots.txt проверяется перед каждой страницей; на сайте 404); пауза 1 с |
 

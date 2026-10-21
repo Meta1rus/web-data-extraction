@@ -4,3 +4,8 @@ __pycache__/
 .ipynb_checkpoints/
 .env
 raw/html/
+
+# Полные данные реального прогона — ассет lab6_data.zip в GitHub Release (см. README);
+# в репозитории — образец samples/github_api_sample.jsonl
+raw/github_api.jsonl
+db/*.db

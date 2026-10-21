@@ -6,3 +6,5 @@ __pycache__/
 .DS_Store
 # auth_state.json и auth_state_light.json НЕ игнорируются намеренно: это сессия учебного
 # аккаунта на тренировочном сайте (любой логин/пароль), они входят в состав сдачи по заданию.
+# Trace Viewer входа и ленты (2 МБ) — ассет lab4_trace.zip в GitHub Release (см. README)
+artifacts/trace.zip

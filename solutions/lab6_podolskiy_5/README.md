@@ -6,7 +6,7 @@
 
 Набор — 12 репозиториев инструментов курса из `config/repos.txt`: scrapy, parsel, requests, httpx, aiohttp, playwright-python, selenium, n8n, pandas, pydantic, arrow, duckdb. Почему именно они — в `report.md`, раздел 2.
 
-> **Статус данных.** Папки `raw/`, `clean/`, `mart/`, `db/` и `logs/` заполнены реальным прогоном `./run_real.sh` 15.10.2026 (GitHub API с токеном и HTML-страницы github.com); сохранённые HTML-страницы (`raw/html/`) в репозиторий не входят. До реального прогона код проверялся end-to-end на локальной имитации GitHub (`tests/mock_github.py` + синтетические фикстуры `tests/fixtures/`), см. раздел «Проверка на имитации».
+> **Статус данных.** Папки `raw/`, `clean/`, `mart/`, `db/` и `logs/` заполнены реальным прогоном `./run_real.sh` 15.10.2026 (GitHub API с токеном и HTML-страницы github.com); сохранённые HTML-страницы (`raw/html/`) в репозиторий не входят. Полный сырой `raw/github_api.jsonl` (3 612 записей) и базы `db/warehouse.db`, `db/demo_idempotency.db` тоже вынесены из репозитория — в архив `lab6_data.zip` [GitHub Release](https://github.com/Meta1rus/web-data-extraction/releases/tag/lab-data), который распаковывается в эту папку; в `samples/github_api_sample.jsonl` — образец (12 репозиториев × 10 issues). Базы можно и пересобрать из `clean/`: `python db/load.py` и `python db/load.py --demo`. До реального прогона код проверялся end-to-end на локальной имитации GitHub (`tests/mock_github.py` + синтетические фикстуры `tests/fixtures/`), см. раздел «Проверка на имитации».
 
 ## Состав
 
