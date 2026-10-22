@@ -1,5 +1,17 @@
 # Сбор данных из интернета: от REST API и парсинга до устойчивого пайплайна с оркестрацией в n8n
 
+<!-- header -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Scrapy-60A839?style=flat-square&logo=scrapy&logoColor=white" alt="Scrapy">
+  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square" alt="Playwright">
+  <img src="https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white" alt="n8n">
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite">
+  <img src="https://img.shields.io/badge/DuckDB-FFF000?style=flat-square&logo=duckdb&logoColor=white" alt="DuckDB">
+</p>
+
+<p align="center"><img src="solutions/final_project_podolskiy/mart/fig1_stars_by_topic.png" alt="Популярность Python-репозиториев по темам GitHub" width="90%"></p>
+
 Восемь работ по автоматизированному сбору данных: REST API, парсинг HTML, динамические страницы, промышленный краулинг,
 хранение и контроль качества, устойчивость к сбоям. Итоговый проект — гибридный пайплайн: Python собирает и обрабатывает
 данные, n8n запускает его по расписанию, проверяет отчёт о прогоне и рассылает оповещения.
