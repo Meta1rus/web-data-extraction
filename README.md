@@ -47,8 +47,6 @@ REST API, связанные по ключу `owner/repo`; реальный пр
 | [Лаб. 7](solutions/lab7_podolskiy_5/README.md) | устойчивость: token bucket, повторы, предохранитель, ETag, структурные логи |
 | [Итоговый проект](solutions/final_project_podolskiy/README.md) | гибридный пайплайн GitHub Topics + REST API с оркестрацией в n8n |
 
-Состояние работ и согласованная замена источника для лаб. 5 и 7 — в [docs/assignments.md](docs/assignments.md).
-
 ## Стек
 
 Python · requests · BeautifulSoup · Scrapy · Playwright · pandas · pydantic · Parquet (PyArrow) · DuckDB · SQLite ·
@@ -62,7 +60,6 @@ solutions/
 └── final_project_podolskiy/
 run_all.sh                       # реальный прогон лаб 3, 4, 5, 7
 start_n8n.sh                     # n8n на http://localhost:5678 (нужен Node.js ≥ 24)
-docs/assignments.md
 ```
 
 ```bash
