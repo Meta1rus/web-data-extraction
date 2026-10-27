@@ -12,7 +12,7 @@
 ```
 lab3_podolskiy_5/
 ├── lab3.ipynb            # блокнот, этапы 1–12 (сдаётся исполненным)
-├── data_raw.jsonl        # сырые записи /coins/markets и ответы /market_chart     ┐
+├── data_raw.jsonl        # сырые ответы /coins/markets, /market_chart (не в Git)  ┐
 ├── data_clean.csv        # нормализованная обогащённая таблица, ключ (id, snapshot_date) │ появляются после
 ├── collection_log.csv    # журнал HTTP-попыток                                        │ прогона блокнота
 ├── state.json            # водяной знак, ETag страниц, сводки прогонов                ┘
@@ -31,6 +31,11 @@ lab3_podolskiy_5/
 ├── .gitignore            # .env, .venv/ и временные файлы не попадают в Git
 └── README.md
 ```
+
+`data_raw.jsonl` в открытый репозиторий не выкладывается: условия API CoinGecko не допускают перераспространения
+данных (`report.md`, раздел 8). Файл итогового прогона 16.10.2026 передаётся преподавателю отдельно — в архиве
+`podolskiy_data_for_review.zip` вместе с данными итогового проекта (описание и SHA-256 — в README итогового проекта,
+раздел 2); заново его создаёт `./run_real.sh`.
 
 ## Запуск (macOS)
 
