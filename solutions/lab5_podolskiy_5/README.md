@@ -66,7 +66,7 @@ lab5_podolskiy_5/
 │   ├── stats_<N>_<метка>.json      # статистика КАЖДОГО прогона (closed())
 │   ├── robots_preflight.json       # результат проверки robots.txt
 │   └── demo/                       # демонстрации JOBDIR/HTTPCACHE, подмножество для n8n
-├── jobstate/                       # каталог состояния JOBDIR (демонстрация)
+├── jobstate/                       # каталог состояния JOBDIR; создаётся при запуске, в Git не хранится
 ├── quality/
 │   ├── quality_report.ipynb        # полнота, причины отброса, коды, агрегаты, графики
 │   └── smoke_check.py              # деградация между прогонами (−20 % записей / >5 % пустых)
